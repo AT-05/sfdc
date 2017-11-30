@@ -1,0 +1,16 @@
+{
+  "Environments": [
+    {
+      "id": "login",
+      "url": "https://login.salesforce.com/",
+      "user name": "",
+      "user password": ""
+    },
+    {
+      "id": "developer",
+      "url": "https://developers.salesforce.com/",
+      "user name": "",
+      "user password": ""
+    }
+  ]
+}
