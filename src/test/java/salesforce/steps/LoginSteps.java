@@ -1,30 +1,26 @@
 package salesforce.steps;
 
-import cucumber.api.*;
-import cucumber.api.java.*;
-import cucumber.api.java.en.*;
-import salesforce.salesforceapp.config.*;
-import salesforce.salesforceapp.ui.*;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import static org.junit.Assert.*;
+import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
+import salesforce.salesforceapp.ui.HomePage;
+import salesforce.salesforceapp.ui.LoginPage;
+import salesforce.salesforceapp.ui.PageTransporter;
 
 /**
- * Created by Administrator on 12/1/2017.
+ * Created by AT-05 team on 12/1/2017.
  */
 public class LoginSteps {
   private final PageTransporter pageTransporter;
   private LoginPage loginPage;
   private HomePage homePage;
-  //private Automation automation;
 
   /**
    * <p>This constructor gets page transporter instance.</p>
    */
   public LoginSteps() {
-    /*try {
-      automation = Automation.getInstance();
-      automation.startUp();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }*/
     pageTransporter = PageTransporter.getInstance();
   }
 
@@ -32,7 +28,7 @@ public class LoginSteps {
    * <p>This step performs navigation to main page.</p>
    */
   @Given("^I navigate to Main Page$")
-  public void i_navigate_to_Main_Page() {
+  public void iNavigateToMainPage() {
     loginPage = pageTransporter.navigateToMainPage();
   }
 
@@ -40,7 +36,7 @@ public class LoginSteps {
    * <p>This step performs login of user into the application.</p>
    */
   @When("^I login to salesforce$")
-  public void i_login_to_salesforce() {
+  public void iLoginToSalesforce() {
     homePage = loginPage.login(SalesForceAppEnvsConfig.getInstance().getUserName(),
       SalesForceAppEnvsConfig.getInstance().getUserPassword());
   }
@@ -49,15 +45,7 @@ public class LoginSteps {
    * <p>This step performs checked of successful user login.</p>
    */
   @Then("^I should be redirected to home page$")
-  public void i_should_be_redirected_to_home_page() {
-    //assertTrue(homePage.isCurrentPage());
-  }
-
-  /**
-   * <p>This step is executed after loginUser scenario.</p>
-   */
-  @After(value = "@Login", order = 999)
-  public void afterLoginScenario() {
-
+  public void iShouldBeRedirectedToHomePage() {
+    assertTrue(homePage.isHomePage());
   }
 }

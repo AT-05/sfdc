@@ -46,7 +46,7 @@ public abstract class BasePage {
    */
   protected void selectElementInList(List<WebElement> webElements, String keyWord) {
     for (WebElement element : webElements) {
-      String value = element.getAttribute("value");
+      String value = element.getAttribute("title");
       if (value.contains(keyWord)) {
         element.click();
         break;

@@ -17,6 +17,7 @@ public class WebDriverConfig {
   private JsonReader configReader;
 
   private String browser;
+  //private final String browser = System.getProperty("browserName");
   private int implicitWaitTime;
   private int explicitWaitTime;
   private int waitSleepTime;

@@ -24,9 +24,10 @@ public class LoginPage extends BasePage {
    *
    * @param usernameInput is the userName name value given.
    * @param passwordInput is the userName password value given.
-   * @return
+   * @return a HomePage object type.
    */
   public HomePage login(String usernameInput, String passwordInput) {
+    System.out.println("************************username");
     userName.sendKeys(usernameInput);
     password.sendKeys(passwordInput);
     loginButton.click();
