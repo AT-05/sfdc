@@ -1,16 +1,16 @@
 {
   "Environments": [
     {
-      "id": "login",
+      "id": "lightning",
       "url": "https://login.salesforce.com/",
-      "user name": "",
-      "user password": ""
+      "username": "francodanielaldunatecordero@gmail.com",
+      "userpassword": "cachito52CP%J"
     },
     {
-      "id": "developer",
-      "url": "https://developers.salesforce.com/",
-      "user name": "",
-      "user password": ""
+      "id": "classic",
+      "url": "https://login.salesforce.com/",
+      "username": "francodanielaldunatecordero@gmail.com",
+      "userpassword": "cachito52CP%J"
     }
   ]
 }

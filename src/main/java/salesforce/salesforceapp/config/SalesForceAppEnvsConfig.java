@@ -21,6 +21,7 @@ public class SalesForceAppEnvsConfig {
   private String url;
   private String userName;
   private String userPassword;
+  private String id;
 
   private static SalesForceAppEnvsConfig instance;
 
@@ -41,6 +42,8 @@ public class SalesForceAppEnvsConfig {
     url = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, URL);
     userName = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_NAME);
     userPassword = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_PASSWORD);
+    id = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, ID);
+    System.out.println("*********************" + id);
   }
 
   public String getUrl() {
@@ -53,5 +56,9 @@ public class SalesForceAppEnvsConfig {
 
   public String getUserPassword() {
     return userPassword;
+  }
+
+  public String getId() {
+    return id;
   }
 }
