@@ -1,5 +1,7 @@
 package salesforce.steps;
 
+import static org.testng.Assert.assertTrue;
+
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -50,7 +52,7 @@ public class LoginSteps {
 
   @Then("^I should login successfully$")
   public void verifyMainPageIsDisplayed() {
-//        assertTrue(homePage.isUserNameDisplayed(), "User name displayed in Web);
+        assertTrue(homePage.isInHomePage(), "User is able to see home page");
   }
 
   @Given("^I am logged to Salesforce")

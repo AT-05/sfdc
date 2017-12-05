@@ -7,8 +7,7 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 
 public abstract class TopMenu extends BasePage {
 
-  public void swithSkin() {
-  }
+  public abstract void swithSkin();
 
   public LoginPage logout() {
     return new LoginPage();
