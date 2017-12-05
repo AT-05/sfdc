@@ -55,13 +55,14 @@ tasks.withType(Test) {
     // Define the custom properties to run the regression
     systemProperty "browserName", browserName
     systemProperty "env_id", env_id
+    systemProperty "skin", skin
 }
 
 task executeFeatures(type: Test) {
     options {
         useDefaultListeners = false
         jvmArgs = ['-Dcucumber.options= ' +
-                           '--glue courses ' +
+                           '--glue salesforce ' +
                            '--plugin pretty ' +
                            '--plugin json:build/cucumber/cucumber.json ' +
                            '--plugin rerun:build/cucumber/rerun.txt ' +

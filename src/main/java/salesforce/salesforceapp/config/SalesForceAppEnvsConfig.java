@@ -2,6 +2,8 @@ package salesforce.salesforceapp.config;
 
 import org.apache.log4j.Logger;
 import salesforce.core.utils.JsonReader;
+import salesforce.salesforceapp.SalesforceEnums;
+import salesforce.salesforceapp.SalesforceEnums.Skin;
 
 public class SalesForceAppEnvsConfig {
 
@@ -15,9 +17,11 @@ public class SalesForceAppEnvsConfig {
   private static final String URL = "url";
   private static final String USER_NAME = "user name";
   private static final String USER_PASSWORD = "user password";
+  private static final String SKIN = "skin";
 
   private JsonReader envReader;
 
+  private Skin skin;
   private String url;
   private String userName;
   private String userPassword;
@@ -37,6 +41,10 @@ public class SalesForceAppEnvsConfig {
   public void initialize(String sampleAppEnvsConfigFileName) {
     log.info("-----Read the credentials-----");
 
+    //Get the skin system property
+    skin = SalesforceEnums.Skin.getSkinEnumBySkinName(System.getProperty(SKIN));
+    log.info("Skin --> " + skin);
+
     envReader = new JsonReader(sampleAppEnvsConfigFileName);
     url = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, URL);
     userName = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_NAME);
@@ -53,5 +61,13 @@ public class SalesForceAppEnvsConfig {
 
   public String getUserPassword() {
     return userPassword;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public Skin getSkin() {
+    return skin;
   }
 }
