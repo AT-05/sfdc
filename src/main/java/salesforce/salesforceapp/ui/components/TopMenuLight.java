@@ -3,6 +3,8 @@ package salesforce.salesforceapp.ui.components;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.*;
+import salesforce.salesforceapp.ui.accounts.AccountHomePage;
+import salesforce.salesforceapp.ui.accounts.AccountHomePageLight;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageLight;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
@@ -14,6 +16,11 @@ public class TopMenuLight extends TopMenu {
 
   @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
   private WebElement switchSkinLink;
+
+  @FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Account') ]")
+  private WebElement accountsLink;
+
+
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -36,4 +43,12 @@ public class TopMenuLight extends TopMenu {
   public OppyHomePage goToOppyHomePage() {
     return new OppyHomePageLight();
   }
+
+  @Override
+  public AccountHomePage goToAccountsHomePage() {
+    accountsLink.click();
+    return new AccountHomePageLight();
+  }
+
+
 }

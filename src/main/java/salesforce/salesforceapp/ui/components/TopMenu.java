@@ -2,6 +2,7 @@ package salesforce.salesforceapp.ui.components;
 
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.LoginPage;
+import salesforce.salesforceapp.ui.accounts.AccountHomePage;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 
@@ -19,4 +20,6 @@ public abstract class TopMenu extends BasePage {
   public abstract HomePage goToHomePage();
 
   public abstract OppyHomePage goToOppyHomePage();
+
+  public abstract AccountHomePage goToAccountsHomePage();
 }

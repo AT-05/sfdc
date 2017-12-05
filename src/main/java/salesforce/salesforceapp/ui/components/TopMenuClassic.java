@@ -3,6 +3,7 @@ package salesforce.salesforceapp.ui.components;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
 import org.openqa.selenium.support.ui.*;
+import salesforce.salesforceapp.ui.accounts.AccountHomePage;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
@@ -40,4 +41,11 @@ public class TopMenuClassic extends TopMenu {
   public OppyHomePage goToOppyHomePage() {
     return new OppyHomePageClassic();
   }
+
+  @Override
+  public AccountHomePage goToAccountsHomePage() {
+    return null;
+  }
+
+
 }
