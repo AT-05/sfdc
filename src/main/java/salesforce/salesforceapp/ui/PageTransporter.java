@@ -71,7 +71,7 @@ public class PageTransporter {
    *
    * @return LoginPage.
    */
-  public LoginPage navigateToPrincipalPage() {
+  public LoginPage navigateToLoginPage() {
     goToURL(baseURL);
     return new LoginPage();
   }

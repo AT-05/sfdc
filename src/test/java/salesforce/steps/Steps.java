@@ -1,7 +1,10 @@
 package salesforce.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
+import salesforce.salesforceapp.ui.HomeAbstract;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageTransporter;
 
@@ -11,13 +14,19 @@ import salesforce.salesforceapp.ui.PageTransporter;
 public class Steps {
 
   LoginPage loginPage;
-  HomePageAbstract homePageAbstract;
+  HomeAbstract homeAbstract;
 
   @Given("^I'm logged to Salesforce$")
   public void iMLoggedToSalesforce() {
-    loginPage = PageTransporter.getInstance().navigateToPrincipalPage();
-    homePageAbstract = loginPage.login(SalesForceAppEnvsConfig.getInstance().getUserName(),
+    loginPage = PageTransporter.getInstance().navigateToLoginPage();
+
+    homeAbstract = loginPage.login(SalesForceAppEnvsConfig.getInstance().getUserName(),
         SalesForceAppEnvsConfig.getInstance().getUserPassword());
+
+  }
+
+  @When("^I go to Opportunities page$")
+  public void iGoToOpportunitiesPage() {
 
   }
 }

@@ -1,4 +1,4 @@
-@This
+@Lighting
 Feature: Open the Opportunity page
 
   Background:
