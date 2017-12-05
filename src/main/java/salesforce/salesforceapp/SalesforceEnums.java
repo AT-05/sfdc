@@ -5,8 +5,8 @@ import java.util.HashMap;
 public class SalesforceEnums {
 
   public enum Skin {
-    CLASSIC("Classic"),
-    LIGHT("Lightning");
+    CLASSIC("classic"),
+    LIGHT("lightning");
 
     private String skinName;
 
