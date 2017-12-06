@@ -7,33 +7,56 @@ import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageLight;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
+import salesforce.salesforceapp.ui.product.home.HomeProductPage;
+import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
+import salesforce.salesforceapp.ui.product.home.HomeProductPageLightning;
 
 public class TopMenuLight extends TopMenu {
-  @FindBy(xpath= "//*[@id=\"userNavLabel\"]")
-  private WebElement userProfile;
 
-  @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
-  private WebElement switchSkinLink;
+    ////*******MIoooooooooooooooooo*********
 
-  @Override
-  public void waitUntilPageObjectIsLoaded() {
-    wait.until(ExpectedConditions.urlContains("home"));
-  }
 
-  @Override
-  public void switchSkin() {
-    System.out.println("******user profile of light********");
-    userProfile.click();
-    switchSkinLink.click();
-  }
+    @FindBy(xpath = ".//*[@id='oneHeader']/div[4]/one-appnav/div/div/div/nav/one-app-launcher-header/button")
+    WebElement launcherBtn;
 
-  @Override
-  public HomePage goToHomePage() {
-    return new HomePageLight();
-  }
 
-  @Override
-  public OppyHomePage goToOppyHomePage() {
-    return new OppyHomePageLight();
-  }
+    @FindBy(xpath = "html/body/div[5]/div[2]/div[5]/div[2]/div/div[2]/div/div[3]/div/div[2]/ul/li[22]/a/span/span")
+    WebElement productTab;
+
+    @Override
+    public HomeProductPage goToHomeProduct() {
+        launcherBtn.click();
+        waitUntilPageObjectIsLoaded();
+        productTab.click();
+        return new HomeProductPageLightning();
+    }
+    ///////////
+
+    @FindBy(xpath = "//*[@id=\"userNavLabel\"]")
+    private WebElement userProfile;
+
+    @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
+    private WebElement switchSkinLink;
+
+    @Override
+    public void waitUntilPageObjectIsLoaded() {
+        wait.until(ExpectedConditions.urlContains("home"));
+    }
+
+    @Override
+    public void switchSkin() {
+        System.out.println("******user profile of light********");
+        userProfile.click();
+        switchSkinLink.click();
+    }
+
+    @Override
+    public HomePage goToHomePage() {
+        return new HomePageLight();
+    }
+
+    @Override
+    public OppyHomePage goToOppyHomePage() {
+        return new OppyHomePageLight();
+    }
 }
