@@ -6,6 +6,7 @@ import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.components.TopMenuClassic;
 import salesforce.salesforceapp.ui.components.TopMenuLight;
+import salesforce.salesforceapp.ui.contacts.*;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.home.HomePageLight;
@@ -60,6 +61,24 @@ public class PageFactory {
         return new OppyEditionFormClassic();
       default:
         return new OppyEditionFormLight();
+    }
+  }
+
+  public static ContactContentPage getContactContentPage() {
+    switch (skin) {
+      case CLASSIC:
+        return new ContactContentPageClassic();
+      default:
+        return new ContactContentPageLight();
+    }
+  }
+
+  public static ContactEditionForm getContacEditionForm() {
+    switch (skin) {
+      case CLASSIC:
+        return new ContactEditionFormClassic();
+      default:
+        return new ContactEditionFormLight();
     }
   }
 }

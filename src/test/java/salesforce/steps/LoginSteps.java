@@ -55,7 +55,9 @@ public class LoginSteps {
 
   @Given("^I am logged to Salesforce")
   public void iAmLoggedToMyApplication() {
-    if (pageTransporter.isOnLogin()) {      //if the user is not logged
+    if (!pageTransporter.isOnLogin()) {      //if the user is not logged
+        navigateToLoginPage();
+        iLoginWithEnviromentsParams();
 //      login(SalesForceAppEnvsConfig.getInstance().getUserName(),
 //          SalesForceAppEnvsConfig.getInstance().getUserPassword());
     }

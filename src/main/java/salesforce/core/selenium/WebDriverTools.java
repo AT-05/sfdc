@@ -1,6 +1,7 @@
 package salesforce.core.selenium;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,6 +11,8 @@ public class WebDriverTools {
 
   private WebDriver driver;
   private WebDriverWait wait;
+  private final String JS_SCRIPT = "document.querySelector(\"a[title='%s']\").click();";
+
 
   public WebDriverTools() {
     this.driver = WebDriverManager.getInstance().getWebDriver();
@@ -111,5 +114,14 @@ public class WebDriverTools {
     if (isElementSelected(element)) {
       clickElement(element);
     }
+  }
+  /**
+   * This method perform a click in a non visible element in the UI using class locator.
+   *
+   * @param webElement the WebElement non visible in the UI.
+   */
+  public void jsClickClassButton(WebElement webElement) {
+    ((JavascriptExecutor)driver)
+      .executeScript("arguments[0].click();", webElement);
   }
 }
