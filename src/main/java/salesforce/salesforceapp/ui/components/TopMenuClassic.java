@@ -7,37 +7,54 @@ import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
+import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
 
 public class TopMenuClassic extends TopMenu {
-  @FindBy(css = ".oneUserProfileCardTrigger")
-  private WebElement userProfile;
+    @FindBy(css = ".oneUserProfileCardTrigger")
+    private WebElement userProfile;
 
-  @FindBy(xpath = "//a[contains(@href, 'classic')]")
-  private WebElement switchSkinLink;
+    @FindBy(xpath = "//a[contains(@href, 'classic')]")
+    private WebElement switchSkinLink;
 
-  /**
-   * <p>This method performs switching of web page skin
-   * to classic.</p>
-   */
-  @Override
-  public void waitUntilPageObjectIsLoaded() {
-    wait.until(ExpectedConditions.urlContains("home"));
-  }
+    ////*******MIoooooooooooooooooo*********
 
-  @Override
-  public void switchSkin() {
 
-    userProfile.click();
-    switchSkinLink.click();
-  }
+    @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
+    WebElement productTab;
 
-  @Override
-  public HomePage goToHomePage() {
-    return new HomePageClassic();
-  }
+    @Override
+    public HomeProductPageClassic goToHomeProduct() {
+        productTab.click();
+        return new HomeProductPageClassic();
+    }
+    ///////////
 
-  @Override
-  public OppyHomePage goToOppyHomePage() {
-    return new OppyHomePageClassic();
-  }
+
+    /**
+     * <p>This method performs switching of web page skin
+     * to classic.</p>
+     */
+    @Override
+    public void waitUntilPageObjectIsLoaded() {
+        wait.until(ExpectedConditions.urlContains("home"));
+    }
+
+    @Override
+    public void switchSkin() {
+
+        userProfile.click();
+        switchSkinLink.click();
+    }
+
+    @Override
+    public HomePage goToHomePage() {
+        return new HomePageClassic();
+    }
+
+    @Override
+    public OppyHomePage goToOppyHomePage() {
+        return new OppyHomePageClassic();
+    }
+
+
 }

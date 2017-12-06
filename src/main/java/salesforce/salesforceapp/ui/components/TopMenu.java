@@ -4,19 +4,24 @@ import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
+import salesforce.salesforceapp.ui.product.home.HomeProductPage;
 
 public abstract class TopMenu extends BasePage {
 
-  /**
-   * <p>This method performs switching of web page skin.</p>
-   */
-  public abstract void switchSkin();
+    /**
+     * <p>This method performs switching of web page skin.</p>
+     */
+    public abstract void switchSkin();
 
-  public LoginPage logout() {
-    return new LoginPage();
-  }
+    public LoginPage logout() {
+        return new LoginPage();
+    }
 
-  public abstract HomePage goToHomePage();
+    public abstract HomePage goToHomePage();
 
-  public abstract OppyHomePage goToOppyHomePage();
+    public abstract OppyHomePage goToOppyHomePage();
+
+    public abstract HomeProductPage goToHomeProduct();
+
+
 }
