@@ -15,6 +15,9 @@ import salesforce.salesforceapp.ui.opportunities.OppyContentPageLight;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionFormClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionFormLight;
+import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
+import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
+import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
 
 public class PageFactory {
 
@@ -60,6 +63,16 @@ public class PageFactory {
         return new OppyEditionFormClassic();
       default:
         return new OppyEditionFormLight();
+    }
+  }
+
+  public static OppyHomePage getOppyHomePage() {
+    switch (skin) {
+      case CLASSIC:
+        return new OppyHomePageClassic() {
+        };
+      default:
+        return new OppyHomePageLight();
     }
   }
 }

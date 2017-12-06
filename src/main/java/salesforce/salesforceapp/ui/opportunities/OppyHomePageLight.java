@@ -10,7 +10,7 @@ public class OppyHomePageLight extends OppyHomePage {
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
-
+    //wait.untilpage.titgle const/....
   }
 
   @Override

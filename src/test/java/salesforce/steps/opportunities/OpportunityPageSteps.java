@@ -7,12 +7,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
-import salesforce.salesforceapp.entities.Oppy;
+import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.home.HomePage;
-import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
-import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 
 /**
@@ -27,8 +25,6 @@ public class OpportunityPageSteps {
   private LoginPage loginPage;
   private HomePage homePage;
   private OppyHomePage oppyHomePage;
-  private OppyContentPage oppyContentPage;
-  private OppyEditionForm oppyEditionForm;
 
   //Entities
   private Oppy oppy;
@@ -43,9 +39,11 @@ public class OpportunityPageSteps {
   @Given("^I'm logged to Salesforce$")
   public void iMLoggedToSalesforce() {
     loginPage = pageTransporter.navigateToLoginPage();
-    String username = SalesForceAppEnvsConfig.getInstance().getUserName();
-    String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
-    homePage = loginPage.login(username, password);
+    /*if(SI ESTOY EN HOME)*/{
+      String username = SalesForceAppEnvsConfig.getInstance().getUserName();
+      String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
+      homePage = loginPage.login(username, password);
+    }
   }
 
   @When("^I go to Opportunities page$")

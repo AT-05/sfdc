@@ -11,9 +11,9 @@ public abstract class HomeBasePage extends BasePage {
 
   public TopMenu topMenu;
 
-  @FindBy(id = "new")
+  @FindBy(xpath = ".//*[@title='New']")
   @CacheLookup
-  WebElement newBtn;
+  private WebElement newBtn;
 
   public HomeBasePage() {
     this.topMenu = PageFactory.getTopMenu();
