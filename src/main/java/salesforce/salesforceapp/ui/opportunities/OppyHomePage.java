@@ -14,4 +14,6 @@ public abstract class OppyHomePage extends HomeBasePage {
     clickNewBtn();
     return PageFactory.getOppyEditionForm();
   }
+
+  public abstract boolean isOpportunitiesHomePage();
 }

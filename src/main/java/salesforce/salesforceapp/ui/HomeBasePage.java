@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 
 public abstract class HomeBasePage extends BasePage {
 
@@ -29,5 +30,9 @@ public abstract class HomeBasePage extends BasePage {
 
   protected void clickNewBtn() {
     driverTools.clickElement(newBtn);
+  }
+
+  private OppyHomePage gotoOpportunitiesHomePage(){
+    return topMenu.goToOppyHomePage();
   }
 }

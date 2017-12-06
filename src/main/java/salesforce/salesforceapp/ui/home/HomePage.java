@@ -5,9 +5,5 @@ import salesforce.salesforceapp.ui.PageTransporter;
 
 public abstract class HomePage extends HomeBasePage {
 
-  public boolean isInHomePage(){
-    System.out.println("========= " + PageTransporter.getInstance().getCurrentURL());
-    return (PageTransporter.getInstance().getCurrentURL().contains("home"));
-  }
-
+  public abstract boolean isInHomePage();
 }

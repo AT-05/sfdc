@@ -7,7 +7,10 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 
 public abstract class TopMenu extends BasePage {
 
-  public abstract void swithSkin();
+  /**
+   * <p>This method performs switching of web page skin.</p>
+   */
+  public abstract void switchSkin();
 
   public LoginPage logout() {
     return new LoginPage();
@@ -16,5 +19,4 @@ public abstract class TopMenu extends BasePage {
   public abstract HomePage goToHomePage();
 
   public abstract OppyHomePage goToOppyHomePage();
-
 }

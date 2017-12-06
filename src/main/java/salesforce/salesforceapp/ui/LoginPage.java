@@ -40,19 +40,13 @@ public class LoginPage extends BasePage {
     this.password.sendKeys(password);
   }
 
-  private HomePage clickLoginButtton() {
-    loginButton.click();
-    return PageFactory.getHomePage();
-  }
-
-
   public HomePage login(String username, String password) {
     setUsername(username);
     setPassword(password);
     loginButton.click();
+    System.out.println("***************clicking login");
     PageTransporter.getInstance().switchSkin();
     return PageFactory.getHomePage();
-//    return clickLoginButtton();
   }
 
 //    private void handleFrames() {

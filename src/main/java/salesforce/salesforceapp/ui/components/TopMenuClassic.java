@@ -1,26 +1,35 @@
 package salesforce.salesforceapp.ui.components;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
+import org.openqa.selenium.support.ui.*;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
+import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
 
 public class TopMenuClassic extends TopMenu {
-
   @FindBy(css = ".oneUserProfileCardTrigger")
   private WebElement userProfile;
 
   @FindBy(xpath = "//a[contains(@href, 'classic')]")
   private WebElement switchSkinLink;
 
+  @FindBy(id = "Opportunity_Tab")
+  private WebElement opportunitiesBtn;
+
+  /**
+   * <p>This method performs switching of web page skin
+   * to classic.</p>
+   */
   @Override
   public void waitUntilPageObjectIsLoaded() {
+    wait.until(ExpectedConditions.urlContains("home"));
   }
 
   @Override
-  public void swithSkin() {
+  public void switchSkin() {
     System.out.println("******user profile of classic********");
     userProfile.click();
     switchSkinLink.click();
@@ -33,6 +42,7 @@ public class TopMenuClassic extends TopMenu {
 
   @Override
   public OppyHomePage goToOppyHomePage() {
+    opportunitiesBtn.click();
     return new OppyHomePageClassic();
   }
 }

@@ -60,26 +60,21 @@ public class PageTransporter {
   }
 
   public Skin getCurrentSkin() {
-
+    System.out.println("*********** contains: " + Skin.LIGHT.getSkinName());
     if (getCurrentURL().contains(Skin.LIGHT.getSkinName())) {
+      System.out.println("*********** current url: " + getCurrentURL());
       return Skin.LIGHT;
     }
     return Skin.CLASSIC;
   }
 
   public void switchSkin() {
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-
-    System.out.println("=========== quiero en : " + SalesForceAppEnvsConfig.getInstance().getSkin().getSkinName());
-    System.out.println("=========== estoy en : " + getCurrentURL());
-
+    TopMenu topMenu = PageFactory.getTopMenu();
+    System.out.println("*********** get current skin: " + getCurrentSkin());
+    topMenu.waitUntilPageObjectIsLoaded();
     if (!getCurrentSkin().equals(SalesForceAppEnvsConfig.getInstance().getSkin())) {
-      TopMenu topMenu = PageFactory.getTopMenu();
-      topMenu.swithSkin();
+      System.out.println("************** switching skin to: " + SalesForceAppEnvsConfig.getInstance().getSkin());
+      topMenu.switchSkin();
     }
   }
 }
