@@ -9,7 +9,7 @@ Feature: Manage Opportunities - CRUD
       | Stage      | Qualification |
       | Account    | Acme          |
 
-  @Smoke
+  @Smoke @CreateOppy
   Scenario: User should be able to create an Opportunity
     Then a message should be displayed saying that the opportunity was created
     And the Opportunity created should be display in the Opportunities list

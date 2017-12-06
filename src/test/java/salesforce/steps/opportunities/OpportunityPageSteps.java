@@ -37,7 +37,6 @@ public class OpportunityPageSteps {
     pageTransporter = PageTransporter.getInstance();
   }
 
-
   //****************************************************************
   //Login Step Definitions
   //****************************************************************
