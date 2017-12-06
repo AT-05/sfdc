@@ -11,44 +11,42 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
 
 public class TopMenuLight extends TopMenu {
-  @FindBy(xpath= "//*[@id=\"userNavLabel\"]")
-  private WebElement userProfile;
+    @FindBy(xpath = "//*[@id=\"userNavLabel\"]")
+    private WebElement userProfile;
 
-  @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
-  private WebElement switchSkinLink;
+    @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
+    private WebElement switchSkinLink;
 
-  @FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Account') ]")
-  private WebElement accountsLink;
-
+    private final String lacatorAccounts = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Account')]";
 
 
-  @Override
-  public void waitUntilPageObjectIsLoaded() {
-    wait.until(ExpectedConditions.urlContains("home"));
-  }
+    @Override
+    public void waitUntilPageObjectIsLoaded() {
+        wait.until(ExpectedConditions.urlContains("home"));
+    }
 
-  @Override
-  public void switchSkin() {
-    System.out.println("******user profile of light********");
-    userProfile.click();
-    switchSkinLink.click();
-  }
+    @Override
+    public void switchSkin() {
+        System.out.println("******user profile of light********");
+        userProfile.click();
+        switchSkinLink.click();
+    }
 
-  @Override
-  public HomePage goToHomePage() {
-    return new HomePageLight();
-  }
+    @Override
+    public HomePage goToHomePage() {
+        return new HomePageLight();
+    }
 
-  @Override
-  public OppyHomePage goToOppyHomePage() {
-    return new OppyHomePageLight();
-  }
+    @Override
+    public OppyHomePage goToOppyHomePage() {
+        return new OppyHomePageLight();
+    }
 
-  @Override
-  public AccountHomePage goToAccountsHomePage() {
-    accountsLink.click();
-    return new AccountHomePageLight();
-  }
+    @Override
+    public AccountHomePage goToAccountsHomePage() {
+        driverTools.clickElement(By.xpath(lacatorAccounts));
+        return new AccountHomePageLight();
+    }
 
 
 }

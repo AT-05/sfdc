@@ -54,12 +54,13 @@ public class LoginSteps {
 //        assertTrue(homePage.isUserNameDisplayed(), "User name displayed in Web);
     }
 
-    @Given("^I am logged to Salesforce")
-    public void iAmLoggedToMyApplication() {
-        if (pageTransporter.isOnLogin()) {      //if the user is not logged
-//      login(SalesForceAppEnvsConfig.getInstance().getUserName(),
-//          SalesForceAppEnvsConfig.getInstance().getUserPassword());
-        }
+    @Given("^I'm logged to Salesforce$")
+    public void iMLoggedToSalesforce() {
+        //if (pageTransporter.isOnLogin()) {
+            navigateToLoginPage();
+            homePage = loginPage.login(SalesForceAppEnvsConfig.getInstance().getUserName(),
+                    SalesForceAppEnvsConfig.getInstance().getUserPassword());
+        //}
     }
 
 
@@ -73,10 +74,6 @@ public class LoginSteps {
     }
 
 
-    @Given("^I'm logged to Salesforce$")
-    public void iMLoggedToSalesforce() {
-        loginPage = pageTransporter.navigateToLoginPage();
-        homePage = loginPage.login(SalesForceAppEnvsConfig.getInstance().getUserName(),
-                SalesForceAppEnvsConfig.getInstance().getUserPassword());
-    }
+
+
 }

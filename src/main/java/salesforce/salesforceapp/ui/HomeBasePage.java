@@ -10,9 +10,7 @@ public abstract class HomeBasePage extends BasePage {
 
   public TopMenu topMenu;
 
-  @FindBy(id = "new")
-  @CacheLookup
-  WebElement newBtn;
+  protected WebElement newBtn;
 
   public HomeBasePage() {
     this.topMenu = PageFactory.getTopMenu();
