@@ -16,18 +16,17 @@ public class OppyEditionFormLight extends OppyEditionForm {
   @FindBy(xpath = "//li[@class='lookup__item  default uiAutocompleteOption forceSearchInputLookupDesktopOption']")
   private WebElement accountSelected;
 
-  @FindBy(xpath = "//a[@class='datePicker-openIcon display']")
+  //@FindBy(xpath = "//a[@class='datePicker-openIcon display']")
+  @FindBy(xpath = "//div[@class='form-element']")
   private WebElement date;
 
-  @FindBy(xpath = "//div[@class=\"form-element\"]")
-  private WebElement stage;
-
-  @FindBy(xpath = ".//span[@class=\"today slds-show--inline-block slds-text-link slds-p-bottom--x-small\"]")
+  @FindBy(xpath = "//span[@class='today slds-show--inline-block slds-text-link slds-p-bottom--x-small']")
   private WebElement today;
 
+  @FindBy(xpath = "//div[@class='uiMenu uiInput uiInputSelect forceInputPicklist uiInput--default uiInput--select']//a[@class='select']")
+  private WebElement stageField;
 
-
-
+  private WebElement stageOption;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -35,25 +34,23 @@ public class OppyEditionFormLight extends OppyEditionForm {
 
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
-
-    boolean B = driverTools.isElementDisplayed(oppyName);
-    System.out.println("ELEMENTO APARACE: " + B);
     oppyName.clear();
     oppyName.sendKeys(oppy.getOppyName());
 
-    accountField.click();
-    accountSelected.click();
-
-//    date.findElement(By.xpath("//input[@class=' input']")).click();
-//    date.findElement(By.xpath("//input[@class=' input']")).click();
-//    date.findElement(By.xpath("//input[@class=' input']")).sendKeys(oppy.getCloseDate());
+    driverTools.clickElement(accountField);
+    driverTools.clickElement(accountSelected);
 
     driverTools.clickElement(date);
     driverTools.clickElement(today);
 
+    driverTools.clickElement(stageField);
+    String webElement = String.format("//ul[@class='scrollable']//a[text()='%s']", oppy.getStage());
+    stageOption = driver.findElement(By.xpath(webElement));
+    driverTools.clickElement(stageOption);
+
 
     try {
-      Thread.sleep(5000);
+      Thread.sleep(10000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }

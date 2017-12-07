@@ -50,7 +50,7 @@ public class PageTransporter {
   }
 
   public Boolean isOnLogin() {
-    return (webDriver.getCurrentUrl().contains("Login"));
+    return (webDriver.getCurrentUrl().contains("login"));
   }
 
   public LoginPage navigateToLoginPage() {

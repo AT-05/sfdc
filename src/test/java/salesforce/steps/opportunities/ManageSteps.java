@@ -43,10 +43,8 @@ public class ManageSteps {
   //****************************************************************
   @And("^I have Opportunity with the following information$")
   public void iHaveOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
-    System.out.println("=========================================");
     oppyHomePage = PageFactory.getOppyHomePage();
     oppyEditionForm = oppyHomePage.clickNewOppyBtn();
-    System.out.println("ENTRA A CREAR UN OPPY");
     oppyContentPage = oppyEditionForm.createOppy(oppy.get(0));
 
   }

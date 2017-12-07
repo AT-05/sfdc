@@ -4,8 +4,8 @@ Feature: Manage Opportunities - CRUD
     Given I'm logged to Salesforce
     And I go to Opportunities page
     And I have Opportunity with the following information
-      |oppyName|closeDate|stage|account|
-      |Opp test|6/12/2018|Qualification|Acme|
+      | oppyName | closeDate | stage         | account |
+      | Opp test | 6/12/2018 | Qualification | Acme    |
 
   @Smoke @CreateOppy
   Scenario: User should be able to create an Opportunity
