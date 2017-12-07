@@ -1,5 +1,6 @@
 package salesforce.salesforceapp.ui.accounts;
 
+import salesforce.salesforceapp.entities.Account;
 import salesforce.salesforceapp.ui.HomeBasePage;
 import salesforce.salesforceapp.ui.PageFactory;
 
@@ -13,5 +14,9 @@ public abstract class AccountHomePage extends HomeBasePage {
         clickNewBtn();
         return PageFactory.getAccountEditionForm();
     }
+
+    public abstract AccountContentPage goToAccountContent(Account account);
+
+    public abstract boolean containTheAccount(Account account);
 
 }
