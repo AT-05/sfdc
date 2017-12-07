@@ -2,6 +2,7 @@ package salesforce.steps.opportunities;
 
 import static org.testng.Assert.assertTrue;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -46,7 +47,7 @@ public class OpportunityPageSteps {
     }
   }
 
-  @When("^I go to Opportunities page$")
+  @And("^I go to Opportunities page$")
   public void iGoToOpportunitiesPage() {
     oppyHomePage = homePage.topMenu.goToOppyHomePage();
   }

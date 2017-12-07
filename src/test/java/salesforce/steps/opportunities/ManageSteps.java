@@ -1,5 +1,6 @@
 package salesforce.steps.opportunities;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import cucumber.api.PendingException;
@@ -43,10 +44,21 @@ public class ManageSteps {
   //****************************************************************
   @And("^I have Opportunity with the following information$")
   public void iHaveOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
+    this.oppy = oppy.get(0);
     oppyHomePage = PageFactory.getOppyHomePage();
     oppyEditionForm = oppyHomePage.clickNewOppyBtn();
-    oppyContentPage = oppyEditionForm.createOppy(oppy.get(0));
-
+    oppyContentPage = oppyEditionForm.createOppy(this.oppy);
   }
 
+  @Then("^a message should be displayed saying that the opportunity was created$")
+  public void aMessageShouldBeDisplayedSayingThatTheOpportunityWasCreated() {
+    assertTrue(oppyContentPage.displayedCreateMessage());
+  }
+
+  @And("^the Opportunity created should be display in the Opportunities list$")
+  public void theOpportunityCreatedShouldBeDisplayInTheOpportunitiesList() {
+    topMenu = PageFactory.getTopMenu();
+    oppyHomePage = topMenu.goToOppyHomePage();
+    assertTrue(oppyContentPage.opportunityIsInList(this.oppy.getOppyName()));
+  }
 }

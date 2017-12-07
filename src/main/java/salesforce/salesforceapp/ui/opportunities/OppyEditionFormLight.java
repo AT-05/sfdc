@@ -8,10 +8,10 @@ import salesforce.salesforceapp.entities.opportunities.Oppy;
 public class OppyEditionFormLight extends OppyEditionForm {
 
   @FindBy(xpath = "//input[@class=' input']")
-  private WebElement oppyName;
+  private WebElement oppyInput;
 
   @FindBy(xpath = "//input[@title='Search Accounts']")
-  private WebElement accountField;
+  private WebElement accountInput;
 
   @FindBy(xpath = "//li[@class='lookup__item  default uiAutocompleteOption forceSearchInputLookupDesktopOption']")
   private WebElement accountSelected;
@@ -24,9 +24,12 @@ public class OppyEditionFormLight extends OppyEditionForm {
   private WebElement today;
 
   @FindBy(xpath = "//div[@class='uiMenu uiInput uiInputSelect forceInputPicklist uiInput--default uiInput--select']//a[@class='select']")
-  private WebElement stageField;
+  private WebElement stageInput;
 
   private WebElement stageOption;
+
+  @FindBy(xpath = "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']")
+  private WebElement saveBtn;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -34,26 +37,21 @@ public class OppyEditionFormLight extends OppyEditionForm {
 
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
-    oppyName.clear();
-    oppyName.sendKeys(oppy.getOppyName());
+    oppyInput.clear();
+    oppyInput.sendKeys(oppy.getOppyName());
 
-    driverTools.clickElement(accountField);
+    driverTools.clickElement(accountInput);
     driverTools.clickElement(accountSelected);
 
     driverTools.clickElement(date);
     driverTools.clickElement(today);
 
-    driverTools.clickElement(stageField);
+    driverTools.clickElement(stageInput);
     String webElement = String.format("//ul[@class='scrollable']//a[text()='%s']", oppy.getStage());
     stageOption = driver.findElement(By.xpath(webElement));
     driverTools.clickElement(stageOption);
 
-
-    try {
-      Thread.sleep(10000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    driverTools.clickElement(saveBtn);
 
     return new OppyContentPageLight();
   }
