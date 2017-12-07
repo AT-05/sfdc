@@ -9,7 +9,7 @@ Feature: Manage Accounts
   Scenario: Verify that it is possible to Create an Account
 
     When I create a New Account with the following information:
-      | Name   | Type      | Phone |
+      | name   | address  | phone |
       | Aslak  | Customer  | 789123|
     Then the message for the Account created is displayed
     And the Account should be displayed in Accounts page
