@@ -6,6 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
+import salesforce.salesforceapp.entities.Product;
 import salesforce.salesforceapp.entities.Oppy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageTransporter;
@@ -16,7 +17,8 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.product.create.CreateProductPage;
 import salesforce.salesforceapp.ui.product.detail.ProductDetailsPage;
 import salesforce.salesforceapp.ui.product.home.HomeProductPage;
-import salesforce.salesforceapp.ui.product.detail.ProductDetailPageClassic;
+
+import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
@@ -56,17 +58,12 @@ public class ProductStep {
         homeProduct = homePage.topMenu.goToHomeProduct();
     }
 
-   /* @When("^I create a New Product with the following information:$")
-    public void iCreateANewProductWithTheFollowingInformation(List<CreateProductEntity> entity) {
-        createProductPage = homeProduct.newProduct();
-        productDetail = createProductPage.createProduct(entity);
-    }*/
-
     @When("^I create a New Product with the following information:$")
-    public void iCreateANewProductWithTheFollowingInformation() {
+    public void iCreateANewProductWithTheFollowingInformation(List<Product> products) {
         createProductPage = homeProduct.newProduct();
-        productDetail = createProductPage.createProduct();
+        productDetail = createProductPage.createProduct(products);
     }
+
 
     @Then("^Product Details Page should be display with the information of the product created$")
     public void productDetailsPageShouldBeDisplayWithTheInformationOfTheProductCreated() {

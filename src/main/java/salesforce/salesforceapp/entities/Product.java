@@ -1,6 +1,6 @@
 package salesforce.salesforceapp.entities;
 
-public class CreateProductEntity {
+public class Product {
 
   private String name;
   private String code;

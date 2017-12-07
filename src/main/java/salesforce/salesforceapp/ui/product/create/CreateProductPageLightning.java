@@ -1,9 +1,8 @@
 package salesforce.salesforceapp.ui.product.create;
 
 import org.openqa.selenium.By;
-import salesforce.salesforceapp.entities.CreateProductEntity;
+import salesforce.salesforceapp.entities.Product;
 import salesforce.salesforceapp.ui.product.detail.ProductDetailPageClassic;
-import salesforce.salesforceapp.ui.product.detail.ProductDetailPageLightning;
 
 import java.util.List;
 
@@ -19,19 +18,15 @@ public class CreateProductPageLightning extends CreateProductPage {
 
 
     @Override
-    public ProductDetailPageClassic createProduct(List<CreateProductEntity> entity) {
-        return null;
+    public ProductDetailPageClassic createProduct(List<Product> entity) {
+        waitUntilPageObjectIsLoaded();
+        setProductName(entity.get(0).getName());
+        setProductDescription(entity.get(0).getDescription());
+        setProductCode(entity.get(0).getCode());
+        saveBtn.click();
+        return new ProductDetailPageClassic();
     }
 
-    @Override
-    public ProductDetailPageLightning createProduct() {
-        waitUntilPageObjectIsLoaded();
-        setProductCode("00s033022");
-       setProductDescription("tigoviva entel");
-        setProductName("Tarjetas");
-        saveBtn.click();
-        return new ProductDetailPageLightning();
-    }
 
 
 }

@@ -1,4 +1,4 @@
-@Marcos
+@CreateProduct
 Feature: Marcos
 
   @SmokeTest
@@ -6,8 +6,8 @@ Feature: Marcos
     Given I'm logged in Sales Force
     And  I go to Product Home page
     When I create a New Product with the following information:
+      | name              | code       | description                |
+      | Patch Core cat. 6 | 0011151C67 | This is a test description |
     Then Product Details Page should be display with the information of the product created
 
 
-   #  | name              | code       | description                |
-     # | Patch Core cat. 6 | 0011151C67 | This is a test description |
