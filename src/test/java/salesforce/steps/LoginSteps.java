@@ -15,6 +15,8 @@ import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 
+import static org.junit.Assert.assertTrue;
+
 
 public class LoginSteps {
 
@@ -72,8 +74,5 @@ public class LoginSteps {
         log.info("After hook @Login");
 //        logOut();
     }
-
-
-
 
 }

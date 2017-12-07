@@ -3,9 +3,7 @@ package salesforce.salesforceapp.ui;
 
 import salesforce.salesforceapp.SalesforceEnums.Skin;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
-import salesforce.salesforceapp.ui.accounts.AccountEditionForm;
-import salesforce.salesforceapp.ui.accounts.AccountEditionFormClassic;
-import salesforce.salesforceapp.ui.accounts.AccountEditionFormLight;
+import salesforce.salesforceapp.ui.accounts.*;
 import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.components.TopMenuClassic;
 import salesforce.salesforceapp.ui.components.TopMenuLight;
@@ -23,6 +21,7 @@ public class PageFactory {
 
   private static Skin skin = SalesForceAppEnvsConfig.getInstance().getSkin();
   private static AccountEditionForm accountEditionForm;
+  private static AccountContentPage accountContentPage;
 
   //****************************************************************
   // Pages
@@ -74,5 +73,15 @@ public class PageFactory {
       default:
         return new AccountEditionFormLight();
     }
+  }
+
+  public static AccountContentPage getAccountContentPage() {
+    switch (skin) {
+      case CLASSIC:
+        return new AccountContentPageClassic();
+      default:
+        return new AccountContentPageLight();
+    }
+
   }
 }
