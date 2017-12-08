@@ -14,6 +14,7 @@ public abstract class HomeBasePage extends BasePage {
   @CacheLookup
   WebElement newBtn;
 
+
   public HomeBasePage() {
     this.topMenu = PageFactory.getTopMenu();
     waitUntilPageObjectIsLoaded();

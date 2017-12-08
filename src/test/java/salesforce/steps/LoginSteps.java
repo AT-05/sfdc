@@ -73,5 +73,8 @@ public class LoginSteps {
   }
 
 
-
+    @Then("^Product Page should be displayed with the information updated$")
+    public void productPageShouldBeDisplayedWithTheInformationUpdated()  {
+      System.out.println("Selecciono bien************");
+    }
 }

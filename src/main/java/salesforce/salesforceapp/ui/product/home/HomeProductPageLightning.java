@@ -1,8 +1,8 @@
 package salesforce.salesforceapp.ui.product.home;
 
 import org.openqa.selenium.By;
-import salesforce.salesforceapp.ui.product.create.CreateProductPage;
-import salesforce.salesforceapp.ui.product.create.CreateProductPageLightning;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
+import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
 
 public class HomeProductPageLightning extends HomeProductPage {
 
@@ -16,10 +16,15 @@ public class HomeProductPageLightning extends HomeProductPage {
     }
 
     @Override
-    public CreateProductPageLightning newProduct() {
+    public ProductEditionFormLightning newProduct() {
         System.out.println("Create Product view Lighting *******************marcoooo*********");
         newProduct.click();
-        return new CreateProductPageLightning();
+        return new ProductEditionFormLightning();
+    }
+
+    @Override
+    public ProductContentPage selectProduct() {
+        return null;
     }
 
 }

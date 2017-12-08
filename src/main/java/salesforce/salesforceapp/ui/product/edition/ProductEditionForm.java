@@ -1,23 +1,23 @@
-package salesforce.salesforceapp.ui.product.create;
+package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.WebElement;
 import salesforce.salesforceapp.entities.Product;
-import salesforce.salesforceapp.ui.CreateProductBasePage;
-import salesforce.salesforceapp.ui.product.detail.ProductDetailPageClassic;
+import salesforce.salesforceapp.ui.BasePage;
+import salesforce.salesforceapp.ui.product.content.ProductContentPageClassic;
 
 import java.util.List;
 
-public abstract class CreateProductPage extends CreateProductBasePage {
-
-    String selector = "";
-    FindBy (jjfl)
-    WebElement productInput
+public abstract class ProductEditionForm extends BasePage {
 
     public WebElement productName;
-
     public WebElement productCode;
     public WebElement productDescription;
     public WebElement saveBtn;
+
+    @Override
+    public void waitUntilPageObjectIsLoaded() {
+
+    }
 
     public void setProductName(String name) {
         productName.clear();
@@ -34,8 +34,9 @@ public abstract class CreateProductPage extends CreateProductBasePage {
         productDescription.sendKeys(description);
     }
 
-    public abstract ProductDetailPageClassic createProduct(List<Product> entity);
+    public abstract ProductContentPageClassic createProduct(Product product);
 
+    public abstract void editProduct(Product product);
 
 
 }

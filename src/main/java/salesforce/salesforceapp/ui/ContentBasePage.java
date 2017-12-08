@@ -1,5 +1,6 @@
 package salesforce.salesforceapp.ui;
 
+import org.openqa.selenium.WebElement;
 import salesforce.salesforceapp.ui.components.TopMenu;
 
 public abstract class ContentBasePage extends BasePage {
