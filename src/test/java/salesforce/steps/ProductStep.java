@@ -1,6 +1,5 @@
 package salesforce.steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -36,7 +35,7 @@ public class ProductStep {
     private OppyContentPage oppyContentPage;
     private OppyEditionForm oppyEditionForm;
 
-    private HomeProductPage homeProduct;
+    private HomeProductPage homeProductPage;
     private ProductEditionForm productEditionForm;
     private ProductContentPage productContentPage;
 
@@ -56,12 +55,12 @@ public class ProductStep {
 
     @And("^I go to Product Home page$")
     public void iGoToProductHomePage() {
-        homeProduct = homePage.topMenu.goToHomeProduct();
+        homeProductPage = homePage.topMenu.goToHomeProduct();
     }
 
     @When("^I create a New Product with the following information:$")
     public void iCreateANewProductWithTheFollowingInformation(List<Product> products) {
-        productEditionForm = homeProduct.newProduct();
+        productEditionForm = homeProductPage.newProduct();
         productContentPage = productEditionForm.createProduct(products.get(0));
     }
 
@@ -71,32 +70,47 @@ public class ProductStep {
         assertTrue(productContentPage.IsProductDetailsPage());
     }
 
+    private Product product;
 
     @Given("^I have a New Product with the following information:$")
     public void iHaveANewProductWithTheFollowingInformation(List<Product> products) {
-        productEditionForm = homeProduct.newProduct();
-        productContentPage = productEditionForm.createProduct(products.get(0));
+        productEditionForm = homeProductPage.newProduct();
+        product = products.get(0);
+        productContentPage = productEditionForm.createProduct(product);
+        System.out.println("***********product Created *********");
     }
 
     @When("^I select the Product$")
     public void iSelectTheProduct() {
-        homeProduct = homePage.topMenu.goToHomeProduct();
-        System.out.println("Selecciono bien0************");
-        productContentPage = homeProduct.selectProduct();
-        System.out.println("Selecciono bien1************");
 
-
+        System.out.println("***********go to home Product *********");
+        homeProductPage = homePage.topMenu.goToHomeProduct();
+        homeProductPage.selectItem(product.getName());
+        //  productContentPage = homeProductPage.selectProduct();
+        System.out.println("***********Product selected *********");
     }
 
     @And("^I Edit the Product information with the following information:$")
-    public void iEditTheProductInformationWithTheFollowingInformation()  {
-        System.out.println("Selecciono bien2************");
-
-
+    public void iEditTheProductInformationWithTheFollowingInformation(List<Product> productList) {
+        productEditionForm = productContentPage.goToEditProduct();
+        productContentPage = productEditionForm.editProduct(productList.get(0));
+        System.out.println("***********Product Edited *********");
     }
 
     @Then("^Product Content Page should be displayed with the information updated$")
     public void productContentPageShouldBeDisplayedWithTheInformationUpdated() throws Throwable {
-        System.out.println("Selecciono bien3************");
+        productContentPage.IsProductDetailsPage();
+    }
+
+    @And("^I delete the product$")
+    public void iDeleteTheProduct() {
+        homeProductPage = productContentPage.goToDeleteProduct();
+        System.out.println("***********Product Deleted *********");
+
+    }
+
+    @Then("^the Product should be removed from the Product List$")
+    public void theProductShouldBeRemovedFromTheProductList() throws Throwable {
+        //     productContentPage.IsProductDetailsPage();
     }
 }

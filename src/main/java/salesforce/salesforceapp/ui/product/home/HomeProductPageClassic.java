@@ -34,8 +34,9 @@ public class HomeProductPageClassic extends HomeProductPage {
     }
 
     @Override
-    public ProductContentPageClassic selectProduct() {
-        selectProduct.click();
+    public ProductContentPage selectProduct() {
+     //   selectProduct.click();
+        selectItem("Test product Delete");
         return new ProductContentPageClassic();
     }
 }

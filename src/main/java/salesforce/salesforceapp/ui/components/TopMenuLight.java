@@ -16,7 +16,7 @@ public class TopMenuLight extends TopMenu {
     ////*******MIoooooooooooooooooo*********
 
 
-    @FindBy(xpath = ".//*[@id='oneHeader']/div[4]/one-appnav/div/div/div/nav/one-app-launcher-header/button")
+    @FindBy(xpath = "//one-app-launcher-header/button")
     WebElement launcherBtn;
 
 
@@ -24,10 +24,13 @@ public class TopMenuLight extends TopMenu {
     WebElement productTab;
 
     @Override
-    public HomeProductPage goToHomeProduct() {
+    public HomeProductPageLightning goToHomeProduct() {
+        System.out.println("ir to home product***************");
+        waitUntilPageObjectIsLoaded();
         launcherBtn.click();
         waitUntilPageObjectIsLoaded();
         productTab.click();
+        System.out.println("ya gui to home product***************");
         return new HomeProductPageLightning();
     }
     ///////////

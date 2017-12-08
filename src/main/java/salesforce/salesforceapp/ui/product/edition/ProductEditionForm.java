@@ -3,6 +3,7 @@ package salesforce.salesforceapp.ui.product.edition;
 import org.openqa.selenium.WebElement;
 import salesforce.salesforceapp.entities.Product;
 import salesforce.salesforceapp.ui.BasePage;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageClassic;
 
 import java.util.List;
@@ -34,9 +35,9 @@ public abstract class ProductEditionForm extends BasePage {
         productDescription.sendKeys(description);
     }
 
-    public abstract ProductContentPageClassic createProduct(Product product);
+    public abstract ProductContentPage createProduct(Product product);
 
-    public abstract void editProduct(Product product);
+    public abstract ProductContentPage editProduct(Product product);
 
 
 }

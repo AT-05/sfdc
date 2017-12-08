@@ -3,6 +3,7 @@ package salesforce.salesforceapp.ui.product.edition;
 import org.openqa.selenium.By;
 import salesforce.salesforceapp.entities.Product;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageClassic;
+import salesforce.salesforceapp.ui.product.content.ProductContentPageLightning;
 
 import java.util.List;
 
@@ -18,20 +19,24 @@ public class ProductEditionFormLightning extends ProductEditionForm {
 
 
     @Override
-    public ProductContentPageClassic createProduct(Product product) {
+    public ProductContentPageLightning createProduct(Product product) {
         waitUntilPageObjectIsLoaded();
         setProductName(product.getName());
         setProductDescription(product.getDescription());
         setProductCode(product.getCode());
         saveBtn.click();
-        return new ProductContentPageClassic();
+        return new ProductContentPageLightning();
     }
 
 
 
     @Override
-    public void editProduct(Product product) {
-
+    public ProductContentPageLightning editProduct(Product product) {
+        setProductName(product.getName());
+        setProductDescription(product.getDescription());
+        setProductCode(product.getCode());
+        saveBtn.click();
+        return new ProductContentPageLightning();
     }
 
 

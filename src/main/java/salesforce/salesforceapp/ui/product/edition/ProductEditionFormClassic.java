@@ -2,6 +2,7 @@ package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.By;
 import salesforce.salesforceapp.entities.Product;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageClassic;
 
 import java.util.List;
@@ -29,8 +30,12 @@ public class ProductEditionFormClassic extends ProductEditionForm {
     }
 
     @Override
-    public void editProduct(Product product) {
-
+    public ProductContentPage editProduct(Product product) {
+        setProductCode(product.getCode());
+        setProductName(product.getName());
+        setProductDescription(product.getDescription());
+        saveBtn.click();
+        return new ProductContentPageClassic();
     }
 
 

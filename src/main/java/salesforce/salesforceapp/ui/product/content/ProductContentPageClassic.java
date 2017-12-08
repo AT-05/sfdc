@@ -1,19 +1,27 @@
 package salesforce.salesforceapp.ui.product.content;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
+import salesforce.salesforceapp.ui.product.home.HomeProductPage;
+import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
 
 public class ProductContentPageClassic extends ProductContentPage {
     public static final String PRODUCT_DETAIL = "Product Detail";
+    @FindBy(xpath = ".//*[@id='ep']/div[1]/table/tbody/tr/td[1]/h2")
+    private WebElement validator;
+
     @FindBy(name = "edit")
-   private WebElement edit;
+    private WebElement edit;
+
+    @FindBy(name = "del")
+    private WebElement delete;
 
     public ProductContentPageClassic() {
-        //super.elementValidator = driver.findElement(By.xpath(".//*[@id='ep']/div[1]/table/tbody/tr/td[1]/h2"));
-        super.elementEdit = driver.findElement(By.xpath(".//*[@id='topButtonRow']/input[3]"));
+        super.elementValidator = validator;
+        super.elementEdit = edit;
+        super.elementDelete = delete;
     }
 
     @Override
@@ -22,9 +30,17 @@ public class ProductContentPageClassic extends ProductContentPage {
     }
 
     @Override
-    public void goToEditProduct() {
+    public ProductEditionForm goToEditProduct() {
         elementEdit.click();
-        //return new ProductEditionFormClassic();
+        return new ProductEditionFormClassic();
     }
+
+    @Override
+    public HomeProductPage goToDeleteProduct() {
+        elementDelete.click();
+        checkAlert();
+        return new HomeProductPageClassic();
+    }
+
 
 }

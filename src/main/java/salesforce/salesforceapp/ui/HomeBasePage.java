@@ -20,6 +20,11 @@ public abstract class HomeBasePage extends BasePage {
     waitUntilPageObjectIsLoaded();
   }
 
+  @Override
+  public void waitUntilPageObjectIsLoaded() {
+
+  }
+
   private By getItemLinkBy(String linkText) {
     return By.xpath("//a[contains(text(),'" + linkText + "')]");
   }
