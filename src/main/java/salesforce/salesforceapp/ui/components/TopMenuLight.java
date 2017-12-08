@@ -16,7 +16,8 @@ public class TopMenuLight extends TopMenu {
   @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
   private WebElement switchSkinLink;
 
-  @FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Opportunity') ]")
+  //@FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Opportunity')]")
+  @FindBy(xpath = "//a[contains(@class, 'slds') and contains(@href, 'Opportunity') ]//span[@class='slds-truncate']")
   private WebElement opportunitiesBtn;
 
   @Override
@@ -27,8 +28,8 @@ public class TopMenuLight extends TopMenu {
   @Override
   public void switchSkin() {
     System.out.println("******user profile of light********");
-    userProfile.click();
-    switchSkinLink.click();
+    driverTools.clickElement(userProfile);
+    driverTools.clickElement(switchSkinLink);
   }
 
   @Override
@@ -38,7 +39,7 @@ public class TopMenuLight extends TopMenu {
 
   @Override
   public OppyHomePage goToOppyHomePage() {
-    opportunitiesBtn.click();
+    driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageLight();
   }
 }

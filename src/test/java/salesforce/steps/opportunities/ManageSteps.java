@@ -5,6 +5,7 @@ import static org.testng.Assert.assertTrue;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
@@ -30,7 +32,7 @@ public class ManageSteps {
   private OppyEditionForm oppyEditionForm;
   private OppyContentPage oppyContentPage;
 
-  TopMenu topMenu;
+  private TopMenu topMenu;
 
   //Entities
   private Oppy oppy;
@@ -60,5 +62,11 @@ public class ManageSteps {
     topMenu = PageFactory.getTopMenu();
     oppyHomePage = topMenu.goToOppyHomePage();
     assertTrue(oppyContentPage.opportunityIsInList(this.oppy.getOppyName()));
+  }
+
+  @Given("^I select to edit the Opportunity created from the list$")
+  public void iSelectToEditTheOpportunityCreatedFromTheList() {
+    topMenu = PageFactory.getTopMenu();
+    oppyHomePage = topMenu.goToOppyHomePage();
   }
 }
