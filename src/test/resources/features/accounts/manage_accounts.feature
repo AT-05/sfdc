@@ -15,6 +15,18 @@ Feature: Manage Accounts
     And the Account should be displayed in Accounts page
 
 
+
+  @Functional
+  Scenario: Verify that it is possible to Delete an Account without opportunities
+    Given I have an Acount with the following information:
+      | Name   | address      	| Phone |
+      | Aslak  | Competitor  	| 755555|
+
+    When I select the Account
+    And I delete the Account
+    Then I should see the Acount is removed from the Accounts page
+
+
 #  Scenario: Users should be able to login using valid credentials
 #    Given I navigate to Login page
 #    When I login with enviroments params

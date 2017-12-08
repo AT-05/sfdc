@@ -6,16 +6,15 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.entities.Account;
-import salesforce.salesforceapp.entities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.accounts.AccountContentPage;
 import salesforce.salesforceapp.ui.accounts.AccountEditionForm;
 import salesforce.salesforceapp.ui.accounts.AccountHomePage;
-import salesforce.salesforceapp.ui.accounts.AccountHomePageClassic;
 import salesforce.salesforceapp.ui.home.HomePage;
 
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -52,18 +51,17 @@ public class AccountsSteps {
 
     @Then("^the message for the Account created is displayed$")
     public void theMessageForTheAccountCreatedIsDisplayed() {
-        boolean a = accountContentPage.displayedCreatedMessage();
-        assertTrue(a);
+        assertTrue(accountContentPage.displayedCreatedMessage());
     }
 
     @And("^the Account should be displayed in Accounts page$")
     public void theAccountShouldBeDisplayedInAccountsPage(){
-        accountContentPage.verifyIsAccountIsSame(account);
+        accountContentPage.verifyAccountInfo(account);
     }
 
 
 
-    @Given("^I have Acount with the following information:$")
+    @Given("^I have an Acount with the following information:$")
     public void iHaveAcountWithTheFollowingInformation(List<Account> acc){
         iCreateANewAccountWithTheFollowingInformation(acc);
         //accountContentPage
@@ -77,10 +75,17 @@ public class AccountsSteps {
     }
 
 
-    @And("^Delete an Account$")
+    @And("^I delete the Account$")
     public void deleteAnAccount()  {
         accountContentPage.delete();
-
+        //accountContentPage.displayedCreatedMessage();
     }
 
+
+    @Then("^I should see the Acount is removed from the Accounts page$")
+    public void iShouldSeeTheAcountIsRemovedFromTheAccountsPage()  {
+        //iGoToAccountsHomePage();
+        //boolean contain=accountHomePage.containTheAccount(account);
+        assertFalse(accountHomePage.containTheAccount(account));
+    }
 }

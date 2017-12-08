@@ -28,4 +28,9 @@ public abstract class HomeBasePage extends BasePage {
   protected void clickNewBtn() {
     driverTools.clickElement(newBtn);
   }
+
+  public void deleteByLinkName (String ItemLinkText) {
+
+
+  }
 }

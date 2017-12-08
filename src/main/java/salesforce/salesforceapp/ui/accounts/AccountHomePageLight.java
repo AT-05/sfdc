@@ -30,8 +30,15 @@ public class AccountHomePageLight extends AccountHomePage {
 
     @Override
     public boolean containTheAccount(Account account) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         locatorNameLink = "//a[contains(@class, 'slds-truncate') and contains(@title, '" + account.getName() + "')]";
-        return driverTools.isElementDisplayed(By.xpath(locatorNameLink));
+        boolean a = driverTools.isElementVisibility(By.xpath(locatorNameLink));
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++:"+a+":"+locatorNameLink);
+        return a;
     }
 
 

@@ -12,11 +12,17 @@ public class AccountContentPageLight extends AccountContentPage {
     @FindBy(xpath = "//div[contains(@class, 'slds-notify--toast forceToastMessage')]")
     private WebElement message;
 
+    @FindBy(xpath = "//ul[contains(@class, 'forceActionsContainer')]/li[3]")
+    private WebElement deleteBtn;
+
+    @FindBy(xpath = "//button[contains(@class, 'slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton')]")
+    private WebElement deleteConfirnBtn;
+
+
+
     public AccountContentPageLight() {
         super.nameText = driver.findElement(By.xpath("//p[contains(@class, 'entityNameTitle')]"));
         super.addressText = driver.findElement(By.xpath("//a[contains(@class, 'uiOutputURL')]"));
-        super.deleteBtn = driver.findElement(By.xpath("//ul[contains(@class, 'forceActionsContainer')]/li[3]"));
-        super.deleteConfirnBtn = driver.findElement(By.xpath("//button[contains(@class, 'slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton')]"));
     }
 
     @Override
@@ -30,7 +36,15 @@ public class AccountContentPageLight extends AccountContentPage {
      */
     @Override
     public boolean displayedCreatedMessage() {
-        //wait.until(ExpectedConditions.visibilityOf(message));
         return driverTools.isElementDisplayed(message);
+    }
+
+    @Override
+    public void delete() {
+//        deleteBtn = driver.findElement(By.xpath("//ul[contains(@class, 'forceActionsContainer')]/li[3]"));
+        driverTools.clickElement(deleteBtn);
+
+//        deleteConfirnBtn = driver.findElement(By.xpath("//button[contains(@class, 'slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton')]"));
+        driverTools.clickElement(deleteConfirnBtn);
     }
 }

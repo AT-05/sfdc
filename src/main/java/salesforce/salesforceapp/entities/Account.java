@@ -32,9 +32,8 @@ public class Account {
         this.phone = phone;
     }
 
-    public boolean isSame(String name, String type, String phone) {
+    public boolean isSame(String name, String type) {
         return (this.name.equalsIgnoreCase(name)
-                && this.phone.equalsIgnoreCase(phone)
                 && this.address.equalsIgnoreCase(type));
     }
 }

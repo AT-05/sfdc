@@ -10,8 +10,6 @@ public class AccountContentPageClassic extends AccountContentPage {
     public AccountContentPageClassic() {
         super.nameText = driver.findElement(By.xpath(""));
         super.addressText = driver.findElement(By.xpath(""));
-        super.deleteBtn = driver.findElement(By.xpath(""));
-        super.deleteConfirnBtn = driver.findElement(By.xpath(""));
     }
 
     @Override
@@ -26,6 +24,11 @@ public class AccountContentPageClassic extends AccountContentPage {
     @Override
     public boolean displayedCreatedMessage() {
         return true;
+    }
+
+    @Override
+    public void delete() {
+
     }
 
 }

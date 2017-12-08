@@ -17,6 +17,6 @@ public class AccountEditionFormLight extends AccountEditionForm {
     }
     @Override
     public void waitUntilPageObjectIsLoaded() {
-        //wait.until(ExpectedConditions.visibilityOf(nameField));
+       // wait.until(ExpectedConditions.visibilityOf(nameField));
     }
 }
