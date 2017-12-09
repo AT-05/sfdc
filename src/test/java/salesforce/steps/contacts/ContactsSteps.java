@@ -13,6 +13,8 @@ import salesforce.salesforceapp.ui.home.HomePage;
 
 import java.util.List;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * Created by Administrator on 12/5/2017.
  */
@@ -26,7 +28,7 @@ public class ContactsSteps {
   private ContactEditionForm contactEditionForm;
 
   //Entities
-  private Contact contact;
+  private Contact contact,editContact;
 
   public ContactsSteps() throws Exception {
     homePage = PageFactory.getHomePage();
@@ -37,12 +39,12 @@ public class ContactsSteps {
   //****************************************************************
   @And("^I go to Contacts home page$")
   public void iGoToContactHomePage() {
-    //contactHomePage = homePage.topMenu.goToContactHomePage();
+    contactHomePage = homePage.topMenu.goToContactHomePage();
   }
 
   @When("^I select New Contact$")
   public void iSelectNewContact() {
-    //contactHomePage = homePage.topMenu.goToContactHomePage();
+    contactEditionForm = contactHomePage.clickNewContactBtn();
   }
 
   @And("^I create a Contact with the following information:$")
@@ -50,23 +52,53 @@ public class ContactsSteps {
     //get data from feature file and set in Contact object
     this.contact = contacts.get(0);
     //this.contact = contact;
-    System.out.println("************************");
-    System.out.println(this.contact.name);
-    System.out.println(this.contact.lastName);
-    System.out.println(this.contact.accountName);
-    System.out.println("************************");
-    //contactEditionForm = contactHomePage.clickNewContactBtn();
-    //contactContentPage = contactEditionForm.createContact(contact);
+    contactContentPage = contactEditionForm.createContact(this.contact);
   }
 
-  @Then("^the message for the Contact  created is displayed$")
-  public void theMessageForTheContactCreatedIsDisplayed() {
-
-  }
-
-  @Then("^the Contact  should be displayed in Contact list page$")
+  @Then("^the Contact should be displayed in Contact content page$")
   public void theContactShouldBeDisplayedInContactListPage() {
+System.out.println("****************ini**********************");
+    System.out.println(contactContentPage.
+      getContactNameText());
+    System.out.println(this.contact.name+" "+this.contact.lastName);
+    System.out.println("****************end**********************");
+    assertTrue(contactContentPage.
+      getContactNameText().
+      equals(this.contact.name+" "+this.contact.lastName));
 
   }
 
+  @And("^I have a Contact with the following information:$")
+  public void iHaveAContactWithTheFollowingInformation(List<Contact> contacts) {
+    //get data from feature file and set in Contact object
+    this.contact = contacts.get(0);
+    //this.contact = contact;
+    iSelectNewContact();
+    contactContentPage = contactEditionForm.createContact(contact);
+  }
+  @When("^I edit this Contact with the following information:$")
+  public void iEditThisAContactWithTheFollowingInformation(List<Contact> contacts) throws InterruptedException {
+    //get data from feature file and set in Contact object
+    this.contact = contacts.get(0);
+    //this.contact = contact;
+    contactEditionForm=contactContentPage.clickEditButton();
+    contactContentPage = contactEditionForm.editContact(this.contact);
+    //Thread.sleep(4000);
+    System.out.println("****************ini222**********************");
+    System.out.println(contactContentPage.
+      getContactNameText());
+    System.out.println(this.contact.name+" "+this.contact.lastName);
+    System.out.println("****************end222**********************");
+  }
+  @Then("^Contact was saved message should be displayed in Contact Content Page$")
+  public void messageShouldBeDisplayed() throws InterruptedException {
+
+    final String msgExpected="";
+    System.out.println("****************ini message**********************");
+    System.out.println(contactContentPage.
+      getContactNameText());
+    System.out.println("****************end message**********************");
+    //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
+    contactContentPage.waitUntilSuccessMessageDisappear();
+  }
 }

@@ -2,16 +2,15 @@
 Feature: Manage Contacts   
   
   Background:
-	#Given I am logged to Salesforce
-	#	And I go to Contacts home page
+	Given I am logged to Salesforce
+		And I go to Contacts home page
 	
   Scenario: Verify that is possible to Create a Contact 
     When I select New Contact 
 		And I create a Contact with the following information:
-		 | name   | lastName      | accountName |
-		 | tester | test    	  | acme        |
-	Then the message for the Contact  created is displayed
-		And the Contact  should be displayed in Contact list page
+		 | name   | lastName      | accountName  |
+		 | tester | test    	  | Acme (Sample)|
+	Then the Contact should be displayed in Contact content page
 		
 	#	@Negative
 	#Scenario: Verify when I create a New Contact the fields Name, Last Name, Account Name are required

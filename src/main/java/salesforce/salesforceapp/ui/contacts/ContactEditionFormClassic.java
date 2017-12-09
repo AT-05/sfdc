@@ -15,4 +15,14 @@ public class ContactEditionFormClassic extends ContactEditionForm {
     //sets
     return new ContactContentPageLight();
   }
+
+  @Override
+  public ContactContentPage editContact(Contact contact) {
+    return null;
+  }
+
+  @Override
+  public ContactContentPage deleteContact(Contact contact) {
+    return null;
+  }
 }

@@ -8,4 +8,29 @@ public class ContactContentPageClassic extends ContactContentPage {
   public void waitUntilPageObjectIsLoaded() {
 
   }
+
+  @Override
+  public String getContactNameText() {
+    return null;
+  }
+
+  /**
+   * Opens the Form page for editing.
+   *
+   * @return FormBase.
+   */
+  @Override
+  public ContactEditionForm clickEditButton() {
+    return null;
+  }
+
+  /**
+   * Deletes the current Item.
+   *
+   * @return HomeBase.
+   */
+  @Override
+  public ContactHomePage deleteItem() {
+    return null;
+  }
 }

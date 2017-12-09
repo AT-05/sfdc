@@ -10,9 +10,12 @@ public abstract class HomeBasePage extends BasePage {
 
   public TopMenu topMenu;
 
-  @FindBy(id = "new")
+  @FindBy(xpath="//*[@title='New']")
   @CacheLookup
   WebElement newBtn;
+
+  @FindBy(xpath = "//a[@title='New']")
+  protected WebElement newButton;
 
   public HomeBasePage() {
     this.topMenu = PageFactory.getTopMenu();
@@ -28,6 +31,7 @@ public abstract class HomeBasePage extends BasePage {
   }
 
   protected void clickNewBtn() {
-    driverTools.clickElement(newBtn);
+    //driverTools.clickElement(newButton);
+    driverTools.jsClickClassButton(newButton);
   }
 }
