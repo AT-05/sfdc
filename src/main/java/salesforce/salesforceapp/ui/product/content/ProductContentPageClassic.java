@@ -8,7 +8,10 @@ import salesforce.salesforceapp.ui.product.home.HomeProductPage;
 import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
 
 public class ProductContentPageClassic extends ProductContentPage {
-    public static final String PRODUCT_DETAIL = "Product Detail";
+
+
+    private static final String PRODUCT_DETAIL = "Product Detail";
+
     @FindBy(xpath = ".//*[@id='ep']/div[1]/table/tbody/tr/td[1]/h2")
     private WebElement validator;
 
@@ -17,6 +20,7 @@ public class ProductContentPageClassic extends ProductContentPage {
 
     @FindBy(name = "del")
     private WebElement delete;
+
 
     public ProductContentPageClassic() {
         super.elementValidator = validator;
@@ -41,6 +45,8 @@ public class ProductContentPageClassic extends ProductContentPage {
         checkAlert();
         return new HomeProductPageClassic();
     }
+
+
 
 
 }

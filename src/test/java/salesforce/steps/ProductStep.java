@@ -31,16 +31,11 @@ public class ProductStep {
     //Pages
     private LoginPage loginPage;
     private HomePage homePage;
-    private OppyHomePage oppyHomePage;
-    private OppyContentPage oppyContentPage;
-    private OppyEditionForm oppyEditionForm;
-
     private HomeProductPage homeProductPage;
     private ProductEditionForm productEditionForm;
     private ProductContentPage productContentPage;
 
-    //Entities
-    private Oppy oppy;
+    private Product product;
 
     public ProductStep() throws Exception {
         this.pageTransporter = PageTransporter.getInstance();
@@ -56,6 +51,7 @@ public class ProductStep {
     @And("^I go to Product Home page$")
     public void iGoToProductHomePage() {
         homeProductPage = homePage.topMenu.goToHomeProduct();
+        System.out.println("***********Product home displayed*********");
     }
 
     @When("^I create a New Product with the following information:$")
@@ -70,23 +66,24 @@ public class ProductStep {
         assertTrue(productContentPage.IsProductDetailsPage());
     }
 
-    private Product product;
 
     @Given("^I have a New Product with the following information:$")
+
     public void iHaveANewProductWithTheFollowingInformation(List<Product> products) {
         productEditionForm = homeProductPage.newProduct();
         product = products.get(0);
         productContentPage = productEditionForm.createProduct(product);
         System.out.println("***********product Created *********");
+
+        //iGoToProductHomePage();
+
+        System.out.println("***********HOme product  *********");
     }
 
     @When("^I select the Product$")
     public void iSelectTheProduct() {
-
-        System.out.println("***********go to home Product *********");
-        homeProductPage = homePage.topMenu.goToHomeProduct();
+        System.out.println("***********searching product *********");
         homeProductPage.selectItem(product.getName());
-        //  productContentPage = homeProductPage.selectProduct();
         System.out.println("***********Product selected *********");
     }
 
@@ -98,7 +95,7 @@ public class ProductStep {
     }
 
     @Then("^Product Content Page should be displayed with the information updated$")
-    public void productContentPageShouldBeDisplayedWithTheInformationUpdated() throws Throwable {
+    public void productContentPageShouldBeDisplayedWithTheInformationUpdated() {
         productContentPage.IsProductDetailsPage();
     }
 

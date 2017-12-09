@@ -29,8 +29,9 @@ public class TopMenuLight extends TopMenu {
         waitUntilPageObjectIsLoaded();
         launcherBtn.click();
         waitUntilPageObjectIsLoaded();
+        System.out.println("ya estoy  to home product***************");
         productTab.click();
-        System.out.println("ya gui to home product***************");
+        System.out.println("ya estoy  to home product***************");
         return new HomeProductPageLightning();
     }
     ///////////
