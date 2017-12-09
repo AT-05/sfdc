@@ -29,20 +29,23 @@ public class OppyEditionFormClassic extends OppyEditionForm {
 
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
-    oppyInput.clear();
-    oppyInput.sendKeys(oppy.getOppyName());
+    driverTools.setInputField(oppyInput, oppy.getOppyName());
 
     driverTools.clickElement(stageSelect);
     String stageOption = String.format(".//*[@id='opp11']//option[text()='%s']", oppy.getStage());
     driverTools.clickElement(driver.findElement(By.xpath(stageOption)));
 
-    dateInput.clear();
-    dateInput.sendKeys(oppy.getCloseDate());
+    driverTools.setInputField(dateInput, oppy.getCloseDate());
 
-    accountInput.sendKeys(oppy.getAccount());
+    driverTools.setInputField(accountInput, oppy.getAccount());
 
     driverTools.clickElement(saveBtn);
 
     return new OppyContentPageClassic();
+  }
+
+  @Override
+  public OppyContentPage editOppy(Oppy oppy) {
+    return createOppy(oppy);
   }
 }

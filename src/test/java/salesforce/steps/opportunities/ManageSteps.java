@@ -7,6 +7,7 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -32,8 +33,6 @@ public class ManageSteps {
   private OppyEditionForm oppyEditionForm;
   private OppyContentPage oppyContentPage;
 
-  private TopMenu topMenu;
-
   //Entities
   private Oppy oppy;
 
@@ -44,7 +43,7 @@ public class ManageSteps {
   //****************************************************************
   //Manager Step Definitions
   //****************************************************************
-  @And("^I have Opportunity with the following information$")
+  @And("^I (?:have|create) Opportunity with the following information$")
   public void iHaveOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
     this.oppy = oppy.get(0);
     oppyHomePage = PageFactory.getOppyHomePage();
@@ -52,21 +51,29 @@ public class ManageSteps {
     oppyContentPage = oppyEditionForm.createOppy(this.oppy);
   }
 
-  @Then("^a message should be displayed saying that the opportunity was created$")
+  @Then("^a message should be displayed saying that the opportunity was (?:created|saved)$")
   public void aMessageShouldBeDisplayedSayingThatTheOpportunityWasCreated() {
     assertTrue(oppyContentPage.displayedCreateMessage());
   }
 
-  @And("^the Opportunity created should be display in the Opportunities list$")
+  @And("^the Opportunity (?:created|edited) should be display in the Opportunities list$")
   public void theOpportunityCreatedShouldBeDisplayInTheOpportunitiesList() {
-    topMenu = PageFactory.getTopMenu();
-    oppyHomePage = topMenu.goToOppyHomePage();
-    assertTrue(oppyContentPage.opportunityIsInList(this.oppy.getOppyName()));
+    oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
+    assertTrue(oppyHomePage.opportunityIsInList(this.oppy));
   }
 
   @Given("^I select to edit the Opportunity created from the list$")
   public void iSelectToEditTheOpportunityCreatedFromTheList() {
-    topMenu = PageFactory.getTopMenu();
-    oppyHomePage = topMenu.goToOppyHomePage();
+    oppyContentPage.displayedCreateMessage();
+    oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
+    oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());
+  }
+
+
+  @When("^I edit the Opportunity with the following information$")
+  public void iEditTheOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
+    this.oppy = oppy.get(0);
+    oppyEditionForm = oppyContentPage.clickEditOppyBtn();
+    oppyContentPage = oppyEditionForm.editOppy(this.oppy);
   }
 }

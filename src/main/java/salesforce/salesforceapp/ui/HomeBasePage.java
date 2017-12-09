@@ -32,7 +32,4 @@ public abstract class HomeBasePage extends BasePage {
     driverTools.clickElement(newBtn);
   }
 
-  private OppyHomePage gotoOpportunitiesHomePage(){
-    return topMenu.goToOppyHomePage();
-  }
 }

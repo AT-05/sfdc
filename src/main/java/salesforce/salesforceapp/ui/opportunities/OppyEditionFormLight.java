@@ -13,11 +13,9 @@ public class OppyEditionFormLight extends OppyEditionForm {
   @FindBy(xpath = "//input[@title='Search Accounts']")
   private WebElement accountInput;
 
-  @FindBy(xpath = "//li[@class='lookup__item  default uiAutocompleteOption forceSearchInputLookupDesktopOption']")
   private WebElement accountSelected;
 
-  //@FindBy(xpath = "//a[@class='datePicker-openIcon display']")
-  @FindBy(xpath = "//div[@class='form-element']")
+  @FindBy(xpath = "//div[@class='form-element']//input[@class=' input']")
   private WebElement date;
 
   @FindBy(xpath = "//span[@class='today slds-show--inline-block slds-text-link slds-p-bottom--x-small']")
@@ -37,14 +35,44 @@ public class OppyEditionFormLight extends OppyEditionForm {
 
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
-    oppyInput.clear();
-    oppyInput.sendKeys(oppy.getOppyName());
+    driverTools.setInputField(oppyInput, oppy.getOppyName());
 
     driverTools.clickElement(accountInput);
+    driverTools.setInputField(accountInput, oppy.getAccount());
+    String accountElement = String
+        .format("//div[@role='listbox']//div[@title='%s']", oppy.getAccount());
+    accountSelected = driver.findElement(By.xpath(accountElement));
     driverTools.clickElement(accountSelected);
 
     driverTools.clickElement(date);
     driverTools.clickElement(today);
+    driverTools.setInputField(date, oppy.getCloseDate());
+
+    driverTools.clickElement(stageInput);
+    String webElement = String.format("//ul[@class='scrollable']//a[text()='%s']", oppy.getStage());
+    stageOption = driver.findElement(By.xpath(webElement));
+    driverTools.clickElement(stageOption);
+
+    driverTools.clickElement(saveBtn);
+
+    return new OppyContentPageLight();
+  }
+
+  @Override
+  public OppyContentPage editOppy(Oppy oppy) {
+    driverTools.setInputField(oppyInput, oppy.getOppyName());
+
+    WebElement removeAccount = driver.findElement(By.xpath("//span[@class='deleteIcon']"));
+    driverTools.clickElement(removeAccount);
+    driverTools.setInputField(accountInput, oppy.getAccount());
+    String accountElement = String
+        .format("//div[@role='listbox']//div[@title='%s']", oppy.getAccount());
+    accountSelected = driver.findElement(By.xpath(accountElement));
+    driverTools.clickElement(accountSelected);
+
+    driverTools.clickElement(date);
+    driverTools.clickElement(today);
+    driverTools.setInputField(date, oppy.getCloseDate());
 
     driverTools.clickElement(stageInput);
     String webElement = String.format("//ul[@class='scrollable']//a[text()='%s']", oppy.getStage());

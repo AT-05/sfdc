@@ -40,7 +40,7 @@ public class OpportunityPageSteps {
   @Given("^I'm logged to Salesforce$")
   public void iMLoggedToSalesforce() {
     loginPage = pageTransporter.navigateToLoginPage();
-    if(pageTransporter.isOnLogin()){
+    if (pageTransporter.isOnLogin()) {
       String username = SalesForceAppEnvsConfig.getInstance().getUserName();
       String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
       homePage = loginPage.login(username, password);
@@ -54,6 +54,7 @@ public class OpportunityPageSteps {
 
   @Then("^the Opportunities page should be displayed$")
   public void theOpportunitiesPageShouldBeDisplayed() {
-    assertTrue(oppyHomePage.isOpportunitiesHomePage(), "User is able to see opportunities home page.");
+    assertTrue(oppyHomePage.isOpportunitiesHomePage(),
+        "User is able to see opportunities home page.");
   }
 }

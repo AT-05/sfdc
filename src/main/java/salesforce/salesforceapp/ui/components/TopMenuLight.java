@@ -10,14 +10,14 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
 
 public class TopMenuLight extends TopMenu {
 
-  @FindBy(xpath= "//*[@id=\"userNavLabel\"]")
+  @FindBy(xpath= "//*[@id='userNavLabel']")
   private WebElement userProfile;
 
-  @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
+  @FindBy(xpath = "//*[@id='userNav-menuItems']/a[4]")
   private WebElement switchSkinLink;
 
-  //@FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Opportunity')]")
-  @FindBy(xpath = "//a[contains(@class, 'slds') and contains(@href, 'Opportunity') ]//span[@class='slds-truncate']")
+  @FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Opportunity')]")
+  //@FindBy(xpath = "//a[contains(@class, 'slds') and contains(@href, 'Opportunity') ]//span[@class='slds-truncate']")
   private WebElement opportunitiesBtn;
 
   @Override

@@ -1,15 +1,12 @@
 package salesforce.salesforceapp.ui.opportunities;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class OppyContentPageLight extends OppyContentPage {
 
   @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
-  private WebElement message;
-
-  private WebElement opportunity;
+  private WebElement messageCreateOppy;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -17,13 +14,11 @@ public class OppyContentPageLight extends OppyContentPage {
 
   @Override
   public boolean displayedCreateMessage() {
-    return driverTools.isElementDisplayed(message);
+    boolean flag = driverTools.isElementDisplayed(messageCreateOppy);
+    //wait= new WebDriverWait(driver, 2);
+    driverTools.waitUntilMessageDisappear(messageCreateOppy);
+    return flag;
   }
 
-  @Override
-  public boolean opportunityIsInList(String oppyName) {
-    String xpath = String.format(".//table[@data-aura-class='uiVirtualDataTable']//a[text()='%s']", oppyName);
-    opportunity = driver.findElement(By.xpath(xpath));
-    return driverTools.isElementDisplayed(opportunity);
-  }
+
 }

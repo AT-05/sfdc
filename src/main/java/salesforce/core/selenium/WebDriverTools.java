@@ -112,4 +112,17 @@ public class WebDriverTools {
       clickElement(element);
     }
   }
+
+  /**
+   * Wait until the item is no longer visible.
+   *
+   * @param element WebElement.
+   */
+  public void waitUntilMessageDisappear(WebElement element) {
+    try {
+      while (element.isDisplayed()) {
+      }
+    } catch (Exception e) {
+    }
+  }
 }

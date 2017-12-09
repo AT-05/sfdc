@@ -10,6 +10,7 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
 
 public class TopMenuClassic extends TopMenu {
+
   @FindBy(css = ".oneUserProfileCardTrigger")
   private WebElement userProfile;
 
@@ -31,8 +32,8 @@ public class TopMenuClassic extends TopMenu {
   @Override
   public void switchSkin() {
     System.out.println("******user profile of classic********");
-    userProfile.click();
-    switchSkinLink.click();
+    driverTools.clickElement(userProfile);
+    driverTools.clickElement(switchSkinLink);
   }
 
   @Override
@@ -42,7 +43,7 @@ public class TopMenuClassic extends TopMenu {
 
   @Override
   public OppyHomePage goToOppyHomePage() {
-    opportunitiesBtn.click();
+    driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageClassic();
   }
 }

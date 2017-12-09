@@ -15,5 +15,6 @@ public abstract class OppyEditionForm extends BasePage {
   //In case the method can be used for both skins
   public abstract OppyContentPage createOppy(Oppy oppy);
 
+  public abstract OppyContentPage editOppy(Oppy oppy);
 }
 
