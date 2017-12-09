@@ -6,7 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
-import salesforce.salesforceapp.entities.Oppy;
+import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.home.HomePage;
@@ -45,7 +45,7 @@ public class LoginSteps {
   @When("^I login with enviroments params$")
   public void iLoginWithEnviromentsParams() {
     homePage = loginPage.login(SalesForceAppEnvsConfig.getInstance().getUserName(),
-        SalesForceAppEnvsConfig.getInstance().getUserPassword());
+      SalesForceAppEnvsConfig.getInstance().getUserPassword());
   }
 
   @Then("^I should login successfully$")
@@ -55,9 +55,11 @@ public class LoginSteps {
 
   @Given("^I am logged to Salesforce")
   public void iAmLoggedToMyApplication() {
+    loginPage = pageTransporter.navigateToLoginPage();//fix
     if (pageTransporter.isOnLogin()) {      //if the user is not logged
-//      login(SalesForceAppEnvsConfig.getInstance().getUserName(),
-//          SalesForceAppEnvsConfig.getInstance().getUserPassword());
+      final String userName = SalesForceAppEnvsConfig.getInstance().getUserName();
+      final String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
+      homePage = loginPage.login(userName, password);
     }
   }
 
