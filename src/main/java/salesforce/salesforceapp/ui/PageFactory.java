@@ -15,6 +15,7 @@ import salesforce.salesforceapp.ui.opportunities.OppyContentPageLight;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionFormClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionFormLight;
+import salesforce.salesforceapp.ui.quotes.*;
 
 public class PageFactory {
 
@@ -60,6 +61,36 @@ public class PageFactory {
         return new OppyEditionFormClassic();
       default:
         return new OppyEditionFormLight();
+    }
+  }
+
+  /**
+   * <p>This method gets a QuotesContentPage object type
+   * depending on the current web page skin.</p>
+   *
+   * @return a QuotesContentPage object type.
+   */
+  public static QuotesContentPage getQuotesContentPage() {
+    switch (skin) {
+      case CLASSIC:
+        return new QuotesContentPageClassic();
+      default:
+        return new QuotesContentPageLight();
+    }
+  }
+
+  /**
+   * <p>This method gets a QuoteEditionForm object type
+   * depending on the current web page skin.</p>
+   *
+   * @return a QuoteEditionForm object type.
+   */
+  public static QuoteEditionForm getQuoteEditionForm() {
+    switch (skin) {
+      case CLASSIC:
+        return new QuotesEditionFormClassic();
+      default:
+        return new QuotesEditionFormLight();
     }
   }
 }
