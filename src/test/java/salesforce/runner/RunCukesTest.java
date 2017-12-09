@@ -1,11 +1,20 @@
 package salesforce.runner;
 
+import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import salesforce.salesforceapp.SalesForceAppAutomation;
 
+@CucumberOptions(
+  monochrome = true,
+  format = {"pretty",
+    "html:target/test-report",
+    "json:target/test-report.json",
+    "junit:target/test-report.xml"},
+  features = {"src/test/resources/features"},
+  glue = {"salesforce"})
 public class RunCukesTest extends AbstractTestNGCucumberTests {
 
   private static Logger log = Logger.getLogger("RunCukesTest");
