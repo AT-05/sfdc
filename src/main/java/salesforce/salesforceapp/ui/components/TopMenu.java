@@ -4,7 +4,7 @@ import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
-import salesforce.salesforceapp.ui.quotes.*;
+import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
 
 public abstract class TopMenu extends BasePage {
 

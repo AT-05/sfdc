@@ -1,19 +1,19 @@
 package salesforce.salesforceapp.ui.components;
 
-import java.util.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
-import org.openqa.selenium.support.*;
-import org.openqa.selenium.support.ui.*;
-import salesforce.core.selenium.*;
+import java.util.List;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageLight;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
-import salesforce.salesforceapp.ui.quotes.*;
+import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
+import salesforce.salesforceapp.ui.quotes.QuotesHomePageLight;
 
 public class TopMenuLight extends TopMenu {
-  @FindBy(xpath = "//*[@id=\"userNavLabel\"]")
+  @FindBy(id = "userNavLabel")
   @CacheLookup
   private WebElement userProfile;
 
@@ -21,7 +21,7 @@ public class TopMenuLight extends TopMenu {
   @CacheLookup
   private WebElement switchSkinLink;
 
-  @FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Opportunity')]")
+  @FindBy(xpath = "//a/span[text()='Opportunities']")
   @CacheLookup
   private WebElement opportunitiesBtn;
 
@@ -40,9 +40,8 @@ public class TopMenuLight extends TopMenu {
 
   @Override
   public void switchSkin() {
-    System.out.println("******user profile of light********");
-    userProfile.click();
-    switchSkinLink.click();
+    driverTools.clickElement(userProfile);
+    driverTools.clickElement(switchSkinLink);
   }
 
   @Override
