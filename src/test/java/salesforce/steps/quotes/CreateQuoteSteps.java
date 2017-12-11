@@ -1,6 +1,5 @@
 package salesforce.steps.quotes;
 
-
 import static org.junit.Assert.assertTrue;
 
 import cucumber.api.java.en.And;
@@ -15,7 +14,8 @@ import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyQuotesView;
-import salesforce.salesforceapp.ui.quotes.*;
+import salesforce.salesforceapp.ui.quotes.QuoteEditionForm;
+import salesforce.salesforceapp.ui.quotes.QuotesContentPage;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
@@ -67,6 +67,7 @@ public class CreateQuoteSteps {
   @Then("^A Quote successful creation message should be displayed$")
   public void aQuoteSuccessfulCreationMessageShouldBeDisplayed() {
     assertTrue(quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName));
+    System.out.println("message result: " + quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName));
   }
 
   @And("^I should see the new Quote in the Opportunity Quotes list$")
@@ -74,5 +75,6 @@ public class CreateQuoteSteps {
     quotesContentPage = quoteEditionForm.openQuote(quoteName);
     quotesContentPage.openQuoteDetails();
     assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
+    System.out.println("verification result: "+quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
   }
 }

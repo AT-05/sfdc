@@ -1,18 +1,19 @@
 package salesforce.steps.quotes;
 
-import cucumber.api.*;
-import java.util.*;
 import static org.junit.Assert.assertTrue;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import salesforce.salesforceapp.entities.opportunities.*;
+import java.util.List;
+import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
-import salesforce.salesforceapp.ui.*;
-import salesforce.salesforceapp.ui.home.*;
-import salesforce.salesforceapp.ui.opportunities.*;
+import salesforce.salesforceapp.ui.PageFactory;
+import salesforce.salesforceapp.ui.home.HomePage;
+import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
+import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
+import salesforce.salesforceapp.ui.opportunities.OppyQuotesView;
 import salesforce.salesforceapp.ui.quotes.QuoteEditionForm;
 import salesforce.salesforceapp.ui.quotes.QuotesContentPage;
 import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
@@ -31,14 +32,14 @@ public class EditQuoteSteps {
 
   //Entities
   private Oppy oppy;
+  private final Quote quote; //Dependency injection variable
 
   //Auxiliary variables
   private String quoteName;
 
-  /**public EditQuoteSteps(Oppy oppy, String quoteName){
-    this.oppy = oppy;
-    this.quoteName = quoteName;
-  }*/
+  public EditQuoteSteps(Quote quote) {
+    this.quote = quote;
+  }
 
   @Given("^I have a Quote created in opportunity \"([^\"]*)\" with the following information$")
   public void iHaveAQuoteCreatedInOpportunityWithTheFollowingInformation(String opportunityName, List<Quote> quoteCreateInfo) {
@@ -55,6 +56,8 @@ public class EditQuoteSteps {
     quoteEditionForm = oppyQuotesView.goToCreateQuote();
     quoteEditionForm.createQuote(oppy, quoteName);
     quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName);
+    //Dependency injection variable setting
+    quote.setQuote(oppy.getQuote(quoteName));
   }
 
   @And("^I go to Quotes Home Page$")
@@ -77,17 +80,19 @@ public class EditQuoteSteps {
   public void iEditTheQuoteWithTheFollowingInformation(List<Quote> quoteEditInfo) {
     oppy.updateQuote(quoteEditInfo, quoteName);
     quoteEditionForm = quotesContentPage.goToEditQuote();
-    //quotesContentPage = quoteEditionForm.editQuote(oppy.getQuote(quoteName));
+    quotesContentPage = quoteEditionForm.editQuote(oppy, quoteName);
   }
 
   @Then("^A Quote successful editing message should be displayed$")
   public void aQuoteSuccessfulEditingMessageShouldBeDisplayed() {
-    //assertTrue(quotesContentPage.isQuoteEditedMessageDisplayed());
+    assertTrue(quotesContentPage.isQuoteEditedMessageDisplayed(quoteName));
+    System.out.println("message result: " + quotesContentPage.isQuoteEditedMessageDisplayed(quoteName));
   }
 
   @And("^I should see the Quote information updated in the Quote details view$")
   public void iShouldSeeTheQuoteInformationUpdatedInTheQuoteDetailsView() {
-    //quotesContentPage.openQuoteDetails();
-    //assertTrue(quotesContentPage.isUpdated(quote));
+    quotesContentPage.openQuoteDetails();
+    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
+    System.out.println("verification result: " + quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
   }
 }
