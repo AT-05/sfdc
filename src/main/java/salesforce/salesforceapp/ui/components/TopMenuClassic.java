@@ -18,8 +18,7 @@ public class TopMenuClassic extends TopMenu {
     @FindBy(xpath = "//a[contains(@href, 'classic')]")
     private WebElement switchSkinLink;
 
-
-    private final String lacatorAccounts = "//*[@id='Account_Tab']";
+    private final String lacatorAccounts = "//li[@id='Account_Tab']";
 
 
     /**

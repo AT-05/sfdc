@@ -19,13 +19,26 @@ Feature: Manage Accounts
   @Functional
   Scenario: Verify that it is possible to Delete an Account without opportunities
     Given I have an Acount with the following information:
-      | Name   | address      	| Phone |
+      | name   | address      	| phone |
       | Aslak  | Competitor  	| 755555|
 
     When I select the Account
     And I delete the Account
     Then I should see the Acount is removed from the Accounts page
 
+
+  @Funtional @edit
+  Scenario: Verify that it is possible to Edit an Account
+
+    Given I have an Acount with the following information:
+      | name   | address      	| phone |
+      | Aslak  | Competitor  	| 755555|
+    When I select the Account
+    And I edit that Account with the following information:
+      | name     | address      | phone |
+      | Aslak 2  | Customer     | 744444|
+
+    Then I should see the Account updated in the Accounts page
 
 #  Scenario: Users should be able to login using valid credentials
 #    Given I navigate to Login page

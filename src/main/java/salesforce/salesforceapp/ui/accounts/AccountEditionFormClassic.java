@@ -8,10 +8,10 @@ import org.openqa.selenium.By;
 public class AccountEditionFormClassic extends AccountEditionForm {
 
     public AccountEditionFormClassic() {
-        super.nameField = driver.findElement(By.xpath("//input[contains(@name, 'name')]"));
-        super.addressField = driver.findElement(By.xpath("//input[contains(@name, 'addres')]"));
-        super.phoneField = driver.findElement(By.xpath("//input[contains(@name, 'home')]"));
-        super.saveBtn = driver.findElement(By.xpath("//input[contains(@name, 'save')]"));
+        super.nameField = driver.findElement(By.xpath("//input[@id='acc2']"));
+        super.addressField = driver.findElement(By.xpath("//textarea[@id='acc17street']"));
+        super.phoneField = driver.findElement(By.xpath("//input[@id='acc10']"));
+        super.saveBtn = driver.findElement(By.xpath(""));
     }
 
     @Override

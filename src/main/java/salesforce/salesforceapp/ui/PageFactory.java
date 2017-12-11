@@ -20,6 +20,7 @@ import salesforce.salesforceapp.ui.opportunities.OppyEditionFormLight;
 public class PageFactory {
 
   private static Skin skin = SalesForceAppEnvsConfig.getInstance().getSkin();
+  //private static Skin skin= Skin.LIGHT;
   private static AccountEditionForm accountEditionForm;
   private static AccountContentPage accountContentPage;
 

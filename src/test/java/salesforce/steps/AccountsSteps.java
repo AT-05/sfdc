@@ -1,5 +1,6 @@
 package salesforce.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -29,6 +30,7 @@ public class AccountsSteps {
     private AccountContentPage accountContentPage;
     private AccountEditionForm accountEditionForm;
     private Account account;
+    private Account accountToEdit;
 
     //Entities
 
@@ -43,8 +45,8 @@ public class AccountsSteps {
     }
 
     @When("^I create a New Account with the following information:$")
-    public void iCreateANewAccountWithTheFollowingInformation(List<Account> acc) {
-        this.account = acc.get(0);
+    public void iCreateANewAccountWithTheFollowingInformation(List<Account> accountList) {
+        account = accountList.get(0);
         accountEditionForm = accountHomePage.clickNewAccountBtn();
         accountContentPage = accountEditionForm.saveNewAccount(account);
     }
@@ -56,7 +58,7 @@ public class AccountsSteps {
 
     @And("^the Account should be displayed in Accounts page$")
     public void theAccountShouldBeDisplayedInAccountsPage(){
-        accountContentPage.verifyAccountInfo(account);
+        assertTrue( accountContentPage.verifyAccountInfo(account));
     }
 
 
@@ -78,14 +80,24 @@ public class AccountsSteps {
     @And("^I delete the Account$")
     public void deleteAnAccount()  {
         accountContentPage.delete();
-        //accountContentPage.displayedCreatedMessage();
     }
 
 
     @Then("^I should see the Acount is removed from the Accounts page$")
     public void iShouldSeeTheAcountIsRemovedFromTheAccountsPage()  {
-        //iGoToAccountsHomePage();
-        //boolean contain=accountHomePage.containTheAccount(account);
         assertFalse(accountHomePage.containTheAccount(account));
+    }
+
+    @And("^I edit that Account with the following information:$")
+    public void iEditThatAccountWithTheFollowingInformation(List<Account> accountList) {
+        accountToEdit=accountList.get(0);
+        accountEditionForm=accountContentPage.clickUpdateAccountBtn();
+        accountContentPage = accountEditionForm.saveNewAccount(accountToEdit);
+        //accountEditionForm = accountHomePage.clickNewAccountBtn();
+    }
+
+    @Then("^I should see the Account updated in the Accounts page$")
+    public void iShouldSeeTheAccountUpdatedInTheAccountsPage() {
+        assertTrue( accountContentPage.verifyAccountInfo(accountToEdit));
     }
 }

@@ -23,6 +23,7 @@ public class AccountContentPageLight extends AccountContentPage {
     public AccountContentPageLight() {
         super.nameText = driver.findElement(By.xpath("//p[contains(@class, 'entityNameTitle')]"));
         super.addressText = driver.findElement(By.xpath("//a[contains(@class, 'uiOutputURL')]"));
+        super.updateBtn=driver.findElement(By.xpath("//div[contains(@class, 'slds-truncate') and (contains(@title, 'Modificar') or contains(@title, 'Modify'))]"));
     }
 
     @Override
@@ -41,10 +42,7 @@ public class AccountContentPageLight extends AccountContentPage {
 
     @Override
     public void delete() {
-//        deleteBtn = driver.findElement(By.xpath("//ul[contains(@class, 'forceActionsContainer')]/li[3]"));
         driverTools.clickElement(deleteBtn);
-
-//        deleteConfirnBtn = driver.findElement(By.xpath("//button[contains(@class, 'slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton')]"));
         driverTools.clickElement(deleteConfirnBtn);
     }
 }

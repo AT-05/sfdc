@@ -43,6 +43,7 @@ public class SalesForceAppEnvsConfig {
 
     //Get the skin system property
     skin = SalesforceEnums.Skin.getSkinEnumBySkinName(System.getProperty(SKIN));
+    //skin = SalesforceEnums.Skin.getSkinEnumBySkinName("ligt");
     log.info("Skin --> " + skin);
 
     envReader = new JsonReader(sampleAppEnvsConfigFileName);
