@@ -10,6 +10,7 @@ public class OppyQuotesViewLight extends OppyQuotesView {
   public OppyQuotesViewLight(){
     super.newBtn = driver.findElement(By.xpath(".//div[@title='New Quote']"));
   }
+
   @Override
   public void waitUntilPageObjectIsLoaded() {
 

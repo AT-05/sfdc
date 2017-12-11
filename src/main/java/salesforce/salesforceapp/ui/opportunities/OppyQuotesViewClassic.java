@@ -11,8 +11,7 @@ public class OppyQuotesViewClassic extends OppyQuotesView {
    * <p>This constructor initializes newBtn value.</p>
    */
   public OppyQuotesViewClassic(){
-    //Getting create new button xpath
-    super.newBtn = driver.findElement(By.xpath("//input[@title='New Quote']"));
+    super.newBtn = driver.findElement(By.xpath("//input[@value='New Quote']"));
   }
   @Override
   public void waitUntilPageObjectIsLoaded() {
