@@ -1,29 +1,57 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import com.android.dx.rop.code.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
-import org.openqa.selenium.support.*;
-import org.openqa.selenium.support.ui.*;
-import salesforce.salesforceapp.entities.quotes.Quote;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class QuotesContentPageLight extends QuotesContentPage {
-  @FindBy(xpath = "//a[contains(@title, 'Edit')]")
+  @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']//div[2]/div[1]/div/div[2]/span/span")
+  @CacheLookup
+  private WebElement quoteNameLight;
+
+  @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']//div[1]/div[2]/div/div[2]/span/span")
+  @CacheLookup
+  private WebElement quoteExpirationDateLight;
+
+  @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']/div/div[3]/div[2]/div/div[2]/span/span")
+  @CacheLookup
+  private WebElement quoteStatusLight;
+
+  @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']/div/div[4]/div[2]/div/div[2]/span/span")
+  @CacheLookup
+  private WebElement quoteDescriptionLight;
+
+  @FindBy(xpath = "//a[contains(@title, 'Show 3 more actions')]")
+  @CacheLookup
+  private WebElement showMoreActionsLink;
+
+  @FindBy(xpath = "//div/ul/li[2]/a[contains(@title, 'Edit')]")
   @CacheLookup
   private WebElement editLink;
 
-  @FindBy(xpath = "//a[contains(@title, 'Details')]")
+  @FindBy(xpath = "//div/ul/li[3]/a[@title='Delete']")
+  @CacheLookup
+  private WebElement deleteLinkLight;
+
+  @FindBy(xpath = "//button[@title='Delete']")
+  @CacheLookup
+  private WebElement deleteConfirmationLinkLight;
+
+  @FindBy(xpath = "//div[5]/div/div/div[3]/div[1]/div/div/div/ul/li[@class='tabs__item uiTabItem']/a[@title='Details']/span[2]")
   @CacheLookup
   private WebElement quoteDetailsLink;
 
+  private WebElement quoteEditedMessage;
+
   public QuotesContentPageLight() {
-    /*super.quoteName = driver.findElements(By.xpath("//span/span[contains(@class, 'uiOutputText')]"));
-    super.quoteExpirationDate = driver.findElement(By.xpath("//span/span"));
-    super.quoteStatus = driver.findElement(By.xpath("//h1"));
-    super.quoteDescription = driver.findElement(By.xpath("//h1"));*/
+    super.quoteName = quoteNameLight;
+    super.quoteExpirationDate = quoteExpirationDateLight;
+    super.quoteStatus = quoteStatusLight;
+    super.quoteDescription = quoteDescriptionLight;
   }
 
   @Override
@@ -38,11 +66,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   public QuoteEditionForm goToEditQuote() {
-    WebElement message = driver.findElement(By.xpath("//button[contains(@class, 'slds-button toastClose')]"));
-    message.click();
-    System.out.println("***********clicking edit button");
-    WebElement other = driver.findElement(By.xpath("//a[contains(@title, 'Show 3 more actions')]"));
-    other.click();
+    showMoreActionsLink.click();
     editLink.click();
     return new QuotesEditionFormLight();
   }
@@ -51,12 +75,18 @@ public class QuotesContentPageLight extends QuotesContentPage {
    * <p>This method checks if after editing a quote,
    * a successful edited quote message is displayed.</p>
    *
+   * @param quoteName is the quote name given.
    * @return whether the message was displayed or not.
    */
   @Override
-  public boolean isQuoteEditedMessageDisplayed() {
+  public boolean isQuoteEditedMessageDisplayed(String quoteName) {
     boolean result = false;
-    //get message
+    quoteEditedMessage = driver.findElement(By.xpath("//span[contains(@class, 'toastMessage')]"));
+    if (driverTools.isElementDisplayed(quoteEditedMessage)
+      && quoteEditedMessage.getText().contains("was saved")
+      && quoteEditedMessage.getText().contains(quoteName)) {
+      result = true;
+    }
     return result;
   }
 
@@ -65,28 +95,35 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   public void openQuoteDetails() {
-    System.out.println("****clicking details");
-    WebElement message = driver.findElement(By.xpath("//button[contains(@class, 'slds-button toastClose')]"));
-    message.click();
-    WebElement other = driver.findElement(By.xpath(".//*[@id='brandBand_1']/div/div/div[3]/div/div/div[3]/div[1]/div/div"));
-    other.click();
-    quoteDetailsLink.click();
-    /*if (driverTools.isElementDisplayed(quoteDetailsLink)) {
-      System.out.println("*****element is visible");
-      driverTools.clickElement(quoteDetailsLink);
-    }*/
+    driverTools.clickElement(quoteDetailsLink);
   }
 
   /**
-   * <p>This method checks if the quote's information
-   * was updated correctly.</p>
-   *
-   * @param quote is an entity object type.
-   * @return whether the quote's information was updated correctly or not.
+   * <p>This method performs deletion of Quote.</p>
    */
   @Override
-  public boolean isUpdated(Quote quote) {
-    //Check quote updated
-    return false;
+  public void deleteQuote() {
+    driverTools.clickElement(showMoreActionsLink);
+    driverTools.clickElement(deleteLinkLight);
+    driverTools.clickElement(deleteConfirmationLinkLight);
+  }
+
+  /**
+   * <p>This method checks if after deleting a quote,
+   * a successful deleted quote message is displayed.</p>
+   *
+   * @param quoteName is the quote name given.
+   * @return whether the message was displayed or not.
+   */
+  @Override
+  public boolean isQuoteDeletedMessageDisplayed(String quoteName) {
+    boolean result = false;
+    quoteEditedMessage = driver.findElement(By.xpath("//span[contains(@class, 'toastMessage')]"));
+    if (driverTools.isElementDisplayed(quoteEditedMessage)
+      && quoteEditedMessage.getText().contains("was deleted")
+      && quoteEditedMessage.getText().contains(quoteName)) {
+      result = true;
+    }
+    return result;
   }
 }

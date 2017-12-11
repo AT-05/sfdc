@@ -1,11 +1,44 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import salesforce.salesforceapp.entities.quotes.Quote;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class QuotesContentPageClassic extends QuotesContentPage {
+  @FindBy(id = "Name_ileinner")
+  @CacheLookup
+  private WebElement quoteNameClassic;
+
+  @FindBy(id = "ExpirationDate_ileinner")
+  @CacheLookup
+  private WebElement quoteExpirationDateClassic;
+
+  @FindBy(id = "Status_ileinner")
+  @CacheLookup
+  private WebElement quoteStatusClassic;
+
+  @FindBy(id = "Description_ilecell")
+  @CacheLookup
+  private WebElement quoteDescriptionClassic;
+
+  @FindBy(xpath = "//td[@id='topButtonRow']/input[@title='Edit']")
+  @CacheLookup
+  private WebElement editQuoteLink;
+
+  @FindBy(xpath = "//td[@id='topButtonRow']/input[@title='Delete']")
+  @CacheLookup
+  private WebElement deleteQuoteLink;
+
+  public QuotesContentPageClassic() {
+    super.quoteName = quoteNameClassic;
+    super.quoteExpirationDate = quoteExpirationDateClassic;
+    super.quoteStatus = quoteStatusClassic;
+    super.quoteDescription = quoteDescriptionClassic;
+  }
+
   @Override
   public void waitUntilPageObjectIsLoaded() {
 
@@ -18,7 +51,7 @@ public class QuotesContentPageClassic extends QuotesContentPage {
    */
   @Override
   public QuoteEditionForm goToEditQuote() {
-    //click
+    driverTools.clickElement(editQuoteLink);
     return new QuotesEditionFormClassic();
   }
 
@@ -26,10 +59,11 @@ public class QuotesContentPageClassic extends QuotesContentPage {
    * <p>This method checks if after editing a quote,
    * a successful edited quote message is displayed.</p>
    *
+   * @param quoteName is the quote name given.
    * @return whether the message was displayed or not.
    */
   @Override
-  public boolean isQuoteEditedMessageDisplayed() {
+  public boolean isQuoteEditedMessageDisplayed(String quoteName) {
     return true;
   }
 
@@ -42,15 +76,23 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   }
 
   /**
-   * <p>This method checks if the quote's information
-   * was updated correctly.</p>
-   *
-   * @param quote is an entity object type.
-   * @return whether the quote's information was updated correctly or not.
+   * <p>This method performs deletion of Quote.</p>
    */
   @Override
-  public boolean isUpdated(Quote quote) {
-    //Check quote updated
-    return false;
+  public void deleteQuote() {
+    driverTools.clickElement(deleteQuoteLink);
+    driver.switchTo().alert().accept();
+  }
+
+  /**
+   * <p>This method checks if after deleting a quote,
+   * a successful deleted quote message is displayed.</p>
+   *
+   * @param quoteName is the quote name given.
+   * @return whether the message was displayed or not.
+   */
+  @Override
+  public boolean isQuoteDeletedMessageDisplayed(String quoteName) {
+    return true; //There is no message displayed for this skin.
   }
 }
