@@ -44,6 +44,9 @@ public class HomeProductPageLightning extends HomeProductPage {
         productSelect.click();
         return new ProductContentPageLightning();
     }
+
+    @Override
+    public void thereIsProduct(String name) { }
 }
 
 

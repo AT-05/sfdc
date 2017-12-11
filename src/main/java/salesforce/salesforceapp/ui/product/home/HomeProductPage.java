@@ -50,17 +50,18 @@ public abstract class HomeProductPage extends BasePage {
 
     public void selectItem(String linkText) {
         System.out.println("esperando para seleccionar producto");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         System.out.println("esperando para seleccionar producto");
         driverTools.clickElement(getItemLinkBy(linkText));
         System.out.println("esperando para seleccionar producto");
     }
 
+    private boolean exitElement(String name) {
+        return false;
+    }
+
     protected void clickNewBtn() {
         driverTools.clickElement(newBtn);
     }
+
+    public abstract void thereIsProduct(String name);
 }

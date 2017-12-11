@@ -22,6 +22,9 @@ public class ProductContentPageClassic extends ProductContentPage {
     private WebElement delete;
 
 
+
+
+
     public ProductContentPageClassic() {
         super.elementValidator = validator;
         super.elementEdit = edit;
@@ -45,8 +48,6 @@ public class ProductContentPageClassic extends ProductContentPage {
         checkAlert();
         return new HomeProductPageClassic();
     }
-
-
 
 
 }

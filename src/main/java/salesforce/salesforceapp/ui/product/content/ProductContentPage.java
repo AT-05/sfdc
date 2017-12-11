@@ -40,4 +40,5 @@ public abstract class ProductContentPage extends BasePage {
 
     public abstract HomeProductPage goToDeleteProduct();
 
+
 }

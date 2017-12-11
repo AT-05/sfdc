@@ -39,4 +39,9 @@ public class HomeProductPageClassic extends HomeProductPage {
         selectItem("Test product Delete");
         return new ProductContentPageClassic();
     }
+
+    @Override
+    public void thereIsProduct(String name) {
+        selectItem(name);
+    }
 }

@@ -108,6 +108,6 @@ public class ProductStep {
 
     @Then("^the Product should be removed from the Product List$")
     public void theProductShouldBeRemovedFromTheProductList() throws Throwable {
-        //     productContentPage.IsProductDetailsPage();
+        homeProductPage.thereIsProduct(product.getName());
     }
 }
