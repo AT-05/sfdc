@@ -6,6 +6,7 @@ import org.apache.log4j.PropertyConfigurator;
 import salesforce.core.selenium.WebDriverConfig;
 import salesforce.core.selenium.WebDriverManager;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
+import salesforce.salesforceapp.ui.*;
 
 
 public class SalesForceAppAutomation {
@@ -35,7 +36,14 @@ public class SalesForceAppAutomation {
   }
 
   public void startUp() throws Exception {
-    WebDriverManager.getInstance().initialize(webDriverConfig);
+    log.info("-----Start Automation execution for Salesforce application-----");
+    WebDriverManager.getInstance().initialize();
+
+    //Go to Web login page
+    PageTransporter.getInstance().navigateToLoginPage();
+
+    //Create accounts, opportunities, products, price books, etc.
+//    MainSetup.beforeExecution();
   }
 
   public void shutDown() throws Exception {

@@ -63,10 +63,6 @@ public class SalesForceAppEnvsConfig {
     return userPassword;
   }
 
-  /**
-   *
-   * @return
-   */
   public Skin getSkin() {
     return skin;
   }

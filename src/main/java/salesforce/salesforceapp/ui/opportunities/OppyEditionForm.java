@@ -1,6 +1,6 @@
 package salesforce.salesforceapp.ui.opportunities;
 
-import salesforce.salesforceapp.entities.Oppy;
+import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.BasePage;
 
 public abstract class OppyEditionForm extends BasePage {

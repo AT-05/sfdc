@@ -34,7 +34,14 @@ public class QuotesHomePageLight extends QuotesHomePage {
    */
   @Override
   public boolean isQuoteElementPresent(String quoteName) {
-    WebElement element = driver.findElement(By.xpath("//a[@title='" + quoteName + "']"));
-    return element.isDisplayed();
+    try{
+      WebElement element = driver.findElement(By.xpath("//a[text()='" + quoteName + "']"));
+      System.out.println("result = true");
+      return true;
+    }
+    catch (Exception e){
+      System.out.println("result = false");
+      return false;
+    }
   }
 }

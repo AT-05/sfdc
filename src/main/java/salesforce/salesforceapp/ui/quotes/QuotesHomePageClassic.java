@@ -20,8 +20,9 @@ public class QuotesHomePageClassic extends QuotesHomePage {
    */
   @Override
   public QuotesContentPage selectQuote(String quoteName) {
-    WebElement element = driver.findElement(By.xpath("//a[text()='" + quoteName + "']"));
-    driverTools.clickElement(element);
+    /*WebElement element = driver.findElement(By.xpath("//a[text()='" + quoteName + "']"));
+    driverTools.clickElement(element);*/
+    selectItem(quoteName);
     return new QuotesContentPageClassic();
   }
 
@@ -34,7 +35,12 @@ public class QuotesHomePageClassic extends QuotesHomePage {
    */
   @Override
   public boolean isQuoteElementPresent(String quoteName) {
-    WebElement element = driver.findElement(By.xpath("//a[text()='" + quoteName + "']"));
-    return element.isDisplayed();
+    try{
+      WebElement element = driver.findElement(By.xpath("//a[text()='" + quoteName + "']"));
+      return true;
+    }
+    catch (Exception e){
+      return false;
+    }
   }
 }

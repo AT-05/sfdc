@@ -1,9 +1,8 @@
 package salesforce.salesforceapp.ui.opportunities;
 
-import salesforce.salesforceapp.entities.Oppy;
+import salesforce.salesforceapp.entities.opportunities.Oppy;
 
 public class OppyEditionFormLight extends OppyEditionForm {
-
   @Override
   public void waitUntilPageObjectIsLoaded() {
 

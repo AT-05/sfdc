@@ -70,7 +70,7 @@ public class QuotesEditionFormLight extends QuoteEditionForm {
    */
   @Override
   public QuotesContentPage openQuote(String quoteName) {
-    WebElement element = driver.findElement(By.xpath("//a[contains(@title,'" + quoteName + "')]"));
+    WebElement element = driver.findElement(By.xpath("//a[@title='" + quoteName + "']"));
     driverTools.clickElement(element);
     return new QuotesContentPageLight();
   }
