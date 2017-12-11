@@ -42,7 +42,7 @@ public class SalesForceAppEnvsConfig {
     log.info("-----Read the credentials-----");
 
     //Get the skin system property
-    skin = SalesforceEnums.Skin.getSkinEnumBySkinName(System.getProperty(SKIN));
+    skin = Skin.getSkinEnumBySkinName(System.getProperty(SKIN));
     log.info("Skin --> " + skin);
 
     envReader = new JsonReader(sampleAppEnvsConfigFileName);
@@ -63,10 +63,6 @@ public class SalesForceAppEnvsConfig {
     return userPassword;
   }
 
-  /**
-   *
-   * @return
-   */
   public Skin getSkin() {
     return skin;
   }
