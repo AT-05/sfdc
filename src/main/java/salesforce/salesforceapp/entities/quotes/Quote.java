@@ -1,7 +1,5 @@
 package salesforce.salesforceapp.entities.quotes;
 
-import java.util.*;
-
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
@@ -30,9 +28,9 @@ public class Quote {
   }
 
   /**
-   * <p>This method sets status value.</p>
+   * <p>This method sets statusLight value.</p>
    *
-   * @param status is the status value given.
+   * @param status is the statusLight value given.
    */
   public void setStatus(String status) {
     this.status = status;
@@ -66,9 +64,9 @@ public class Quote {
   }
 
   /**
-   * <p>This method gets quote status.</p>
+   * <p>This method gets quote statusLight.</p>
    *
-   * @return quote status value.
+   * @return quote statusLight value.
    */
   public String getStatus() {
     return status;
@@ -81,5 +79,17 @@ public class Quote {
    */
   public String getDescription() {
     return description;
+  }
+
+  /**
+   * <p>This method sets quote variables values.</p>
+   *
+   * @param quote is a Quote object type.
+   */
+  public void setQuote(Quote quote) {
+    name = quote.getName();
+    expirationDate = quote.getExpirationDate();
+    status = quote.getStatus();
+    description = quote.getDescription();
   }
 }

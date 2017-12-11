@@ -1,6 +1,9 @@
 package salesforce.salesforceapp.entities.opportunities;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import salesforce.salesforceapp.entities.quotes.Quote;
 
 public class Oppy {
@@ -86,22 +89,23 @@ public class Oppy {
   }
 
 
-
-
   /**
    * <p>This method updates a specific quote of the opportunity
    * quotes' list.</p>
    *
-   * @param quoteListInput is a list of Quote elements.
+   * @param quoteListInput  is a list of Quote elements.
    * @param quoteNameTarget is the target quote to update.
    */
-  public void updateQuote(List<Quote> quoteListInput, String quoteNameTarget){
-    Quote quoteEdited = quoteListInput.get(0);
-    int index;
-    for (Quote quoteItem : quoteList) {
-      String quoteName = quoteItem.getName();
-      if (quoteName.equalsIgnoreCase(quoteEdited.getName())) {
-        quoteItem = quoteEdited;
+  public void updateQuote(List<Quote> quoteListInput, String quoteNameTarget) {
+    final Quote quoteEdited = quoteListInput.get(0);
+    Iterator<Quote> iterator = quoteList.iterator();
+    while (iterator.hasNext()) {
+      Quote itemQuote = iterator.next();
+      if (itemQuote.getName().equals(quoteNameTarget)) {
+        itemQuote.setName(quoteEdited.getName());
+        itemQuote.setExpirationDate(quoteEdited.getExpirationDate());
+        itemQuote.setStatus(quoteEdited.getStatus());
+        itemQuote.setDescription(quoteEdited.getDescription());
       }
     }
   }
