@@ -4,7 +4,7 @@ import salesforce.salesforceapp.ui.components.TopMenu;
 
 public abstract class ContentBasePage extends BasePage {
 
-  protected TopMenu topMenu;
+  public TopMenu topMenu;
 
   //Code for edit btn
 

@@ -5,10 +5,7 @@ import salesforce.salesforceapp.ui.PageFactory;
 
 public abstract class OppyHomePage extends HomeBasePage {
 
-  public OppyContentPage selectOppy(String linkText) {
-    selectItem(linkText);
-    return PageFactory.getOppyContentPage();
-  }
+  public abstract OppyContentPage selectOppy(String linkText);
 
   public OppyEditionForm clickNewOppyBtn() {
     clickNewBtn();

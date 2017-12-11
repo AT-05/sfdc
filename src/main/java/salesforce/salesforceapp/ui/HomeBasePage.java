@@ -12,7 +12,7 @@ public abstract class HomeBasePage extends BasePage {
 
   @FindBy(id = "new")
   @CacheLookup
-  WebElement newBtn;
+  protected WebElement newBtn;
 
   public HomeBasePage() {
     this.topMenu = PageFactory.getTopMenu();
@@ -20,10 +20,10 @@ public abstract class HomeBasePage extends BasePage {
   }
 
   private By getItemLinkBy(String linkText) {
-    return By.xpath("//a[contains(text(),'" + linkText + "')]");
+    return By.xpath("//a[contains(@title,'" + linkText + "')]");
   }
 
-  protected void selectItem(String linkText) {
+  public void selectItem(String linkText) {
     driverTools.clickElement(getItemLinkBy(linkText));
   }
 
