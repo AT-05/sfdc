@@ -1,10 +1,10 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.HomeBasePage;
+import salesforce.salesforceapp.ui.PageFactory;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
@@ -12,11 +12,14 @@ import salesforce.salesforceapp.ui.HomeBasePage;
 public abstract class QuoteEditionForm extends HomeBasePage {
   protected WebElement quoteName;
   protected WebElement quoteExpirationDate;
-  protected WebElement quoteStatusLink;
-  protected WebElement status;
   protected String statusInput;
   protected WebElement quoteDescription;
   protected WebElement buttonSave;
+
+  /**
+   * <p>This method sets quote status.</p>
+   */
+  protected abstract void setStatus();
 
   /**
    * <p>This method fills quote form fields.</p>
@@ -26,10 +29,8 @@ public abstract class QuoteEditionForm extends HomeBasePage {
   private void setQuoteValues(Quote quote) {
     driverTools.setInputField(quoteName, quote.getName());
     driverTools.setInputField(quoteExpirationDate, quote.getExpirationDate());
-    driverTools.clickElement(quoteStatusLink);
     statusInput = quote.getStatus();
-    status = driver.findElement(By.xpath("//a[contains(@title, '" + statusInput + "')]"));
-    driverTools.clickElement(status);
+    setStatus();
     driverTools.setInputField(quoteDescription, quote.getDescription());
   }
 
@@ -57,10 +58,14 @@ public abstract class QuoteEditionForm extends HomeBasePage {
   /**
    * <p>This method performs edition of quote's information.</p>
    *
-   * @param quote is an entity object type.
+   * @param oppy      is an Entity object type.
+   * @param quoteName is the quote name given.
    * @return a QuotesContentPage object type.
    */
-  public abstract QuotesContentPage editQuote(Quote quote);
+  public QuotesContentPage editQuote(Oppy oppy, String quoteName) {
+    createQuote(oppy, quoteName);
+    return PageFactory.getQuotesContentPage();
+  }
 
   /**
    * <p>This method opens a specific quote.</p>

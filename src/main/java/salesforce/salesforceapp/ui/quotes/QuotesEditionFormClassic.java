@@ -1,12 +1,21 @@
 package salesforce.salesforceapp.ui.quotes;
 
 import org.openqa.selenium.By;
-import salesforce.salesforceapp.entities.quotes.Quote;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class QuotesEditionFormClassic extends QuoteEditionForm {
+  @FindBy(id = "Status")
+  @CacheLookup
+  private WebElement quoteStatusClassic;
+
+  @FindBy(xpath = "//td[@id='topButtonRow']/input[@value=' Save ']")
+  @CacheLookup
+  private WebElement buttonSaveClassic;
 
   /**
    * <p>This constructor initializes selectors.</p>
@@ -14,14 +23,21 @@ public class QuotesEditionFormClassic extends QuoteEditionForm {
   public QuotesEditionFormClassic() {
     super.quoteName = driver.findElement(By.id("Name"));
     super.quoteExpirationDate = driver.findElement(By.id("ExpirationDate"));
-    super.quoteStatusLink = driver.findElement(By.id("Status"));
     super.quoteDescription = driver.findElement(By.id("Description"));
-    super.buttonSave = driver.findElement(By.xpath("//input[contains(@class, 'btn') and contains(@name, 'save')]"));
+    super.buttonSave = buttonSaveClassic;
   }
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
 
+  }
+
+  /**
+   * <p>This method sets quote status.</p>
+   */
+  @Override
+  protected void setStatus() {
+    driverTools.selectDropDownValue(quoteStatusClassic, super.statusInput);
   }
 
   /**
@@ -37,17 +53,6 @@ public class QuotesEditionFormClassic extends QuoteEditionForm {
   }
 
   /**
-   * <p>This method performs edition of quote's information.</p>
-   *
-   * @param quote is an entity object type.
-   */
-  @Override
-  public QuotesContentPage editQuote(Quote quote) {
-    //edit quote
-    return new QuotesContentPageClassic();
-  }
-
-  /**
    * <p>This method opens a specific quote.</p>
    *
    * @param quoteName is the quote name given.
@@ -55,6 +60,6 @@ public class QuotesEditionFormClassic extends QuoteEditionForm {
    */
   @Override
   public QuotesContentPage openQuote(String quoteName) {
-    return new QuotesContentPageClassic();
+    return new QuotesContentPageClassic(); //In this skin it isn't necessary to open quote.
   }
 }

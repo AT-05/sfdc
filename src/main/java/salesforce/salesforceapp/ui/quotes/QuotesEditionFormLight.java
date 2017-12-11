@@ -2,12 +2,22 @@ package salesforce.salesforceapp.ui.quotes;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import salesforce.salesforceapp.entities.quotes.Quote;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class QuotesEditionFormLight extends QuoteEditionForm {
+  @FindBy(css = ".select")
+  @CacheLookup
+  private WebElement quoteStatusLinkLight;
+  private WebElement statusLight;
+
+  @FindBy(css = ".modal-footer button[title='Save']")
+  @CacheLookup
+  private WebElement buttonSaveLight;
+
   private WebElement quoteCreatedMessage;
 
   /**
@@ -16,14 +26,23 @@ public class QuotesEditionFormLight extends QuoteEditionForm {
   public QuotesEditionFormLight() {
     super.quoteName = driver.findElement(By.xpath("//input[contains(@aria-required, 'true')]"));
     super.quoteExpirationDate = driver.findElement(By.xpath("//div[contains(@class, 'uiInput--datetime')]//input[1]"));
-    super.quoteStatusLink = driver.findElement(By.xpath("//a[contains(@aria-label, 'Status')]"));
     super.quoteDescription = driver.findElement(By.xpath("//textarea[contains(@class, 'textarea')]"));
-    super.buttonSave = driver.findElement(By.xpath("//button[contains(@title, 'Save')][2]"));
+    super.buttonSave = buttonSaveLight;
   }
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
 
+  }
+
+  /**
+   * <p>This method sets quote status.</p>
+   */
+  @Override
+  protected void setStatus() {
+    driverTools.clickElement(quoteStatusLinkLight);
+    statusLight = driver.findElement(By.xpath("//li[@class='uiMenuItem uiRadioMenuItem']/a[@title='" + super.statusInput + "']"));
+    driverTools.clickElement(statusLight);
   }
 
   /**
@@ -41,17 +60,6 @@ public class QuotesEditionFormLight extends QuoteEditionForm {
       result = true;
     }
     return result;
-  }
-
-  /**
-   * <p>This method performs edition of quote's information.</p>
-   *
-   * @param quote is an entity object type.
-   */
-  @Override
-  public QuotesContentPage editQuote(Quote quote) {
-    //edit quote
-    return new QuotesContentPageLight();
   }
 
   /**
