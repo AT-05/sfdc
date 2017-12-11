@@ -3,19 +3,15 @@ package salesforce.steps.opportunities;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
-import salesforce.salesforceapp.ui.components.TopMenu;
-import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
@@ -51,7 +47,7 @@ public class ManageSteps {
     oppyContentPage = oppyEditionForm.createOppy(this.oppy);
   }
 
-  @Then("^a message should be displayed saying that the opportunity was (?:created|saved)$")
+  @Then("^a message should be displayed saying that the Opportunity was (?:created|saved|deleted)$")
   public void aMessageShouldBeDisplayedSayingThatTheOpportunityWasCreated() {
     assertTrue(oppyContentPage.displayedCreateMessage());
   }
@@ -59,10 +55,10 @@ public class ManageSteps {
   @And("^the Opportunity (?:created|edited) should be display in the Opportunities list$")
   public void theOpportunityCreatedShouldBeDisplayInTheOpportunitiesList() {
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
-    assertTrue(oppyHomePage.opportunityIsInList(this.oppy));
+    assertTrue(oppyHomePage.isOpportunityInList(this.oppy));
   }
 
-  @Given("^I select to edit the Opportunity created from the list$")
+  @Given("^I select to (?:edit|delete) the Opportunity created from the list$")
   public void iSelectToEditTheOpportunityCreatedFromTheList() {
     oppyContentPage.displayedCreateMessage();
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
@@ -75,5 +71,16 @@ public class ManageSteps {
     this.oppy = oppy.get(0);
     oppyEditionForm = oppyContentPage.clickEditOppyBtn();
     oppyContentPage = oppyEditionForm.editOppy(this.oppy);
+  }
+
+  @When("^I delete that Opportunity$")
+  public void iDeleteThatOpportunity() {
+    oppyContentPage = oppyContentPage.clickDeleteOppyBtn();
+  }
+
+  @And("^the Opportunity should be delete of the list$")
+  public void theOpportunityShouldBeDeleteOfTheList() {
+    oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
+    assertFalse(oppyHomePage.isOpportunityInList(this.oppy));
   }
 }

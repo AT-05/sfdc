@@ -18,21 +18,27 @@ public class OppyEditionFormLight extends OppyEditionForm {
   @FindBy(xpath = "//div[@class='form-element']//input[@class=' input']")
   private WebElement date;
 
-  @FindBy(xpath = "//span[@class='today slds-show--inline-block slds-text-link slds-p-bottom--x-small']")
+  @FindBy(xpath = "//span[contains(@class,'today ')]")
   private WebElement today;
 
-  @FindBy(xpath = "//div[@class='uiMenu uiInput uiInputSelect forceInputPicklist uiInput--default uiInput--select']//a[@class='select']")
+  @FindBy(xpath = "//div[contains(@class, 'uiMenu ')]//a[@class='select']")
   private WebElement stageInput;
 
   private WebElement stageOption;
 
-  @FindBy(xpath = "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']")
+  @FindBy(xpath = "//button[contains(@class, 'default uiButton--brand uiButton ')]")
   private WebElement saveBtn;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
   }
 
+  /**
+   * This method create an opportunity.
+   *
+   * @param oppy object with the values for create oppy.
+   * @return OppyContentPage.
+   */
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
     driverTools.setInputField(oppyInput, oppy.getOppyName());
@@ -58,6 +64,12 @@ public class OppyEditionFormLight extends OppyEditionForm {
     return new OppyContentPageLight();
   }
 
+  /**
+   * Edit values of an opportunity.
+   *
+   * @param oppy object with the values for edit oppy.
+   * @return OppyContentPage
+   */
   @Override
   public OppyContentPage editOppy(Oppy oppy) {
     driverTools.setInputField(oppyInput, oppy.getOppyName());

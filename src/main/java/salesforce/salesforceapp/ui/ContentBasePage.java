@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 
 public abstract class ContentBasePage extends BasePage {
@@ -12,7 +13,11 @@ public abstract class ContentBasePage extends BasePage {
 
   @FindBy(xpath = "//*[@title='Edit']")
   @CacheLookup
-  private WebElement editBtn;
+  protected WebElement editBtn;
+
+  @FindBy(xpath = "//*[@title='Delete']")
+  @CacheLookup
+  protected WebElement deleteBtn;
 
   //Code for edit btn
 

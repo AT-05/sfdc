@@ -10,7 +10,7 @@ Feature: Manage Opportunities - CRUD
       | oppyName | closeDate | stage         | account      |
       | Opp test | 6/12/2018 | Qualification | Acme (Sample)|
 
-    Then a message should be displayed saying that the opportunity was created
+    Then a message should be displayed saying that the Opportunity was created
     And the Opportunity created should be display in the Opportunities list
 
   @Functional @EditOppy
@@ -24,7 +24,7 @@ Feature: Manage Opportunities - CRUD
       | oppyName    | closeDate | stage    | account                 |
       | Opp testing | 6/02/2019 | Proposal | salesforce.com (Sample) |
 
-    Then a message should be displayed saying that the opportunity was saved
+    Then a message should be displayed saying that the Opportunity was saved
     And the Opportunity edited should be display in the Opportunities list
 
   @Functional @DeleteOppy
@@ -33,7 +33,7 @@ Feature: Manage Opportunities - CRUD
       | oppyName | closeDate | stage         | account      |
       | Opp test | 6/12/2018 | Qualification | Acme (Sample)|
 
-    And I select the Opportunity created from the list
+    And I select to delete the Opportunity created from the list
     When I delete that Opportunity
     Then a message should be displayed saying that the Opportunity was deleted
     And the Opportunity should be delete of the list

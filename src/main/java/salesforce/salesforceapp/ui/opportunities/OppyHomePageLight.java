@@ -1,33 +1,56 @@
 package salesforce.salesforceapp.ui.opportunities;
 
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import salesforce.core.selenium.WebDriverConfig;
+import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 
 public class OppyHomePageLight extends OppyHomePage {
 
-  @FindBy(xpath = ".//*[@id='brandBand_1']/div/div/div[2]/div/div/div[1]/div[1]/div[1]/div/div[2]/nav/ol/li/span")
+  @FindBy(xpath = "//ol//span[@class='uiOutputText']")
   private WebElement title;
 
   private WebElement opportunity;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
-    //wait.untilpage.titgle const/....
   }
 
+  /**
+   * Verify if is in the home page of opportunities.
+   *
+   * @return boolean.
+   */
   @Override
   public boolean isOpportunitiesHomePage() {
     return title.isDisplayed();
   }
 
+  /**
+   * Verify if an opportunity is in the list of opportunities.
+   *
+   * @param oppy object the values of opportunity.
+   * @return boolean.
+   */
   @Override
-  public boolean opportunityIsInList(Oppy oppy) {
+  public boolean isOpportunityInList(Oppy oppy) {
     String xpath = String
-        .format(".//table[@data-aura-class='uiVirtualDataTable']//a[text()='%s']",
+        .format("//table[@class='uiVirtualDataTable']//a[text()='%s']",
             oppy.getOppyName());
-    opportunity = driver.findElement(By.xpath(xpath));
+    driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    try {
+      opportunity = driver.findElement(By.xpath(xpath));
+    } catch (Exception ex) {
+      driver.manage().timeouts()
+          .implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(), TimeUnit.SECONDS);
+      return false;
+    }
+    driver.manage().timeouts()
+        .implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(), TimeUnit.SECONDS);
     return driverTools.isElementDisplayed(opportunity);
   }
 }

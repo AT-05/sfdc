@@ -24,26 +24,32 @@ public class OppyEditionFormClassic extends OppyEditionForm {
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
-
   }
 
+  /**
+   * This method create an opportunity.
+   *
+   * @param oppy object with the values for create oppy.
+   * @return OppyContentPage.
+   */
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
     driverTools.setInputField(oppyInput, oppy.getOppyName());
-
     driverTools.clickElement(stageSelect);
     String stageOption = String.format(".//*[@id='opp11']//option[text()='%s']", oppy.getStage());
     driverTools.clickElement(driver.findElement(By.xpath(stageOption)));
-
     driverTools.setInputField(dateInput, oppy.getCloseDate());
-
     driverTools.setInputField(accountInput, oppy.getAccount());
-
     driverTools.clickElement(saveBtn);
-
     return new OppyContentPageClassic();
   }
 
+  /**
+   * Edit values of an opportunity.
+   *
+   * @param oppy object with the values for edit oppy.
+   * @return OppyContentPage
+   */
   @Override
   public OppyContentPage editOppy(Oppy oppy) {
     return createOppy(oppy);
