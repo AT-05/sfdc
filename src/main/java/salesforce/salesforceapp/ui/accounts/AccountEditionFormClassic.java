@@ -11,7 +11,7 @@ public class AccountEditionFormClassic extends AccountEditionForm {
         super.nameField = driver.findElement(By.xpath("//input[@id='acc2']"));
         super.addressField = driver.findElement(By.xpath("//textarea[@id='acc17street']"));
         super.phoneField = driver.findElement(By.xpath("//input[@id='acc10']"));
-        super.saveBtn = driver.findElement(By.xpath(""));
+        super.saveBtn = driver.findElement(By.xpath(".//*[@id='topButtonRow']/input[@name='save']"));
     }
 
     @Override

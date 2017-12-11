@@ -61,11 +61,10 @@ public class AccountsSteps {
         assertTrue( accountContentPage.verifyAccountInfo(account));
     }
 
-
-
     @Given("^I have an Acount with the following information:$")
-    public void iHaveAcountWithTheFollowingInformation(List<Account> acc){
-        iCreateANewAccountWithTheFollowingInformation(acc);
+    public void iHaveAcountWithTheFollowingInformation(List<Account> accountList){
+        iCreateANewAccountWithTheFollowingInformation(accountList);
+        accountContentPage.displayedCreatedMessage();
         //accountContentPage
     }
 

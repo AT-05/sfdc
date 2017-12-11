@@ -5,7 +5,7 @@ Feature: Manage Accounts
     Given I'm logged to Salesforce
     And I go to Accounts home page
 
-  @SmokeTest
+  @SmokeTest @create
   Scenario: Verify that it is possible to Create an Account
 
     When I create a New Account with the following information:
@@ -16,7 +16,7 @@ Feature: Manage Accounts
 
 
 
-  @Functional
+  @Functional @delete
   Scenario: Verify that it is possible to Delete an Account without opportunities
     Given I have an Acount with the following information:
       | name   | address      	| phone |

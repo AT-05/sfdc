@@ -2,6 +2,7 @@ package salesforce.salesforceapp.ui.accounts;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import salesforce.salesforceapp.entities.Account;
 import salesforce.salesforceapp.ui.ContentBasePage;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -13,7 +14,6 @@ public abstract class AccountContentPage extends ContentBasePage {
 
     protected WebElement nameText;
     protected WebElement addressText;
-    protected WebElement updateBtn;
 
 //    protected WebElement deleteBtn;
 //    protected WebElement deleteConfirnBtn;
@@ -23,13 +23,17 @@ public abstract class AccountContentPage extends ContentBasePage {
     public abstract void delete();
 
     public boolean verifyAccountInfo(Account account) {
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        wait= new WebDriverWait(driver, 10);
+        System.out.print("============"+driverTools.getTextElement(nameText)+"=================================="+driverTools.getTextElement(addressText));
         return account.isSame(driverTools.getTextElement(nameText),
                 driverTools.getTextElement(addressText));
     }
 
 
-    public AccountEditionForm clickUpdateAccountBtn() {
-        driverTools.clickElement(updateBtn);
-        return PageFactory.getAccountEditionForm();
-    }
+    public abstract AccountEditionForm clickUpdateAccountBtn();
 }

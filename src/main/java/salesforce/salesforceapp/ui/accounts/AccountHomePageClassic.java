@@ -16,15 +16,15 @@ public class AccountHomePageClassic extends AccountHomePage {
 
     @Override
     public AccountContentPage goToAccountContent(Account account) {
-        locatorNameLink = "";
+        locatorNameLink = "//a[text()='"+account.getName()+"']";
         driverTools.clickElement(By.xpath(locatorNameLink));
         return new AccountContentPageClassic();
     }
 
     @Override
     public boolean containTheAccount(Account account) {
-        locatorNameLink = "//a[contains(@class, 'slds-truncate') and title(@class, '"+account.getName()+"')]";
-        return driverTools.isElementDisplayed(By.xpath(locatorNameLink));
+        locatorNameLink = "//a[text()='"+account.getName()+"']";
+        return driverTools.isElementVisibility(By.xpath(locatorNameLink));
     }
 
 
