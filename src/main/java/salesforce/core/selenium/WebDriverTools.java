@@ -126,7 +126,7 @@ public final class WebDriverTools {
     for (WebElement element : webElements) {
       String value = element.getText();
       if (value.contains(keyWord)) {
-        element.click();
+        clickElement(element);
         break;
       }
     }
@@ -140,6 +140,7 @@ public final class WebDriverTools {
    */
   public void selectDropDownValue(WebElement dropDown, String value) {
     Select selector = new Select(dropDown);
+    wait.until(ExpectedConditions.visibilityOf(dropDown));
     selector.selectByValue(value);
   }
 }
