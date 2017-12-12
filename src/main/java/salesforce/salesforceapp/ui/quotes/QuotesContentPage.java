@@ -9,10 +9,13 @@ import salesforce.salesforceapp.ui.ContentBasePage;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public abstract class QuotesContentPage extends ContentBasePage {
-  protected WebElement quoteName;
-  protected WebElement quoteExpirationDate;
-  protected WebElement quoteStatus;
-  protected WebElement quoteDescription;
+  protected WebElement quoteNameLabel;
+  protected WebElement quoteExpirationDateLabel;
+  protected WebElement quoteStatusLabel;
+  protected WebElement quoteDescriptionLabel;
+  protected WebElement quoteTaxLabel;
+  protected WebElement quoteShippingAndHandlingLabel;
+  protected WebElement quoteGrandTotalLabel;
   protected Quote quoteInfo;
 
   /**
@@ -47,10 +50,13 @@ public abstract class QuotesContentPage extends ContentBasePage {
     boolean result = false;
     Quote quote = oppy.getQuote(quoteNameInput);
     quoteInfo = quote;
-    if (/*driverTools.getTextElement(quoteName).equalsIgnoreCase(quote.getName())
-      && driverTools.getTextElement(quoteExpirationDate).equalsIgnoreCase(quote.getExpirationDate())
-      &&*/ driverTools.getTextElement(quoteStatus).equalsIgnoreCase(quote.getStatus())
-      && driverTools.getTextElement(quoteDescription).equalsIgnoreCase(quote.getDescription())) {
+    if (/*driverTools.getTextElement(quoteNameInput).equalsIgnoreCase(quote.getName())
+      && driverTools.getTextElement(quoteExpirationDateInput).equalsIgnoreCase(quote.getExpirationDate())
+      &&*/ driverTools.getTextElement(quoteStatusLabel).equalsIgnoreCase(quote.getStatus())
+      && driverTools.getTextElement(quoteDescriptionLabel).equalsIgnoreCase(quote.getDescription())
+      && driverTools.getTextElement(quoteTaxLabel).contains(quote.getTax())
+      && driverTools.getTextElement(quoteShippingAndHandlingLabel).contains(quote.getShippingAndHandling())
+      && driverTools.getTextElement(quoteGrandTotalLabel).contains(quote.getGrandTotal())) {
       result = true;
     }
     return result;

@@ -20,7 +20,7 @@ public class QuotesHomePageClassic extends QuotesHomePage {
    */
   @Override
   public QuotesContentPage selectQuote(String quoteName) {
-    /*WebElement element = driver.findElement(By.xpath("//a[text()='" + quoteName + "']"));
+    /*WebElement element = driver.findElement(By.xpath("//a[text()='" + quoteNameInput + "']"));
     driverTools.clickElement(element);*/
     selectItem(quoteName);
     return new QuotesContentPageClassic();

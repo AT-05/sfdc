@@ -1,5 +1,6 @@
 package salesforce.steps.quotes;
 
+import cucumber.api.*;
 import static org.junit.Assert.assertTrue;
 
 import cucumber.api.java.en.And;
@@ -89,8 +90,8 @@ public class EditQuoteSteps {
     System.out.println("message result: " + quotesContentPage.isQuoteEditedMessageDisplayed(quoteName));
   }
 
-  @And("^I should see the Quote information updated in the Quote details view$")
-  public void iShouldSeeTheQuoteInformationUpdatedInTheQuoteDetailsView() {
+  @And("^The Quote information should be updated correctly$")
+  public void theQuoteInformationShouldBeUpdatedCorrectly() {
     quotesContentPage.openQuoteDetails();
     assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
     System.out.println("verification result: " + quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));

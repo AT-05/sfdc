@@ -19,12 +19,21 @@ public class QuotesContentPageLight extends QuotesContentPage {
 
   @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']/div/div[3]/div[2]/div/div[2]/span/span")
   @CacheLookup
-  private WebElement quoteStatusLight;
+  private WebElement quoteStatusLabelLight;
 
   @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']/div/div[4]/div[2]/div/div[2]/span/span")
   @CacheLookup
-  private WebElement quoteDescriptionLight;
+  private WebElement quoteDescriptionLabelLight;
 
+  @FindBy(xpath = "//div[1]/div[2]/div/div[2]/span/span[@class='forceOutputCurrency']")
+  @CacheLookup
+  private WebElement quoteTaxLabelLight;
+
+  @FindBy(xpath = "")
+  @CacheLookup
+  private WebElement quoteShippingAndHandlingLabelLight;
+
+  //Links
   @FindBy(xpath = "//a[contains(@title, 'Show 3 more actions')]")
   @CacheLookup
   private WebElement showMoreActionsLink;
@@ -48,10 +57,10 @@ public class QuotesContentPageLight extends QuotesContentPage {
   private WebElement quoteEditedMessage;
 
   public QuotesContentPageLight() {
-    super.quoteName = quoteNameLight;
-    super.quoteExpirationDate = quoteExpirationDateLight;
-    super.quoteStatus = quoteStatusLight;
-    super.quoteDescription = quoteDescriptionLight;
+    super.quoteNameLabel = quoteNameLight;
+    super.quoteExpirationDateLabel = quoteExpirationDateLight;
+    super.quoteStatusLabel = quoteStatusLabelLight;
+    super.quoteDescriptionLabel = quoteDescriptionLabelLight;
   }
 
   @Override
@@ -68,7 +77,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
   public QuoteEditionForm goToEditQuote() {
     showMoreActionsLink.click();
     editLink.click();
-    return new QuotesEditionFormLight();
+    return new QuoteEditionFormLight();
   }
 
   /**

@@ -8,6 +8,23 @@ public class Quote {
   private String expirationDate;
   private String status;
   private String description;
+  private String tax;
+  private String shippingAndHandling;
+  private double grandTotal = 0.0;
+
+  /**
+   * <p>This method sets quote variables values.</p>
+   *
+   * @param quote is a Quote object type.
+   */
+  public void setQuote(Quote quote) {
+    name = quote.getName();
+    expirationDate = quote.getExpirationDate();
+    status = quote.getStatus();
+    description = quote.getDescription();
+    tax = quote.getTax();
+    shippingAndHandling = quote.getShippingAndHandling();
+  }
 
   /**
    * <p>This method sets quote name value.</p>
@@ -43,6 +60,33 @@ public class Quote {
    */
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  /**
+   * <p>This method sets quote tax value.</p>
+   *
+   * @param tax is the quote tax value given.
+   */
+  public void setTax(String tax) {
+    this.tax = tax;
+  }
+
+  /**
+   * <p>This method sets quote shipping and handling value.</p>
+   *
+   * @param shippingAndHandling is the quote shipping and handling value given.
+   */
+  public void setShippingAndHandling(String shippingAndHandling) {
+    this.shippingAndHandling = shippingAndHandling;
+  }
+
+  /**
+   * <p>This method sets quote grand total value.</p>
+   */
+  public void setGrandTotal() {
+    final double taxValue = Double.parseDouble(tax);
+    final double shippingAndHandlingValue = Double.parseDouble(shippingAndHandling);
+    grandTotal = taxValue + shippingAndHandlingValue;
   }
 
   /**
@@ -82,14 +126,29 @@ public class Quote {
   }
 
   /**
-   * <p>This method sets quote variables values.</p>
+   * <p>This method gets quote tax.</p>
    *
-   * @param quote is a Quote object type.
+   * @return quote tax value.
    */
-  public void setQuote(Quote quote) {
-    name = quote.getName();
-    expirationDate = quote.getExpirationDate();
-    status = quote.getStatus();
-    description = quote.getDescription();
+  public String getTax() {
+    return tax;
+  }
+
+  /**
+   * <p>This method gets quote shipping and handling.</p>
+   *
+   * @return quote shipping and handling value.
+   */
+  public String getShippingAndHandling() {
+    return shippingAndHandling;
+  }
+
+  /**
+   * <p>This method gets quote grand total.</p>
+   *
+   * @return quote grand total value.
+   */
+  public String getGrandTotal() {
+    return String.valueOf(grandTotal);
   }
 }

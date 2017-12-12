@@ -106,6 +106,8 @@ public class Oppy {
         itemQuote.setExpirationDate(quoteEdited.getExpirationDate());
         itemQuote.setStatus(quoteEdited.getStatus());
         itemQuote.setDescription(quoteEdited.getDescription());
+        itemQuote.setTax(quoteEdited.getTax());
+        itemQuote.setShippingAndHandling(quoteEdited.getShippingAndHandling());
       }
     }
   }

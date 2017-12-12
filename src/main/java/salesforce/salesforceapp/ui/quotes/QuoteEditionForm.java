@@ -10,11 +10,13 @@ import salesforce.salesforceapp.ui.PageFactory;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public abstract class QuoteEditionForm extends HomeBasePage {
-  protected WebElement quoteName;
-  protected WebElement quoteExpirationDate;
-  protected String statusInput;
-  protected WebElement quoteDescription;
-  protected WebElement buttonSave;
+  protected WebElement quoteNameInput;
+  protected WebElement quoteExpirationDateInput;
+  protected String status;
+  protected WebElement quoteDescriptionInput;
+  protected WebElement quoteTaxInput;
+  protected WebElement quoteShippingAndHandlingInput;
+  protected WebElement saveBtn;
 
   /**
    * <p>This method sets quote status.</p>
@@ -27,11 +29,13 @@ public abstract class QuoteEditionForm extends HomeBasePage {
    * @param quote is an Entity object type.
    */
   private void setQuoteValues(Quote quote) {
-    driverTools.setInputField(quoteName, quote.getName());
-    driverTools.setInputField(quoteExpirationDate, quote.getExpirationDate());
-    statusInput = quote.getStatus();
+    driverTools.setInputField(quoteNameInput, quote.getName());
+    driverTools.setInputField(quoteExpirationDateInput, quote.getExpirationDate());
+    status = quote.getStatus();
     setStatus();
-    driverTools.setInputField(quoteDescription, quote.getDescription());
+    driverTools.setInputField(quoteDescriptionInput, quote.getDescription());
+    driverTools.setInputField(quoteTaxInput, quote.getTax());
+    driverTools.setInputField(quoteShippingAndHandlingInput, quote.getShippingAndHandling());
   }
 
   /**
@@ -43,7 +47,7 @@ public abstract class QuoteEditionForm extends HomeBasePage {
   public void createQuote(Oppy oppy, String quoteName) {
     Quote quote = oppy.getQuote(quoteName);
     setQuoteValues(quote);
-    driverTools.clickElement(buttonSave);
+    driverTools.clickElement(saveBtn);
   }
 
   /**

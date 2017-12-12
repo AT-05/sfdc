@@ -8,23 +8,25 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
-public class QuotesEditionFormClassic extends QuoteEditionForm {
+public class QuoteEditionFormClassic extends QuoteEditionForm {
   @FindBy(id = "Status")
   @CacheLookup
-  private WebElement quoteStatusClassic;
+  private WebElement quoteStatusDropDownClassic;
 
   @FindBy(xpath = "//td[@id='topButtonRow']/input[@value=' Save ']")
   @CacheLookup
-  private WebElement buttonSaveClassic;
+  private WebElement saveBtnClassic;
 
   /**
    * <p>This constructor initializes selectors.</p>
    */
-  public QuotesEditionFormClassic() {
-    super.quoteName = driver.findElement(By.id("Name"));
-    super.quoteExpirationDate = driver.findElement(By.id("ExpirationDate"));
-    super.quoteDescription = driver.findElement(By.id("Description"));
-    super.buttonSave = buttonSaveClassic;
+  public QuoteEditionFormClassic() {
+    super.quoteNameInput = driver.findElement(By.id("Name"));
+    super.quoteExpirationDateInput = driver.findElement(By.id("ExpirationDate"));
+    super.quoteDescriptionInput = driver.findElement(By.id("Description"));
+    super.quoteTaxInput = driver.findElement(By.id("Tax"));
+    super.quoteShippingAndHandlingInput = driver.findElement(By.id("ShippingHandling"));
+    super.saveBtn = saveBtnClassic;
   }
 
   @Override
@@ -37,7 +39,7 @@ public class QuotesEditionFormClassic extends QuoteEditionForm {
    */
   @Override
   protected void setStatus() {
-    driverTools.selectDropDownValue(quoteStatusClassic, super.statusInput);
+    driverTools.selectDropDownValue(quoteStatusDropDownClassic, super.status);
   }
 
   /**

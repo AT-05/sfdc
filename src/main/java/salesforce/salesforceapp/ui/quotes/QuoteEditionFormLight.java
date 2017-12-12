@@ -8,26 +8,26 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
-public class QuotesEditionFormLight extends QuoteEditionForm {
+public class QuoteEditionFormLight extends QuoteEditionForm {
   @FindBy(css = ".select")
   @CacheLookup
   private WebElement quoteStatusLinkLight;
-  private WebElement statusLight;
+  private WebElement statusBtnLight;
 
   @FindBy(css = ".modal-footer button[title='Save']")
   @CacheLookup
-  private WebElement buttonSaveLight;
+  private WebElement saveBtnLight;
 
   private WebElement quoteCreatedMessage;
 
   /**
    * <p>This constructor initializes selectors.</p>
    */
-  public QuotesEditionFormLight() {
-    super.quoteName = driver.findElement(By.xpath("//input[contains(@aria-required, 'true')]"));
-    super.quoteExpirationDate = driver.findElement(By.xpath("//div[contains(@class, 'uiInput--datetime')]//input[1]"));
-    super.quoteDescription = driver.findElement(By.xpath("//textarea[contains(@class, 'textarea')]"));
-    super.buttonSave = buttonSaveLight;
+  public QuoteEditionFormLight() {
+    super.quoteNameInput = driver.findElement(By.xpath("//input[contains(@aria-required, 'true')]"));
+    super.quoteExpirationDateInput = driver.findElement(By.xpath("//div[contains(@class, 'uiInput--datetime')]//input[1]"));
+    super.quoteDescriptionInput = driver.findElement(By.xpath("//textarea[contains(@class, 'textarea')]"));
+    super.saveBtn = saveBtnLight;
   }
 
   @Override
@@ -41,8 +41,8 @@ public class QuotesEditionFormLight extends QuoteEditionForm {
   @Override
   protected void setStatus() {
     driverTools.clickElement(quoteStatusLinkLight);
-    statusLight = driver.findElement(By.xpath("//li[@class='uiMenuItem uiRadioMenuItem']/a[@title='" + super.statusInput + "']"));
-    driverTools.clickElement(statusLight);
+    statusBtnLight = driver.findElement(By.xpath("//li[@class='uiMenuItem uiRadioMenuItem']/a[@title='" + super.status + "']"));
+    driverTools.clickElement(statusBtnLight);
   }
 
   /**
@@ -55,8 +55,10 @@ public class QuotesEditionFormLight extends QuoteEditionForm {
   @Override
   public boolean isQuoteCreatedMessageDisplayed(String quoteName) {
     boolean result = false;
-    quoteCreatedMessage = driver.findElement(By.xpath("//span[contains(@class, 'toastMessage')]//a[contains(@title, '" + quoteName + "')]"));
-    if (driverTools.isElementDisplayed(quoteCreatedMessage)) {
+    quoteCreatedMessage = driver.findElement(By.xpath("//span[contains(@class, 'toastMessage')]"));
+    if (driverTools.isElementDisplayed(quoteCreatedMessage)
+      && quoteCreatedMessage.getText().contains("was created")
+      && quoteCreatedMessage.getText().contains(quoteName)) {
       result = true;
     }
     return result;

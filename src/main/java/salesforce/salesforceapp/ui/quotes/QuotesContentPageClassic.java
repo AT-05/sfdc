@@ -8,22 +8,36 @@ import org.openqa.selenium.support.FindBy;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class QuotesContentPageClassic extends QuotesContentPage {
+  //Quote info
   @FindBy(id = "Name_ileinner")
   @CacheLookup
-  private WebElement quoteNameClassic;
+  private WebElement quoteNameLabelClassic;
 
   @FindBy(id = "ExpirationDate_ileinner")
   @CacheLookup
-  private WebElement quoteExpirationDateClassic;
+  private WebElement quoteExpirationDateLabelClassic;
 
   @FindBy(id = "Status_ileinner")
   @CacheLookup
-  private WebElement quoteStatusClassic;
+  private WebElement quoteStatusLabelClassic;
 
   @FindBy(id = "Description_ilecell")
   @CacheLookup
-  private WebElement quoteDescriptionClassic;
+  private WebElement quoteDescriptionLabelClassic;
 
+  @FindBy(id = "Tax_ileinner")
+  @CacheLookup
+  private WebElement quoteTaxLabelClassic;
+
+  @FindBy(id = "ShippingHandling_ileinner")
+  @CacheLookup
+  private WebElement quoteShippingAndHandlingLabelClassic;
+
+  @FindBy(id = "GrandTotal_ileinner")
+  @CacheLookup
+  private WebElement quoteGrandTotalLabelClassic;
+
+  //Links
   @FindBy(xpath = "//td[@id='topButtonRow']/input[@title='Edit']")
   @CacheLookup
   private WebElement editQuoteLink;
@@ -33,10 +47,13 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   private WebElement deleteQuoteLink;
 
   public QuotesContentPageClassic() {
-    super.quoteName = quoteNameClassic;
-    super.quoteExpirationDate = quoteExpirationDateClassic;
-    super.quoteStatus = quoteStatusClassic;
-    super.quoteDescription = quoteDescriptionClassic;
+    super.quoteNameLabel = quoteNameLabelClassic;
+    super.quoteExpirationDateLabel = quoteExpirationDateLabelClassic;
+    super.quoteStatusLabel = quoteStatusLabelClassic;
+    super.quoteDescriptionLabel = quoteDescriptionLabelClassic;
+    super.quoteTaxLabel = quoteTaxLabelClassic;
+    super.quoteShippingAndHandlingLabel = quoteShippingAndHandlingLabelClassic;
+    super.quoteGrandTotalLabel = quoteGrandTotalLabelClassic;
   }
 
   @Override
@@ -52,7 +69,7 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   @Override
   public QuoteEditionForm goToEditQuote() {
     driverTools.clickElement(editQuoteLink);
-    return new QuotesEditionFormClassic();
+    return new QuoteEditionFormClassic();
   }
 
   /**

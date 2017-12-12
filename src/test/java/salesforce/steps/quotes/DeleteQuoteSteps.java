@@ -21,9 +21,6 @@ public class DeleteQuoteSteps {
   //Entities
   private final Quote quote;
 
-  //Auxiliary variables
-  private String quoteName;
-
   public DeleteQuoteSteps(Quote quote){
     this.quote = quote;
   }

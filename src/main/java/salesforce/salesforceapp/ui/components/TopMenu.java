@@ -46,3 +46,4 @@ public abstract class TopMenu extends BasePage {
    * @return a ProfilePage object type.
    */
   public abstract ProfilePage goToProfilePage();
+}

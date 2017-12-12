@@ -1,5 +1,6 @@
 package salesforce.steps.quotes;
 
+import cucumber.api.*;
 import static org.junit.Assert.assertTrue;
 
 import cucumber.api.java.en.And;
@@ -70,11 +71,13 @@ public class CreateQuoteSteps {
     System.out.println("message result: " + quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName));
   }
 
-  @And("^I should see the new Quote in the Opportunity Quotes list$")
-  public void iShouldSeeTheNewQuoteInTheOpportunityQuotesList() {
+  @And("^The Quote should be created with the correct information$")
+  public void theQuoteShouldBeCreatedWithTheCorrectInformation() {
     quotesContentPage = quoteEditionForm.openQuote(quoteName);
     quotesContentPage.openQuoteDetails();
+    oppy.getQuote(quoteName).setGrandTotal();
+    System.out.println("Grand Total: " + oppy.getQuote(quoteName).getGrandTotal());
     assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
-    System.out.println("verification result: "+quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
+    System.out.println("verification result: " + quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
   }
 }
