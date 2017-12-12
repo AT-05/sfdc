@@ -8,19 +8,10 @@ Feature: Manage Contacts
   Scenario: Verify that is possible to Create a Contact 
     When I select New Contact 
 		And I create a Contact with the following information:
-		 | name   | lastName      | accountName  |
-		 | tester | test    	  | Acme (Sample)|
+			| name   | lastName| accountName  | title|email		   |phone |street             |city   |state  |country|
+			| tester | test    | Acme (Sample)| Buyer|test@mail.com|555121|150 Chestnut Street|Toronto|Ontario|Canada |
 	Then the Contact should be displayed in Contact content page
-		
-	#	@Negative
-	#Scenario: Verify when I create a New Contact the fields Name, Last Name, Account Name are required
-	#	And I select New Contact
-	#	When I try to save whith this fill in blank
-	#	Then the page should be display a message of error
-		
-	#Scenario: Verify that is possible to add List View
-    #When I add a List View to the Contact List Views with the name "ListTitle"
-	#Then the List View  should be displayed in Contact List Views
-	
+
+
 	
 	

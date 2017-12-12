@@ -62,9 +62,29 @@ System.out.println("****************ini**********************");
       getContactNameText());
     System.out.println(this.contact.name+" "+this.contact.lastName);
     System.out.println("****************end**********************");
-    assertTrue(contactContentPage.
-      getContactNameText().
+    contactContentPage.clickOnDetails();
+//    assertTrue(contactContentPage.
+//      getContactNameText().
+//      equals(this.contact.name+" "+this.contact.lastName));
+    assertTrue(contactContentPage.getContactNameText().
       equals(this.contact.name+" "+this.contact.lastName));
+
+
+    System.out.println(contactContentPage.getAccountNameLabel());
+    System.out.println(this.contact.accountName);
+    System.out.println(contactContentPage.getMailingCity());
+    System.out.println(this.contact.city);
+    System.out.println(contactContentPage.getMailingState());
+    System.out.println(this.contact.state);
+    System.out.println(contactContentPage.getTitleLabel());
+    System.out.println(this.contact.title);
+    System.out.println(contactContentPage.getPhoneLabel());
+    System.out.println(this.contact.phone);
+
+//    assertTrue(contactContentPage.getAccountNameLabel().
+//      equals(this.contact.accountName));
+//    assertTrue(contactContentPage.getTitleLabel().equals(this.contact.title));
+//    assertTrue(contactContentPage.getPhoneLabel().equals(this.contact.phone));
 
   }
 
@@ -92,6 +112,26 @@ System.out.println("****************ini**********************");
   }
   @Then("^Contact was saved message should be displayed in Contact Content Page$")
   public void messageShouldBeDisplayed() throws InterruptedException {
+
+    final String msgExpected="";
+    System.out.println("****************ini message**********************");
+    System.out.println(contactContentPage.
+      getContactNameText());
+    System.out.println("****************end message**********************");
+    //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
+    contactContentPage.waitUntilSuccessMessageDisappear();
+  }
+  @When("^I delete this Contact$")
+  public void iDeleteThisContact() throws InterruptedException {
+
+    contactContentPage.clickDeleteButton();
+    contactContentPage.clickConfirmDeleteButton();
+
+    //Thread.sleep(4000);
+
+  }
+  @Then("^Contact was deleted message should be displayed in Contact Content Page$")
+  public void deleteMessageShouldBeDisplayed() throws InterruptedException {
 
     final String msgExpected="";
     System.out.println("****************ini message**********************");

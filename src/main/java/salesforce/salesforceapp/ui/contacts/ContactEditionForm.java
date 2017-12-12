@@ -18,5 +18,5 @@ public abstract class ContactEditionForm extends BasePage {
   //In case the method can be used for both skins
   public abstract ContactContentPage createContact(Contact contact);
   public abstract ContactContentPage editContact(Contact contact);
-  public abstract ContactContentPage deleteContact(Contact contact);
+  public abstract ContactHomePage deleteContact(Contact contact);
 }

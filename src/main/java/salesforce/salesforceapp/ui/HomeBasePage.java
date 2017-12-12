@@ -9,13 +9,11 @@ import salesforce.salesforceapp.ui.components.TopMenu;
 public abstract class HomeBasePage extends BasePage {
 
   public TopMenu topMenu;
-
-  @FindBy(xpath="//*[@title='New']")
-  @CacheLookup
-  WebElement newBtn;
-
   @FindBy(xpath = "//a[@title='New']")
   protected WebElement newButton;
+  @FindBy(xpath = ".//*[@title='New']")
+  @CacheLookup
+  private WebElement newBtn;
 
   public HomeBasePage() {
     this.topMenu = PageFactory.getTopMenu();

@@ -2,6 +2,7 @@ package salesforce.salesforceapp.ui.contacts;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.ContentBasePage;
@@ -21,8 +22,12 @@ public abstract class ContactContentPage extends ContentBasePage {
 
   @FindBy(xpath = "//span[contains(@class, 'toastMessage')]")
   protected WebElement successMessage;
+  @FindBy(css = "[title='Details']")
+  @CacheLookup
+  protected WebElement detailsLinkButton;
 
-  public abstract  String getContactNameText();
+  public abstract String getContactNameText();
+
   /**
    * Wait the Contact Name is Displayed.
    *
@@ -34,11 +39,13 @@ public abstract class ContactContentPage extends ContentBasePage {
   }
 
   /**
-   * Opens the  Contact Form page for editing.
+   * Opens the  ContactEditionForm for editing.
    *
-   * @return Contact FormBase.
+   * @return ContactEditionForm.
    */
   public abstract ContactEditionForm clickEditButton();
+
+  public abstract void clickOnDetails();
 
   /**
    * Click the delete button of the current Item.
@@ -57,7 +64,7 @@ public abstract class ContactContentPage extends ContentBasePage {
   /**
    * Deletes the current Item.
    *
-   * @return HomeBase.
+   * @return ContactHomePage.
    */
   public abstract ContactHomePage deleteItem();
 
@@ -76,12 +83,94 @@ public abstract class ContactContentPage extends ContentBasePage {
   public String successMessageText() {
     return driverTools.getTextElement(successMessage);
   }
-  public void waitUntilSuccessMessageDisappear(){
+
+  public void waitUntilSuccessMessageDisappear() {
     try {
-      while(successMessage.isDisplayed());
-    }catch (Exception e){};
+      while (successMessage.isDisplayed()) ;
+    } catch (Exception e) {
+    }
 
   }
+
+  /**
+   * This method gets name label.
+   *
+   * @return a name label.
+   */
+  public abstract String[] getCompleteName();
+
+  /**
+   * This method gets name label.
+   *
+   * @return a name label.
+   */
+  public abstract String getTitleLabel();
+
+
+  public abstract String getMailingAdressLabel();
+
+  /**
+   * This method gets mail label.
+   *
+   * @return a mail street label.
+   */
+  public abstract String getMailLabel();
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public abstract String getMailingState();
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public abstract String getLastNameLabel();
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public abstract String getMailingZip();
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public abstract String getMailingCountry();
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public abstract String getMailingCity();
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public abstract String getNameLabel();
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public abstract String getPhoneLabel();
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public abstract String getAccountNameLabel();
 }
 
 
