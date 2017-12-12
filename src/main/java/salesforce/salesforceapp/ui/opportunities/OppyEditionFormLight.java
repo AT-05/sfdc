@@ -1,8 +1,12 @@
 package salesforce.salesforceapp.ui.opportunities;
 
+import java.awt.Checkbox;
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+import org.w3c.dom.html.HTMLSelectElement;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 
 public class OppyEditionFormLight extends OppyEditionForm {
@@ -16,7 +20,7 @@ public class OppyEditionFormLight extends OppyEditionForm {
   private WebElement accountSelected;
 
   @FindBy(xpath = "//div[@class='form-element']//input[@class=' input']")
-  private WebElement date;
+  private WebElement closeDate;
 
   @FindBy(xpath = "//span[contains(@class,'today ')]")
   private WebElement today;
@@ -24,7 +28,13 @@ public class OppyEditionFormLight extends OppyEditionForm {
   @FindBy(xpath = "//div[contains(@class, 'uiMenu ')]//a[@class='select']")
   private WebElement stageInput;
 
-  private WebElement stageOption;
+  private WebElement stageDropDown;
+
+  @FindBy(xpath = "//div[contains(@class, 'checkbox')]//input")
+  private List<WebElement> selectCheckboxes;
+
+  @FindBy(xpath = "//div[contains(@class,'uiInput uiInput--default ')]//input")
+  private WebElement amountInput;
 
   @FindBy(xpath = "//button[contains(@class, 'default uiButton--brand uiButton ')]")
   private WebElement saveBtn;
@@ -50,14 +60,24 @@ public class OppyEditionFormLight extends OppyEditionForm {
     accountSelected = driver.findElement(By.xpath(accountElement));
     driverTools.clickElement(accountSelected);
 
-    driverTools.clickElement(date);
+    driverTools.clickElement(closeDate);
     driverTools.clickElement(today);
-    driverTools.setInputField(date, oppy.getCloseDate());
+    driverTools.setInputField(closeDate, oppy.getCloseDate());
 
     driverTools.clickElement(stageInput);
+
+//    test
+//    Select stageDropDown = new Select(stageInput);
+//    stageDropDown.selectByVisibleText(oppy.getStage());
     String webElement = String.format("//ul[@class='scrollable']//a[text()='%s']", oppy.getStage());
-    stageOption = driver.findElement(By.xpath(webElement));
-    driverTools.clickElement(stageOption);
+    stageDropDown = driver.findElement(By.xpath(webElement));
+    driverTools.clickElement(stageDropDown);
+
+    if(selectCheckboxes.get(0).isSelected() != oppy.getBudget()){
+      driverTools.clickElement(selectCheckboxes.get(0));
+    }
+
+    driverTools.setInputField(amountInput, Double.toString(oppy.getAmount()));
 
     driverTools.clickElement(saveBtn);
 
@@ -72,27 +92,8 @@ public class OppyEditionFormLight extends OppyEditionForm {
    */
   @Override
   public OppyContentPage editOppy(Oppy oppy) {
-    driverTools.setInputField(oppyInput, oppy.getOppyName());
-
     WebElement removeAccount = driver.findElement(By.xpath("//span[@class='deleteIcon']"));
     driverTools.clickElement(removeAccount);
-    driverTools.setInputField(accountInput, oppy.getAccount());
-    String accountElement = String
-        .format("//div[@role='listbox']//div[@title='%s']", oppy.getAccount());
-    accountSelected = driver.findElement(By.xpath(accountElement));
-    driverTools.clickElement(accountSelected);
-
-    driverTools.clickElement(date);
-    driverTools.clickElement(today);
-    driverTools.setInputField(date, oppy.getCloseDate());
-
-    driverTools.clickElement(stageInput);
-    String webElement = String.format("//ul[@class='scrollable']//a[text()='%s']", oppy.getStage());
-    stageOption = driver.findElement(By.xpath(webElement));
-    driverTools.clickElement(stageOption);
-
-    driverTools.clickElement(saveBtn);
-
-    return new OppyContentPageLight();
+    return createOppy(oppy);
   }
 }

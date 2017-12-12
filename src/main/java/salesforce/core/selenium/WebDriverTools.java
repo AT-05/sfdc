@@ -125,4 +125,18 @@ public class WebDriverTools {
     } catch (Exception e) {
     }
   }
+
+  public boolean isElementDisplayed(By by) {
+    WebElement webElement = driver.findElement(by);
+    return isElementDisplayed(webElement);
+  }
+
+  public boolean isElementVisibility(By by) {
+    try {
+      return isElementDisplayed(by);
+    }
+    catch (Exception e){
+      return false;
+    }
+  }
 }

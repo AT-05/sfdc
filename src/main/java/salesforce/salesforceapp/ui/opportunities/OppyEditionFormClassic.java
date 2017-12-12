@@ -3,24 +3,31 @@ package salesforce.salesforceapp.ui.opportunities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 
 public class OppyEditionFormClassic extends OppyEditionForm {
 
-  @FindBy(xpath = "//input[@id='opp3']")
+  @FindBy(id = "opp3")
   private WebElement oppyInput;
 
-  @FindBy(xpath = "//input[@id='opp4']")
+  @FindBy(id = "opp4")
   private WebElement accountInput;
 
-  @FindBy(xpath = "//input[@id='opp9']")
+  @FindBy(id = "opp9")
   private WebElement dateInput;
 
-  @FindBy(xpath = "//select[@id='opp11']")
+  @FindBy(id = "opp11")
   private WebElement stageSelect;
 
   @FindBy(xpath = "//input[@name='save']")
   private WebElement saveBtn;
+
+  @FindBy(id = "00N1I00000H2afx")
+  private WebElement budgetCheckbox;
+
+  @FindBy(id = "opp7")
+  private WebElement amountInput;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -35,11 +42,14 @@ public class OppyEditionFormClassic extends OppyEditionForm {
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
     driverTools.setInputField(oppyInput, oppy.getOppyName());
-    driverTools.clickElement(stageSelect);
-    String stageOption = String.format(".//*[@id='opp11']//option[text()='%s']", oppy.getStage());
-    driverTools.clickElement(driver.findElement(By.xpath(stageOption)));
+    Select stageDropDown = new Select(stageSelect);
+    stageDropDown.selectByValue(oppy.getStage());
     driverTools.setInputField(dateInput, oppy.getCloseDate());
     driverTools.setInputField(accountInput, oppy.getAccount());
+    if(budgetCheckbox.isSelected() != oppy.getBudget()){
+      driverTools.clickElement(budgetCheckbox);
+    }
+    driverTools.setInputField(amountInput, Double.toString(oppy.getAmount()));
     driverTools.clickElement(saveBtn);
     return new OppyContentPageClassic();
   }

@@ -1,8 +1,10 @@
 package salesforce.steps.opportunities;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -52,10 +54,20 @@ public class ManageSteps {
     assertTrue(oppyContentPage.displayedCreateMessage());
   }
 
-  @And("^the Opportunity (?:created|edited) should be display in the Opportunities list$")
+  @And("^the Opportunity (?:created|edited) should be had the correct values$")
   public void theOpportunityCreatedShouldBeDisplayInTheOpportunitiesList() {
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
-    assertTrue(oppyHomePage.isOpportunityInList(this.oppy));
+    oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());
+    oppyContentPage.clickDetailsOppyBtn();
+    //assertTrue(oppyHomePage.isOpportunityInList(this.oppy));
+    //assertEquals(oppyContentPage.getOppyName(), oppy.getOppyName());
+    //assertEquals(oppyContentPage.getCloseDate(), oppy.getCloseDate());
+    assertTrue(oppyContentPage.containsThisElement(oppy.getOppyName()));
+    assertTrue(oppyContentPage.containsThisElement(oppy.getCloseDate()));
+    assertTrue(oppyContentPage.containsThisElement(oppy.getStage()));
+    assertTrue(oppyContentPage.containsThisElement(oppy.getAccount()));
+    assertTrue(oppyContentPage.containsThisElement(Double.toString(oppy.getAmount())));
+
   }
 
   @Given("^I select to (?:edit|delete) the Opportunity created from the list$")
@@ -82,5 +94,15 @@ public class ManageSteps {
   public void theOpportunityShouldBeDeleteOfTheList() {
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
     assertFalse(oppyHomePage.isOpportunityInList(this.oppy));
+  }
+
+  //****************************************************************
+  //Hooks for @CRUD scenarios
+  //****************************************************************
+  @After(value = "@delete", order = 999)
+  public void afterCrudScenarios() {
+    log.info("After hook @delete");
+    iSelectToEditTheOpportunityCreatedFromTheList();
+    iDeleteThatOpportunity();
   }
 }

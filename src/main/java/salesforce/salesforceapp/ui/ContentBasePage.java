@@ -4,18 +4,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.components.TopMenu;
-import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 
 public abstract class ContentBasePage extends BasePage {
 
   public TopMenu topMenu;
 
-  @FindBy(xpath = "//*[@title='Edit']")
+  @FindBy(xpath = "//div[@title='Edit'] | //input[@title='Edit']")
   @CacheLookup
   protected WebElement editBtn;
 
-  @FindBy(xpath = "//*[@title='Delete']")
+  @FindBy(xpath = "//div[@title='Delete'] | //input[@title='Delete']")
   @CacheLookup
   protected WebElement deleteBtn;
 

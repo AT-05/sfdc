@@ -39,7 +39,7 @@ public class OppyHomePageLight extends OppyHomePage {
   @Override
   public boolean isOpportunityInList(Oppy oppy) {
     String xpath = String
-        .format("//table[@class='uiVirtualDataTable']//a[text()='%s']",
+        .format("//table[contains(@class,'uiVirtualDataTable')]//a[text()='%s']",
             oppy.getOppyName());
     driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     try {

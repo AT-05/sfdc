@@ -4,7 +4,6 @@ import java.util.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.PageFactory;
 
 public class OppyContentPageClassic extends OppyContentPage {
@@ -35,5 +34,19 @@ public class OppyContentPageClassic extends OppyContentPage {
     Alert alert = driver.switchTo().alert();
     alert.accept();
     return PageFactory.getOppyContentPage();
+  }
+
+  @Override
+  public void clickDetailsOppyBtn() {
+  }
+
+  @Override
+  public String getOppyName() {
+    return null;
+  }
+
+  @Override
+  public String getCloseDate() {
+    return null;
   }
 }

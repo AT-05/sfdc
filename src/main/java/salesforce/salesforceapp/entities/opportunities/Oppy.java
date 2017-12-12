@@ -6,6 +6,8 @@ public class Oppy {
   private String closeDate;
   private String stage;
   private String account;
+  private boolean budget;
+  private double amount;
 
   /**
    * Get name of the opportunity.
@@ -77,5 +79,37 @@ public class Oppy {
    */
   public void setAccount(String account) {
     this.account = account;
+  }
+
+  /**
+   * Set Budget of the opportunity.
+   * @param budget boolean.
+   */
+  public void setBudget(boolean budget) {
+    this.budget = budget;
+  }
+
+  /**
+   * Get Budget of the opportunity.
+   * @return as a boolean.
+   */
+  public boolean getBudget() {
+    return budget;
+  }
+
+  /**
+   * Set Amount of the opportunity.
+   * @param amount double.
+   */
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
+
+  /**
+   * Get Amount of the opportunity.
+   * @return as a double.
+   */
+  public double getAmount() {
+    return amount;
   }
 }
