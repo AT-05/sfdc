@@ -7,13 +7,9 @@ import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.entities.Product;
-import salesforce.salesforceapp.entities.Oppy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.home.HomePage;
-import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
-import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
-import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.home.HomeProductPage;
@@ -21,6 +17,7 @@ import salesforce.salesforceapp.ui.product.home.HomeProductPage;
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertFalse;
 
 public class ProductStep {
     private Logger log = Logger.getLogger(getClass());
@@ -44,26 +41,31 @@ public class ProductStep {
 
     @Given("^I'm logged in Sales Force$")
     public void iMLoggedInSalesForce() {
-        loginPage = pageTransporter.navigateToLoginPage();
-        homePage = loginPage.login(email, pass);
+        if (!pageTransporter.isOnLogin()) {
+            loginPage = pageTransporter.navigateToLoginPage();
+            homePage = loginPage.login(email, pass);
+            return;
+        }
+        homeProductPage = homePage.topMenu.goToHomeProduct();
     }
 
     @And("^I go to Product Home page$")
     public void iGoToProductHomePage() {
         homeProductPage = homePage.topMenu.goToHomeProduct();
-        System.out.println("***********Product home displayed*********");
     }
 
     @When("^I create a New Product with the following information:$")
     public void iCreateANewProductWithTheFollowingInformation(List<Product> products) {
         productEditionForm = homeProductPage.newProduct();
-        productContentPage = productEditionForm.createProduct(products.get(0));
+        product = products.get(0);
+        productContentPage = productEditionForm.createProduct(product);
     }
 
 
     @Then("^Product Details Page should be display with the information of the product created$")
     public void productDetailsPageShouldBeDisplayWithTheInformationOfTheProductCreated() {
-        assertTrue(productContentPage.IsProductDetailsPage());
+        assertTrue(productContentPage.validateProductFields(product));
+
     }
 
 
@@ -73,41 +75,36 @@ public class ProductStep {
         productEditionForm = homeProductPage.newProduct();
         product = products.get(0);
         productContentPage = productEditionForm.createProduct(product);
-        System.out.println("***********product Created *********");
-
-        //iGoToProductHomePage();
-
-        System.out.println("***********HOme product  *********");
+        homeProductPage = productContentPage.goToHomProductPage();
     }
 
     @When("^I select the Product$")
     public void iSelectTheProduct() {
-        System.out.println("***********searching product *********");
         homeProductPage.selectItem(product.getName());
-        System.out.println("***********Product selected *********");
     }
 
     @And("^I Edit the Product information with the following information:$")
     public void iEditTheProductInformationWithTheFollowingInformation(List<Product> productList) {
-        productEditionForm = productContentPage.goToEditProduct();
-        productContentPage = productEditionForm.editProduct(productList.get(0));
-        System.out.println("***********Product Edited *********");
+        productEditionForm = productContentPage.editProduct();
+        product = productList.get(0);
+        productContentPage = productEditionForm.editProduct(product);
     }
 
     @Then("^Product Content Page should be displayed with the information updated$")
     public void productContentPageShouldBeDisplayedWithTheInformationUpdated() {
-        productContentPage.IsProductDetailsPage();
+        productContentPage.validateProductFields(product);
     }
 
     @And("^I delete the product$")
     public void iDeleteTheProduct() {
-        homeProductPage = productContentPage.goToDeleteProduct();
-        System.out.println("***********Product Deleted *********");
+
+        homeProductPage = productContentPage.deleteProduct();
+
 
     }
 
     @Then("^the Product should be removed from the Product List$")
     public void theProductShouldBeRemovedFromTheProductList() throws Throwable {
-        homeProductPage.thereIsProduct(product.getName());
+        assertFalse(homeProductPage.thereIsProduct(product.getName()));
     }
 }

@@ -5,10 +5,12 @@ public class Product {
   private String name;
   private String code;
   private String description;
+  private boolean active;
 
   public void setName(String name) {
     this.name = name;
   }
+
 
   public String getName() {
     return name;
@@ -31,4 +33,11 @@ public class Product {
   }
 
 
+  public boolean getActive() {
+    return active;
+  }
+
+  public void setActive(boolean active) {
+    this.active = active;
+  }
 }

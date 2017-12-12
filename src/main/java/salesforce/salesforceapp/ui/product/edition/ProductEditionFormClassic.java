@@ -1,61 +1,69 @@
 package salesforce.salesforceapp.ui.product.edition;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.entities.Product;
 import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageClassic;
-import salesforce.salesforceapp.ui.product.content.ProductContentPageLightning;
 
-import java.util.List;
-
+/**
+ * Created by Marco Mendez.
+ */
 public class ProductEditionFormClassic extends ProductEditionForm {
 
 
     @FindBy(id = "Name")
-    WebElement input1;
+    private WebElement elementNameInput;
 
     @FindBy(id = "ProductCode")
-    WebElement input2;
+    private WebElement elementCodeInput;
 
     @FindBy(id = "Description")
-    WebElement input3;
+    private WebElement elementDescriptionInput;
+
+    @FindBy(id = "IsActive")
+    private WebElement elementCheckBox;
 
     @FindBy(name = "save")
-    WebElement btn;
+    private WebElement elementBtn;
 
+    /**
+     * Constructor product form.
+     */
     public ProductEditionFormClassic() {
-
-        super.productName = input1;
-        super.productCode = input2;
-        super.productDescription = input3;
-       super.saveBtn = btn;
-
+        super.productNameInput = elementNameInput;
+        super.productCodeInput = elementCodeInput;
+        super.productDescriptionInput = elementDescriptionInput;
+        super.saveBtn = elementBtn;
+        super.activeCheckBox = elementCheckBox;
     }
-    private ProductContentPageClassic clickSaveBnt()
-    {
+
+    /**
+     * Click save products data.
+     *
+     * @return product content.
+     */
+    private ProductContentPageClassic clickSaveBnt() {
         saveBtn.click();
         return new ProductContentPageClassic();
     }
+
     @Override
     public ProductContentPageClassic createProduct(Product product) {
-        setProductName(product.getName());
-        setProductCode(product.getCode());
-        setProductDescription(product.getDescription());
-      return clickSaveBnt();
+        setProductNameInput(product.getName());
+        setProductCodeInput(product.getCode());
+        setProductDescriptionInput(product.getDescription());
+        setActiveCheckBox(product.getActive());
+        return clickSaveBnt();
     }
 
     @Override
     public ProductContentPage editProduct(Product product) {
-        setProductCode(product.getCode());
-        setProductName(product.getName());
-        setProductDescription(product.getDescription());
+        setProductCodeInput(product.getCode());
+        setProductNameInput(product.getName());
+        setProductDescriptionInput(product.getDescription());
+        setActiveCheckBox(product.getActive());
         return clickSaveBnt();
     }
-
-
-
-
 
 }

@@ -3,26 +3,32 @@ package salesforce.salesforceapp.ui.product.content;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import salesforce.salesforceapp.entities.Product;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.home.HomeProductPage;
 
-
+/**
+ * Created by Marco Mendez.
+ */
 public abstract class ProductContentPage extends BasePage {
 
 
     public TopMenu topMenu;
-    public WebElement elementValidator;
-    public WebElement elementEdit;
-    public WebElement elementDelete;
+
+    public WebElement editBtn;
+    public WebElement deleteBtn;
+    public WebElement productNameLabel;
+    public WebElement productCodeLabel;
+    public WebElement productDescriptionLabel;
+    public WebElement activeCheckBox;
+
 
     /**
      * Check if is present the Alert and accept delete product.
      */
     public void checkAlert() {
-
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.accept();
@@ -31,14 +37,34 @@ public abstract class ProductContentPage extends BasePage {
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
-
     }
 
-    public abstract boolean IsProductDetailsPage();
+    /**
+     * Check is the product fields are corrects.
+     *
+     * @param product product.
+     * @return boolean.
+     */
+    public abstract boolean validateProductFields(Product product);
 
-    public abstract ProductEditionForm goToEditProduct();
+    /**
+     * Go to edit existing product.
+     *
+     * @return ProductEditionForm.
+     */
+    public abstract ProductEditionForm editProduct();
 
-    public abstract HomeProductPage goToDeleteProduct();
+    /**
+     * Delete an existing product.
+     *
+     * @return Home Product Page.
+     */
+    public abstract HomeProductPage deleteProduct();
 
-
+    /**
+     * Go to Home Product page.
+     *
+     * @return Home product page.
+     */
+    public abstract HomeProductPage goToHomProductPage();
 }

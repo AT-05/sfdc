@@ -1,36 +1,46 @@
 package salesforce.salesforceapp.ui.product.edition;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.entities.Product;
-import salesforce.salesforceapp.ui.product.content.ProductContentPageClassic;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageLightning;
 
-import java.util.List;
-
+/**
+ * Created by Marco Mendez.
+ */
 public class ProductEditionFormLightning extends ProductEditionForm {
 
-
     @FindBy(xpath = "//div/div/div/div/div/div/div/div/input")
-    private WebElement input1;
+    private WebElement elementNameInput;
 
     @FindBy(xpath = "//div[2]/div/div/div/div/input")
-    private WebElement input2;
+    private WebElement elementCodeInput;
 
     @FindBy(xpath = "//textarea")
-    private WebElement input3;
+    private WebElement elementDescriptionInput;
+
+    @FindBy(xpath = "//div[2]/div/div/div/input")
+    private WebElement elementCheckBox;
 
     @FindBy(xpath = "//div/button[3]")
-    private WebElement btn;
+    private WebElement elementSaveBtn;
 
+    /**
+     * Constructor ProductEditionLightning.
+     */
     public ProductEditionFormLightning() {
-        super.productName = input1;
-        super.productCode = input2;
-        super.productDescription = input3;
-        super.saveBtn = btn;
+        super.productNameInput = elementNameInput;
+        super.productCodeInput = elementCodeInput;
+        super.productDescriptionInput = elementDescriptionInput;
+        super.activeCheckBox = elementCheckBox;
+        super.saveBtn = elementSaveBtn;
     }
 
+    /**
+     * Click products data save btn.
+     *
+     * @return product content.
+     */
     private ProductContentPageLightning clickSaveBnt() {
         saveBtn.click();
         return new ProductContentPageLightning();
@@ -39,18 +49,18 @@ public class ProductEditionFormLightning extends ProductEditionForm {
     @Override
     public ProductContentPageLightning createProduct(Product product) {
         waitUntilPageObjectIsLoaded();
-        setProductName(product.getName());
-        setProductDescription(product.getDescription());
-        setProductCode(product.getCode());
-     return clickSaveBnt();
+        setProductNameInput(product.getName());
+        setProductDescriptionInput(product.getDescription());
+        setProductCodeInput(product.getCode());
+        setActiveCheckBox(product.getActive());
+        return clickSaveBnt();
     }
-
 
     @Override
     public ProductContentPageLightning editProduct(Product product) {
-        setProductName(product.getName());
-        setProductDescription(product.getDescription());
-        setProductCode(product.getCode());
+        setProductNameInput(product.getName());
+        setProductDescriptionInput(product.getDescription());
+        setProductCodeInput(product.getCode());
         return clickSaveBnt();
     }
 

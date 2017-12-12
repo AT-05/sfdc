@@ -20,7 +20,7 @@ public class TopMenuLight extends TopMenu {
     WebElement launcherBtn;
 
 
-    @FindBy(xpath = "html/body/div[5]/div[2]/div[5]/div[2]/div/div[2]/div/div[3]/div/div[2]/ul/li[22]/a/span/span")
+    @FindBy(xpath = "//span[text()='Products']")
     WebElement productTab;
 
     @Override
