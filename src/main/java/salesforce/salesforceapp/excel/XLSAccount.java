@@ -1,14 +1,13 @@
-package com.fundacion.at05ui.sfdc.excel;
+package salesforce.salesforceapp.excel;
 
-import com.fundacion.at05ui.sfdc.api.methods.APIAccount;
-import com.fundacion.at05ui.sfdc.entities.Account;
-import org.apache.log4j.Logger;
+import static salesforce.salesforceapp.SalesforceConstants.ACCOUNT_ADDRESS;
+import static salesforce.salesforceapp.SalesforceConstants.ACCOUNT_NAME;
 
 import java.util.List;
 import java.util.Map;
-
-import static com.fundacion.at05ui.sfdc.SalesforceConstants.ACCOUNT_ADDRESS;
-import static com.fundacion.at05ui.sfdc.SalesforceConstants.ACCOUNT_NAME;
+import org.apache.log4j.Logger;
+import salesforce.salesforceapp.api.methods.APIAccount;
+import salesforce.salesforceapp.entities.Account;
 
 public class XLSAccount {
     private static Logger log = Logger.getLogger("XLSAccount");

@@ -1,13 +1,12 @@
-package com.fundacion.at05ui.sfdc.setups;
+package salesforce.salesforceapp.setups;
 
-import com.fundacion.at05ui.sfdc.excel.XLSAccount;
-import org.apache.log4j.Logger;
-import com.fundacion.at05ui.core.utils.ExcelReader;
+import static salesforce.salesforceapp.SalesforceConstants.ACCOUNTS;
 
 import java.util.List;
 import java.util.Map;
-
-import static com.fundacion.at05ui.sfdc.SalesforceConstants.ACCOUNTS;
+import org.apache.log4j.Logger;
+import salesforce.core.utils.ExcelReader;
+import salesforce.salesforceapp.excel.XLSAccount;
 
 public class MainSetup {
     private static Logger log = Logger.getLogger("MainSetup");
@@ -19,14 +18,11 @@ public class MainSetup {
 
         ExcelReader xlsFile = new ExcelReader("Main.xls");
         accountsXLS = xlsFile.getValues(ACCOUNTS);
-        oppiesXLS = xlsFile.getValues(OPPY);
         XLSAccount.createAccounts(accountsXLS);
-        XLSOppy.createOppies(oppiesXLS);
 
     }
 
     public static void afterExecution() {
         XLSAccount.deleteAccounts(accountsXLS);
-        XLSAccount.deleteOppies(oppiesXLS);
     }
 }

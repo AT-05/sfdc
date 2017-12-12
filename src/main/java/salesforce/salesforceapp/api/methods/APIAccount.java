@@ -1,6 +1,7 @@
-package com.fundacion.at05ui.sfdc.api.methods;
+package salesforce.salesforceapp.api.methods;
 
-import com.fundacion.at05ui.sfdc.entities.Account;
+
+import salesforce.salesforceapp.entities.Account;
 
 public class APIAccount {
 

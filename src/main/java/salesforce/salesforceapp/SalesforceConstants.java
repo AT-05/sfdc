@@ -1,4 +1,4 @@
-package com.fundacion.at05ui.sfdc;
+package salesforce.salesforceapp;
 
 public class SalesforceConstants {
 

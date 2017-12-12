@@ -1,4 +1,4 @@
-package com.fundacion.at05ui.sfdc.entities;
+package salesforce.salesforceapp.entities;
 
 public class Account {
     private String accountName = "";
