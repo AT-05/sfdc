@@ -81,7 +81,6 @@ public class Main {
 
   //***************************************************
 
-   System.out.println("hola marco"+response.getStatusLine());
     System.out.println("Successful login");
     System.out.println("  instance URL: "+loginInstanceUrl);
     System.out.println("  access token/session ID: "+loginAccessToken);
