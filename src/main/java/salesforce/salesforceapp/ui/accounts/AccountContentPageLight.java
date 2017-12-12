@@ -22,6 +22,14 @@ public class AccountContentPageLight extends AccountContentPage {
     @FindBy(xpath = "//div[contains(@class, 'slds-truncate') and (contains(@title, 'Modificar') or contains(@title, 'Modify'))]")
     private WebElement updateBtn;
 
+    @FindBy(xpath = "//a[@title='Details' or @title='Detalles']//span[@class='title']")
+    private WebElement detailsBtn;
+
+
+
+
+
+
 
 
     public AccountContentPageLight() {
@@ -54,5 +62,11 @@ public class AccountContentPageLight extends AccountContentPage {
     public AccountEditionForm clickUpdateAccountBtn(){
         driverTools.clickElement(updateBtn);
         return PageFactory.getAccountEditionForm();
+    }
+
+    @Override
+    public void clickOnDetails() {
+        while (driverTools.isElementVisibility(By.xpath("//span[contains(@class,'toastMessage')]"))){}
+        driverTools.clickElement(detailsBtn);
     }
 }

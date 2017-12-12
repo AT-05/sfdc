@@ -1,6 +1,5 @@
 package salesforce.steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -45,7 +44,7 @@ public class AccountsSteps {
     }
 
     @When("^I create a New Account with the following information:$")
-    public void iCreateANewAccountWithTheFollowingInformation(List<Account> accountList) {
+    public void createANewAccountWithTheFollowingInformation(List<Account> accountList) {
         account = accountList.get(0);
         accountEditionForm = accountHomePage.clickNewAccountBtn();
         accountContentPage = accountEditionForm.saveNewAccount(account);
@@ -57,46 +56,59 @@ public class AccountsSteps {
     }
 
     @And("^the Account should be displayed in Accounts page$")
-    public void theAccountShouldBeDisplayedInAccountsPage(){
-        assertTrue( accountContentPage.verifyAccountInfo(account));
+    public void theAccountShouldBeDisplayedInAccountsPage() {
+        accountContentPage.clickOnDetails();
+        validateAccount(account);
     }
 
     @Given("^I have an Acount with the following information:$")
-    public void iHaveAcountWithTheFollowingInformation(List<Account> accountList){
-        iCreateANewAccountWithTheFollowingInformation(accountList);
+    public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
+        createANewAccountWithTheFollowingInformation(accountList);
         accountContentPage.displayedCreatedMessage();
         //accountContentPage
     }
 
 
     @When("^I select the Account$")
-    public void iSelectTheAccount()  {
+    public void iSelectTheAccount() {
         iGoToAccountsHomePage();
-        accountContentPage=accountHomePage.goToAccountContent(account);
+        accountContentPage = accountHomePage.goToAccountContent(account);
     }
 
 
     @And("^I delete the Account$")
-    public void deleteAnAccount()  {
+    public void deleteAnAccount() {
         accountContentPage.delete();
     }
 
 
     @Then("^I should see the Acount is removed from the Accounts page$")
-    public void iShouldSeeTheAcountIsRemovedFromTheAccountsPage()  {
+    public void iShouldSeeTheAcountIsRemovedFromTheAccountsPage() {
         assertFalse(accountHomePage.containTheAccount(account));
     }
 
     @And("^I edit that Account with the following information:$")
     public void iEditThatAccountWithTheFollowingInformation(List<Account> accountList) {
-        accountToEdit=accountList.get(0);
-        accountEditionForm=accountContentPage.clickUpdateAccountBtn();
+        accountToEdit = accountList.get(0);
+        accountEditionForm = accountContentPage.clickUpdateAccountBtn();
         accountContentPage = accountEditionForm.saveNewAccount(accountToEdit);
         //accountEditionForm = accountHomePage.clickNewAccountBtn();
     }
 
     @Then("^I should see the Account updated in the Accounts page$")
     public void iShouldSeeTheAccountUpdatedInTheAccountsPage() {
-        assertTrue( accountContentPage.verifyAccountInfo(accountToEdit));
+//        assertTrue(accountContentPage.verifyAccountInfo(accountToEdit));
+        accountContentPage.clickOnDetails();
+        validateAccount(accountToEdit);
+    }
+
+    private void validateAccount(Account myAccount){
+        assertTrue(accountContentPage.containsThisElement(myAccount.getName()));
+        assertTrue(accountContentPage.containsThisElement(myAccount.getDescription()));
+        assertTrue(accountContentPage.containsThisElement(myAccount.getEmployees()));
+        assertTrue(accountContentPage.containsThisElement(myAccount.getPhone()));
+        assertTrue(accountContentPage.containsThisElement(myAccount.getSector()));
+        assertTrue(accountContentPage.containsThisElement(myAccount.getType()));
+        assertTrue(accountContentPage.containsThisElement(myAccount.getWeb()));
     }
 }

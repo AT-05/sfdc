@@ -15,25 +15,18 @@ public abstract class AccountContentPage extends ContentBasePage {
     protected WebElement nameText;
     protected WebElement addressText;
 
-//    protected WebElement deleteBtn;
-//    protected WebElement deleteConfirnBtn;
-
     public abstract boolean displayedCreatedMessage();
 
     public abstract void delete();
 
-    public boolean verifyAccountInfo(Account account) {
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        wait= new WebDriverWait(driver, 10);
-        System.out.print("============"+driverTools.getTextElement(nameText)+"=================================="+driverTools.getTextElement(addressText));
-        return account.isSame(driverTools.getTextElement(nameText),
-                driverTools.getTextElement(addressText));
-    }
-
-
     public abstract AccountEditionForm clickUpdateAccountBtn();
+
+    public abstract void clickOnDetails();
+
+    public boolean containsThisElement(String name) {
+
+        String path=String.format("%s%s%s%s%s","//span[contains(@class,'slds-form-element__static')]//span//a[text()='"
+                , name, "'] | //span[contains(@class,'slds-form-element__static')]//span[text()='", name, "']");
+        return driverTools.isElementVisibility(By.xpath(path));
+    }
 }

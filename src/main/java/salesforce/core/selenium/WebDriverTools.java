@@ -133,8 +133,6 @@ public class WebDriverTools {
      */
     public boolean isElementVisibility(By by) {
         try {
-//            WebElement webElement = driver.findElement(by);
-//            return isElementDisplayed(webElement);
             return isElementDisplayed(by);
         }
         catch (Exception e){

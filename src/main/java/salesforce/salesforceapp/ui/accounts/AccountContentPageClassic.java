@@ -55,4 +55,9 @@ public class AccountContentPageClassic extends AccountContentPage {
         return PageFactory.getAccountEditionForm();
     }
 
+    @Override
+    public void clickOnDetails() {
+
+    }
+
 }

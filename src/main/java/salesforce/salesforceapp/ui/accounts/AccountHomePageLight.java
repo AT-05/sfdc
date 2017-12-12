@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import salesforce.salesforceapp.entities.Account;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
@@ -13,7 +14,10 @@ import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
  * Created by Administrator on 12/5/2017.
  */
 public class AccountHomePageLight extends AccountHomePage {
+    private String messageXpath= "//span[contains(@class,'toastMessage')]";
+
     private String locatorNameLink;
+
 
     public AccountHomePageLight() {
         super.newBtn = driver.findElement(By.xpath("//ul[contains(@class, 'forceActionsContainer')]/li[1]"));
@@ -30,11 +34,9 @@ public class AccountHomePageLight extends AccountHomePage {
 
     @Override
     public boolean containTheAccount(Account account) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        while (driverTools.isElementVisibility(By.xpath(messageXpath))){}
+
         locatorNameLink = "//a[contains(@class, 'slds-truncate') and contains(@title, '" + account.getName() + "')]";
         boolean a = driverTools.isElementVisibility(By.xpath(locatorNameLink));
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++:"+a+":"+locatorNameLink);
