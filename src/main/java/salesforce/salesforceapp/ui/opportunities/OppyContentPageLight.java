@@ -52,22 +52,52 @@ public class OppyContentPageLight extends OppyContentPage {
     return PageFactory.getOppyContentPage();
   }
 
+  /**
+   * This method move and made a click in details tab.
+   */
   @Override
   public void clickDetailsOppyBtn() {
-    WebElement ele = driver.findElement(By.xpath(".//*[@id='activityPanelContainer']/div[1]/div/ul"));
+    WebElement ele = driver
+        .findElement(By.xpath(".//*[@id='activityPanelContainer']/div[1]/div/ul"));
     Actions actions = new Actions(driver).moveToElement(ele);
     actions.perform();
     driverTools.clickElement(detailsBtn);
   }
 
+  /**
+   * Verify if exist some content in details with div type.
+   *
+   * @param value to find.
+   * @return as a boolean.
+   */
   @Override
-  public String getOppyName() {
-    return oppyNameLabel.get(0).getText();
+  public boolean containsSpanElement(String value) {
+    String xpath = String
+        .format("//div[contains(@class,'__record-')]//span[contains(text(),'%s')]", value);
+    return driverTools.isElementDisplayed(By.xpath(xpath));
   }
 
+  /**
+   * Verify if exist some content in details with link type.
+   *
+   * @param value to find.
+   */
   @Override
-  public String getCloseDate() {
-    return oppyCloseDateLabel.get(0).getText();
+  public boolean containsLinkElement(String value) {
+    String xpath = String
+        .format("//div[contains(@class,'__record-')]//a[contains(text(),'%s')]", value);
+    return driverTools.isElementDisplayed(By.xpath(xpath));
   }
 
+  /**
+   * Verify if exist checkbox is checked.
+   *
+   * @param value to find.
+   * @return as a boolean.
+   */
+  @Override
+  public boolean containsCheckbox(String value) {
+    String xpath = String.format("//div[contains(@class,'__record-')]//img[@alt='%s']", value);
+    return driverTools.isElementDisplayed(By.xpath(xpath));
+  }
 }

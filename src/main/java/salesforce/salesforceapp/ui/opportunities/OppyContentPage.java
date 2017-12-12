@@ -12,12 +12,9 @@ public abstract class OppyContentPage extends ContentBasePage {
 
   public abstract void clickDetailsOppyBtn();
 
-  public abstract String getOppyName();
+  public abstract boolean containsSpanElement(String value);
 
-  public abstract String getCloseDate();
+  public abstract boolean containsLinkElement(String value);
 
-  public boolean containsThisElement(String locator){
-    String xpath = String.format("//*[text()='%s']", locator);
-    return driverTools.isElementDisplayed(By.xpath(xpath));
-  }
+  public abstract boolean containsCheckbox(String value);
 }

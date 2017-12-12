@@ -56,18 +56,14 @@ public class ManageSteps {
 
   @And("^the Opportunity (?:created|edited) should be had the correct values$")
   public void theOpportunityCreatedShouldBeDisplayInTheOpportunitiesList() {
+    System.out.println("====== click tab");
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
+    System.out.println("====== select oppy");
     oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());
+    System.out.println("====== click details");
     oppyContentPage.clickDetailsOppyBtn();
-    //assertTrue(oppyHomePage.isOpportunityInList(this.oppy));
-    //assertEquals(oppyContentPage.getOppyName(), oppy.getOppyName());
-    //assertEquals(oppyContentPage.getCloseDate(), oppy.getCloseDate());
-    assertTrue(oppyContentPage.containsThisElement(oppy.getOppyName()));
-    assertTrue(oppyContentPage.containsThisElement(oppy.getCloseDate()));
-    assertTrue(oppyContentPage.containsThisElement(oppy.getStage()));
-    assertTrue(oppyContentPage.containsThisElement(oppy.getAccount()));
-    assertTrue(oppyContentPage.containsThisElement(Double.toString(oppy.getAmount())));
-
+    System.out.println("====== validation");
+    validationOpportunity();
   }
 
   @Given("^I select to (?:edit|delete) the Opportunity created from the list$")
@@ -76,7 +72,6 @@ public class ManageSteps {
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
     oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());
   }
-
 
   @When("^I edit the Opportunity with the following information$")
   public void iEditTheOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
@@ -95,6 +90,19 @@ public class ManageSteps {
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
     assertFalse(oppyHomePage.isOpportunityInList(this.oppy));
   }
+
+  /**
+   * Verify content of element with the content of the object.
+   */
+  private void validationOpportunity(){
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getOppyName()));
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getCloseDate()));
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()));
+    assertTrue(oppyContentPage.containsLinkElement(oppy.getAccount()));
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()));
+    assertTrue(oppyContentPage.containsCheckbox(oppy.getBudgetAsString()));
+  }
+
 
   //****************************************************************
   //Hooks for @CRUD scenarios

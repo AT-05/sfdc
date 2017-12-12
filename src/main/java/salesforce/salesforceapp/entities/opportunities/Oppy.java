@@ -1,5 +1,8 @@
 package salesforce.salesforceapp.entities.opportunities;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 public class Oppy {
 
   private String oppyName;
@@ -83,6 +86,7 @@ public class Oppy {
 
   /**
    * Set Budget of the opportunity.
+   *
    * @param budget boolean.
    */
   public void setBudget(boolean budget) {
@@ -91,14 +95,19 @@ public class Oppy {
 
   /**
    * Get Budget of the opportunity.
-   * @return as a boolean.
+   *
+   * @return as a string.
    */
+  public String getBudgetAsString() {
+    return budget ? "True" : "False";
+  }
   public boolean getBudget() {
     return budget;
   }
 
   /**
    * Set Amount of the opportunity.
+   *
    * @param amount double.
    */
   public void setAmount(double amount) {
@@ -107,9 +116,19 @@ public class Oppy {
 
   /**
    * Get Amount of the opportunity.
+   *
    * @return as a double.
    */
-  public double getAmount() {
+  public String getAmountWithFormat() {
+    DecimalFormat df = new DecimalFormat(",###.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+    symbols.setDecimalSeparator(',');
+    symbols.setGroupingSeparator('.');
+    df.setDecimalFormatSymbols(symbols);
+    return df.format(amount);
+  }
+
+  public double getAmount(){
     return amount;
   }
 }

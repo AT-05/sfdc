@@ -1,5 +1,7 @@
 package salesforce.salesforceapp.ui.opportunities;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.HomeBasePage;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -13,6 +15,11 @@ public abstract class OppyHomePage extends HomeBasePage {
    * @return OppyContentPage.
    */
   public OppyContentPage selectOppy(String linkText) {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     selectItem(linkText);
     return PageFactory.getOppyContentPage();
   }

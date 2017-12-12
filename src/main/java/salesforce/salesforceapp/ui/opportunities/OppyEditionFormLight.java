@@ -66,9 +66,6 @@ public class OppyEditionFormLight extends OppyEditionForm {
 
     driverTools.clickElement(stageInput);
 
-//    test
-//    Select stageDropDown = new Select(stageInput);
-//    stageDropDown.selectByVisibleText(oppy.getStage());
     String webElement = String.format("//ul[@class='scrollable']//a[text()='%s']", oppy.getStage());
     stageDropDown = driver.findElement(By.xpath(webElement));
     driverTools.clickElement(stageDropDown);
@@ -77,7 +74,7 @@ public class OppyEditionFormLight extends OppyEditionForm {
       driverTools.clickElement(selectCheckboxes.get(0));
     }
 
-    driverTools.setInputField(amountInput, Double.toString(oppy.getAmount()));
+    driverTools.setInputField(amountInput, oppy.getAmountWithFormat());
 
     driverTools.clickElement(saveBtn);
 

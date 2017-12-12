@@ -18,21 +18,21 @@ Feature: Manage Opportunities - CRUD
   Scenario: User should be able to edit an Opportunity
     Given I have Opportunity with the following information
       | oppyName | closeDate | stage         | account      | budget | amount |
-      | Opp test | 6/12/2018 | Qualification | Acme (Sample)| false   | 10000   |
+      | Opp test | 6/12/2018 | Qualification | Acme (Sample)| false  | 10000  |
 
     And I select to edit the Opportunity created from the list
     When I edit the Opportunity with the following information
       | oppyName    | closeDate | stage    | account                 | budget | amount |
-      | Opp testing | 6/02/2019 | Proposal | salesforce.com (Sample) | true  | 5000   |
+      | Opp testing | 6/02/2019 | Proposal | salesforce.com (Sample) | true   | 5000   |
 
     Then a message should be displayed saying that the Opportunity was saved
-    And the Opportunity edited should be display in the Opportunities list
+    And the Opportunity edited should be had the correct values
 
   @Functional @DeleteOppy
   Scenario: User should be able to delete an Opportunity
     Given I have Opportunity with the following information
-      | oppyName | closeDate | stage         | account      |
-      | Opp test | 6/12/2018 | Qualification | Acme (Sample)|
+      | oppyName | closeDate | stage         | account      | budget | amount |
+      | Opp test | 6/12/2018 | Qualification | Acme (Sample)| true   | 10000  |
 
     And I select to delete the Opportunity created from the list
     When I delete that Opportunity

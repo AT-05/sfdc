@@ -49,7 +49,7 @@ public class OppyEditionFormClassic extends OppyEditionForm {
     if(budgetCheckbox.isSelected() != oppy.getBudget()){
       driverTools.clickElement(budgetCheckbox);
     }
-    driverTools.setInputField(amountInput, Double.toString(oppy.getAmount()));
+    driverTools.setInputField(amountInput, oppy.getAmountWithFormat());
     driverTools.clickElement(saveBtn);
     return new OppyContentPageClassic();
   }

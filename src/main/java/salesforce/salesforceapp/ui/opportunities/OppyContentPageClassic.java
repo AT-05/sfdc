@@ -36,17 +36,46 @@ public class OppyContentPageClassic extends OppyContentPage {
     return PageFactory.getOppyContentPage();
   }
 
+  /**
+   * This method in classic view does nothing.
+   */
   @Override
   public void clickDetailsOppyBtn() {
   }
 
+  /**
+   * Verify if exist some content in details with div type.
+   *
+   * @param value to find.
+   * @return as a boolean.
+   */
   @Override
-  public String getOppyName() {
-    return null;
+  public boolean containsSpanElement(String value) {
+    String xpath = String.format("//table[@class='detailList']//div[contains(text(),'%s')]", value);
+    return driverTools.isElementDisplayed(By.xpath(xpath));
   }
 
+  /**
+   * Verify if exist some content in details with link type.
+   *
+   * @param value to find.
+   */
   @Override
-  public String getCloseDate() {
-    return null;
+  public boolean containsLinkElement(String value) {
+    String xpath = String.format("//table[@class='detailList']//a[contains(text(),'%s')]", value);
+    return driverTools.isElementDisplayed(By.xpath(xpath));
+  }
+
+  /**
+   * Verify if exist checkbox is checked.
+   *
+   * @param value to find.
+   * @return as a boolean.
+   */
+  @Override
+  public boolean containsCheckbox(String value) {
+    String flag = value.equals("true") ? "Checked" : "Not Checked";
+    String xpath = String.format("//table[@class='detailList']//img[@alt='%s']", flag);
+    return driverTools.isElementDisplayed(By.xpath(xpath));
   }
 }
