@@ -10,8 +10,8 @@ import java.util.Map;
 
 
 
-public class XLSAccount {
-    private static Logger log = Logger.getLogger("XLSAccount");
+public class XLSProduct {
+    private static Logger log = Logger.getLogger("XLSProduct");
     private static  String PRODUCT_NAME;
     private static  String PRODUCT_CODE;
     private static  String PRODUCT_DESCRIPTION;
@@ -33,7 +33,7 @@ public class XLSAccount {
         }
     }
 
-    public static void deleteAccounts(List<Map<String, String>> accountsXLS) {
+    public static void deleteProduct(List<Map<String, String>> accountsXLS) {
 
     }
 }

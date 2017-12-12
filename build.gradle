@@ -1,3 +1,5 @@
+import net.masterthought.cucumber.ReportBuilder
+
 group 'salesforce.com'
 version '1.0-SNAPSHOT'
 
@@ -37,6 +39,20 @@ dependencies {
     compile group: 'joda-time', name: 'joda-time', version: '2.9.6'
     compile group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '1.7.2'
+}
+
+
+def generateReport(String pathCucumber, String pathReport) {
+    File jsonFile = new File(pathCucumber)
+    if (jsonFile.exists()) {
+        File reportOutputDirectory = new File(pathReport)
+        List<String> jsonReportFiles = new ArrayList<>()
+        jsonReportFiles.add(pathCucumber)
+        String buildProjectName = 'Salesforce Automation'
+        net.masterthought.cucumber.Configuration configuration = new net.masterthought.cucumber.Configuration(reportOutputDirectory, buildProjectName)
+        ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, configuration)
+        reportBuilder.generateReports()
+    }
 }
 
 tasks.withType(Test) {
