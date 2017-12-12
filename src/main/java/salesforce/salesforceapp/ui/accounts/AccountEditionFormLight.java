@@ -60,13 +60,10 @@ public class AccountEditionFormLight extends AccountEditionForm {
     public AccountContentPage saveNewAccount(Account account) {
         driverTools.setInputField(nameInput, account.getName());
         setDropDowField(typeDropDow, account.getType());
-
         driverTools.setInputField(webInput, account.getWeb());
         driverTools.setInputField(descriptionInput, account.getDescription());
         driverTools.setInputField(phoneInput, account.getPhone());
         driverTools.setInputField(employeesInput, account.getEmployees());
-//        driverTools.setInputField(streetBillingInput, account.getStreetBilling());
-//        driverTools.setInputField(shippingStreetInput, account.getShippingStreet());
         setDropDowField(sectorDropDow, account.getSector());
         driverTools.clickElement(saveBtn);
         return new AccountContentPageLight();

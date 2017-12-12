@@ -26,12 +26,6 @@ public class AccountContentPageLight extends AccountContentPage {
     private WebElement detailsBtn;
 
 
-
-
-
-
-
-
     public AccountContentPageLight() {
         super.nameText = driver.findElement(By.xpath("//h1[contains(@class, 'slds-page-header__title slds-m-right--small')]/span[contains(@class, 'uiOutputText')]"));
         super.addressText = driver.findElement(By.xpath("//a[contains(@class, 'uiOutputURL')]"));
@@ -69,4 +63,13 @@ public class AccountContentPageLight extends AccountContentPage {
         while (driverTools.isElementVisibility(By.xpath("//span[contains(@class,'toastMessage')]"))){}
         driverTools.clickElement(detailsBtn);
     }
+
+    @Override
+    public boolean containsThisElement(String name) {
+        String path=String.format("%s%s%s%s%s","//span[contains(@class,'slds-form-element__static')]//span//a[text()='"
+                , name, "'] | //span[contains(@class,'slds-form-element__static')]//span[text()='", name, "']");
+        return driverTools.isElementVisibility(By.xpath(path));
+    }
+
+
 }

@@ -60,4 +60,12 @@ public class AccountContentPageClassic extends AccountContentPage {
 
     }
 
+    @Override
+    public boolean containsThisElement(String name) {
+        String path=String.format("%s%s%s%s%s%s%s%s%s","//td[contains(@class, 'dataCol')]/div[text()='", name, "']|",
+                "//td[contains(@class, 'dataCol')]/div/*[contains(text(), '", name, "')]|",
+                "//td[contains(@class, 'dataCol')]/div[contains(text(), '", name, "')]");
+        return driverTools.isElementVisibility(By.xpath(path));
+    }
+
 }
