@@ -16,10 +16,7 @@ public class AccountContentPageClassic extends AccountContentPage {
 
     @FindBy(xpath = "//td[@id='topButtonRow']/input[@name='delete']")
     private WebElement deleteBtn;
-//
-//    @FindBy(xpath = "//button[contains(@class, 'slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton')]")
-//    private WebElement deleteConfirnBtn;
-//
+
     @FindBy(xpath = "//td[@id='topButtonRow']/input[@name='edit']")
     private WebElement updateBtn;
 
@@ -31,48 +28,68 @@ public class AccountContentPageClassic extends AccountContentPage {
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
-
     }
 
-    /***
-     * In this skin dont have the message
-     * @return
+    /**
+     * Verify is show the message after of create an Acoount.
+     *
+     * @return (true/false)
      */
     @Override
     public boolean displayedCreatedMessage() {
         return true;
     }
 
+    /**
+     * Clik on delete option.
+     */
     @Override
     public void delete() {
-      driverTools.clickElement(deleteBtn);
+        driverTools.clickElement(deleteBtn);
         Alert alert = driver.switchTo().alert();
         alert.accept();
-//        driverTools.clickElement(deleteConfirnBtn);
     }
 
+    /**
+     * Click on uptdate acount option.
+     *
+     * @return new form account edition.
+     */
     @Override
     public AccountEditionForm clickUpdateAccountBtn() {
         driverTools.clickElement(updateBtn);
         return PageFactory.getAccountEditionForm();
     }
 
+    /**
+     * Clik on details of the Accounts.
+     */
     @Override
     public void clickOnDetails() {
 
     }
 
+    /**
+     * Verify is contain on page a element with name.
+     *
+     * @param name Option for the search en the page
+     * @return (true/false) of the search.
+     */
     @Override
     public boolean containsThisElement(String name) {
-        String path=String.format("%s%s%s%s%s%s%s%s%s","//td[contains(@class, 'dataCol')]/div[text()='", name, "']|",
+        String path = String.format("%s%s%s%s%s%s%s%s%s", "//td[contains(@class, 'dataCol')]/div[text()='", name, "']|",
                 "//td[contains(@class, 'dataCol')]/div/*[contains(text(), '", name, "')]|",
                 "//td[contains(@class, 'dataCol')]/div[contains(text(), '", name, "')]");
         return driverTools.isElementVisibility(By.xpath(path));
     }
 
+    /**
+     * Verify is show the message after of delete an Acoount.
+     *
+     * @return (true/false)
+     */
     @Override
     public boolean displayedErrorDeleteMessage() {
         return driverTools.isElementDisplayed(messageErrorCreate);
     }
-
 }

@@ -35,16 +35,17 @@ public class AccountEditionFormClassic extends AccountEditionForm {
     private WebElement employeesInput;
 
 
-
-    public AccountEditionFormClassic() {
-
-    }
-
     @Override
     public void waitUntilPageObjectIsLoaded() {
 
     }
 
+    /**
+     * Create an Acount and save the values.
+     *
+     * @param account
+     * @return
+     */
     @Override
     public AccountContentPage saveNewAccount(Account account) {
         driverTools.setInputField(nameInput, account.getName());
@@ -58,6 +59,12 @@ public class AccountEditionFormClassic extends AccountEditionForm {
         return new AccountContentPageClassic();
     }
 
+    /**
+     * Select with value on a drop dow field.
+     *
+     * @param typeDropDow Web elemente.
+     * @param type        value of the selecction.
+     */
     private void setDropDowField(WebElement typeDropDow, String type) {
         Select stageDropDown = new Select(typeDropDow);
         stageDropDown.selectByVisibleText(type);

@@ -15,20 +15,39 @@ public abstract class AccountContentPage extends ContentBasePage {
     protected WebElement nameText;
     protected WebElement addressText;
 
+    /**
+     * Verify is show the message after of create an Acoount.
+     * @return (true/false)
+     */
     public abstract boolean displayedCreatedMessage();
 
+    /**
+     * Clik on delete option.
+     */
     public abstract void delete();
 
+    /**
+     * Click on uptdate acount option.
+     * @return new form account edition.
+     */
     public abstract AccountEditionForm clickUpdateAccountBtn();
 
+    /**
+     * Clik on details of the Accounts.
+     */
     public abstract void clickOnDetails();
 
+    /**
+     * Verify is contain on page a element with name.
+     * @param name Option for the search en the page
+     * @return (true/false) of the search.
+     */
     public abstract boolean containsThisElement(String name);
 
+    /**
+     * Verify is show the message after of delete an Acoount.
+     * @return (true/false)
+     */
     public abstract boolean displayedErrorDeleteMessage();
 
-//        String path=String.format("%s%s%s%s%s","//span[contains(@class,'slds-form-element__static')]//span//a[text()='"
-//                , name, "'] | //span[contains(@class,'slds-form-element__static')]//span[text()='", name, "']");
-//        return driverTools.isElementVisibility(By.xpath(path));
-//    }
 }

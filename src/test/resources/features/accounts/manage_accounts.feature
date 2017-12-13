@@ -40,11 +40,3 @@ Feature: Manage Accounts
       | Alaska 2 | Analyst	| www.lostiempos.com | description 2 | 444444    | Banking | 28		  | los pericos	  | shipping_street |
 
     Then I should see the Account updated in the Accounts page
-
-
-
-
-#  Scenario: Users should be able to login using valid credentials
-#    Given I navigate to Login page
-#    When I login with enviroments params
-#    Then I should login successfully

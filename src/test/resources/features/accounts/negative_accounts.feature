@@ -9,7 +9,7 @@ Feature: Unable to delete account
     Given I have Acount  with the following information and has a closed won Opportunity:
       | name          | type		| web			| description | phone 	| sector  | employees | streetBilling | shippingStreet  |
       | Acme (Sample) | Prospect	| www.higos.com	| description | 7742515 | Banking | 248		  | los pericos	  | shipping_street |
-    When I select the Account
+    When I select an Account
     And I delete an Account
 
     Then I verify that display the message that the account can not be Delete

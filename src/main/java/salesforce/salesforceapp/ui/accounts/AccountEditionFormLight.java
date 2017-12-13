@@ -35,27 +35,17 @@ public class AccountEditionFormLight extends AccountEditionForm {
     @FindBy(xpath = "//input[@step='1']")
     private WebElement employeesInput;
 
-//    @FindBy(xpath = "")
-//    private WebElement streetBillingInput;
-//
-//    @FindBy(xpath = "")
-//    private WebElement shippingStreetInput;
-
-
-
-
-    public AccountEditionFormLight() {
-
-//        super.nameInput = driver.findElement(By.xpath("//input[contains(@class, 'input uiInput uiInputText uiInput--default uiInput--input')]"));
-//        super.addressField = driver.findElement(By.xpath("//input[contains(@type, 'url')]"));
-//        super.phoneInput = driver.findElement(By.xpath("//input[contains(@type, 'tel')]"));
-//        super.saveBtn = driver.findElement(By.xpath("//button[contains(@class, 'uiButton--brand uiButton forceActionButton')]"));
-    }
     @Override
     public void waitUntilPageObjectIsLoaded() {
-       // wait.until(ExpectedConditions.visibilityOf(nameInput));
+        // wait.until(ExpectedConditions.visibilityOf(nameInput));
     }
 
+    /**
+     * Create an Acount and save the values.
+     *
+     * @param account
+     * @return
+     */
     @Override
     public AccountContentPage saveNewAccount(Account account) {
         driverTools.setInputField(nameInput, account.getName());
@@ -70,9 +60,15 @@ public class AccountEditionFormLight extends AccountEditionForm {
 
     }
 
-    private void  setDropDowField(WebElement dropDowField, String value){
+    /**
+     * Select with value on a drop dow field.
+     *
+     * @param dropDowField Web elemente.
+     * @param value        value of the selecction.
+     */
+    private void setDropDowField(WebElement dropDowField, String value) {
         driverTools.clickElement(dropDowField);
-        driverTools.clickElement(By.xpath("//li[contains(@class, 'uiMenuItem uiRadioMenuItem')]/a[@title='"+value+"']"));
+        driverTools.clickElement(By.xpath("//li[contains(@class, 'uiMenuItem uiRadioMenuItem')]/a[@title='" + value + "']"));
 
     }
 }

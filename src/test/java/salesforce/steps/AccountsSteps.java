@@ -1,6 +1,5 @@
 package salesforce.steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -32,7 +31,7 @@ public class AccountsSteps {
     private Account account;
     private Account accountToEdit;
 
-    //Entities
+
 
     public AccountsSteps() throws Exception {
         homePage = PageFactory.getHomePage();
@@ -66,13 +65,12 @@ public class AccountsSteps {
     public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
         createANewAccountWithTheFollowingInformation(accountList);
         accountContentPage.displayedCreatedMessage();
-        //accountContentPage
     }
 
 
     @When("^I select the Account$")
     public void iSelectTheAccount() {
-        //iGoToAccountsHomePage();
+        iGoToAccountsHomePage();
         accountContentPage = accountHomePage.goToAccountContent(account);
     }
 
@@ -93,17 +91,15 @@ public class AccountsSteps {
         accountToEdit = accountList.get(0);
         accountEditionForm = accountContentPage.clickUpdateAccountBtn();
         accountContentPage = accountEditionForm.saveNewAccount(accountToEdit);
-        //accountEditionForm = accountHomePage.clickNewAccountBtn();
     }
 
     @Then("^I should see the Account updated in the Accounts page$")
     public void iShouldSeeTheAccountUpdatedInTheAccountsPage() {
-//        assertTrue(accountContentPage.verifyAccountInfo(accountToEdit));
         accountContentPage.clickOnDetails();
         validateAccount(accountToEdit);
     }
 
-    private void validateAccount(Account myAccount){
+    private void validateAccount(Account myAccount) {
         assertTrue(accountContentPage.containsThisElement(myAccount.getName()));
         assertTrue(accountContentPage.containsThisElement(myAccount.getDescription()));
         assertTrue(accountContentPage.containsThisElement(myAccount.getEmployees()));
@@ -116,23 +112,20 @@ public class AccountsSteps {
     @Given("^I have Acount  with the following information and has a closed won Opportunity:$")
     public void iHaveAcountWithTheFollowingInformationAndHasAClosedWonOpportunity(List<Account> accountList) {
         account = accountList.get(0);
-        //iGoToAccountsHomePage();
-        //accountContentPage = accountHomePage.goToAccountContent(account);
-
-
-
     }
 
     @And("^I delete an Account$")
-    public void iDeleteAnAccount()  {
+    public void iDeleteAnAccount() {
         deleteAnAccount();
     }
 
     @Then("^I verify that display the message that the account can not be Delete$")
     public void iVerifyThatDisplayTheMessageThatTheAccountCanNotBeDelete() {
-
-        assertTrue(accountContentPage.displayedCreatedMessage());
         assertTrue(accountContentPage.displayedErrorDeleteMessage());
+    }
 
+    @When("^I select an Account$")
+    public void iSelectAnAccount() {
+        accountContentPage = accountHomePage.goToAccountContent(account);
     }
 }

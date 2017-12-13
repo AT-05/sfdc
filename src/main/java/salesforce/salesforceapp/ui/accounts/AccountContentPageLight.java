@@ -3,7 +3,6 @@ package salesforce.salesforceapp.ui.accounts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.PageFactory;
 
 /**
@@ -31,9 +30,13 @@ public class AccountContentPageLight extends AccountContentPage {
 
     public AccountContentPageLight() {
         super.nameText = driver.findElement(By.xpath("//h1[contains(@class, 'slds-page-header__title slds-m-right--small')]/span[contains(@class, 'uiOutputText')]"));
-     // Todo  super.addressText = driver.findElement(By.xpath("//a[contains(@class, 'uiOutputURL')]"));
     }
 
+    /**
+     * Verify is show the message after of create an Acoount.
+     *
+     * @return (true/false)
+     */
     @Override
     public void waitUntilPageObjectIsLoaded() {
 
@@ -41,6 +44,7 @@ public class AccountContentPageLight extends AccountContentPage {
 
     /**
      * Verify is displayed the message.
+     *
      * @return
      */
     @Override
@@ -48,31 +52,54 @@ public class AccountContentPageLight extends AccountContentPage {
         return driverTools.isElementDisplayed(message);
     }
 
+    /**
+     * Clik on delete option.
+     */
     @Override
     public void delete() {
         driverTools.clickElement(deleteBtn);
         driverTools.clickElement(deleteConfirnBtn);
     }
 
+    /**
+     * Click on uptdate acount option.
+     *
+     * @return new form account edition.
+     */
     @Override
-    public AccountEditionForm clickUpdateAccountBtn(){
+    public AccountEditionForm clickUpdateAccountBtn() {
         driverTools.clickElement(updateBtn);
         return PageFactory.getAccountEditionForm();
     }
 
+    /**
+     * Clik on details of the Accounts.
+     */
     @Override
     public void clickOnDetails() {
-        while (driverTools.isElementVisibility(By.xpath("//span[contains(@class,'toastMessage')]"))){}
+        while (driverTools.isElementVisibility(By.xpath("//span[contains(@class,'toastMessage')]"))) {
+        }
         driverTools.clickElement(detailsBtn);
     }
 
+    /**
+     * Verify is contain on page a element with name.
+     *
+     * @param name Option for the search en the page
+     * @return (true/false) of the search.
+     */
     @Override
     public boolean containsThisElement(String name) {
-        String path=String.format("%s%s%s%s%s","//span[contains(@class,'slds-form-element__static')]//span//a[text()='"
+        String path = String.format("%s%s%s%s%s", "//span[contains(@class,'slds-form-element__static')]//span//a[text()='"
                 , name, "'] | //span[contains(@class,'slds-form-element__static')]//span[text()='", name, "']");
         return driverTools.isElementVisibility(By.xpath(path));
     }
 
+    /**
+     * Verify is show the message after of delete an Acoount.
+     *
+     * @return (true/false)
+     */
     @Override
     public boolean displayedErrorDeleteMessage() {
         return driverTools.isElementDisplayed(messageErrorCreate);
