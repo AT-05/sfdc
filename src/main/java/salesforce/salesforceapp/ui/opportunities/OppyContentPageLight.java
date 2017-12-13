@@ -2,12 +2,17 @@ package salesforce.salesforceapp.ui.opportunities;
 
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.PageFactory;
 
 public class OppyContentPageLight extends OppyContentPage {
+  @FindBy(xpath = "(//h2[@id='header']/a/span)[5]")
+  private WebElement quoteViewLink;
 
   @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
   private WebElement createOppyMessage;
@@ -18,7 +23,6 @@ public class OppyContentPageLight extends OppyContentPage {
   @FindBy(xpath = "//div[contains(@class,' itemBody')]//span[@class='uiOutputText']")
   private List<WebElement> oppyNameLabel;
 
-  //div[@class='slds-form-element__control slds-grid itemBody']//span[@class='test-id__field-value slds-form-element__static slds-grow']//span[@class='uiOutputDate']
   @FindBy(xpath = "//span[@class='uiOutputDate'")
   private List<WebElement> oppyCloseDateLabel;
 
@@ -99,5 +103,25 @@ public class OppyContentPageLight extends OppyContentPage {
   public boolean containsCheckbox(String value) {
     String xpath = String.format("//div[contains(@class,'__record-')]//img[@alt='%s']", value);
     return driverTools.isElementDisplayed(By.xpath(xpath));
+  }
+
+  /**
+   * <p>This method sends to Opportunity Quotes View.</p>
+   *
+   * @return a OppyQuotesView object type.
+   */
+  @Override
+  public OppyQuotesView goToQuotesView() {
+    Capabilities capabilities = ((RemoteWebDriver) driver).getCapabilities();
+    if (capabilities.getBrowserName().equals("chrome")) {
+      try {
+        ((JavascriptExecutor) driver).executeScript(
+          "arguments[0].scrollIntoView(true);", quoteViewLink);
+      } catch (Exception e) {
+
+      }
+    }
+    driverTools.clickElement(quoteViewLink);
+    return new OppyQuotesViewLight();
   }
 }

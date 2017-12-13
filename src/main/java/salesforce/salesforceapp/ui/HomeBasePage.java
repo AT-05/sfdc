@@ -14,7 +14,7 @@ public abstract class HomeBasePage extends BasePage {
 
   @FindBy(xpath = ".//*[@title='New']")
   @CacheLookup
-  private WebElement newBtn;
+  protected WebElement newBtn;
 
   public HomeBasePage() {
     this.topMenu = PageFactory.getTopMenu();
@@ -25,7 +25,7 @@ public abstract class HomeBasePage extends BasePage {
     return By.xpath("//a[contains(text(),'" + linkText + "')]");
   }
 
-  protected void selectItem(String linkText) {
+  public void selectItem(String linkText) {
     driverTools.clickElement(getItemLinkBy(linkText));
   }
 

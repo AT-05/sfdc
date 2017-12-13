@@ -78,4 +78,14 @@ public class OppyContentPageClassic extends OppyContentPage {
     String xpath = String.format("//table[@class='detailList']//img[@alt='%s']", flag);
     return driverTools.isElementDisplayed(By.xpath(xpath));
   }
+
+  /**
+   * <p>This method sends to Opportunity Quotes View.</p>
+   *
+   * @return a OppyQuotesView object type.
+   */
+  @Override
+  public OppyQuotesView goToQuotesView() {
+    return new OppyQuotesViewClassic();
+  }
 }

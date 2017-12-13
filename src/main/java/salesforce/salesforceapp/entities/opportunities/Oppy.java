@@ -2,6 +2,9 @@ package salesforce.salesforceapp.entities.opportunities;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Iterator;
+import java.util.List;
+import salesforce.salesforceapp.entities.quotes.Quote;
 
 public class Oppy {
 
@@ -11,6 +14,7 @@ public class Oppy {
   private String account;
   private boolean budget;
   private double amount;
+  private List<Quote> quoteList;
 
   /**
    * Get name of the opportunity.
@@ -130,5 +134,58 @@ public class Oppy {
 
   public double getAmount(){
     return amount;
+  }
+
+  /**
+   * <p>This method sets the opportunity
+   * quotes' list.</p>
+   *
+   * @param quoteListInput is a list of Quote elements.
+   */
+  public void setQuoteList(List<Quote> quoteListInput) {
+    quoteList = quoteListInput;
+  }
+
+  /**
+   * <p>This method gets a Quote from the opportunity
+   * quote's list.</p>
+   *
+   * @param quoteNameInput is the given quote name.
+   * @return the quote object in case its found,
+   * otherwise returns null.
+   */
+  public Quote getQuote(String quoteNameInput) {
+    int index;
+    for (Quote quoteItem : quoteList) {
+      String quoteName = quoteItem.getName();
+      if (quoteName.equalsIgnoreCase(quoteNameInput)) {
+        index = quoteList.indexOf(quoteItem);
+        return quoteList.get(index);
+      }
+    }
+    return null;
+  }
+
+  /**
+   * <p>This method updates a specific quote of the opportunity
+   * quotes' list.</p>
+   *
+   * @param quoteListInput  is a list of Quote elements.
+   * @param quoteNameTarget is the target quote to update.
+   */
+  public void updateQuote(List<Quote> quoteListInput, String quoteNameTarget) {
+    final Quote quoteEdited = quoteListInput.get(0);
+    Iterator<Quote> iterator = quoteList.iterator();
+    while (iterator.hasNext()) {
+      Quote itemQuote = iterator.next();
+      if (itemQuote.getName().equals(quoteNameTarget)) {
+        itemQuote.setName(quoteEdited.getName());
+        itemQuote.setExpirationDate(quoteEdited.getExpirationDate());
+        itemQuote.setStatus(quoteEdited.getStatus());
+        itemQuote.setDescription(quoteEdited.getDescription());
+        itemQuote.setTax(quoteEdited.getTax().toString());
+        itemQuote.setShippingAndHandling(quoteEdited.getShippingAndHandling().toString());
+      }
+    }
   }
 }
