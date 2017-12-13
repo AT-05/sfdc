@@ -3,7 +3,7 @@ package salesforce.steps;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
-import salesforce.salesforceapp.entities.Oppy;
+import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
@@ -31,7 +31,7 @@ public class OpportunitiesSteps {
   //OpportunitiesSteps Step Definitions
   //****************************************************************
   @And("^I go to Opportunities home page$")
-  public void iGoToAccountsHomePage() {
+  public void iGoToOpportunitiesHomePage() {
     oppyHomePage = homePage.topMenu.goToOppyHomePage();
   }
 

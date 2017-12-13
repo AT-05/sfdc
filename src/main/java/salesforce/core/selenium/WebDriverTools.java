@@ -1,10 +1,12 @@
 package salesforce.core.selenium;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebDriverTools {
@@ -47,6 +49,7 @@ public class WebDriverTools {
    * @param webElement WebElement to wait and click
    */
   public void clickElement(WebElement webElement) {
+    wait.until(ExpectedConditions.visibilityOf(webElement));
     wait.until(ExpectedConditions.elementToBeClickable(webElement));
     webElement.click();
   }
@@ -57,9 +60,9 @@ public class WebDriverTools {
    * @param by By to wait and click
    */
   public void clickElement(By by) {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     driver.findElement(by).click();
   }
-
 
   /**
    * Wits and gets the text of a WebElement
@@ -115,7 +118,62 @@ public class WebDriverTools {
       clickElement(element);
     }
   }
+
   /**
+   * <p>This method performs selection of element of a list.</p>
+   *
+   * @param webElements is a lis of WebElement elements.
+   * @param keyWord     is the value to compare element attribute with.
+   */
+  public void selectElementInList(List<WebElement> webElements, String keyWord) {
+    for (WebElement element : webElements) {
+      String value = element.getText();
+      if (value.contains(keyWord)) {
+        clickElement(element);
+        break;
+      }
+    }
+  }
+
+  /**
+   * <p>This method performs selection of value inside a dropdown list.</p>
+   *
+   * @param dropDown is the dropdown web element given.
+   * @param value    is the value to select.
+   */
+  public void selectDropDownValue(WebElement dropDown, String value) {
+    Select selector = new Select(dropDown);
+    wait.until(ExpectedConditions.visibilityOf(dropDown));
+    selector.selectByValue(value);
+  }
+
+  /**
+   * Wait until the item is no longer visible.
+   *
+   * @param element WebElement.
+   */
+  public void waitUntilMessageDisappear(WebElement element) {
+    try {
+      while (element.isDisplayed()) {
+      }
+    } catch (Exception e) {
+    }
+  }
+
+  public boolean isElementDisplayed(By by) {
+    WebElement webElement = driver.findElement(by);
+    return isElementDisplayed(webElement);
+  }
+
+  public boolean isElementVisibility(By by) {
+    try {
+      return isElementDisplayed(by);
+    }
+    catch (Exception e){
+      return false;
+    }
+  }
+    /**
    * This method perform a click in a non visible element in the UI using class locator.
    *
    * @param webElement the WebElement non visible in the UI.

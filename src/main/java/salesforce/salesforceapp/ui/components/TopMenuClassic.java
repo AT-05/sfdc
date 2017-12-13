@@ -1,38 +1,80 @@
 package salesforce.salesforceapp.ui.components;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import salesforce.salesforceapp.ui.contacts.ContactHomePage;
-import salesforce.salesforceapp.ui.contacts.ContactHomePageClassic;
+import salesforce.salesforceapp.ui.LoginPage;
+import salesforce.salesforceapp.ui.ProfilePage;
+import salesforce.salesforceapp.ui.ProfilePageClassic;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
+import salesforce.salesforceapp.ui.product.home.HomeProductPage;
+import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
+import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
+import salesforce.salesforceapp.ui.quotes.QuotesHomePageClassic;
 
+/**
+ * Created by AT05 team on 12/11/2017.
+ */
 public class TopMenuClassic extends TopMenu {
-  @FindBy(css = ".oneUserProfileCardTrigger")
-  private WebElement userProfile;
+  @FindBy(id = "userNavLabel")
+  private WebElement userProfileLink;
 
-  @FindBy(xpath = "//a[contains(@href, 'classic')]")
+  @FindBy(xpath = "//*[@id='userNav-menuItems']/a[4]")
+  @CacheLookup
   private WebElement switchSkinLink;
   @FindBy(css = "a[title*='Contact']")
   private WebElement contactBtn;
+
+  @FindBy(xpath = "//a[@title='My Profile']")
+  @CacheLookup
+  private WebElement userProfileNameLink;
+
+  @FindBy(id = "Opportunity_Tab")
+  @CacheLookup
+  private WebElement opportunitiesBtn;
+
+  @FindBy(id = "Quote_Tab")
+  @CacheLookup
+  private WebElement quotesLink;
+
+  @FindBy(xpath = "//a[@title='Logout']")
+  @CacheLookup
+  private WebElement logoutLink;
+
+  @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
+  WebElement productTab;
+
+
+  public void waitUntilPageObjectIsLoaded() {
+    wait.until(ExpectedConditions.urlContains("home"));
+  }
+
+
 
   /**
    * <p>This method performs switching of web page skin
    * to classic.</p>
    */
   @Override
-  public void waitUntilPageObjectIsLoaded() {
-    wait.until(ExpectedConditions.urlContains("home"));
+  public void switchSkin() {
+    driverTools.clickElement(userProfileLink);
+    driverTools.clickElement(switchSkinLink);
   }
 
+  /**
+   * <p>This mehtod logs out user from the application.</p>
+   *
+   * @return a LoginPage object type.
+   */
   @Override
-  public void switchSkin() {
-
-    userProfile.click();
-    switchSkinLink.click();
+  public LoginPage logout() {
+    driverTools.clickElement(userProfileLink);
+    driverTools.clickElement(logoutLink);
+    return new LoginPage();
   }
 
   @Override
@@ -42,10 +84,44 @@ public class TopMenuClassic extends TopMenu {
 
   @Override
   public OppyHomePage goToOppyHomePage() {
+    driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageClassic();
   }
 
+  /**
+   * <p>This method redirects to Quotes Home Page Classic.</p>
+   *
+   * @return a QuotesHomePage object type.
+   */
   @Override
+  public QuotesHomePage goToQuotesHomePage() {
+    driverTools.clickElement(quotesLink);
+    return new QuotesHomePageClassic();
+  }
+
+  /**
+   * <p>This method sends to user profile page.</p>
+   *
+   * @return a ProfilePage object type.
+   */
+  @Override
+  public ProfilePage goToProfilePage() {
+    driverTools.clickElement(userProfileLink);
+    driverTools.clickElement(userProfileNameLink);
+    return new ProfilePageClassic();
+  }
+
+  /**
+   * This method go to Home Product.
+   *
+   * @return homeProduct.
+   */
+  @Override
+  public HomeProductPageClassic goToHomeProduct() {
+    productTab.click();
+    return new HomeProductPageClassic();
+  }
+   @Override
   public ContactHomePage goToContactHomePage() {
     driverTools.clickElement(contactBtn);
     return new ContactHomePageClassic();
