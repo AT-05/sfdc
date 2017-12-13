@@ -10,15 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * Created by Administrator on 12/5/2017.
  */
 public class ContactContentPageLight extends ContactContentPage {
-  //  @FindBy(xpath = "//span[contains(@data-aura-rendered-by,'1112:0')]")
-//  private WebElement name;
-//  @FindBy(xpath = "//span[text()='Product Code']/parent::div/following-sibling::div")
-//  private WebElement lastName;
-//  @FindBy(xpath = "//span[text()='Product Code']/parent::div/following-sibling::div")
-//  private WebElement accountName;
+
+
   @FindBy(xpath = "//h1[contains(@class, 'slds-page-header__title slds-m-right--small slds-truncate slds-align-middle')]")
   private WebElement contactFullName;
-
 
   @FindBy(xpath = "//span[contains(text(), 'Name')]/parent::div/following-sibling::div/span/span")
   private WebElement nameLabel;
@@ -32,23 +27,8 @@ public class ContactContentPageLight extends ContactContentPage {
   @FindBy(xpath = "//span[contains(text(), 'Title')]/parent::div/following-sibling::div/span/span")
   private WebElement titleLabel;
 
-  @FindBy(xpath = "//span[contains(text(), 'Department')]/parent::div/following-sibling::div/span/span")
-  private WebElement departmentLabel;
-
-  @FindBy(xpath = "//span[contains(text(), 'Birthdate')]/parent::div/following-sibling::div/span/span")
-  private WebElement birthDateLabel;
-
-  @FindBy(xpath = "//span[contains(text(), 'Reports To')]/parent::div/following-sibling::div/span/div/a")
-  private WebElement reportToLabel;
-
-  @FindBy(xpath = "//span[contains(text(), 'Lead Source')]/parent::div/following-sibling::div/span/span")
-  private WebElement leadSorceLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Mailing Address')]/parent::div/following-sibling::div/span/a")
   private WebElement mailingAddressLabel;
-
-  @FindBy(xpath = "//span[contains(text(), 'Language')]/parent::div/following-sibling::div/span/span")
-  private WebElement languagesLabel;
 
   @FindBy(xpath = "//span[contains(text(), 'Home Phone')]/parent::div/following-sibling::div/span/span")
   private WebElement homePhoneLabel;
@@ -56,54 +36,29 @@ public class ContactContentPageLight extends ContactContentPage {
   @FindBy(xpath = "//span[contains(text(), 'Mobile')]/parent::div/following-sibling::div/span/span")
   private WebElement mobileLabel;
 
-  @FindBy(xpath = "//span[contains(text(), 'Other Phone')]/parent::div/following-sibling::div/span/span")
-  private WebElement otherPhoneLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Fax')]/parent::div/following-sibling::div/span/span")
   private WebElement faxLabel;
 
   @FindBy(xpath = "//span[contains(text(), 'Email')]/parent::div/following-sibling::div/span/span/a")
   private WebElement emailLabel;
 
-  @FindBy(xpath = "//span[contains(text(), 'Assistant')]/parent::div/following-sibling::div/span/span")
-  private WebElement assistandLabel;
-
-  @FindBy(xpath = "//span[contains(text(), 'Asst. Phone')]/parent::div/following-sibling::div/span/span")
-  private WebElement assistandPhoneLabel;
-
-  @FindBy(xpath = "//span[contains(text(), 'Other Address')]/parent::div/following-sibling::div/span/a")
-  private WebElement otherAdressLabel;
-
-  @FindBy(xpath = "//span[contains(text(), 'Level')]/parent::div/following-sibling::div/span/span")
-  private WebElement levelAdress;
-
-  @FindBy(css = "a[title='Show more actions for this record']")
-  private WebElement showOptionsButton;
-
-
   @Override
   public void waitUntilPageObjectIsLoaded() {
     wait.until(ExpectedConditions.visibilityOf(contactFullName));
   }
 
+  /**
+   * This method gets name label.
+   *
+   * @return a name label.
+   */
   public String getContactNameText() {
-    //waitContacttNameIs("Contact");
-    //wait.until(ExpectedConditions.elementToBeClickable(contactFullName));
-    //wait.until(ExpectedConditions.elementToBeSelected(contactFullName));
-    String nameText = driverTools.getTextElement(contactFullName);
-    System.out.println("+++++++++++++ini +++++++++++++");
-    System.out.println(contactFullName.getTagName());
-    System.out.println(contactFullName.getText());
-    System.out.println("++++++++++++++end++++++++++++");
-    //String xpathSelector = String.format("//a[contains(text(),'%s')]", "tester test");
-    //String xpathSelector = String.format("//span[contains(.,'tester test')]");
-    //WebElement contactName = driver.findElement(By.xpath(xpathSelector));
 
-    return nameText;
+    return driverTools.getTextElement(contactFullName);
   }
 
   /**
-   * Opens the Form page for editing.
+   * Opens the Contact Edition Form page for editing.
    *
    * @return FormBase.
    */
@@ -112,27 +67,6 @@ public class ContactContentPageLight extends ContactContentPage {
     driverTools.clickElement(editBtn);
     return new ContactEditionFormLight();
   }
-
-  /**
-   * Deletes the current Item.
-   *
-   * @return HomeBase.
-   */
-  @Override
-  public ContactHomePage deleteItem() {
-
-    return new ContactHomePageLight();
-  }
-
-
-//  public String getContactLastNameText() {
-//    return driverTools.getTextElement(lastName);
-//  }
-//
-//  public String getContactAccountNameText() {
-//    return driverTools.getTextElement(accountName);
-//  }
-
 
   public boolean isContactDisplayed(final String contact) {
     WebElement contactContainer;
@@ -150,6 +84,35 @@ public class ContactContentPageLight extends ContactContentPage {
    */
   public void clickOnDetails() {
     driverTools.clickElement(detailsLinkBtn);
+  }
+
+  /**
+   * Click the delete button of the current Item.
+   */
+  @Override
+  public void clickDeleteButton() {
+    driverTools.clickElement(deleteBtn);
+  }
+
+  /**
+   * Click the Confirm Delete Button from the current Item.
+   */
+  @Override
+  public void clickConfirmDeleteButton() {
+    driverTools.clickElement(confirmDeleteBtn);
+
+  }
+
+  /**
+   * Deletes the current Contact.
+   *
+   * @return ContactHomePage.
+   */
+  @Override
+  public ContactHomePage deleteContact() {
+    clickDeleteButton();
+    clickConfirmDeleteButton();
+    return new ContactHomePageLight();
   }
 
   /**

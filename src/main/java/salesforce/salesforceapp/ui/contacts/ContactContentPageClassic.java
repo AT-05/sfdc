@@ -1,5 +1,6 @@
 package salesforce.salesforceapp.ui.contacts;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,7 +14,7 @@ public class ContactContentPageClassic extends ContactContentPage {
   @FindBy(id = "con10_ileinner")
   private WebElement phoneLabel;
 
-  @FindBy(id = "con4_ileinner")//lookup0011I00000AqF7Jcon4
+  @FindBy(id = "con4_ileinner")
   private WebElement accountNameLabel;
 
   @FindBy(id = "con5_ileinner")
@@ -21,7 +22,6 @@ public class ContactContentPageClassic extends ContactContentPage {
 
   @FindBy(id = "con6_ileinner")
   private WebElement departmentLabel;
-
 
   @FindBy(id = "con8_ileinner")
   private WebElement reportToLabel;
@@ -43,6 +43,9 @@ public class ContactContentPageClassic extends ContactContentPage {
   @FindBy(name = "edit")
   private WebElement editBtn;
 
+  @FindBy(name = "del")
+  private WebElement deleteBtn;
+
   @Override
   public void waitUntilPageObjectIsLoaded() {
 
@@ -54,9 +57,9 @@ public class ContactContentPageClassic extends ContactContentPage {
   }
 
   /**
-   * Opens the Form page for editing.
+   * Opens the Edit Form page for editing.
    *
-   * @return FormBase.
+   * @return Edit FormBase.
    */
   @Override
   public ContactEditionForm clickEditButton() {
@@ -70,13 +73,32 @@ public class ContactContentPageClassic extends ContactContentPage {
   }
 
   /**
-   * Deletes the current Item.
-   *
-   * @return HomeBase.
+   * Click the delete button of the current Item.
    */
   @Override
-  public ContactHomePage deleteItem() {
-    return null;
+  public void clickDeleteButton() {
+    driverTools.clickElement(deleteBtn);
+  }
+
+  /**
+   * Click the Confirm Delete Button from the current Item.
+   */
+  @Override
+  public void clickConfirmDeleteButton() {
+    Alert alert = driver.switchTo().alert();
+    alert.accept();
+  }
+
+  /**
+   * Deletes the current Contact.
+   *
+   * @return ContactHomePage.
+   */
+  @Override
+  public ContactHomePage deleteContact() {
+    clickDeleteButton();
+    clickConfirmDeleteButton();
+    return new ContactHomePageClassic();
   }
 
   /**

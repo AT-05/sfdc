@@ -28,7 +28,7 @@ public class ContactsSteps {
   private ContactEditionForm contactEditionForm;
 
   //Entities
-  private Contact contact, editContact;
+  private Contact contact;
 
   public ContactsSteps() throws Exception {
     homePage = PageFactory.getHomePage();
@@ -51,37 +51,23 @@ public class ContactsSteps {
   public void iCreateAContactWithTheFollowingInformation(List<Contact> contacts) {
     //get data from feature file and set in Contact object
     this.contact = contacts.get(0);
-    //this.contact = contact;
     contactContentPage = contactEditionForm.createContact(this.contact);
   }
 
   @Then("^the Contact should be displayed in Contact content page$")
   public void theContactShouldBeDisplayedInContactContentPage() {
     contactContentPage.clickOnDetails();
-
-//    System.out.println(contactContentPage.getNameLabel());
-//    System.out.println(this.contact.name);
-//    System.out.println(contactContentPage.getLastNameLabel());
-//    System.out.println(this.contact.lastName);
-//    System.out.println(contactContentPage.getAccountNameLabel());
-//    System.out.println(this.contact.accountName);
-//    System.out.println(contactContentPage.getTitleLabel());
-//    System.out.println(this.contact.title);
-//    System.out.println(contactContentPage.getPhoneLabel());
-//    System.out.println(this.contact.phone);
-    assertTrue(contactContentPage.getNameLabel().equals(this.contact.name));
-    assertTrue(contactContentPage.getLastNameLabel().equals(this.contact.lastName));
-    assertTrue(contactContentPage.getAccountNameLabel().equals(this.contact.accountName));
-    assertTrue(contactContentPage.getTitleLabel().equals(this.contact.title));
-    assertTrue(contactContentPage.getPhoneLabel().equals(this.contact.phone));
-
+    assertTrue(contactContentPage.getNameLabel().equals(this.contact.getName()));
+    assertTrue(contactContentPage.getLastNameLabel().equals(this.contact.getLastName()));
+    assertTrue(contactContentPage.getAccountNameLabel().equals(this.contact.getAccountName()));
+    assertTrue(contactContentPage.getTitleLabel().equals(this.contact.getTitle()));
+    assertTrue(contactContentPage.getPhoneLabel().equals(this.contact.getPhone()));
   }
 
   @And("^I have a Contact with the following information:$")
   public void iHaveAContactWithTheFollowingInformation(List<Contact> contacts) {
     //get data from feature file and set in Contact object
     this.contact = contacts.get(0);
-    //this.contact = contact;
     iSelectNewContact();
     contactContentPage = contactEditionForm.createContact(contact);
   }
@@ -90,15 +76,8 @@ public class ContactsSteps {
   public void iEditThisAContactWithTheFollowingInformation(List<Contact> contacts) throws InterruptedException {
     //get data from feature file and set in Contact object
     this.contact = contacts.get(0);
-    //this.contact = contact;
     contactEditionForm = contactContentPage.clickEditButton();
     contactContentPage = contactEditionForm.editContact(this.contact);
-    //Thread.sleep(4000);
-    System.out.println("****************ini222**********************");
-    System.out.println(contactContentPage.
-      getContactNameText());
-    System.out.println(this.contact.name + " " + this.contact.lastName);
-    System.out.println("****************end222**********************");
   }
 
   @Then("^Contact was saved message should be displayed in Contact Content Page$")
@@ -127,12 +106,7 @@ public class ContactsSteps {
 
   @When("^I delete this Contact$")
   public void iDeleteThisContact() throws InterruptedException {
-
-    contactContentPage.clickDeleteButton();
-    contactContentPage.clickConfirmDeleteButton();
-
-    //Thread.sleep(4000);
-
+    contactContentPage.deleteContact();
   }
 
   @Then("^Contact was deleted message should be displayed in Contact Content Page$")

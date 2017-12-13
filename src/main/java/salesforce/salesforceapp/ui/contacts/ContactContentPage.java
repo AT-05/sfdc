@@ -50,23 +50,19 @@ public abstract class ContactContentPage extends ContentBasePage {
   /**
    * Click the delete button of the current Item.
    */
-  public void clickDeleteButton() {
-    driverTools.clickElement(deleteBtn);
-  }
+  public abstract void clickDeleteButton();
 
   /**
    * Click the Confirm Delete Button from the current Item.
    */
-  public void clickConfirmDeleteButton() {
-    driverTools.clickElement(confirmDeleteBtn);
-  }
+  public abstract void clickConfirmDeleteButton();
 
   /**
-   * Deletes the current Item.
+   * Deletes the current Contact.
    *
    * @return ContactHomePage.
    */
-  public abstract ContactHomePage deleteItem();
+  public abstract ContactHomePage deleteContact();
 
   /**
    * Wait for the success message to be visible.

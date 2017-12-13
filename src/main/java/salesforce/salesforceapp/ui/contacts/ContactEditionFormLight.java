@@ -64,18 +64,6 @@ public class ContactEditionFormLight extends ContactEditionForm {
   @CacheLookup
   private WebElement titleInput;
 
-  @FindBy(xpath = "//span[text()='Department']/parent::label/following-sibling::input")
-  @CacheLookup
-  private WebElement departmentInput;
-
-  @FindBy(xpath = "//span[text()='Birthdate']/parent::label/following-sibling::div/child::input")
-  @CacheLookup
-  private WebElement birthDateInput;
-
-  @FindBy(xpath = "//span[text()='Reports To']/parent::label/following-sibling::div/descendant::input")
-  @CacheLookup
-  private WebElement reportToInput;
-
   @FindBy(xpath = "//span[text()='Phone']/parent::label/following-sibling::input")
   @CacheLookup
   private WebElement phoneInput;
@@ -88,9 +76,6 @@ public class ContactEditionFormLight extends ContactEditionForm {
   @FindBy(xpath = "//span[text()='Fax']/parent::label/following-sibling::input")
   @CacheLookup
   private WebElement faxInput;
-  @FindBy(xpath = "//span[text()='Other Phone']/parent::label/following-sibling::input")
-  @CacheLookup
-  private WebElement otherPhoneInput;
 
   @FindBy(xpath = "//span[text()='Email']/parent::label/following-sibling::input")
   @CacheLookup
@@ -128,45 +113,43 @@ public class ContactEditionFormLight extends ContactEditionForm {
   @Override
   public ContactContentPage createContact(Contact contact) {
     //sets
-    driverTools.setInputField(contactNameInput, contact.name);
-    driverTools.setInputField(contactLastNameInput, contact.lastName);
+    driverTools.setInputField(contactNameInput, contact.getName());
+    driverTools.setInputField(contactLastNameInput, contact.getLastName());
     driverTools.clickElement(accountInput);
-    driverTools.setInputField(accountInput, contact.accountName);
-    driverTools.setInputField(titleInput, contact.title);
-    driverTools.setInputField(mailInput, contact.email);
-    driverTools.setInputField(phoneInput, contact.phone);
-    driverTools.setInputField(mailingStreetInput, contact.street);
-    driverTools.setInputField(mailingStateProvinceInput, contact.state);
-    driverTools.setInputField(mailingCityInput, contact.city);
-    driverTools.setInputField(mailingCountryInput, contact.country);
+    driverTools.setInputField(accountInput, contact.getAccountName());
+    String accountElement = String.format("//div[@role='listbox']//div[@title='%s']", contact.getAccountName());
+    WebElement accountSelected = driver.findElement(By.xpath(accountElement));
+    driverTools.clickElement(accountSelected);
+    driverTools.setInputField(titleInput, contact.getTitle());
+    driverTools.setInputField(mailInput, contact.getEmail());
+    driverTools.setInputField(phoneInput, contact.getPhone());
+    driverTools.setInputField(mailingStreetInput, contact.getStreet());
+    driverTools.setInputField(mailingStateProvinceInput, contact.getState());
+    driverTools.setInputField(mailingCityInput, contact.getCity());
+    driverTools.setInputField(mailingCountryInput, contact.getCountry());
     return clickSaveButton();
   }
 
   @Override
   public ContactContentPage editContact(Contact contact) {
     //sets
-    driverTools.setInputField(contactNameInput, contact.name);
-    driverTools.setInputField(contactLastNameInput, contact.lastName);
+    driverTools.setInputField(contactNameInput, contact.getName());
+    driverTools.setInputField(contactLastNameInput, contact.getLastName());
     WebElement removeAccount = driver.findElement(By.xpath("//span[@class='deleteIcon']"));
     driverTools.clickElement(removeAccount);
     driverTools.clickElement(accountInput);
-    driverTools.setInputField(accountInput, contact.accountName);//"//a[contains(text(),'%s')]"
-    String accountElement = String.format("//div[@role='listbox']//div[@title='%s']", contact.accountName);
+    driverTools.setInputField(accountInput, contact.getAccountName());
+    String accountElement = String.format("//div[@role='listbox']//div[@title='%s']", contact.getAccountName());
     WebElement accountSelected = driver.findElement(By.xpath(accountElement));
     driverTools.clickElement(accountSelected);
-    driverTools.setInputField(titleInput, contact.title);
-    driverTools.setInputField(mailInput, contact.email);
-    driverTools.setInputField(phoneInput, contact.phone);
-    driverTools.setInputField(mailingStreetInput, contact.street);
-    driverTools.setInputField(mailingStateProvinceInput, contact.state);
-    driverTools.setInputField(mailingCityInput, contact.city);
-    driverTools.setInputField(mailingCountryInput, contact.country);
+    driverTools.setInputField(titleInput, contact.getTitle());
+    driverTools.setInputField(mailInput, contact.getEmail());
+    driverTools.setInputField(phoneInput, contact.getPhone());
+    driverTools.setInputField(mailingStreetInput, contact.getStreet());
+    driverTools.setInputField(mailingStateProvinceInput, contact.getState());
+    driverTools.setInputField(mailingCityInput, contact.getCity());
+    driverTools.setInputField(mailingCountryInput, contact.getCountry());
     return clickSaveButton();
-  }
-
-  @Override
-  public ContactHomePage deleteContact(Contact contact) {
-    return new ContactHomePageLight();
   }
 
   /**

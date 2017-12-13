@@ -18,45 +18,14 @@ public class ContactEditionFormClassic extends ContactEditionForm {
   @FindBy(name = "cancel")
   protected WebElement cancelBtn;
 
-  @FindBy(xpath = "//button[contains(@class, 'slds-button slds-modal__close closeIcon ')]")
-  protected WebElement closeBtn;
-
   @FindBy(id = "name_firstcon2")
   private WebElement contactNameInput;
 
   @FindBy(id = "name_lastcon2")
   private WebElement contactLastNameInput;
 
-  @FindBy(xpath = "//span[text()='Account Name']/parent::label/following-sibling::div")
-  private WebElement contactAccountNameInput;
-
-  @FindBy(xpath = "//span[text()='Title']/parent::label/following-sibling::div")
-  private WebElement contactTitleInput;
-
-  @FindBy(xpath = "//span[text()='Email']/parent::label/following-sibling::div")
-  private WebElement contactEmailInput;
-
-  @FindBy(xpath = "//span[text()='Phone']/parent::label/following-sibling::div")
-  private WebElement contactPhoneInput;
-
-  @FindBy(xpath = "//span[text()='Street']/parent::label/following-sibling::div")
-  private WebElement contactStreetInput;
-
-  @FindBy(xpath = "//span[text()='City']/parent::label/following-sibling::div")
-  private WebElement contactCityInput;
-
-  @FindBy(xpath = "//span[text()='State']/parent::label/following-sibling::div")
-  private WebElement contactStateInput;
-
-  @FindBy(xpath = "//span[text()='Country']/parent::label/following-sibling::div")
-  private WebElement contactCountryInput;
-
-  @FindBy(css = ".lookup__list .lookup__item.default.uiAutocompleteOption.forceSearchInputLookupDesktopOption > a")
-  private WebElement selectContactAccountNameInput;
-
   @FindBy(id = "con4")
   private WebElement accountInput;
-
 
   @FindBy(id = "con5")
   @CacheLookup
@@ -66,10 +35,6 @@ public class ContactEditionFormClassic extends ContactEditionForm {
   @CacheLookup
   private WebElement departmentInput;
 
-  @FindBy(xpath = "//span[text()='Birthdate']/parent::label/following-sibling::div/child::input")
-  @CacheLookup
-  private WebElement birthDateInput;
-
   @FindBy(id = "con8")
   @CacheLookup
   private WebElement reportToInput;
@@ -77,28 +42,22 @@ public class ContactEditionFormClassic extends ContactEditionForm {
   @FindBy(id = "con10")
   @CacheLookup
   private WebElement phoneInput;
-  @FindBy(xpath = "//span[text()='Home Phone']/parent::label/following-sibling::input")
-  @CacheLookup
-  private WebElement homePhoneInput;
+
   @FindBy(id = "con12")
   @CacheLookup
   private WebElement mobilePhoneInput;
+
   @FindBy(id = "con11")
   @CacheLookup
   private WebElement faxInput;
-  @FindBy(xpath = "//span[text()='Other Phone']/parent::label/following-sibling::input")
-  @CacheLookup
-  private WebElement otherPhoneInput;
 
   @FindBy(id = "con15")
   @CacheLookup
   private WebElement mailInput;
 
-
   @FindBy(id = "con19street")
   @CacheLookup
   private WebElement mailingStreetInput;
-
 
   @FindBy(id = "con19city")
   @CacheLookup
@@ -107,7 +66,6 @@ public class ContactEditionFormClassic extends ContactEditionForm {
   @FindBy(id = "con19state")
   @CacheLookup
   private WebElement mailingStateProvinceInput;
-
 
   @FindBy(id = "con19zip")
   @CacheLookup
@@ -125,16 +83,16 @@ public class ContactEditionFormClassic extends ContactEditionForm {
   @Override
   public ContactContentPage createContact(Contact contact) {
     //sets
-    driverTools.setInputField(contactNameInput, contact.name);
-    driverTools.setInputField(contactLastNameInput, contact.lastName);
-    driverTools.setInputField(accountInput, contact.accountName);
-    driverTools.setInputField(titleInput, contact.title);
-    driverTools.setInputField(mailInput, contact.email);
-    driverTools.setInputField(phoneInput, contact.phone);
-    driverTools.setInputField(mailingStreetInput, contact.street);
-    driverTools.setInputField(mailingStateProvinceInput, contact.state);
-    driverTools.setInputField(mailingCityInput, contact.city);
-    driverTools.setInputField(mailingCountryInput, contact.country);
+    driverTools.setInputField(contactNameInput, contact.getName());
+    driverTools.setInputField(contactLastNameInput, contact.getLastName());
+    driverTools.setInputField(accountInput, contact.getAccountName());
+    driverTools.setInputField(titleInput, contact.getTitle());
+    driverTools.setInputField(mailInput, contact.getEmail());
+    driverTools.setInputField(phoneInput, contact.getPhone());
+    driverTools.setInputField(mailingStreetInput, contact.getStreet());
+    driverTools.setInputField(mailingStateProvinceInput, contact.getState());
+    driverTools.setInputField(mailingCityInput, contact.getCity());
+    driverTools.setInputField(mailingCountryInput, contact.getCountry());
     return clickSaveButton();
   }
 
@@ -151,8 +109,4 @@ public class ContactEditionFormClassic extends ContactEditionForm {
     return createContact(contact);
   }
 
-  @Override
-  public ContactHomePage deleteContact(Contact contact) {
-    return null;
-  }
 }
