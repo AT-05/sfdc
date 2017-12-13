@@ -1,7 +1,7 @@
 package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.WebElement;
-import salesforce.salesforceapp.entities.Product;
+import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 

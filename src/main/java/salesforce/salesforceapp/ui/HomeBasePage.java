@@ -6,16 +6,16 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 
 public abstract class HomeBasePage extends BasePage {
 
     public TopMenu topMenu;
 
-    @FindBy(id = "new")
-    @CacheLookup
-    public WebElement newBtn;
-
+  @FindBy(xpath = ".//*[@title='New']")
+  @CacheLookup
+  protected WebElement newBtn;
 
     public HomeBasePage() {
         this.topMenu = PageFactory.getTopMenu();
@@ -49,20 +49,7 @@ public abstract class HomeBasePage extends BasePage {
         driverTools.clickElement(newBtn);
     }
 
-    /**
-     * Abstract new Product.
-     *
-     * @return product Edition.
-     */
-    public abstract ProductEditionForm newProduct();
 
-    /**
-     * Check if there is a Product in product list.
-     *
-     * @param name string.
-     * @return boolean.
-     */
-    public abstract boolean thereIsProduct(String name);
 
 
 }

@@ -1,4 +1,4 @@
-package salesforce.salesforceapp.entities;
+package salesforce.salesforceapp.entities.product;
 
 public class Product {
 

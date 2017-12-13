@@ -14,18 +14,14 @@ public final class DriverFactory {
   }
 
   /**
-   * This method return the instance of the web driver that is using.
+   * <p>This method return the instance of the web driver that is using.</p>
    *
-   * @param webDriverConfig config params.
    * @return WebDriver.
    */
-  public static WebDriver getDriver(final WebDriverConfig webDriverConfig) {
+  public static WebDriver getDriver() {
     Map<String, IWebDriver> strategyBrowser = new HashMap<>();
     strategyBrowser.put(FIREFOX, new FirefoxWebDriver());
     strategyBrowser.put(CHROME, new ChromeWebDriver());
-
-    System.out.println(webDriverConfig.getBrowser());
-
-    return strategyBrowser.get(webDriverConfig.getBrowser().toLowerCase()).initDriver();
+    return strategyBrowser.get(WebDriverConfig.getInstance().getBrowser().toLowerCase()).initDriver();
   }
 }

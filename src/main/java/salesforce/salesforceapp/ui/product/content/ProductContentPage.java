@@ -3,7 +3,7 @@ package salesforce.salesforceapp.ui.product.content;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import salesforce.salesforceapp.entities.Product;
+import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;

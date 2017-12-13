@@ -2,8 +2,7 @@ package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.entities.Product;
-import salesforce.salesforceapp.ui.product.content.ProductContentPage;
+import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageLightning;
 
 /**

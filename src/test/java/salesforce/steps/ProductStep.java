@@ -6,7 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
-import salesforce.salesforceapp.entities.Product;
+import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.home.HomePage;
@@ -41,12 +41,20 @@ public class ProductStep {
 
     @Given("^I'm logged in Sales Force$")
     public void iMLoggedInSalesForce() {
-        if (!pageTransporter.isOnLogin()) {
+      /*  if (!pageTransporter.isOnLogin()) {
             loginPage = pageTransporter.navigateToLoginPage();
             homePage = loginPage.login(email, pass);
             return;
         }
-        homeProductPage = homePage.topMenu.goToHomeProduct();
+*/
+      //  homeProductPage = homePage.topMenu.goToHomeProduct();
+
+        if (pageTransporter.isOnLogin()) { //If the user is not logged
+            loginPage = new LoginPage();
+            final String userName = SalesForceAppEnvsConfig.getInstance().getUserName();
+            final String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
+            homePage = loginPage.login(userName, password);
+        }
     }
 
     @And("^I go to Product Home page$")
@@ -59,11 +67,13 @@ public class ProductStep {
         productEditionForm = homeProductPage.newProduct();
         product = products.get(0);
         productContentPage = productEditionForm.createProduct(product);
+        System.out.println("Product creado correctamente ************");
     }
 
 
     @Then("^Product Details Page should be display with the information of the product created$")
     public void productDetailsPageShouldBeDisplayWithTheInformationOfTheProductCreated() {
+        System.out.println("de ida a verificar ************");
         assertTrue(productContentPage.validateProductFields(product));
 
     }

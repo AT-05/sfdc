@@ -3,9 +3,8 @@ package salesforce.salesforceapp.ui.product.content;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import salesforce.salesforceapp.entities.Product;
+import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
 import salesforce.salesforceapp.ui.product.home.HomeProductPage;
@@ -71,11 +70,9 @@ public class ProductContentPageLightning extends ProductContentPage {
      */
     @Override
     public boolean validateProductFields(Product product) {
+        System.out.println("veriicando ************");
         boolean active = elementCheckBox.getAttribute("Alt").equalsIgnoreCase("True") ? true : false;
-        System.out.println("-********* active" + active);
-        System.out.println("-********* carajoooooooo");
         productNameLabel = driver.findElements(getItemLinkBy(product.getName())).get(0);
-        System.out.println("-********* carajoooooooo");
         productCodeLabel = driver.findElements(getItemLinkBy(product.getCode())).get(0);
         productDescriptionLabel = driver.findElements(getItemLinkBy(product.getDescription())).get(0);
         return productNameLabel.getText().equalsIgnoreCase(product.getName()) == true
@@ -117,12 +114,7 @@ public class ProductContentPageLightning extends ProductContentPage {
      */
     @Override
     public HomeProductPageLightning goToHomProductPage() {
-//        wait=new WebDriverWait(driver,10);
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-
-        }
+        wait=new WebDriverWait(driver,30);
         waitUntilPageObjectIsLoaded();
         launcherBtn.click();
         waitUntilPageObjectIsLoaded();

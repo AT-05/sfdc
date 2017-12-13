@@ -2,7 +2,7 @@ package salesforce.salesforceapp.ui.product.content;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.entities.Product;
+import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
 import salesforce.salesforceapp.ui.product.home.HomeProductPage;

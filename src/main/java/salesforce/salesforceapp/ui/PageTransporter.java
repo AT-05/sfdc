@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import salesforce.core.selenium.WebDriverManager;
 import salesforce.salesforceapp.SalesforceEnums.Skin;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
-import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.components.*;
 
 public class PageTransporter {
 
@@ -50,30 +50,32 @@ public class PageTransporter {
   }
 
   public Boolean isOnLogin() {
-    return (webDriver.getCurrentUrl().contains("Login"));
+    return (webDriver.getCurrentUrl().contains("login"));
   }
 
   public LoginPage navigateToLoginPage() {
-    System.out.println("URL " + baseURL);
     goToURL(baseURL);
     return new LoginPage();
   }
 
+  /**
+   * <p>This method gets current web page skin.</p>
+   *
+   * @return the current sking based on current url.
+   */
   public Skin getCurrentSkin() {
-    System.out.println("*********** contains: " + Skin.LIGHT.getSkinName());
     if (getCurrentURL().contains(Skin.LIGHT.getSkinName())) {
-      System.out.println("*********** current url: " + getCurrentURL());
       return Skin.LIGHT;
     }
     return Skin.CLASSIC;
   }
 
+  /**
+   * <p>This method performs switching of web page skin.</p>
+   */
   public void switchSkin() {
-    TopMenu topMenu = PageFactory.getTopMenu();
-    System.out.println("*********** get current skin: " + getCurrentSkin());
-    topMenu.waitUntilPageObjectIsLoaded();
     if (!getCurrentSkin().equals(SalesForceAppEnvsConfig.getInstance().getSkin())) {
-      System.out.println("************** switching skin to: " + SalesForceAppEnvsConfig.getInstance().getSkin());
+    TopMenu topMenu = PageFactory.getTopMenu(getCurrentSkin());
       topMenu.switchSkin();
     }
   }

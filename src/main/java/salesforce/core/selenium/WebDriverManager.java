@@ -20,8 +20,6 @@ public class WebDriverManager {
 
 
   protected WebDriverManager() {
-    initialize(webDriverConfig);
-    log.info("WebDriverManager constructor");
   }
 
   public static WebDriverManager getInstance() {
@@ -31,15 +29,13 @@ public class WebDriverManager {
     return instance;
   }
 
-  public void initialize(final WebDriverConfig webDriverConfig) {
-    log.info("Initializing web driver");
-    this.webDriver = DriverFactory.getDriver(webDriverConfig);
-
+  public void initialize() {
+    log.info("WebDriverManager initialize: Initializing the web driver");
+    this.webDriver = DriverFactory.getDriver();
     this.webDriver.manage().window().maximize();
-    this.webDriver.manage().timeouts()
-        .implicitlyWait(webDriverConfig.getImplicitWaitTime(), TimeUnit.SECONDS);
-    webDriverWait = new WebDriverWait(webDriver, webDriverConfig.getExplicitWaitTime(),
-        webDriverConfig.getWaitSleepTime());
+    this.webDriver.manage().timeouts().implicitlyWait(webDriverConfig.getImplicitWaitTime(), TimeUnit.SECONDS);
+    webDriverWait = new WebDriverWait(webDriver, webDriverConfig.getExplicitWaitTime(), webDriverConfig.getWaitSleepTime());
+
   }
 
   /**
