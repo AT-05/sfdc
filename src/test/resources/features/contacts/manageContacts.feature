@@ -1,4 +1,4 @@
-@Contacts @Functional @New
+@Contacts @Functional @NewContact
 Feature: Manage Contacts
 
   Background:

@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;
 import salesforce.salesforceapp.ui.ProfilePageLight;
+import salesforce.salesforceapp.ui.contacts.ContactHomePage;
+import salesforce.salesforceapp.ui.contacts.ContactHomePageLight;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageLight;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;

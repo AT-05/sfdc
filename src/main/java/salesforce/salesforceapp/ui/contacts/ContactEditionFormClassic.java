@@ -3,7 +3,7 @@ package salesforce.salesforceapp.ui.contacts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.entities.Contact;
+import salesforce.salesforceapp.entities.contact.Contact;
 
 /**
  * Created by Administrator on 12/5/2017.

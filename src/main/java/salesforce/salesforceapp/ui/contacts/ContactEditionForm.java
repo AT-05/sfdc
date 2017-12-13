@@ -1,6 +1,6 @@
 package salesforce.salesforceapp.ui.contacts;
 
-import salesforce.salesforceapp.entities.Contact;
+import salesforce.salesforceapp.entities.contact.Contact;
 import salesforce.salesforceapp.ui.BasePage;
 
 /**

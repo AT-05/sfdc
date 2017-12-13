@@ -1,4 +1,4 @@
-package salesforce.salesforceapp.entities;
+package salesforce.salesforceapp.entities.contact;
 
 /**
  * Created by Administrator on 12/5/2017.

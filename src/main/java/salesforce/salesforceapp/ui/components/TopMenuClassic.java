@@ -7,11 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;
 import salesforce.salesforceapp.ui.ProfilePageClassic;
+import salesforce.salesforceapp.ui.contacts.ContactHomePage;
+import salesforce.salesforceapp.ui.contacts.ContactHomePageClassic;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
-import salesforce.salesforceapp.ui.product.home.HomeProductPage;
 import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
 import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
 import salesforce.salesforceapp.ui.quotes.QuotesHomePageClassic;
@@ -20,39 +21,31 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePageClassic;
  * Created by AT05 team on 12/11/2017.
  */
 public class TopMenuClassic extends TopMenu {
+  @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
+  WebElement productTab;
   @FindBy(id = "userNavLabel")
   private WebElement userProfileLink;
-
   @FindBy(xpath = "//*[@id='userNav-menuItems']/a[4]")
   @CacheLookup
   private WebElement switchSkinLink;
   @FindBy(css = "a[title*='Contact']")
   private WebElement contactBtn;
-
   @FindBy(xpath = "//a[@title='My Profile']")
   @CacheLookup
   private WebElement userProfileNameLink;
-
   @FindBy(id = "Opportunity_Tab")
   @CacheLookup
   private WebElement opportunitiesBtn;
-
   @FindBy(id = "Quote_Tab")
   @CacheLookup
   private WebElement quotesLink;
-
   @FindBy(xpath = "//a[@title='Logout']")
   @CacheLookup
   private WebElement logoutLink;
 
-  @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
-  WebElement productTab;
-
-
   public void waitUntilPageObjectIsLoaded() {
     wait.until(ExpectedConditions.urlContains("home"));
   }
-
 
 
   /**
@@ -121,7 +114,13 @@ public class TopMenuClassic extends TopMenu {
     productTab.click();
     return new HomeProductPageClassic();
   }
-   @Override
+
+  /**
+   * This method go to Home Contact.
+   *
+   * @return ContactHomePage object type.
+   */
+  @Override
   public ContactHomePage goToContactHomePage() {
     driverTools.clickElement(contactBtn);
     return new ContactHomePageClassic();

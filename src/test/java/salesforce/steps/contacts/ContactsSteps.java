@@ -4,7 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
-import salesforce.salesforceapp.entities.Contact;
+import salesforce.salesforceapp.entities.contact.Contact;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.contacts.ContactContentPage;
 import salesforce.salesforceapp.ui.contacts.ContactEditionForm;

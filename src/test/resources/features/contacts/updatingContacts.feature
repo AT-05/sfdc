@@ -9,7 +9,7 @@ Feature: Updating Contacts
       | name | lastName | accountName   | title | email         | phone   | street              | city    | state   | country |
       | test | tester   | Acme (Sample) | Buyer | test@mail.com | 5551212 | 100 Chestnut Street | Toronto | Ontario | Canada  |
 
-  @edit
+  @editContact
   Scenario: Verify that is possible to edit a Contact
     When I edit this Contact with the following information:
       | name   | lastName | accountName           | title    | email         | phone   | street              | city    | state   | country |
@@ -17,7 +17,7 @@ Feature: Updating Contacts
     Then Contact was saved message should be displayed in Contact Content Page
       And the Contact should be displayed in Contact content page
 
-  @delete
+  @deleteContact
   Scenario: Verify that is possible to delete a Contact
     When I delete this Contact
  #Then Contact was deleted message should be not displayed in Contact Content Page
