@@ -1,6 +1,5 @@
 package salesforce.steps.opportunities;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -34,8 +33,9 @@ public class ManageSteps {
   //Entities
   private Oppy oppy;
 
-  public ManageSteps() {
+  public ManageSteps(OppyContentPage oppyContentPage) {
     pageTransporter = PageTransporter.getInstance();
+    this.oppyContentPage = oppyContentPage;
   }
 
   //****************************************************************

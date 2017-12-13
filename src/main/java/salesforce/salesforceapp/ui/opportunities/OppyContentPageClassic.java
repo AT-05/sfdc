@@ -88,4 +88,14 @@ public class OppyContentPageClassic extends OppyContentPage {
   public OppyQuotesView goToQuotesView() {
     return new OppyQuotesViewClassic();
   }
+
+  /**
+   * This method change the stage of an Opportunity
+   *
+   * @param stageName as a string.
+   */
+  @Override
+  public OppyContentPage changeStage(String stageName) {
+    return null;
+  }
 }
