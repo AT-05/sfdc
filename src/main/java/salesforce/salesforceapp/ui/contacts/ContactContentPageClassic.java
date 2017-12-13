@@ -1,9 +1,48 @@
 package salesforce.salesforceapp.ui.contacts;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 /**
  * Created by Administrator on 12/5/2017.
  */
 public class ContactContentPageClassic extends ContactContentPage {
+  @FindBy(id = "con2_ileinner")
+  private WebElement nameLabel;
+
+  @FindBy(id = "con10_ileinner")
+  private WebElement phoneLabel;
+
+  @FindBy(id = "con4_ileinner")//lookup0011I00000AqF7Jcon4
+  private WebElement accountNameLabel;
+
+  @FindBy(id = "con5_ileinner")
+  private WebElement titleLabel;
+
+  @FindBy(id = "con6_ileinner")
+  private WebElement departmentLabel;
+
+
+  @FindBy(id = "con8_ileinner")
+  private WebElement reportToLabel;
+
+  @FindBy(id = "con19_ilecell")
+  private WebElement mailingAddressLabel;
+
+  @FindBy(id = "con10_ileinner")
+  private WebElement homePhoneLabel;
+
+  @FindBy(id = "con12_ileinner")
+  private WebElement mobileLabel;
+
+  @FindBy(id = "con11_ileinner")
+  private WebElement faxLabel;
+
+  @FindBy(xpath = "con15_ileinner")
+  private WebElement emailLabel;
+  @FindBy(name = "edit")
+  private WebElement editBtn;
+
   @Override
   public void waitUntilPageObjectIsLoaded() {
 
@@ -21,7 +60,8 @@ public class ContactContentPageClassic extends ContactContentPage {
    */
   @Override
   public ContactEditionForm clickEditButton() {
-    return null;
+    driverTools.clickElement(editBtn);
+    return new ContactEditionFormClassic();
   }
 
   @Override
@@ -44,24 +84,24 @@ public class ContactContentPageClassic extends ContactContentPage {
    *
    * @return a name label.
    */
-  @Override
   public String[] getCompleteName() {
-    return new String[0];
+    return nameLabel.getText().split(" ");
   }
+
 
   /**
    * This method gets name label.
    *
    * @return a name label.
    */
-  @Override
   public String getTitleLabel() {
-    return null;
+    return titleLabel.getText();
   }
 
-  @Override
+
   public String getMailingAdressLabel() {
-    return null;
+    return mailingAddressLabel.getText();//.split(",")[0];
+
   }
 
   /**
@@ -69,9 +109,8 @@ public class ContactContentPageClassic extends ContactContentPage {
    *
    * @return a mail street label.
    */
-  @Override
   public String getMailLabel() {
-    return null;
+    return emailLabel.getText();
   }
 
   /**
@@ -79,9 +118,8 @@ public class ContactContentPageClassic extends ContactContentPage {
    *
    * @return label text.
    */
-  @Override
   public String getMailingState() {
-    return null;
+    return mailingAddressLabel.getText().split(",")[2].split(" ")[1];
   }
 
   /**
@@ -89,49 +127,8 @@ public class ContactContentPageClassic extends ContactContentPage {
    *
    * @return label text.
    */
-  @Override
-  public String getLastNameLabel() {
-    return null;
-  }
-
-  /**
-   * Click.
-   *
-   * @return label text.
-   */
-  @Override
-  public String getMailingZip() {
-    return null;
-  }
-
-  /**
-   * Click.
-   *
-   * @return label text.
-   */
-  @Override
-  public String getMailingCountry() {
-    return null;
-  }
-
-  /**
-   * Click.
-   *
-   * @return label text.
-   */
-  @Override
-  public String getMailingCity() {
-    return null;
-  }
-
-  /**
-   * Click.
-   *
-   * @return label text.
-   */
-  @Override
   public String getNameLabel() {
-    return null;
+    return getCompleteName()[0];
   }
 
   /**
@@ -139,9 +136,46 @@ public class ContactContentPageClassic extends ContactContentPage {
    *
    * @return label text.
    */
-  @Override
+  public String getLastNameLabel() {
+    return getCompleteName()[1];
+
+  }
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public String getMailingZip() {
+    return mailingAddressLabel.getText().split(",")[2].split(" ")[2];
+  }
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public String getMailingCountry() {
+    return mailingAddressLabel.getText().split(",")[2].split(" ")[3];
+  }
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
+  public String getMailingCity() {
+    return mailingAddressLabel.getText().split(",")[1].trim();
+  }
+
+
+  /**
+   * Click.
+   *
+   * @return label text.
+   */
   public String getPhoneLabel() {
-    return null;
+    return phoneLabel.getText();
   }
 
   /**
@@ -149,8 +183,7 @@ public class ContactContentPageClassic extends ContactContentPage {
    *
    * @return label text.
    */
-  @Override
   public String getAccountNameLabel() {
-    return null;
+    return accountNameLabel.getText();
   }
 }

@@ -12,19 +12,19 @@ import salesforce.salesforceapp.ui.ContentBasePage;
  */
 public abstract class ContactContentPage extends ContentBasePage {
   @FindBy(css = "a[title='Edit']")
-  protected WebElement editButton;
+  protected WebElement editBtn;
 
   @FindBy(css = "div[title='Delete']")
-  protected WebElement deleteButton;
+  protected WebElement deleteBtn;
 
   @FindBy(css = "button[title='Delete']")
-  protected WebElement confirmDeleteButton;
+  protected WebElement confirmDeleteBtn;
 
   @FindBy(xpath = "//span[contains(@class, 'toastMessage')]")
   protected WebElement successMessage;
   @FindBy(css = "[title='Details']")
   @CacheLookup
-  protected WebElement detailsLinkButton;
+  protected WebElement detailsLinkBtn;
 
   public abstract String getContactNameText();
 
@@ -51,14 +51,14 @@ public abstract class ContactContentPage extends ContentBasePage {
    * Click the delete button of the current Item.
    */
   public void clickDeleteButton() {
-    driverTools.clickElement(deleteButton);
+    driverTools.clickElement(deleteBtn);
   }
 
   /**
    * Click the Confirm Delete Button from the current Item.
    */
   public void clickConfirmDeleteButton() {
-    driverTools.clickElement(confirmDeleteButton);
+    driverTools.clickElement(confirmDeleteBtn);
   }
 
   /**

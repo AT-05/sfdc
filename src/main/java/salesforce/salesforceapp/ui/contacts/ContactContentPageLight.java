@@ -10,13 +10,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * Created by Administrator on 12/5/2017.
  */
 public class ContactContentPageLight extends ContactContentPage {
-//  @FindBy(xpath = "//span[contains(@data-aura-rendered-by,'1112:0')]")
+  //  @FindBy(xpath = "//span[contains(@data-aura-rendered-by,'1112:0')]")
 //  private WebElement name;
 //  @FindBy(xpath = "//span[text()='Product Code']/parent::div/following-sibling::div")
 //  private WebElement lastName;
 //  @FindBy(xpath = "//span[text()='Product Code']/parent::div/following-sibling::div")
 //  private WebElement accountName;
-    @FindBy(xpath = "//h1[contains(@class, 'slds-page-header__title slds-m-right--small slds-truncate slds-align-middle')]")
+  @FindBy(xpath = "//h1[contains(@class, 'slds-page-header__title slds-m-right--small slds-truncate slds-align-middle')]")
   private WebElement contactFullName;
 
 
@@ -83,14 +83,14 @@ public class ContactContentPageLight extends ContactContentPage {
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
-   wait.until(ExpectedConditions.visibilityOf(contactFullName));
+    wait.until(ExpectedConditions.visibilityOf(contactFullName));
   }
 
   public String getContactNameText() {
     //waitContacttNameIs("Contact");
     //wait.until(ExpectedConditions.elementToBeClickable(contactFullName));
     //wait.until(ExpectedConditions.elementToBeSelected(contactFullName));
-    String nameText=driverTools.getTextElement(contactFullName);
+    String nameText = driverTools.getTextElement(contactFullName);
     System.out.println("+++++++++++++ini +++++++++++++");
     System.out.println(contactFullName.getTagName());
     System.out.println(contactFullName.getText());
@@ -109,7 +109,7 @@ public class ContactContentPageLight extends ContactContentPage {
    */
   @Override
   public ContactEditionForm clickEditButton() {
-    driverTools.clickElement(editButton);
+    driverTools.clickElement(editBtn);
     return new ContactEditionFormLight();
   }
 
@@ -120,7 +120,8 @@ public class ContactContentPageLight extends ContactContentPage {
    */
   @Override
   public ContactHomePage deleteItem() {
-    return null;
+
+    return new ContactHomePageLight();
   }
 
 
@@ -131,8 +132,6 @@ public class ContactContentPageLight extends ContactContentPage {
 //  public String getContactAccountNameText() {
 //    return driverTools.getTextElement(accountName);
 //  }
-
-
 
 
   public boolean isContactDisplayed(final String contact) {
@@ -149,7 +148,8 @@ public class ContactContentPageLight extends ContactContentPage {
   /**
    * Click.
    */
-  public void clickOnDetails() {driverTools.clickElement(detailsLinkButton);
+  public void clickOnDetails() {
+    driverTools.clickElement(detailsLinkBtn);
   }
 
   /**
@@ -166,6 +166,7 @@ public class ContactContentPageLight extends ContactContentPage {
       return false;
     }
   }
+
   /**
    * This method gets name label.
    *
@@ -184,7 +185,6 @@ public class ContactContentPageLight extends ContactContentPage {
   public String getTitleLabel() {
     return titleLabel.getText();
   }
-
 
 
   public String getMailingAdressLabel() {
@@ -272,7 +272,6 @@ public class ContactContentPageLight extends ContactContentPage {
   public String getAccountNameLabel() {
     return accountNameLabel.getText();
   }
-
 
 
 }

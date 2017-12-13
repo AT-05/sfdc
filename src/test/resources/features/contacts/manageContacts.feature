@@ -10,7 +10,8 @@ Feature: Manage Contacts
 		And I create a Contact with the following information:
 			| name   | lastName| accountName  | title|email		   |phone |street             |city   |state  |country|
 			| tester | test    | Acme (Sample)| Buyer|test@mail.com|555121|150 Chestnut Street|Toronto|Ontario|Canada |
-	Then the Contact should be displayed in Contact content page
+  Then Contact was created message should be displayed in Contact Content Page
+	  And the Contact should be displayed in Contact content page
 
 
 	
