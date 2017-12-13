@@ -4,7 +4,6 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;
 import salesforce.salesforceapp.ui.ProfilePageLight;
@@ -19,23 +18,17 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePageLight;
  * Created by AT05 team on 12/11/2017.
  */
 public class TopMenuLight extends TopMenu {
-  //Selectors for switching skin
-  @FindBy(id = "userNavLabel")
+  @FindBy(css = ".oneUserProfileCardTrigger")
   @CacheLookup
-  private WebElement userProfileClassic;
+  private WebElement userProfileLink;
 
-  @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
+  @FindBy(xpath = "//a[contains(@href, 'classic')]")
   @CacheLookup
   private WebElement switchSkinLink;
 
-  //Selectors of skin light
-  @FindBy(css = ".oneUserProfileCardTrigger")
-  @CacheLookup
-  private WebElement userProfileLight;
-
   @FindBy(xpath = "//h1[@class='profile-card-name']/a")
   @CacheLookup
-  private WebElement userProfileNameLight;
+  private WebElement userProfileNameLink;
 
   @FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Opportunity')]")
   @CacheLookup
@@ -43,7 +36,7 @@ public class TopMenuLight extends TopMenu {
 
   @FindBy(xpath = "//div[contains(@class, 'slds-icon-waffle')]")
   @CacheLookup
-  private WebElement appLauncher;
+  private WebElement appLauncherLink;
 
   @FindBy(xpath = "//span[contains(@class, 'label-ctr')]")
   @CacheLookup
@@ -53,10 +46,6 @@ public class TopMenuLight extends TopMenu {
   @CacheLookup
   private WebElement logoutLink;
 
-  @Override
-  public void waitUntilPageObjectIsLoaded() {
-    wait.until(ExpectedConditions.urlContains("home"));
-  }
 
   /**
    * <p>This method performs switching of web page skin
@@ -64,7 +53,7 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public void switchSkin() {
-    driverTools.clickElement(userProfileClassic);
+    driverTools.clickElement(userProfileLink);
     driverTools.clickElement(switchSkinLink);
   }
 
@@ -75,7 +64,7 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public LoginPage logout() {
-    driverTools.clickElement(userProfileLight);
+    driverTools.clickElement(userProfileLink);
     driverTools.clickElement(logoutLink);
     return new LoginPage();
   }
@@ -87,7 +76,7 @@ public class TopMenuLight extends TopMenu {
 
   @Override
   public OppyHomePage goToOppyHomePage() {
-    opportunitiesBtn.click();
+    driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageLight();
   }
 
@@ -98,7 +87,7 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public QuotesHomePage goToQuotesHomePage() {
-    driverTools.clickElement(appLauncher);
+    driverTools.clickElement(appLauncherLink);
     driverTools.selectElementInList(featuresList, "Quotes");
     return new QuotesHomePageLight();
   }
@@ -110,8 +99,8 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public ProfilePage goToProfilePage() {
-    driverTools.clickElement(userProfileLight);
-    driverTools.clickElement(userProfileNameLight);
+    driverTools.clickElement(userProfileLink);
+    driverTools.clickElement(userProfileNameLink);
     return new ProfilePageLight();
   }
 }

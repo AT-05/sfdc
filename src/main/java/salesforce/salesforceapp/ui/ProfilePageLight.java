@@ -10,13 +10,13 @@ import org.openqa.selenium.support.FindBy;
 public class ProfilePageLight extends ProfilePage {
   @FindBy(xpath = "//span[@class='uiOutputEmail']")
   @CacheLookup
-  private WebElement userEmailLight;
+  private WebElement userEmailLabel;
 
   /**
    * <p>This constructor initializes web elements.</p>
    */
   public ProfilePageLight(){
-    super.userEmail = userEmailLight;
+    super.userEmailLabel = userEmailLabel;
   }
 
   @Override

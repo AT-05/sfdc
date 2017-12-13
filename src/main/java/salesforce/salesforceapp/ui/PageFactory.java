@@ -46,6 +46,15 @@ public class PageFactory {
     }
   }
 
+  public static TopMenu getTopMenu(Skin skin) {
+    switch (skin) {
+      case CLASSIC:
+        return new TopMenuClassic();
+      default:
+        return new TopMenuLight();
+    }
+  }
+
   public static OppyContentPage getOppyContentPage() {
     switch (skin) {
       case CLASSIC:
@@ -88,9 +97,9 @@ public class PageFactory {
   public static QuoteEditionForm getQuoteEditionForm() {
     switch (skin) {
       case CLASSIC:
-        return new QuotesEditionFormClassic();
+        return new QuoteEditionFormClassic();
       default:
-        return new QuotesEditionFormLight();
+        return new QuoteEditionFormLight();
     }
   }
 }

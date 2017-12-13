@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public final class WebDriverTools {
+public class WebDriverTools {
 
   private WebDriver driver;
   private WebDriverWait wait;
@@ -57,9 +57,9 @@ public final class WebDriverTools {
    * @param by By to wait and click
    */
   public void clickElement(By by) {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     driver.findElement(by).click();
   }
-
 
   /**
    * Wits and gets the text of a WebElement
@@ -142,5 +142,18 @@ public final class WebDriverTools {
     Select selector = new Select(dropDown);
     wait.until(ExpectedConditions.visibilityOf(dropDown));
     selector.selectByValue(value);
+  }
+
+  public boolean isElementVisibility(By by) {
+    try {
+      return isElementDisplayed(by);
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
+  public boolean isElementDisplayed(By by) {
+    WebElement webElement = driver.findElement(by);
+    return isElementDisplayed(webElement);
   }
 }

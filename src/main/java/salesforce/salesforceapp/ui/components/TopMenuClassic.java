@@ -18,22 +18,16 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePageClassic;
  * Created by AT05 team on 12/11/2017.
  */
 public class TopMenuClassic extends TopMenu {
-  //Selectors for switching skin
-  @FindBy(css = ".oneUserProfileCardTrigger")
-  @CacheLookup
-  private WebElement userProfileLight;
+  @FindBy(id = "userNavLabel")
+  private WebElement userProfileLink;
 
-  @FindBy(xpath = "//a[contains(@href, 'classic')]")
+  @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
   @CacheLookup
   private WebElement switchSkinLink;
 
-  //Selectors of skin classic
-  @FindBy(id = "userNavLabel")
-  private WebElement userProfileClassic;
-
   @FindBy(xpath = "//a[@title='My Profile']")
   @CacheLookup
-  private WebElement userProfileNameClassic;
+  private WebElement userProfileNameLink;
 
   @FindBy(id = "Opportunity_Tab")
   @CacheLookup
@@ -58,7 +52,7 @@ public class TopMenuClassic extends TopMenu {
    */
   @Override
   public void switchSkin() {
-    driverTools.clickElement(userProfileLight);
+    driverTools.clickElement(userProfileLink);
     driverTools.clickElement(switchSkinLink);
   }
 
@@ -69,7 +63,7 @@ public class TopMenuClassic extends TopMenu {
    */
   @Override
   public LoginPage logout() {
-    driverTools.clickElement(userProfileClassic);
+    driverTools.clickElement(userProfileLink);
     driverTools.clickElement(logoutLink);
     return new LoginPage();
   }
@@ -92,7 +86,7 @@ public class TopMenuClassic extends TopMenu {
    */
   @Override
   public QuotesHomePage goToQuotesHomePage() {
-    quotesLink.click();
+    driverTools.clickElement(quotesLink);
     return new QuotesHomePageClassic();
   }
 
@@ -103,8 +97,8 @@ public class TopMenuClassic extends TopMenu {
    */
   @Override
   public ProfilePage goToProfilePage() {
-    driverTools.clickElement(userProfileClassic);
-    driverTools.clickElement(userProfileNameClassic);
+    driverTools.clickElement(userProfileLink);
+    driverTools.clickElement(userProfileNameLink);
     return new ProfilePageClassic();
   }
 }

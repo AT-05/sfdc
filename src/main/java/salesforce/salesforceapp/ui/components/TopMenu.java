@@ -1,5 +1,7 @@
 package salesforce.salesforceapp.ui.components;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;
@@ -11,11 +13,17 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
  * Created by AT05 team on 12/11/2017.
  */
 public abstract class TopMenu extends BasePage {
+  protected WebElement logoutLink;
 
   /**
    * <p>This method performs switching of web page skin.</p>
    */
   public abstract void switchSkin();
+
+  @Override
+  public void waitUntilPageObjectIsLoaded() {
+    wait.until(ExpectedConditions.urlContains("home"));
+  }
 
   /**
    * <p>This mehtod logs out user from the application.</p>
@@ -34,11 +42,6 @@ public abstract class TopMenu extends BasePage {
    * @return a QuotesHomePage object type.
    */
   public abstract QuotesHomePage goToQuotesHomePage();
-
-  public boolean isUserNameDisplayed() {
-    //Missing
-    return false;
-  }
 
   /**
    * <p>This method sends to user profile page.</p>

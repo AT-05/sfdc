@@ -7,7 +7,7 @@ import salesforce.salesforceapp.ui.components.TopMenu;
  * Created by AT05 team on 12/11/2017.
  */
 public abstract class ProfilePage extends BasePage {
-  protected WebElement userEmail;
+  protected WebElement userEmailLabel;
   protected TopMenu topMenu;
 
   /**
@@ -24,6 +24,6 @@ public abstract class ProfilePage extends BasePage {
    * @return whether the user name appears or not.
    */
   public boolean isUserNameDisplayed() {
-    return driverTools.isElementDisplayed(userEmail);
+    return driverTools.isElementDisplayed(userEmailLabel);
   }
 }
