@@ -48,7 +48,7 @@ public class EditQuoteSteps {
     oppyHomePage = homePage.topMenu.goToOppyHomePage();
     oppy = new Oppy();
     oppy.setOppyName(opportunityName);
-    oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());
+    oppyContentPage = oppyHomePage.selectOppy(opportunityName);
     oppyQuotesView = oppyContentPage.goToQuotesView();
     oppy.setQuoteList(quoteCreateInfo);
     for (Quote itemQuote : quoteCreateInfo) {
@@ -63,11 +63,6 @@ public class EditQuoteSteps {
 
   @And("^I go to Quotes Home Page$")
   public void iGoToQuotesHomePage() {
-    try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
     homePage = quoteEditionForm.topMenu.goToHomePage();
     quotesHomePage = homePage.topMenu.goToQuotesHomePage();
   }

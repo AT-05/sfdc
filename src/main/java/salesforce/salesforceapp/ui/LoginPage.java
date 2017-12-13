@@ -53,6 +53,7 @@ public class LoginPage extends BasePage {
     setUsername(username);
     setPassword(password);
     driverTools.clickElement(loginButton);
+    wait.until(ExpectedConditions.urlContains("home"));
     PageTransporter.getInstance().switchSkin();
     return PageFactory.getHomePage();
   }

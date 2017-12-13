@@ -46,6 +46,15 @@ public class PageFactory {
     }
   }
 
+  public static TopMenu getTopMenu(Skin skin) {
+    switch (skin) {
+      case CLASSIC:
+        return new TopMenuClassic();
+      default:
+        return new TopMenuLight();
+    }
+  }
+
   public static OppyContentPage getOppyContentPage() {
     switch (skin) {
       case CLASSIC:

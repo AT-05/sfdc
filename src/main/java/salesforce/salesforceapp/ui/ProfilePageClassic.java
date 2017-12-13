@@ -11,13 +11,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ProfilePageClassic extends ProfilePage {
   @FindBy(xpath = "//div[@class='profileSectionData emailAddr']")
   @CacheLookup
-  private WebElement userEmailClassic;
+  private WebElement userEmailLabel;
 
   /**
    * <p>This constructor initializes web elements.</p>
    */
   public ProfilePageClassic() {
-    super.userEmail = userEmailClassic;
+    super.userEmailLabel = userEmailLabel;
   }
 
   @Override

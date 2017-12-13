@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import salesforce.core.selenium.WebDriverManager;
 import salesforce.salesforceapp.SalesforceEnums.Skin;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
-import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.components.*;
 
 public class PageTransporter {
 
@@ -58,6 +58,11 @@ public class PageTransporter {
     return new LoginPage();
   }
 
+  /**
+   * <p>This method gets current web page skin.</p>
+   *
+   * @return the current sking based on current url.
+   */
   public Skin getCurrentSkin() {
     if (getCurrentURL().contains(Skin.LIGHT.getSkinName())) {
       return Skin.LIGHT;
@@ -65,10 +70,12 @@ public class PageTransporter {
     return Skin.CLASSIC;
   }
 
+  /**
+   * <p>This method performs switching of web page skin.</p>
+   */
   public void switchSkin() {
-    TopMenu topMenu = PageFactory.getTopMenu();
-    topMenu.waitUntilPageObjectIsLoaded();
     if (!getCurrentSkin().equals(SalesForceAppEnvsConfig.getInstance().getSkin())) {
+    TopMenu topMenu = PageFactory.getTopMenu(getCurrentSkin());
       topMenu.switchSkin();
     }
   }
