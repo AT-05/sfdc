@@ -1,5 +1,8 @@
 package salesforce.salesforceapp.entities.quotes;
 
+import java.util.List;
+import salesforce.salesforceapp.entities.products.Product;
+
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
@@ -11,6 +14,7 @@ public class Quote {
   private String tax;
   private String shippingAndHandling;
   private double grandTotal = 0.0;
+  private List<Product> productList;
 
   /**
    * <p>This method sets quote variables values.</p>
@@ -162,5 +166,14 @@ public class Quote {
    */
   public String replaceDots(String element) {
     return element.replaceAll("\\.", ",");
+  }
+
+  /**
+   * <p>This method adds a quote line item to the quote.</p>
+   *
+   * @param product is a Product object type.
+   */
+  public void addQuoteLineItem(Product product) {
+    productList.add(product);
   }
 }
