@@ -26,7 +26,7 @@ public class LoginSteps {
   private ProfilePage profilePage;
 
   public LoginSteps() throws Exception {
-    this.pageTransporter = PageTransporter.getInstance();
+    //this.pageTransporter = PageTransporter.getInstance();
   }
 
   //****************************************************************

@@ -21,7 +21,7 @@ public class TopMenuClassic extends TopMenu {
   @FindBy(id = "userNavLabel")
   private WebElement userProfileLink;
 
-  @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
+  @FindBy(xpath = "//*[@id='userNav-menuItems']/a[4]")
   @CacheLookup
   private WebElement switchSkinLink;
 

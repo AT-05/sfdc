@@ -1,6 +1,5 @@
 package salesforce.salesforceapp.ui.components;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.LoginPage;
@@ -13,7 +12,6 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
  * Created by AT05 team on 12/11/2017.
  */
 public abstract class TopMenu extends BasePage {
-  protected WebElement logoutLink;
 
   /**
    * <p>This method performs switching of web page skin.</p>

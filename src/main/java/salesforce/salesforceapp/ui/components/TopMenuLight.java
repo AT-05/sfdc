@@ -30,7 +30,7 @@ public class TopMenuLight extends TopMenu {
   @CacheLookup
   private WebElement userProfileNameLink;
 
-  @FindBy(xpath = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Opportunity')]")
+  @FindBy(xpath = "//a[contains(@href, 'Opportunity')]")
   @CacheLookup
   private WebElement opportunitiesBtn;
 

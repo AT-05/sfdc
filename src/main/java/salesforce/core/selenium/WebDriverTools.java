@@ -32,7 +32,7 @@ public class WebDriverTools {
    * Sets an Input Field.
    *
    * @param webElement Input WebElement
-   * @param text       Text to fill
+   * @param text Text to fill
    */
   public void setInputField(WebElement webElement, String text) {
     wait.until(ExpectedConditions.visibilityOf(webElement));
@@ -144,16 +144,30 @@ public class WebDriverTools {
     selector.selectByValue(value);
   }
 
-  public boolean isElementVisibility(By by) {
+  /**
+   * Wait until the item is no longer visible.
+   *
+   * @param element WebElement.
+   */
+  public void waitUntilMessageDisappear(WebElement element) {
     try {
-      return isElementDisplayed(by);
+      while (element.isDisplayed()) {
+      }
     } catch (Exception e) {
-      return false;
     }
   }
 
   public boolean isElementDisplayed(By by) {
     WebElement webElement = driver.findElement(by);
     return isElementDisplayed(webElement);
+  }
+
+  public boolean isElementVisibility(By by) {
+    try {
+      return isElementDisplayed(by);
+    }
+    catch (Exception e){
+      return false;
+    }
   }
 }

@@ -27,7 +27,7 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
     try {
       System.out.println("\n=============== BEFORE TEST ===============\n");
       //ToDo Review if this is executed only once
-      SalesForceAppAutomation.getInstance().startUp();;
+      SalesForceAppAutomation.getInstance().startUp();
     } catch (Exception ex) {
       log.error("Exception in before execution", ex);
     }

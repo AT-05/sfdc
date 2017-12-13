@@ -1,7 +1,7 @@
 package salesforce.salesforceapp.entities.opportunities;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Iterator;
 import java.util.List;
 import salesforce.salesforceapp.entities.quotes.Quote;
@@ -9,53 +9,131 @@ import salesforce.salesforceapp.entities.quotes.Quote;
 public class Oppy {
 
   private String oppyName;
-  private Date closeDate;
+  private String closeDate;
   private String stage;
   private String account;
+  private boolean budget;
+  private double amount;
   private List<Quote> quoteList;
 
-  public Oppy(String oppyName, Date closeDate, String stage, String account) {
-    quoteList = new ArrayList<>();
-    this.oppyName = oppyName;
-    this.closeDate = closeDate;
-    this.stage = stage;
-    this.account = account;
-  }
-
-  public Oppy() {
-
-  }
-
+  /**
+   * Get name of the opportunity.
+   *
+   * @return String.
+   */
   public String getOppyName() {
     return oppyName;
   }
 
+  /**
+   * Set opportunity name.
+   *
+   * @param oppyName as a String.
+   */
   public void setOppyName(String oppyName) {
     this.oppyName = oppyName;
   }
 
-  public Date getCloseDate() {
+  /**
+   * Get close date of the opportunity.
+   *
+   * @return String.
+   */
+  public String getCloseDate() {
     return closeDate;
   }
 
-  public void setCloseDate(Date closeDate) {
+  /**
+   * Set close date of the opportunity.
+   *
+   * @param closeDate as a String
+   */
+  public void setCloseDate(String closeDate) {
     this.closeDate = closeDate;
   }
 
+  /**
+   * Get stage name of the opportunity.
+   *
+   * @return String.
+   */
   public String getStage() {
     return stage;
   }
 
+  /**
+   * Set stage name of the opportunity.
+   *
+   * @param stage as a String.
+   */
   public void setStage(String stage) {
     this.stage = stage;
   }
 
+  /**
+   * Get account name of the opportunity.
+   *
+   * @return String.
+   */
   public String getAccount() {
     return account;
   }
 
+  /**
+   * Set account name of the opportunity.
+   *
+   * @param account as a String.
+   */
   public void setAccount(String account) {
     this.account = account;
+  }
+
+  /**
+   * Set Budget of the opportunity.
+   *
+   * @param budget boolean.
+   */
+  public void setBudget(boolean budget) {
+    this.budget = budget;
+  }
+
+  /**
+   * Get Budget of the opportunity.
+   *
+   * @return as a string.
+   */
+  public String getBudgetAsString() {
+    return budget ? "True" : "False";
+  }
+  public boolean getBudget() {
+    return budget;
+  }
+
+  /**
+   * Set Amount of the opportunity.
+   *
+   * @param amount double.
+   */
+  public void setAmount(double amount) {
+    this.amount = amount;
+  }
+
+  /**
+   * Get Amount of the opportunity.
+   *
+   * @return as a double.
+   */
+  public String getAmountWithFormat() {
+    DecimalFormat df = new DecimalFormat(",###.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+    symbols.setDecimalSeparator(',');
+    symbols.setGroupingSeparator('.');
+    df.setDecimalFormatSymbols(symbols);
+    return df.format(amount);
+  }
+
+  public double getAmount(){
+    return amount;
   }
 
   /**
@@ -88,7 +166,6 @@ public class Oppy {
     return null;
   }
 
-
   /**
    * <p>This method updates a specific quote of the opportunity
    * quotes' list.</p>
@@ -112,4 +189,3 @@ public class Oppy {
     }
   }
 }
-
