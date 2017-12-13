@@ -11,6 +11,8 @@ import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
+import salesforce.salesforceapp.ui.product.home.HomeProductPage;
+import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
 import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
 import salesforce.salesforceapp.ui.quotes.QuotesHomePageClassic;
 
@@ -41,10 +43,15 @@ public class TopMenuClassic extends TopMenu {
   @CacheLookup
   private WebElement logoutLink;
 
-  @Override
+  @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
+  WebElement productTab;
+
+
   public void waitUntilPageObjectIsLoaded() {
     wait.until(ExpectedConditions.urlContains("home"));
   }
+
+
 
   /**
    * <p>This method performs switching of web page skin
@@ -100,5 +107,16 @@ public class TopMenuClassic extends TopMenu {
     driverTools.clickElement(userProfileLink);
     driverTools.clickElement(userProfileNameLink);
     return new ProfilePageClassic();
+  }
+
+  /**
+   * This method go to Home Product.
+   *
+   * @return homeProduct.
+   */
+  @Override
+  public HomeProductPageClassic goToHomeProduct() {
+    productTab.click();
+    return new HomeProductPageClassic();
   }
 }

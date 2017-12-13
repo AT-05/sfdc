@@ -20,6 +20,7 @@ public abstract class BasePage {
     this.wait = WebDriverManager.getInstance().getWait();
     this.driverTools = new WebDriverTools();
     PageFactory.initElements(driver, this);
+    waitUntilPageObjectIsLoaded();
   }
 
   public abstract void waitUntilPageObjectIsLoaded();

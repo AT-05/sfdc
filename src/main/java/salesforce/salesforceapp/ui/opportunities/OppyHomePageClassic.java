@@ -7,9 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import salesforce.core.selenium.WebDriverConfig;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 
+
 public class OppyHomePageClassic extends OppyHomePage {
 
-  @FindBy(xpath = ".//*[@class='pageType']")
+   @FindBy(xpath = ".//*[@class='pageType']")
   private WebElement title;
 
   private WebElement opportunity;
