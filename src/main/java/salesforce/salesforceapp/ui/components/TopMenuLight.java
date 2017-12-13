@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;
 import salesforce.salesforceapp.ui.ProfilePageLight;
+import salesforce.salesforceapp.ui.contacts.ContactHomePage;
+import salesforce.salesforceapp.ui.contacts.ContactHomePageLight;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageLight;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
@@ -57,6 +59,10 @@ public class TopMenuLight extends TopMenu {
     @FindBy(css = ".oneUserProfileCardTrigger")
     @CacheLookup
     private WebElement userProfileLink;
+    @FindBy(css = "a[href*='Contact']")
+    private WebElement contactBtn;
+     @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Contacts']")
+    private WebElement contactsTextLink;
 
     /**
      * <p>This method performs switching of web page skin
@@ -128,5 +134,15 @@ public class TopMenuLight extends TopMenu {
         waitUntilPageObjectIsLoaded();
         productTab.click();
         return new HomeProductPageLightning();
+    }
+     @Override
+    public ContactHomePage goToContactHomePage() {
+       // waitModal();
+        //driverTools.clickElement(openAllAppsButton);
+        driverTools.clickElement(contactBtn);
+        //wait.until(ExpectedConditions.visibilityOf(openAllAppsButton));
+        //openAllAppsButton.click();
+
+        return new ContactHomePageLight();
     }
 }

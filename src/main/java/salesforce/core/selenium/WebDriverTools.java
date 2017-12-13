@@ -1,17 +1,21 @@
 package salesforce.core.selenium;
 
-import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class WebDriverTools {
 
+  private final String JS_SCRIPT = "document.querySelector(\"a[title='%s']\").click();";
   private WebDriver driver;
   private WebDriverWait wait;
+
 
   public WebDriverTools() {
     this.driver = WebDriverManager.getInstance().getWebDriver();
@@ -32,7 +36,7 @@ public class WebDriverTools {
    * Sets an Input Field.
    *
    * @param webElement Input WebElement
-   * @param text Text to fill
+   * @param text       Text to fill
    */
   public void setInputField(WebElement webElement, String text) {
     wait.until(ExpectedConditions.visibilityOf(webElement));
@@ -165,9 +169,18 @@ public class WebDriverTools {
   public boolean isElementVisibility(By by) {
     try {
       return isElementDisplayed(by);
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       return false;
     }
+  }
+
+  /**
+   * This method perform a click in a non visible element in the UI using class locator.
+   *
+   * @param webElement the WebElement non visible in the UI.
+   */
+  public void jsClickClassButton(WebElement webElement) {
+    ((JavascriptExecutor) driver)
+      .executeScript("arguments[0].click();", webElement);
   }
 }
