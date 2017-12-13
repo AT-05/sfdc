@@ -20,7 +20,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
 
   @FindBy(xpath = "//div/ul/li[3]/a[@title='Delete']")
   @CacheLookup
-  private WebElement deleteLinkLight;
+  private WebElement deleteQuoteLink;
 
   @FindBy(xpath = "//button[@title='Delete']")
   @CacheLookup
@@ -30,6 +30,10 @@ public class QuotesContentPageLight extends QuotesContentPage {
   @CacheLookup
   private WebElement quoteDetailsLink;
   private WebElement quoteEditedMessage;
+
+  @FindBy(xpath = "")
+  @CacheLookup
+  private WebElement addLineItemLink;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -98,7 +102,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
   @Override
   public void deleteQuote() {
     driverTools.clickElement(showMoreActionsLink);
-    driverTools.clickElement(deleteLinkLight);
+    driverTools.clickElement(deleteQuoteLink);
     driverTools.clickElement(deleteConfirmationLinkLight);
   }
 
@@ -119,5 +123,39 @@ public class QuotesContentPageLight extends QuotesContentPage {
       result = true;
     }
     return result;
+  }
+
+  /**
+   * <p>This method sends to Price Book Selection Page.</p>
+   *
+   * @return a QuotePriceBookSelectionPage object type.
+   */
+  @Override
+  public QuotePriceBookSelectionPage goToAddLineItem() {
+    driverTools.clickElement(addLineItemLink);
+    return new QuotePriceBookSelectionPageLight();
+  }
+
+  /**
+   * <p>This method sends to Quote Line Items View Page.</p>
+   *
+   * @return a QuoteLineItemsView object type.
+   */
+  @Override
+  public QuoteLineItemsView goToQuoteLineItemsView() {
+    //Todo Add
+    return new QuoteLineItemsViewLight();
+  }
+
+  /**
+   * <p>This method checks if after adding quote line item(s),
+   * a successful saved changes message is displayed.</p>
+   *
+   * @return whether the message was displayed or not.
+   */
+  @Override
+  public boolean isQuoteLineItemCreatedMessageDisplayed() {
+    //Todo Add
+    return false;
   }
 }

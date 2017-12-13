@@ -17,9 +17,9 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   @CacheLookup
   private WebElement deleteQuoteLink;
 
-  public QuotesContentPageClassic() {
-
-  }
+  @FindBy(xpath = "")
+  @CacheLookup
+  private WebElement addLineItemLink;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -89,6 +89,39 @@ public class QuotesContentPageClassic extends QuotesContentPage {
    */
   @Override
   public boolean isQuoteDeletedMessageDisplayed(String quoteName) {
+    return true; //There is no message displayed for this skin.
+  }
+
+  /**
+   * <p>This method sends to Price Book Selection Page.</p>
+   *
+   * @return a QuotePriceBookSelectionPage object type.
+   */
+  @Override
+  public QuotePriceBookSelectionPage goToAddLineItem() {
+    driverTools.clickElement(addLineItemLink);
+    return new QuotePriceBookSelectionPageClassic();
+  }
+
+  /**
+   * <p>This method sends to Quote Line Items View Page.</p>
+   *
+   * @return a QuoteLineItemsView object type.
+   */
+  @Override
+  public QuoteLineItemsView goToQuoteLineItemsView() {
+    //Todo Add
+    return new QuoteLineItemsViewClassic();
+  }
+
+  /**
+   * <p>This method checks if after adding quote line item(s),
+   * a successful saved changes message is displayed.</p>
+   *
+   * @return whether the message was displayed or not.
+   */
+  @Override
+  public boolean isQuoteLineItemCreatedMessageDisplayed() {
     return true; //There is no message displayed for this skin.
   }
 }

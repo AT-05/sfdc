@@ -1,10 +1,10 @@
 package salesforce.salesforceapp.ui.quotes;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
-import salesforce.salesforceapp.ui.ContentBasePage;
+import salesforce.salesforceapp.ui.*;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
@@ -88,4 +88,39 @@ public abstract class QuotesContentPage extends ContentBasePage {
    * @return whether the message was displayed or not.
    */
   public abstract boolean isQuoteDeletedMessageDisplayed(String quoteName);
+
+  /**
+   * <p>This method sends to Price Book Selection Page.</p>
+   *
+   * @return a QuotePriceBookSelectionPage object type.
+   */
+  public abstract QuotePriceBookSelectionPage goToAddLineItem();
+
+  /**
+   * <p>This method sends to Quote Line Items View Page.</p>
+   *
+   * @return a QuoteLineItemsView object type.
+   */
+  public abstract QuoteLineItemsView goToQuoteLineItemsView();
+
+  /**
+   * <p>This method checks if after adding quote line item(s),
+   * a successful saved changes message is displayed.</p>
+   *
+   * @return whether the message was displayed or not.
+   */
+  public abstract boolean isQuoteLineItemCreatedMessageDisplayed();
+
+  /**
+   * <p>This method checks if after adding quote line item(s),
+   * the quote totals are updated correctly.</p>
+   *
+   * @param quote is an Entity object type.
+   * @return whether the quote totals were updated correctly or not.
+   */
+  public boolean areQuoteTotalsUpdated(Quote quote) {
+    //Todo Add
+    //Todo Get locators in each skin
+    return false;
+  }
 }

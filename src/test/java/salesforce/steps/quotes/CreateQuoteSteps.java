@@ -1,7 +1,6 @@
 package salesforce.steps.quotes;
 
-import cucumber.api.*;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
