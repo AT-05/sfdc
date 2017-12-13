@@ -2,6 +2,7 @@ package salesforce.salesforceapp.ui.product.home;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
 
 /**
@@ -22,7 +23,11 @@ public class HomeProductPageClassic extends HomeProductPage {
 
     }
 
-
+    /**
+     * Create new Prodcut.
+     *
+     * @return product edition.
+     */
     @Override
     public ProductEditionFormClassic newProduct() {
         System.out.println("Entrooo a  Classic *******************marcoooo*********");
@@ -30,8 +35,17 @@ public class HomeProductPageClassic extends HomeProductPage {
         return new ProductEditionFormClassic();
     }
 
+
+    /**
+     * Check if exist a product.
+     *
+     * @param name string.
+     * @return boolean.
+     */
     @Override
     public boolean thereIsProduct(String name) {
         return exitElement(name);
     }
+
+
 }

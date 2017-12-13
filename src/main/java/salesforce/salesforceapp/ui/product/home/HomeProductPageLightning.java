@@ -3,6 +3,7 @@ package salesforce.salesforceapp.ui.product.home;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
 
 /**
@@ -23,7 +24,11 @@ public class HomeProductPageLightning extends HomeProductPage {
 
     }
 
-
+    /**
+     * Create new Prodcut.
+     *
+     * @return product edition.
+     */
     @Override
     public ProductEditionFormLightning newProduct() {
         System.out.println("Entrooo a  Lightng ****************************");
@@ -32,10 +37,18 @@ public class HomeProductPageLightning extends HomeProductPage {
     }
 
 
+    /**
+     * Check if exist a product.
+     *
+     * @param name string.
+     * @return boolean.
+     */
     @Override
     public boolean thereIsProduct(String name) {
         return exitElement(name);
     }
+
+
 }
 
 

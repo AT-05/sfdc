@@ -3,6 +3,8 @@ package salesforce.salesforceapp.ui.product.content;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import salesforce.salesforceapp.entities.Product;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
@@ -13,7 +15,6 @@ import salesforce.salesforceapp.ui.product.home.HomeProductPageLightning;
  * Created by Marco Mendez.
  */
 public class ProductContentPageLightning extends ProductContentPage {
-
 
     @FindBy(xpath = ".//*[@id='brandBand_1']/div/div/div[3]/div/div/div[1]/div/header/div[2]/div/div[2]/ul/li[1]/a")
     private WebElement editBtn;
@@ -30,11 +31,15 @@ public class ProductContentPageLightning extends ProductContentPage {
     @FindBy(xpath = "html/body/div[5]/div[2]/div[5]/div[2]/div/div[2]/div/div[3]/div/div[2]/ul/li[22]/a/span/span")
     WebElement productTab;
 
+    @FindBy(className = " checked")
+    private WebElement elementCheckBox;
+
     private WebElement nameLabel;
 
     private WebElement codeLabel;
 
     private WebElement descriptionLabel;
+
     /**
      * Constructor.
      */
@@ -44,10 +49,12 @@ public class ProductContentPageLightning extends ProductContentPage {
         super.productNameLabel = nameLabel;
         super.productCodeLabel = codeLabel;
         super.productDescriptionLabel = descriptionLabel;
+        super.activeCheckBox=elementCheckBox;
     }
 
     /**
      * Search a WebElement as span.
+     *
      * @param linkText string.
      * @return BY.
      */
@@ -56,13 +63,44 @@ public class ProductContentPageLightning extends ProductContentPage {
     }
 
 
+    /**
+     * Check is the product fields are corrects.
+     *
+     * @param product product.
+     * @return boolean.
+     */
+    @Override
+    public boolean validateProductFields(Product product) {
+        boolean active = elementCheckBox.getAttribute("Alt").equalsIgnoreCase("True") ? true : false;
+        System.out.println("-********* active" + active);
+        System.out.println("-********* carajoooooooo");
+        productNameLabel = driver.findElements(getItemLinkBy(product.getName())).get(0);
+        System.out.println("-********* carajoooooooo");
+        productCodeLabel = driver.findElements(getItemLinkBy(product.getCode())).get(0);
+        productDescriptionLabel = driver.findElements(getItemLinkBy(product.getDescription())).get(0);
+        return productNameLabel.getText().equalsIgnoreCase(product.getName()) == true
+                && productCodeLabel.getText().equalsIgnoreCase(product.getCode()) == true
+                && productDescriptionLabel.getText().equalsIgnoreCase(product.getDescription()) == true
+                && active==product.getActive();
+    }
 
+    /**
+     * Go to edit existing product.
+     *
+     * @return ProductEditionForm.
+     */
     @Override
     public ProductEditionForm editProduct() {
         this.editBtn.click();
         return new ProductEditionFormLightning();
     }
 
+
+    /**
+     * Delete an existing product.
+     *
+     * @return Home Product Page.
+     */
     @Override
     public HomeProductPage deleteProduct() {
         driverTools.clickElement(this.deleteBtn);
@@ -71,8 +109,20 @@ public class ProductContentPageLightning extends ProductContentPage {
         return new HomeProductPageLightning();
     }
 
+
+    /**
+     * Go to Home Product page.
+     *
+     * @return Home product page.
+     */
     @Override
     public HomeProductPageLightning goToHomProductPage() {
+//        wait=new WebDriverWait(driver,10);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+
+        }
         waitUntilPageObjectIsLoaded();
         launcherBtn.click();
         waitUntilPageObjectIsLoaded();
@@ -80,14 +130,7 @@ public class ProductContentPageLightning extends ProductContentPage {
         return new HomeProductPageLightning();
     }
 
-    @Override
-    public boolean validateProductFields(Product product) {
-        productNameLabel = nameLabel.findElements(getItemLinkBy(product.getName())).get(0);
-        productCodeLabel = nameLabel.findElements(getItemLinkBy(product.getCode())).get(0);
-        productDescriptionLabel = nameLabel.findElements(getItemLinkBy(product.getDescription())).get(0);
-        return productNameLabel.getText().equalsIgnoreCase(product.getName()) == true
-                && productCodeLabel.getText().equalsIgnoreCase(product.getCode()) == true
-                && productDescriptionLabel.getText().equalsIgnoreCase(product.getDescription()) == true;
-    }
+
+
 }
 

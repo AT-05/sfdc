@@ -48,6 +48,13 @@ public class ProductEditionFormClassic extends ProductEditionForm {
         return new ProductContentPageClassic();
     }
 
+
+    /**
+     * Create a new product.
+     *
+     * @param product product.
+     * @return ProductContent.
+     */
     @Override
     public ProductContentPageClassic createProduct(Product product) {
         setProductNameInput(product.getName());
@@ -57,6 +64,12 @@ public class ProductEditionFormClassic extends ProductEditionForm {
         return clickSaveBnt();
     }
 
+    /**
+     * Edit an existing product.
+     *
+     * @param product product.
+     * @return product content.
+     */
     @Override
     public ProductContentPage editProduct(Product product) {
         setProductCodeInput(product.getCode());
@@ -65,5 +78,6 @@ public class ProductEditionFormClassic extends ProductEditionForm {
         setActiveCheckBox(product.getActive());
         return clickSaveBnt();
     }
+
 
 }

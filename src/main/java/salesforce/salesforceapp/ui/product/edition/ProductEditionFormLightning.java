@@ -3,6 +3,7 @@ package salesforce.salesforceapp.ui.product.edition;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.entities.Product;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageLightning;
 
 /**
@@ -46,6 +47,13 @@ public class ProductEditionFormLightning extends ProductEditionForm {
         return new ProductContentPageLightning();
     }
 
+
+    /**
+     * Create a new product.
+     *
+     * @param product product.
+     * @return ProductContent.
+     */
     @Override
     public ProductContentPageLightning createProduct(Product product) {
         waitUntilPageObjectIsLoaded();
@@ -55,6 +63,13 @@ public class ProductEditionFormLightning extends ProductEditionForm {
         setActiveCheckBox(product.getActive());
         return clickSaveBnt();
     }
+
+    /**
+     * Edit an existing product.
+     *
+     * @param product product.
+     * @return product content.
+     */
 
     @Override
     public ProductContentPageLightning editProduct(Product product) {

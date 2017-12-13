@@ -49,20 +49,39 @@ public class ProductContentPageClassic extends ProductContentPage {
         super.activeCheckBox = elementCheckBox;
     }
 
+
+    /**
+     * Check is the product fields are corrects.
+     *
+     * @param product product.
+     * @return boolean.
+     */
     @Override
     public boolean validateProductFields(Product product) {
-        boolean active = activeCheckBox.isSelected();
+        boolean active = activeCheckBox.getAttribute("Alt").equalsIgnoreCase("Not checked") ? false : true;
         return productNameLabel.getText().equalsIgnoreCase(product.getName().toString()) == true
                 && productCodeLabel.getText().equalsIgnoreCase(product.getCode()) == true
-                && productDescriptionLabel.getText().equalsIgnoreCase(product.getDescription()) == true;
+                && productDescriptionLabel.getText().equalsIgnoreCase(product.getDescription()) == true
+                && active == product.getActive();
     }
 
+    /**
+     * Go to edit existing product.
+     *
+     * @return ProductEditionForm.
+     */
     @Override
     public ProductEditionForm editProduct() {
         editBtn.click();
         return new ProductEditionFormClassic();
     }
 
+
+    /**
+     * Delete an existing product.
+     *
+     * @return Home Product Page.
+     */
     @Override
     public HomeProductPage deleteProduct() {
         deleteBtn.click();
@@ -70,6 +89,12 @@ public class ProductContentPageClassic extends ProductContentPage {
         return new HomeProductPageClassic();
     }
 
+
+    /**
+     * Go to Home Product page.
+     *
+     * @return Home product page.
+     */
     @Override
     public HomeProductPage goToHomProductPage() {
         productTab.click();
