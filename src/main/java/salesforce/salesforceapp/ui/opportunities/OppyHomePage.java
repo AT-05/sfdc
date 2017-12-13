@@ -5,7 +5,21 @@ import salesforce.salesforceapp.ui.PageFactory;
 
 public abstract class OppyHomePage extends HomeBasePage {
 
-  public abstract OppyContentPage selectOppy(String linkText);
+  /**
+   * Select an opportunity from the list of opportunities.
+   *
+   * @param linkText the name of the opportunity.
+   * @return OppyContentPage.
+   */
+  public OppyContentPage selectOppy(String linkText) {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    selectItem(linkText);
+    return PageFactory.getOppyContentPage();
+  }
 
   public OppyEditionForm clickNewOppyBtn() {
     clickNewBtn();

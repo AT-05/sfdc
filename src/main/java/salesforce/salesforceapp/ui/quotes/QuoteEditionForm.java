@@ -34,8 +34,8 @@ public abstract class QuoteEditionForm extends HomeBasePage {
     status = quote.getStatus();
     setStatus();
     driverTools.setInputField(quoteDescriptionInput, quote.getDescription());
-    driverTools.setInputField(quoteTaxInput, quote.getTax());
-    driverTools.setInputField(quoteShippingAndHandlingInput, quote.getShippingAndHandling());
+    driverTools.setInputField(quoteTaxInput, quote.getTax().toString());
+    driverTools.setInputField(quoteShippingAndHandlingInput, quote.getShippingAndHandling().toString());
   }
 
   /**

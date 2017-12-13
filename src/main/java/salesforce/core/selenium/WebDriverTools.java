@@ -60,7 +60,6 @@ public final class WebDriverTools {
     driver.findElement(by).click();
   }
 
-
   /**
    * Wits and gets the text of a WebElement
    *
@@ -142,5 +141,19 @@ public final class WebDriverTools {
     Select selector = new Select(dropDown);
     wait.until(ExpectedConditions.visibilityOf(dropDown));
     selector.selectByValue(value);
+  }
+
+  public boolean isElementVisibility(By by) {
+    try {
+      return isElementDisplayed(by);
+    }
+    catch (Exception e){
+      return false;
+    }
+  }
+
+  public boolean isElementDisplayed(By by) {
+    WebElement webElement = driver.findElement(by);
+    return isElementDisplayed(webElement);
   }
 }

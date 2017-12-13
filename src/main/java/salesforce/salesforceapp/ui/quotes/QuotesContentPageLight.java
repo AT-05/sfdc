@@ -9,30 +9,6 @@ import org.openqa.selenium.support.FindBy;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class QuotesContentPageLight extends QuotesContentPage {
-  @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']//div[2]/div[1]/div/div[2]/span/span")
-  @CacheLookup
-  private WebElement quoteNameLight;
-
-  @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']//div[1]/div[2]/div/div[2]/span/span")
-  @CacheLookup
-  private WebElement quoteExpirationDateLight;
-
-  @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']/div/div[3]/div[2]/div/div[2]/span/span")
-  @CacheLookup
-  private WebElement quoteStatusLabelLight;
-
-  @FindBy(xpath = "//div[@class='test-id__section-content slds-section__content section__content slds-p-top--none']/div/div[4]/div[2]/div/div[2]/span/span")
-  @CacheLookup
-  private WebElement quoteDescriptionLabelLight;
-
-  @FindBy(xpath = "//div[1]/div[2]/div/div[2]/span/span[@class='forceOutputCurrency']")
-  @CacheLookup
-  private WebElement quoteTaxLabelLight;
-
-  @FindBy(xpath = "")
-  @CacheLookup
-  private WebElement quoteShippingAndHandlingLabelLight;
-
   //Links
   @FindBy(xpath = "//a[contains(@title, 'Show 3 more actions')]")
   @CacheLookup
@@ -53,15 +29,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
   @FindBy(xpath = "//div[5]/div/div/div[3]/div[1]/div/div/div/ul/li[@class='tabs__item uiTabItem']/a[@title='Details']/span[2]")
   @CacheLookup
   private WebElement quoteDetailsLink;
-
   private WebElement quoteEditedMessage;
-
-  public QuotesContentPageLight() {
-    super.quoteNameLabel = quoteNameLight;
-    super.quoteExpirationDateLabel = quoteExpirationDateLight;
-    super.quoteStatusLabel = quoteStatusLabelLight;
-    super.quoteDescriptionLabel = quoteDescriptionLabelLight;
-  }
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -105,6 +73,23 @@ public class QuotesContentPageLight extends QuotesContentPage {
   @Override
   public void openQuoteDetails() {
     driverTools.clickElement(quoteDetailsLink);
+  }
+
+  /**
+   * <p>This method gets locators for verifying quote information.</p>
+   */
+  @Override
+  protected void getLocators() {
+    super.quoteNameLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//span/span[text()='" + super.quoteInfo.getName() + "']");
+    super.quoteExpirationDateLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//span/span[text()='" + super.quoteInfo.getExpirationDate() + "']");
+    super.quoteStatusLabel = By.xpath("//div[@class='slds-template__container']//div[5]//div[3]/div[2]//div[2]//span[text()='" + super.quoteInfo.getStatus() + "']");
+    super.quoteDescriptionLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//span[text()='" + super.quoteInfo.getDescription() + "']");
+    super.quoteTaxLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//div[@class='full forcePageBlock forceRecordLayout']//div" +
+      "[@class='slds-form']/div[1]//span[contains(text(), '" + super.quoteInfo.getTax() + "')]");
+    super.quoteShippingAndHandlingLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//div[@class='full forcePageBlock forceRecordLayout']//div'" +
+      "[@class='slds-form']/div[2]//span[contains(text(), '" + super.quoteInfo.getShippingAndHandling() + "')]");
+    super.quoteGrandTotalLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//div[@class='full forcePageBlock forceRecordLayout']//div" +
+      "[@class='slds-form']/div[3]//span[contains(text(), '" + super.quoteInfo.getGrandTotal() + "')]");
   }
 
   /**

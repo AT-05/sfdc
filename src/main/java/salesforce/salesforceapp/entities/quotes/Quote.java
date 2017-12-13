@@ -84,8 +84,8 @@ public class Quote {
    * <p>This method sets quote grand total value.</p>
    */
   public void setGrandTotal() {
-    final double taxValue = Double.parseDouble(tax);
-    final double shippingAndHandlingValue = Double.parseDouble(shippingAndHandling);
+    final double taxValue = Double.valueOf(tax);
+    final double shippingAndHandlingValue = Double.valueOf(shippingAndHandling);
     grandTotal = taxValue + shippingAndHandlingValue;
   }
 
@@ -149,6 +149,18 @@ public class Quote {
    * @return quote grand total value.
    */
   public String getGrandTotal() {
-    return String.valueOf(grandTotal);
+    final String grandTotalValue = String.valueOf(grandTotal);
+    return replaceDots(grandTotalValue);
+  }
+
+  /**
+   * <p>This method replaces dots by commas inside a String.</p>
+   *
+   * @param element is the target element.
+   * @return a String representation of the element with dots replaced
+   * by commas.
+   */
+  public String replaceDots(String element) {
+    return element.replaceAll("\\.", ",");
   }
 }

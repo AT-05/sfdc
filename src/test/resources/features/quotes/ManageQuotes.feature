@@ -24,16 +24,16 @@ Feature: Manage Quotes
     And I go to Quotes Home Page
     And I select the Quote created
     When I edit the Quote with the following information
-      | name       | expirationDate | status   | description        |
-      | QuoteTest2 | 31/12/2018     | Accepted | Quote Description2 |
+      | name       | expirationDate | status   | description        | tax | shippingAndHandling |
+      | QuoteTest2 | 31/12/2018     | Accepted | Quote Description2 | 3   | 77                  |
     Then A Quote successful editing message should be displayed
     And The Quote information should be updated correctly
 
   @DeleteQuote
   Scenario: Verify that is possible to Delete a Quote
     Given I have a Quote created in opportunity "FrancoOpportunityTest" with the following information
-      | name       | expirationDate | status | description       |
-      | QuoteTest3 | 07/12/2017     | Draft  | Quote Description |
+      | name       | expirationDate | status | description        | tax | shippingAndHandling |
+      | QuoteTest3 | 07/12/2018     | Draft  | Quote Description3 | 2   | 50                  |
     And I go to Quotes Home Page
     And I select the Quote created
     When I delete the Quote

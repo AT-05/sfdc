@@ -87,7 +87,7 @@ public class TopMenuLight extends TopMenu {
 
   @Override
   public OppyHomePage goToOppyHomePage() {
-    opportunitiesBtn.click();
+    driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageLight();
   }
 

@@ -24,24 +24,4 @@ public class QuotesHomePageLight extends QuotesHomePage {
     driverTools.clickElement(element);
     return new QuotesContentPageLight();
   }
-
-  /**
-   * <p>This method checks existence of Quote element
-   * in the quote's list.</p>
-   *
-   * @param quoteName is the given quote name.
-   * @return whether the quote exists in the list or not.
-   */
-  @Override
-  public boolean isQuoteElementPresent(String quoteName) {
-    try{
-      WebElement element = driver.findElement(By.xpath("//a[text()='" + quoteName + "']"));
-      System.out.println("result = true");
-      return true;
-    }
-    catch (Exception e){
-      System.out.println("result = false");
-      return false;
-    }
-  }
 }

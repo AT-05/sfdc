@@ -1,6 +1,6 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
@@ -8,35 +8,6 @@ import org.openqa.selenium.support.FindBy;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class QuotesContentPageClassic extends QuotesContentPage {
-  //Quote info
-  @FindBy(id = "Name_ileinner")
-  @CacheLookup
-  private WebElement quoteNameLabelClassic;
-
-  @FindBy(id = "ExpirationDate_ileinner")
-  @CacheLookup
-  private WebElement quoteExpirationDateLabelClassic;
-
-  @FindBy(id = "Status_ileinner")
-  @CacheLookup
-  private WebElement quoteStatusLabelClassic;
-
-  @FindBy(id = "Description_ilecell")
-  @CacheLookup
-  private WebElement quoteDescriptionLabelClassic;
-
-  @FindBy(id = "Tax_ileinner")
-  @CacheLookup
-  private WebElement quoteTaxLabelClassic;
-
-  @FindBy(id = "ShippingHandling_ileinner")
-  @CacheLookup
-  private WebElement quoteShippingAndHandlingLabelClassic;
-
-  @FindBy(id = "GrandTotal_ileinner")
-  @CacheLookup
-  private WebElement quoteGrandTotalLabelClassic;
-
   //Links
   @FindBy(xpath = "//td[@id='topButtonRow']/input[@title='Edit']")
   @CacheLookup
@@ -47,13 +18,7 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   private WebElement deleteQuoteLink;
 
   public QuotesContentPageClassic() {
-    super.quoteNameLabel = quoteNameLabelClassic;
-    super.quoteExpirationDateLabel = quoteExpirationDateLabelClassic;
-    super.quoteStatusLabel = quoteStatusLabelClassic;
-    super.quoteDescriptionLabel = quoteDescriptionLabelClassic;
-    super.quoteTaxLabel = quoteTaxLabelClassic;
-    super.quoteShippingAndHandlingLabel = quoteShippingAndHandlingLabelClassic;
-    super.quoteGrandTotalLabel = quoteGrandTotalLabelClassic;
+
   }
 
   @Override
@@ -90,6 +55,20 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   @Override
   public void openQuoteDetails() {
     //Is not necessary to open quote details
+  }
+
+  /**
+   * <p>This method gets locators for verifying quote information.</p>
+   */
+  @Override
+  protected void getLocators() {
+    super.quoteNameLabel = By.xpath("//div[@id='Name_ileinner' and text()='" + super.quoteInfo.getName() + "']");
+    super.quoteExpirationDateLabel = By.xpath("//div[@id='ExpirationDate_ileinner' and text()='" + super.quoteInfo.getExpirationDate() + "']");
+    super.quoteStatusLabel = By.xpath("//div[@id='Status_ileinner' and text()='" + super.quoteInfo.getStatus() + "']");
+    super.quoteDescriptionLabel = By.xpath("//div[@id='Description_ileinner'  and text()='" + super.quoteInfo.getDescription() + "']");
+    super.quoteTaxLabel = By.xpath("//div[@id='Tax_ileinner' and contains(text(),'" + super.quoteInfo.replaceDots(super.quoteInfo.getTax()) + "')]");
+    super.quoteShippingAndHandlingLabel = By.xpath("//div[@id='ShippingHandling_ileinner' and contains(text(),'" + super.quoteInfo.replaceDots(super.quoteInfo.getShippingAndHandling()) + "')]");
+    super.quoteGrandTotalLabel = By.xpath("//div[@id='GrandTotal_ileinner' and contains(text(),'" + super.quoteInfo.getGrandTotal() + "')]");
   }
 
   /**

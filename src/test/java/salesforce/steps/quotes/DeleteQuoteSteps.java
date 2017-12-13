@@ -46,6 +46,5 @@ public class DeleteQuoteSteps {
       e.printStackTrace();
     }
     assertFalse(quotesHomePage.isQuoteElementPresent(quote.getName()));
-    System.out.println("verification result: " + quotesHomePage.isQuoteElementPresent(quote.getName()));
   }
 }

@@ -27,6 +27,8 @@ public class QuoteEditionFormLight extends QuoteEditionForm {
     super.quoteNameInput = driver.findElement(By.xpath("//input[contains(@aria-required, 'true')]"));
     super.quoteExpirationDateInput = driver.findElement(By.xpath("//div[contains(@class, 'uiInput--datetime')]//input[1]"));
     super.quoteDescriptionInput = driver.findElement(By.xpath("//textarea[contains(@class, 'textarea')]"));
+    super.quoteTaxInput = driver.findElement(By.xpath("//div[1]/div[2]/div/div/div/input[@min='-99999999999999']"));
+    super.quoteShippingAndHandlingInput = driver.findElement(By.xpath("//div[2]/div[2]/div/div/div/input[@min='-99999999999999']"));
     super.saveBtn = saveBtnLight;
   }
 

@@ -76,8 +76,6 @@ public class CreateQuoteSteps {
     quotesContentPage = quoteEditionForm.openQuote(quoteName);
     quotesContentPage.openQuoteDetails();
     oppy.getQuote(quoteName).setGrandTotal();
-    System.out.println("Grand Total: " + oppy.getQuote(quoteName).getGrandTotal());
     assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
-    System.out.println("verification result: " + quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
   }
 }

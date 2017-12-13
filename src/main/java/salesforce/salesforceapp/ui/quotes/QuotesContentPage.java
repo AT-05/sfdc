@@ -1,6 +1,7 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import org.openqa.selenium.WebElement;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.ContentBasePage;
@@ -9,14 +10,20 @@ import salesforce.salesforceapp.ui.ContentBasePage;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public abstract class QuotesContentPage extends ContentBasePage {
-  protected WebElement quoteNameLabel;
-  protected WebElement quoteExpirationDateLabel;
-  protected WebElement quoteStatusLabel;
-  protected WebElement quoteDescriptionLabel;
-  protected WebElement quoteTaxLabel;
-  protected WebElement quoteShippingAndHandlingLabel;
-  protected WebElement quoteGrandTotalLabel;
+  //Web elements
+  protected By quoteNameLabel;
+  protected By quoteExpirationDateLabel;
+  protected By quoteStatusLabel;
+  protected By quoteDescriptionLabel;
+  protected By quoteTaxLabel;
+  protected By quoteShippingAndHandlingLabel;
+  protected By quoteGrandTotalLabel;
+
+  //Entities
   protected Quote quoteInfo;
+
+  //utilities
+  private Logger log = Logger.getLogger(getClass());
 
   /**
    * <p>This method sends to Quote Edition Form.</p>
@@ -47,20 +54,26 @@ public abstract class QuotesContentPage extends ContentBasePage {
    * @return whether the quote info is correct or not.
    */
   public boolean isQuoteInfoCorrect(Oppy oppy, String quoteNameInput) {
-    boolean result = false;
-    Quote quote = oppy.getQuote(quoteNameInput);
-    quoteInfo = quote;
-    if (/*driverTools.getTextElement(quoteNameInput).equalsIgnoreCase(quote.getName())
-      && driverTools.getTextElement(quoteExpirationDateInput).equalsIgnoreCase(quote.getExpirationDate())
-      &&*/ driverTools.getTextElement(quoteStatusLabel).equalsIgnoreCase(quote.getStatus())
-      && driverTools.getTextElement(quoteDescriptionLabel).equalsIgnoreCase(quote.getDescription())
-      && driverTools.getTextElement(quoteTaxLabel).contains(quote.getTax())
-      && driverTools.getTextElement(quoteShippingAndHandlingLabel).contains(quote.getShippingAndHandling())
-      && driverTools.getTextElement(quoteGrandTotalLabel).contains(quote.getGrandTotal())) {
-      result = true;
+    quoteInfo = oppy.getQuote(quoteNameInput);
+    getLocators();
+    if (driverTools.isElementVisibility(quoteNameLabel)
+      && driverTools.isElementVisibility(quoteExpirationDateLabel)
+      && driverTools.isElementVisibility(quoteStatusLabel)
+      && driverTools.isElementVisibility(quoteDescriptionLabel)
+      && driverTools.isElementVisibility(quoteTaxLabel)
+      && driverTools.isElementVisibility(quoteShippingAndHandlingLabel)
+      && driverTools.isElementVisibility(quoteGrandTotalLabel)) {
+      log.info("Verification result: The quote information after creating/editing is correct.");
+      return true;
     }
-    return result;
+    log.info("Verification result: The quote information after creating/editing is not correct.");
+    return false;
   }
+
+  /**
+   * <p>This method gets locators for verifying quote information.</p>
+   */
+  protected abstract void getLocators();
 
   /**
    * <p>This method performs deletion of Quote.</p>
