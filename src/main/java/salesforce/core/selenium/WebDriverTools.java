@@ -138,7 +138,6 @@ public class WebDriverTools {
         catch (Exception e){
             return false;
         }
-
     }
 
 

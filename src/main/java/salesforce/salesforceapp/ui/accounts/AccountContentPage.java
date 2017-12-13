@@ -25,6 +25,8 @@ public abstract class AccountContentPage extends ContentBasePage {
 
     public abstract boolean containsThisElement(String name);
 
+    public abstract boolean displayedErrorDeleteMessage();
+
 //        String path=String.format("%s%s%s%s%s","//span[contains(@class,'slds-form-element__static')]//span//a[text()='"
 //                , name, "'] | //span[contains(@class,'slds-form-element__static')]//span[text()='", name, "']");
 //        return driverTools.isElementVisibility(By.xpath(path));

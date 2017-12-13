@@ -11,6 +11,8 @@ import salesforce.salesforceapp.ui.PageFactory;
  */
 public class AccountContentPageClassic extends AccountContentPage {
 
+    @FindBy(xpath = "//div[contains(@class, 'bDescription')]")
+    private WebElement messageErrorCreate;
 
     @FindBy(xpath = "//td[@id='topButtonRow']/input[@name='delete']")
     private WebElement deleteBtn;
@@ -66,6 +68,11 @@ public class AccountContentPageClassic extends AccountContentPage {
                 "//td[contains(@class, 'dataCol')]/div/*[contains(text(), '", name, "')]|",
                 "//td[contains(@class, 'dataCol')]/div[contains(text(), '", name, "')]");
         return driverTools.isElementVisibility(By.xpath(path));
+    }
+
+    @Override
+    public boolean displayedErrorDeleteMessage() {
+        return driverTools.isElementDisplayed(messageErrorCreate);
     }
 
 }

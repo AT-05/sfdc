@@ -1,5 +1,6 @@
 package salesforce.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -71,7 +72,7 @@ public class AccountsSteps {
 
     @When("^I select the Account$")
     public void iSelectTheAccount() {
-        iGoToAccountsHomePage();
+        //iGoToAccountsHomePage();
         accountContentPage = accountHomePage.goToAccountContent(account);
     }
 
@@ -110,5 +111,28 @@ public class AccountsSteps {
         assertTrue(accountContentPage.containsThisElement(myAccount.getSector()));
         assertTrue(accountContentPage.containsThisElement(myAccount.getType()));
         assertTrue(accountContentPage.containsThisElement(myAccount.getWeb()));
+    }
+
+    @Given("^I have Acount  with the following information and has a closed won Opportunity:$")
+    public void iHaveAcountWithTheFollowingInformationAndHasAClosedWonOpportunity(List<Account> accountList) {
+        account = accountList.get(0);
+        //iGoToAccountsHomePage();
+        //accountContentPage = accountHomePage.goToAccountContent(account);
+
+
+
+    }
+
+    @And("^I delete an Account$")
+    public void iDeleteAnAccount()  {
+        deleteAnAccount();
+    }
+
+    @Then("^I verify that display the message that the account can not be Delete$")
+    public void iVerifyThatDisplayTheMessageThatTheAccountCanNotBeDelete() {
+
+        assertTrue(accountContentPage.displayedCreatedMessage());
+        assertTrue(accountContentPage.displayedErrorDeleteMessage());
+
     }
 }

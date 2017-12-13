@@ -41,6 +41,9 @@ Feature: Manage Accounts
 
     Then I should see the Account updated in the Accounts page
 
+
+
+
 #  Scenario: Users should be able to login using valid credentials
 #    Given I navigate to Login page
 #    When I login with enviroments params

@@ -13,6 +13,9 @@ public class AccountContentPageLight extends AccountContentPage {
     @FindBy(xpath = "//div[contains(@class, 'slds-notify--toast forceToastMessage')]")
     private WebElement message;
 
+    @FindBy(xpath = "//div[contains(@class, 'detail slds-text-align--center')]")
+    private WebElement messageErrorCreate;
+
     @FindBy(xpath = "//ul[contains(@class, 'forceActionsContainer')]/li[3]")
     private WebElement deleteBtn;
 
@@ -28,8 +31,7 @@ public class AccountContentPageLight extends AccountContentPage {
 
     public AccountContentPageLight() {
         super.nameText = driver.findElement(By.xpath("//h1[contains(@class, 'slds-page-header__title slds-m-right--small')]/span[contains(@class, 'uiOutputText')]"));
-        super.addressText = driver.findElement(By.xpath("//a[contains(@class, 'uiOutputURL')]"));
-//        super.updateBtn=driver.findElement(By.xpath("//div[contains(@class, 'slds-truncate') and (contains(@title, 'Modificar') or contains(@title, 'Modify'))]"));
+     // Todo  super.addressText = driver.findElement(By.xpath("//a[contains(@class, 'uiOutputURL')]"));
     }
 
     @Override
@@ -69,6 +71,11 @@ public class AccountContentPageLight extends AccountContentPage {
         String path=String.format("%s%s%s%s%s","//span[contains(@class,'slds-form-element__static')]//span//a[text()='"
                 , name, "'] | //span[contains(@class,'slds-form-element__static')]//span[text()='", name, "']");
         return driverTools.isElementVisibility(By.xpath(path));
+    }
+
+    @Override
+    public boolean displayedErrorDeleteMessage() {
+        return driverTools.isElementDisplayed(messageErrorCreate);
     }
 
 
