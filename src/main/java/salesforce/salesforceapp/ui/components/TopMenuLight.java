@@ -19,7 +19,6 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePageLight;
  */
 public class TopMenuLight extends TopMenu {
   @FindBy(css = ".oneUserProfileCardTrigger")
-  @CacheLookup
   private WebElement userProfileLink;
 
   @FindBy(xpath = "//a[contains(@href, 'classic')]")

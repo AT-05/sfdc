@@ -170,4 +170,25 @@ public class WebDriverTools {
       return false;
     }
   }
+
+  public void waitUntilAvailable(By by) {
+    WebElement webElement = driver.findElement(by);
+    waitAvailable(webElement);
+  }
+
+  public  void waitUntilAvailable(WebElement element){
+    waitAvailable(element);
+  }
+
+  private void waitAvailable(WebElement element){
+    boolean flag = true;
+    while (flag){
+      try{
+        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        flag = false;
+      }catch (Exception ex){
+      }
+    }
+  }
 }

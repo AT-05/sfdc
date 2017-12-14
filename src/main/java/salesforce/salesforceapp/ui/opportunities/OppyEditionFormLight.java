@@ -57,6 +57,8 @@ public class OppyEditionFormLight extends OppyEditionForm {
     driverTools.setInputField(accountInput, oppy.getAccount());
     String accountElement = String
         .format("//div[@role='listbox']//div[@title='%s']", oppy.getAccount());
+
+    driverTools.waitUntilAvailable(By.xpath(accountElement));
     accountSelected = driver.findElement(By.xpath(accountElement));
     driverTools.clickElement(accountSelected);
 

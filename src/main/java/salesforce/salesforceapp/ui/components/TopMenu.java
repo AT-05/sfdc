@@ -20,7 +20,7 @@ public abstract class TopMenu extends BasePage {
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
-    wait.until(ExpectedConditions.urlContains("home"));
+    //wait.until(ExpectedConditions.urlContains("home"));
   }
 
   /**

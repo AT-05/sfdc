@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
+import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
@@ -26,6 +27,7 @@ public class ManageSteps {
   private PageTransporter pageTransporter;
 
   //Pages
+  private HomePage homePage;
   private OppyHomePage oppyHomePage;
   private OppyEditionForm oppyEditionForm;
   private OppyContentPage oppyContentPage;
@@ -33,18 +35,23 @@ public class ManageSteps {
   //Entities
   private Oppy oppy;
 
-  public ManageSteps(OppyContentPage oppyContentPage) {
+  public ManageSteps() {
     pageTransporter = PageTransporter.getInstance();
-    this.oppyContentPage = oppyContentPage;
   }
 
   //****************************************************************
   //Manager Step Definitions
   //****************************************************************
+  @And("^I go to Opportunities page$")
+  public void iGoToOpportunitiesPage() {
+    homePage = PageFactory.getHomePage();
+    oppyHomePage = homePage.topMenu.goToOppyHomePage();
+  }
+
   @And("^I (?:have|create) Opportunity with the following information$")
   public void iHaveOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
     this.oppy = oppy.get(0);
-    oppyHomePage = PageFactory.getOppyHomePage();
+//    oppyHomePage = PageFactory.getOppyHomePage();
     oppyEditionForm = oppyHomePage.clickNewOppyBtn();
     oppyContentPage = oppyEditionForm.createOppy(this.oppy);
   }

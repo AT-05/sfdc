@@ -71,6 +71,7 @@ public class OppyContentPageLight extends OppyContentPage {
         .findElement(By.xpath(".//*[@id='activityPanelContainer']/div[1]/div/ul"));
     Actions actions = new Actions(driver).moveToElement(ele);
     actions.perform();
+    driverTools.waitUntilAvailable(detailsBtn);
     driverTools.clickElement(detailsBtn);
   }
 
