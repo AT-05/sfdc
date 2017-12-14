@@ -1,79 +1,78 @@
 package salesforce.steps;
 
-import cucumber.api.PendingException;
+import static org.testng.Assert.assertTrue;
+
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
-import salesforce.salesforceapp.entities.Oppy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageTransporter;
+import salesforce.salesforceapp.ui.ProfilePage;
 import salesforce.salesforceapp.ui.home.HomePage;
-import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
-import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
-import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 
-import static org.junit.Assert.assertTrue;
-
-
+/**
+ * Created by AT05 team on 12/11/2017.
+ */
 public class LoginSteps {
+  private Logger log = Logger.getLogger(getClass());
+  private PageTransporter pageTransporter;
 
-    private Logger log = Logger.getLogger(getClass());
-    private PageTransporter pageTransporter;
+  //Pages
+  private LoginPage loginPage;
+  private HomePage homePage;
+  private ProfilePage profilePage;
 
-    //Pages
-    private LoginPage loginPage;
-    private HomePage homePage;
-    private OppyHomePage oppyHomePage;
-    private OppyContentPage oppyContentPage;
-    private OppyEditionForm oppyEditionForm;
+  public LoginSteps() throws Exception {
+    //Todo
+    this.pageTransporter = PageTransporter.getInstance();
+  }
 
-    //Entities
-    private Oppy oppy;
+  //****************************************************************
+  //Login Step Definitions
+  //****************************************************************
+  @Given("^I navigate to Login page$")
+  public void navigateToLoginPage() {
+    loginPage = new LoginPage();
+  }
 
-    public LoginSteps() throws Exception {
-        this.pageTransporter = PageTransporter.getInstance();
+  @When("^I login as \"(.*?)\" with password \"(.*?)\"$")
+  public void login(String username, String password) {
+    homePage = loginPage.login(username, password);
+  }
+
+  @Then("^I should login successfully$")
+  public void verifyMainPageIsDisplayed() {
+    profilePage = homePage.topMenu.goToProfilePage();
+    assertTrue(profilePage.isUserNameDisplayed(), "User email displayed in Web");
+  }
+
+  @Given("^I am logged to Salesforce")
+  public void iAmLoggedToMyApplication() {
+    if (pageTransporter.isOnLogin()) { //If the user is not logged
+      loginPage = new LoginPage();
+      final String userName = SalesForceAppEnvsConfig.getInstance().getUserName();
+      final String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
+      login(userName, password);
     }
+  }
 
-    //****************************************************************
-    //Login Step Definitions
-    //****************************************************************
-    @Given("^I navigate to Login page$")
-    public void navigateToLoginPage() {
-        loginPage = pageTransporter.navigateToLoginPage();
+  //****************************************************************
+  //Hooks for @Login scenarios
+  //****************************************************************
+  @After(value = "@Login", order = 999)
+  public void afterLoginScenario() {
+    log.info("After hook @Login");
+    homePage.topMenu.logout();
+  }
+
+
+    @Then("^Product Page should be displayed with the information updated$")
+    public void productPageShouldBeDisplayedWithTheInformationUpdated()  {
+      System.out.println("Selecciono bien************");
     }
-
-    @When("^I login with enviroments params$")
-    public void iLoginWithEnviromentsParams() {
-        homePage = loginPage.login(SalesForceAppEnvsConfig.getInstance().getUserName(),
-                SalesForceAppEnvsConfig.getInstance().getUserPassword());
-    }
-
-    @Then("^I should login successfully$")
-    public void verifyMainPageIsDisplayed() {
-//        assertTrue(homePage.isUserNameDisplayed(), "User name displayed in Web);
-    }
-
-    @Given("^I'm logged to Salesforce$")
-    public void iMLoggedToSalesforce() {
-        //if (pageTransporter.isOnLogin()) {
-            navigateToLoginPage();
-            homePage = loginPage.login(SalesForceAppEnvsConfig.getInstance().getUserName(),
-                    SalesForceAppEnvsConfig.getInstance().getUserPassword());
-        //}
-    }
-
-
-    //****************************************************************
-    //Hooks for @Login scenarios
-    //****************************************************************
-    @After(value = "@Login", order = 999)
-    public void afterLoginScenario() {
-        log.info("After hook @Login");
-//        logOut();
-    }
-
-
 }
+
+
