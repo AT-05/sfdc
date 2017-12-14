@@ -3,9 +3,11 @@ package salesforce.salesforceapp.ui;
 
 import salesforce.salesforceapp.SalesforceEnums.Skin;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
+import salesforce.salesforceapp.ui.accounts.*;
 import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.components.TopMenuClassic;
 import salesforce.salesforceapp.ui.components.TopMenuLight;
+import salesforce.salesforceapp.ui.contacts.*;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.home.HomePageLight;
@@ -23,6 +25,9 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
 public class PageFactory {
 
   private static Skin skin = SalesForceAppEnvsConfig.getInstance().getSkin();
+  //private static Skin skin= Skin.LIGHT;
+  private static AccountEditionForm accountEditionForm;
+  private static AccountContentPage accountContentPage;
 
   //****************************************************************
   // Pages
@@ -114,5 +119,42 @@ public class PageFactory {
       default:
         return new QuoteEditionFormLight();
     }
+  }
+
+  public static ContactContentPage getContactContentPage() {
+    switch (skin) {
+      case CLASSIC:
+        return new ContactContentPageClassic();
+      default:
+        return new ContactContentPageLight();
+    }
+  }
+
+  public static ContactEditionForm getContacEditionForm() {
+    switch (skin) {
+      case CLASSIC:
+        return new ContactEditionFormClassic();
+      default:
+        return new ContactEditionFormLight();
+    }
+  }
+
+  public static AccountEditionForm getAccountEditionForm() {
+    switch (skin) {
+      case CLASSIC:
+        return new AccountEditionFormClassic();
+      default:
+        return new AccountEditionFormLight();
+    }
+  }
+
+  public static AccountContentPage getAccountContentPage() {
+    switch (skin) {
+      case CLASSIC:
+        return new AccountContentPageClassic();
+      default:
+        return new AccountContentPageLight();
+    }
+
   }
 }

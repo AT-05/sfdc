@@ -1,7 +1,5 @@
 package salesforce.salesforceapp.ui;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import salesforce.core.selenium.WebDriverManager;
@@ -9,13 +7,15 @@ import salesforce.salesforceapp.SalesforceEnums.Skin;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.ui.components.*;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class PageTransporter {
 
+  private static PageTransporter instance;
   private Logger log = Logger.getLogger(getClass());
   private String baseURL = SalesForceAppEnvsConfig.getInstance().getUrl();
   private WebDriver webDriver = WebDriverManager.getInstance().getWebDriver();
-
-  private static PageTransporter instance;
 
   protected PageTransporter() {
     initialize();
@@ -43,8 +43,7 @@ public class PageTransporter {
   public String getCurrentURL() {
     return webDriver.getCurrentUrl();
   }
-
-
+  
   public Boolean isOnWeb() {
     return (webDriver.getCurrentUrl().contains(baseURL));
   }
@@ -75,7 +74,7 @@ public class PageTransporter {
    */
   public void switchSkin() {
     if (!getCurrentSkin().equals(SalesForceAppEnvsConfig.getInstance().getSkin())) {
-    TopMenu topMenu = PageFactory.getTopMenu(getCurrentSkin());
+      TopMenu topMenu = PageFactory.getTopMenu(getCurrentSkin());
       topMenu.switchSkin();
     }
   }

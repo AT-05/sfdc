@@ -53,4 +53,5 @@ public class OppyHomePageLight extends OppyHomePage {
         .implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(), TimeUnit.SECONDS);
     return driverTools.isElementDisplayed(opportunity);
   }
+
 }

@@ -2,6 +2,7 @@ package salesforce.salesforceapp.ui.home;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 
 public class HomePageClassic extends HomePage {
 
@@ -16,4 +17,6 @@ public class HomePageClassic extends HomePage {
   public boolean isInHomePage() {
     return homeTab.isDisplayed();
   }
+
+
 }

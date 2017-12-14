@@ -18,7 +18,6 @@ public abstract class ContentBasePage extends BasePage {
   @CacheLookup
   protected WebElement deleteBtn;
 
-  //Code for edit btn
 
   public ContentBasePage() {
     this.topMenu = PageFactory.getTopMenu();

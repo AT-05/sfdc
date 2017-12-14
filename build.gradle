@@ -41,6 +41,8 @@ dependencies {
     compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '1.7.2'
 }
 
+
+
 tasks.withType(Test) {
     // enable TestNG support (default is JUnit)
     useTestNG()

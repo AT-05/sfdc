@@ -1,15 +1,18 @@
 package salesforce.core.selenium;
 
-import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class WebDriverTools {
 
+  private final String JS_SCRIPT = "document.querySelector(\"a[title='%s']\").click();";
   private WebDriver driver;
   private WebDriverWait wait;
 
@@ -120,7 +123,7 @@ public class WebDriverTools {
    * <p>This method performs selection of element of a list.</p>
    *
    * @param webElements is a lis of WebElement elements.
-   * @param keyWord     is the value to compare element attribute with.
+   * @param keyWord is the value to compare element attribute with.
    */
   public void selectElementInList(List<WebElement> webElements, String keyWord) {
     for (WebElement element : webElements) {
@@ -136,7 +139,7 @@ public class WebDriverTools {
    * <p>This method performs selection of value inside a dropdown list.</p>
    *
    * @param dropDown is the dropdown web element given.
-   * @param value    is the value to select.
+   * @param value is the value to select.
    */
   public void selectDropDownValue(WebElement dropDown, String value) {
     Select selector = new Select(dropDown);
@@ -157,40 +160,76 @@ public class WebDriverTools {
     }
   }
 
+  /**
+   * Check when an element is displayed.
+   *
+   * @param by is the xpath.
+   * @return as a boolean.
+   */
   public boolean isElementDisplayed(By by) {
     WebElement webElement = driver.findElement(by);
     return isElementDisplayed(webElement);
   }
 
+  /**
+   * Check when an element is visible.
+   *
+   * @param by is the path.
+   * @return as a boolean.
+   */
   public boolean isElementVisibility(By by) {
     try {
       return isElementDisplayed(by);
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       return false;
     }
   }
 
+  /**
+   * Wait until an element is available by xpath.
+   *
+   * @param by is the xpath.
+   */
   public void waitUntilAvailable(By by) {
     WebElement webElement = driver.findElement(by);
     waitAvailable(webElement);
   }
 
-  public  void waitUntilAvailable(WebElement element){
+  /**
+   * Wait until an element is available by element.
+   *
+   * @param element is the element.
+   */
+  public void waitUntilAvailable(WebElement element) {
     waitAvailable(element);
   }
 
-  private void waitAvailable(WebElement element){
+  /**
+   * Wait until a element is visible and clickable.
+   *
+   * @param element is the element.
+   */
+  private void waitAvailable(WebElement element) {
     boolean flag = true;
-    while (flag){
-      try{
+    while (flag) {
+      try {
         wait.until(ExpectedConditions.visibilityOf(element));
         System.out.println("==== Elem is visible");
         wait.until(ExpectedConditions.elementToBeClickable(element));
         System.out.println("==== Elem is clickable");
         flag = false;
-      }catch (Exception ex){
+      } catch (Exception ex) {
       }
     }
+  }
+
+  /**
+   * This method perform a click in a non visible element in the UI using class locator.
+   *
+   * @param webElement the WebElement non visible in the UI.
+   */
+  public void jsClickClassButton(WebElement webElement) {
+    ((JavascriptExecutor) driver)
+        .executeScript("arguments[0].click();", webElement);
   }
 }
