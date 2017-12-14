@@ -35,6 +35,10 @@ public class AccountEditionFormLight extends AccountEditionForm {
     @FindBy(xpath = "//input[@step='1']")
     private WebElement employeesInput;
 
+
+    @FindBy(xpath = "//div[contains(@class, 'genericNotification')]")
+    private WebElement messageErrorOnForm;
+
     @Override
     public void waitUntilPageObjectIsLoaded() {
         // wait.until(ExpectedConditions.visibilityOf(nameInput));
@@ -48,6 +52,18 @@ public class AccountEditionFormLight extends AccountEditionForm {
      */
     @Override
     public AccountContentPage saveNewAccount(Account account) {
+        saveAnAccount(account);
+        return new AccountContentPageLight();
+
+    }
+
+    /**
+     * Create an Acount and save the values.
+     *
+     * @param account Entiti for an account.
+     */
+    @Override
+    public void saveAnAccount(Account account) {
         driverTools.setInputField(nameInput, account.getName());
         setDropDowField(typeDropDow, account.getType());
         driverTools.setInputField(webInput, account.getWeb());
@@ -56,8 +72,6 @@ public class AccountEditionFormLight extends AccountEditionForm {
         driverTools.setInputField(employeesInput, account.getEmployees());
         setDropDowField(sectorDropDow, account.getSector());
         driverTools.clickElement(saveBtn);
-        return new AccountContentPageLight();
-
     }
 
     /**
@@ -70,5 +84,15 @@ public class AccountEditionFormLight extends AccountEditionForm {
         driverTools.clickElement(dropDowField);
         driverTools.clickElement(By.xpath("//li[contains(@class, 'uiMenuItem uiRadioMenuItem')]/a[@title='" + value + "']"));
 
+    }
+
+    /**
+     * Verify is show the error message on create/edit an Acoount.
+     *
+     * @return (true/false)
+     */
+    @Override
+    public boolean displayedErrorMessage() {
+        return driverTools.isElementDisplayed(messageErrorOnForm);
     }
 }

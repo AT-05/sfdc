@@ -1,5 +1,6 @@
 package salesforce.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -127,5 +128,32 @@ public class AccountsSteps {
     @When("^I select an Account$")
     public void iSelectAnAccount() {
         accountContentPage = accountHomePage.goToAccountContent(account);
+    }
+
+    @When("^I create a New Account with the following information and the Account without Name:$")
+    public void iCreateANewAccountWithTheFollowingInformationAndTheAccountWithoutName(List<Account> accountList) {
+        account = accountList.get(0);
+        accountEditionForm = accountHomePage.clickNewAccountBtn();
+        accountEditionForm.saveAnAccount(account);
+    }
+
+
+
+    @Then("^the message should be displayed that is not possible create an Account$")
+    public void theMessageShouldBeDisplayedThatIsNotPossibleCreateAnAccount() {
+        assertTrue(accountEditionForm.displayedErrorMessage());
+    }
+
+
+    @Then("^the message should be displayed that is not possible Edit an Account$")
+    public void theMessageShouldBeDisplayedThatIsNotPossibleEditAnAccount() {
+        assertTrue(accountEditionForm.displayedErrorMessage());
+    }
+
+    @And("^I edit that Account with the following information without Name:$")
+    public void iEditThatAccountWithTheFollowingInformationWithoutName(List<Account> accountList)  {
+        accountToEdit = accountList.get(0);
+        accountEditionForm = accountContentPage.clickUpdateAccountBtn();
+        accountEditionForm.saveAnAccount(accountToEdit);
     }
 }

@@ -34,6 +34,8 @@ public class AccountEditionFormClassic extends AccountEditionForm {
     @FindBy(id = "acc15")
     private WebElement employeesInput;
 
+    @FindBy(xpath = "//div[@id='errorDiv_ep']")
+    private WebElement messageErrorOnForm;
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
@@ -48,16 +50,10 @@ public class AccountEditionFormClassic extends AccountEditionForm {
      */
     @Override
     public AccountContentPage saveNewAccount(Account account) {
-        driverTools.setInputField(nameInput, account.getName());
-        setDropDowField(typeDropDow, account.getType());
-        driverTools.setInputField(webInput, account.getWeb());
-        driverTools.setInputField(descriptionInput, account.getDescription());
-        driverTools.setInputField(phoneInput, account.getPhone());
-        driverTools.setInputField(employeesInput, account.getEmployees());
-        setDropDowField(sectorDropDow, account.getSector());
-        driverTools.clickElement(saveBtn);
+        saveAnAccount(account);
         return new AccountContentPageClassic();
     }
+
 
     /**
      * Select with value on a drop dow field.
@@ -68,5 +64,32 @@ public class AccountEditionFormClassic extends AccountEditionForm {
     private void setDropDowField(WebElement typeDropDow, String type) {
         Select stageDropDown = new Select(typeDropDow);
         stageDropDown.selectByVisibleText(type);
+    }
+
+    /**
+     * Create an Acount and save the values.
+     *
+     * @param account Entiti for an account.
+     */
+    @Override
+    public void saveAnAccount(Account account) {
+        driverTools.setInputField(nameInput, account.getName());
+        setDropDowField(typeDropDow, account.getType());
+        driverTools.setInputField(webInput, account.getWeb());
+        driverTools.setInputField(descriptionInput, account.getDescription());
+        driverTools.setInputField(phoneInput, account.getPhone());
+        driverTools.setInputField(employeesInput, account.getEmployees());
+        setDropDowField(sectorDropDow, account.getSector());
+        driverTools.clickElement(saveBtn);
+    }
+
+    /**
+     * Verify is show the error message on create/edit an Acoount.
+     *
+     * @return (true/false)
+     */
+    @Override
+    public boolean displayedErrorMessage() {
+        return driverTools.isElementDisplayed(messageErrorOnForm);
     }
 }
