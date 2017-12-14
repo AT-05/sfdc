@@ -23,5 +23,8 @@ public abstract class BasePage {
     waitUntilPageObjectIsLoaded();
   }
 
+  /**
+   * Wait until the page loads.
+   */
   public abstract void waitUntilPageObjectIsLoaded();
 }

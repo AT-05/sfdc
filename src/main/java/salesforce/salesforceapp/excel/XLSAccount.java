@@ -22,8 +22,8 @@ public class XLSAccount {
         for (Map<String, String> accountMap : accountsXLS) {
             Account account = new Account();
 
-            account.setAccountName(accountMap.get(ACCOUNT_NAME));
-            account.setAddressName(accountMap.get(ACCOUNT_ADDRESS));
+//            account.setAccountName(accountMap.get(ACCOUNT_NAME));
+//            account.setAddressName(accountMap.get(ACCOUNT_ADDRESS));
             //for all the fields
 
             if (!APIAccount.isAccountSaved(account)) {

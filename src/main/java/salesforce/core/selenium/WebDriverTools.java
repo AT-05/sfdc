@@ -120,6 +120,7 @@ public class WebDriverTools {
     }
   }
 
+
   /**
    * <p>This method performs selection of element of a list.</p>
    *
@@ -183,4 +184,5 @@ public class WebDriverTools {
     ((JavascriptExecutor) driver)
       .executeScript("arguments[0].click();", webElement);
   }
+
 }
