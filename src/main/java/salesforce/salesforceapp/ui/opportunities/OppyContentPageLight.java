@@ -140,10 +140,12 @@ public class OppyContentPageLight extends OppyContentPage {
   @Override
   public OppyContentPage changeStage(String stageName) {
     String xpath = String.format("//a[@class='tabHeader']//span[contains(text(), '%s')]", stageName);
+    driverTools.waitUntilAvailable(By.xpath(xpath));
     WebElement element = driver.findElement(By.xpath(xpath));
     System.out.println("======= Click in: " + stageName);
     driverTools.clickElement(element);
     driverTools.clickElement(confirmStageBtn);
+    displayedCreateMessage();
     return new OppyContentPageLight();
   }
 }

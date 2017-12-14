@@ -11,10 +11,11 @@ Feature: Verify changes when assignment other stage of a opportunity
 
     When I change the stage with "<stage_name>" option
     Then the stage selected should be associate to the Opportunity
-        Examples:
+
+    Examples:
           | stage_name     |
           | Needs Analysis |
-#          | Proposal       |
+          | Proposal       |
 #          | Negotiation    |
 #          | Closed Won     |
 #          | Closed Lost    |

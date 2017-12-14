@@ -185,7 +185,9 @@ public class WebDriverTools {
     while (flag){
       try{
         wait.until(ExpectedConditions.visibilityOf(element));
+        System.out.println("==== Elem is visible");
         wait.until(ExpectedConditions.elementToBeClickable(element));
+        System.out.println("==== Elem is clickable");
         flag = false;
       }catch (Exception ex){
       }

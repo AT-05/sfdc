@@ -32,11 +32,14 @@ public class ManageSteps {
   private OppyEditionForm oppyEditionForm;
   private OppyContentPage oppyContentPage;
 
+  private ManageSteps manageSteps;
+
   //Entities
   private Oppy oppy;
 
-  public ManageSteps() {
-    pageTransporter = PageTransporter.getInstance();
+  public ManageSteps(Oppy oppy) {
+    //pageTransporter = PageTransporter.getInstance();
+    this.oppy = oppy;
   }
 
   //****************************************************************
@@ -50,10 +53,11 @@ public class ManageSteps {
 
   @And("^I (?:have|create) Opportunity with the following information$")
   public void iHaveOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
-    this.oppy = oppy.get(0);
-//    oppyHomePage = PageFactory.getOppyHomePage();
+    //this.oppy = oppy.get(0);
+    this.oppy.setOppy(oppy.get(0));
     oppyEditionForm = oppyHomePage.clickNewOppyBtn();
     oppyContentPage = oppyEditionForm.createOppy(this.oppy);
+    oppyContentPage.displayedCreateMessage();
   }
 
   @Then("^a message should be displayed saying that the Opportunity was (?:created|saved|deleted)$")
@@ -102,12 +106,12 @@ public class ManageSteps {
    * Verify content of element with the content of the object.
    */
   private void validationOpportunity(){
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getOppyName()));
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getCloseDate()));
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()));
-    assertTrue(oppyContentPage.containsLinkElement(oppy.getAccount()));
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()));
-    assertTrue(oppyContentPage.containsCheckbox(oppy.getBudgetAsString()));
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getOppyName()), "Name opportunity is incorrect:");
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getCloseDate()), "Close data is incorrect:");
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()), "Stage is incorrect:");
+    assertTrue(oppyContentPage.containsLinkElement(oppy.getAccount()), "Account is incorrect:");
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()), "Amount is incorrect:");
+    assertTrue(oppyContentPage.containsCheckbox(oppy.getBudgetAsString()), "Budget is incorrect:");
   }
 
 

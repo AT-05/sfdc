@@ -22,14 +22,13 @@ public class TopMenuLight extends TopMenu {
   private WebElement userProfileLink;
 
   @FindBy(xpath = "//a[contains(@href, 'classic')]")
-  @CacheLookup
   private WebElement switchSkinLink;
 
   @FindBy(xpath = "//h1[@class='profile-card-name']/a")
   @CacheLookup
   private WebElement userProfileNameLink;
 
-  @FindBy(xpath = "//a[contains(@href, 'Opportunity')]")
+  @FindBy(xpath = "//a[contains(@href, 'Opportunity')]//span")
   @CacheLookup
   private WebElement opportunitiesBtn;
 
@@ -42,9 +41,10 @@ public class TopMenuLight extends TopMenu {
   private List<WebElement> featuresList;
 
   @FindBy(css = ".profile-link-label.logout.uiOutputURL")
-  @CacheLookup
   private WebElement logoutLink;
 
+  @FindBy(xpath = "//a[@title='Home']//span")
+  private WebElement homeBtn;
 
   /**
    * <p>This method performs switching of web page skin
@@ -70,11 +70,13 @@ public class TopMenuLight extends TopMenu {
 
   @Override
   public HomePage goToHomePage() {
+    driverTools.clickElement(homeBtn);
     return new HomePageLight();
   }
 
   @Override
   public OppyHomePage goToOppyHomePage() {
+    driverTools.waitUntilAvailable(opportunitiesBtn);
     driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageLight();
   }

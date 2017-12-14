@@ -188,4 +188,13 @@ public class Oppy {
       }
     }
   }
+
+  public void setOppy(Oppy oppy){
+    this.oppyName = oppy.getOppyName();
+    this.closeDate = oppy.getCloseDate();
+    this.stage = oppy.getStage();
+    this.account = oppy.getAccount();
+    this.budget = oppy.getBudget();
+    this.amount = oppy.getAmount();
+  }
 }
