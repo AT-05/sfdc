@@ -62,7 +62,7 @@ public class EditQuoteSteps {
 
   @And("^I go to Quotes Home Page$")
   public void iGoToQuotesHomePage() {
-    homePage = quoteEditionForm.topMenu.goToHomePage();
+    homePage = PageFactory.getHomePage();
     quotesHomePage = homePage.topMenu.goToQuotesHomePage();
   }
 
@@ -87,7 +87,7 @@ public class EditQuoteSteps {
   @And("^The Quote information should be updated correctly$")
   public void theQuoteInformationShouldBeUpdatedCorrectly() {
     quotesContentPage.openQuoteDetails();
+    oppy.getQuote(quoteName).setGrandTotal();
     assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
-    System.out.println("verification result: " + quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
   }
 }

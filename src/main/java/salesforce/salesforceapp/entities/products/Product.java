@@ -1,5 +1,8 @@
 package salesforce.salesforceapp.entities.products;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 /**
  * Created by Administrator on 12/13/2017.
  */
@@ -12,6 +15,8 @@ public class Product {
   private double quantity;
   private double discount;
   private String lineItemDescription;
+  private double subTotal;
+  private double totalPrice;
 
   public void setName(String name) {
     this.name = name;
@@ -52,8 +57,8 @@ public class Product {
    *
    * @return the product sales price.
    */
-  public double getSalesPrice() {
-    return salesPrice;
+  public String getSalesPrice() {
+    return getNumberWithFormat(salesPrice);
   }
 
   /**
@@ -70,8 +75,8 @@ public class Product {
    *
    * @return the product quantity.
    */
-  public double getQuantity() {
-    return quantity;
+  public String getQuantity() {
+    return getNumberWithFormat(quantity);
   }
 
   /**
@@ -88,8 +93,8 @@ public class Product {
    *
    * @return the product discount.
    */
-  public double getDiscount() {
-    return discount;
+  public String getDiscount() {
+    return getNumberWithFormat(discount);
   }
 
   /**
@@ -117,5 +122,53 @@ public class Product {
    */
   public void setLineItemDescription(String lineItemDescription) {
     this.lineItemDescription = lineItemDescription;
+  }
+
+  /**
+   * <p>This method gets sub total.</p>
+   *
+   * @return the sub total.
+   */
+  public String getSubTotal() {
+    return getNumberWithFormat(subTotal);
+  }
+
+  /**
+   * <p>This method calculates sub total value.</p>
+   */
+  public void calculateSubTotal() {
+    subTotal = salesPrice * quantity;
+  }
+
+  /**
+   * <p>This method gets total price.</p>
+   *
+   * @return the total price.
+   */
+  public String getTotalPrice() {
+    return getNumberWithFormat(totalPrice);
+  }
+
+  /**
+   * <p>This method calculates total price value.</p>
+   */
+  public void calculateTotalPrice() {
+    final double discountValue = subTotal * (discount / 100.0);
+    totalPrice = subTotal - discountValue;
+  }
+
+  /**
+   * <p>This method converts format of double value
+   * to decimal format.</p>
+   *
+   * @return the value with the new decimal format.
+   */
+  private String getNumberWithFormat(double value) {
+    DecimalFormat decimalFormat = new DecimalFormat(",###.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+    symbols.setDecimalSeparator(',');
+    symbols.setGroupingSeparator('.');
+    decimalFormat.setDecimalFormatSymbols(symbols);
+    return decimalFormat.format(value);
   }
 }

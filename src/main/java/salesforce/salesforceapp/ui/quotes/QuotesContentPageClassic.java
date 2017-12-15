@@ -17,7 +17,7 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   @CacheLookup
   private WebElement deleteQuoteLink;
 
-  @FindBy(xpath = "")
+  @FindBy(xpath = "//input[@value='Add Line Item']")
   @CacheLookup
   private WebElement addLineItemLink;
 
@@ -66,8 +66,8 @@ public class QuotesContentPageClassic extends QuotesContentPage {
     super.quoteExpirationDateLabel = By.xpath("//div[@id='ExpirationDate_ileinner' and text()='" + super.quoteInfo.getExpirationDate() + "']");
     super.quoteStatusLabel = By.xpath("//div[@id='Status_ileinner' and text()='" + super.quoteInfo.getStatus() + "']");
     super.quoteDescriptionLabel = By.xpath("//div[@id='Description_ileinner'  and text()='" + super.quoteInfo.getDescription() + "']");
-    super.quoteTaxLabel = By.xpath("//div[@id='Tax_ileinner' and contains(text(),'" + super.quoteInfo.replaceDots(super.quoteInfo.getTax()) + "')]");
-    super.quoteShippingAndHandlingLabel = By.xpath("//div[@id='ShippingHandling_ileinner' and contains(text(),'" + super.quoteInfo.replaceDots(super.quoteInfo.getShippingAndHandling()) + "')]");
+    super.quoteTaxLabel = By.xpath("//div[@id='Tax_ileinner' and contains(text(),'" + super.quoteInfo.getTax() + "')]");
+    super.quoteShippingAndHandlingLabel = By.xpath("//div[@id='ShippingHandling_ileinner' and contains(text(),'" + super.quoteInfo.getShippingAndHandling() + "')]");
     super.quoteGrandTotalLabel = By.xpath("//div[@id='GrandTotal_ileinner' and contains(text(),'" + super.quoteInfo.getGrandTotal() + "')]");
   }
 

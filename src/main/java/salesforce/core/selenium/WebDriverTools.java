@@ -144,6 +144,18 @@ public class WebDriverTools {
     selector.selectByValue(value);
   }
 
+  /**
+   * <p>This method performs selection of text inside a dropdown list.</p>
+   *
+   * @param dropDown is the dropdown web element given.
+   * @param text    is the text to select.
+   */
+  public void selectDropDownLinkText(WebElement dropDown, String text) {
+    Select selector = new Select(dropDown);
+    wait.until(ExpectedConditions.visibilityOf(dropDown));
+    selector.selectByVisibleText(text);
+  }
+
   public boolean isElementVisibility(By by) {
     try {
       return isElementDisplayed(by);

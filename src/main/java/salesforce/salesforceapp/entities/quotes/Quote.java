@@ -1,5 +1,7 @@
 package salesforce.salesforceapp.entities.quotes;
 
+import java.text.*;
+import java.util.ArrayList;
 import java.util.List;
 import salesforce.salesforceapp.entities.products.Product;
 
@@ -11,10 +13,14 @@ public class Quote {
   private String expirationDate;
   private String status;
   private String description;
-  private String tax;
-  private String shippingAndHandling;
+  private double tax;
+  private double shippingAndHandling;
   private double grandTotal = 0.0;
   private List<Product> productList;
+
+  public Quote() {
+    productList = new ArrayList<>();
+  }
 
   /**
    * <p>This method sets quote variables values.</p>
@@ -26,8 +32,8 @@ public class Quote {
     expirationDate = quote.getExpirationDate();
     status = quote.getStatus();
     description = quote.getDescription();
-    tax = quote.getTax();
-    shippingAndHandling = quote.getShippingAndHandling();
+    this.tax = quote.tax;
+    this.shippingAndHandling = quote.shippingAndHandling;
   }
 
   /**
@@ -71,7 +77,7 @@ public class Quote {
    *
    * @param tax is the quote tax value given.
    */
-  public void setTax(String tax) {
+  public void setTax(double tax) {
     this.tax = tax;
   }
 
@@ -80,7 +86,7 @@ public class Quote {
    *
    * @param shippingAndHandling is the quote shipping and handling value given.
    */
-  public void setShippingAndHandling(String shippingAndHandling) {
+  public void setShippingAndHandling(double shippingAndHandling) {
     this.shippingAndHandling = shippingAndHandling;
   }
 
@@ -88,9 +94,7 @@ public class Quote {
    * <p>This method sets quote grand total value.</p>
    */
   public void setGrandTotal() {
-    final double taxValue = Double.valueOf(tax);
-    final double shippingAndHandlingValue = Double.valueOf(shippingAndHandling);
-    grandTotal = taxValue + shippingAndHandlingValue;
+    grandTotal = tax + shippingAndHandling;
   }
 
   /**
@@ -135,6 +139,15 @@ public class Quote {
    * @return quote tax value.
    */
   public String getTax() {
+    return getNumberWithFormat(tax);
+  }
+
+  /**
+   * <p>This method gets quote tax as double.</p>
+   *
+   * @return quote tax value.
+   */
+  public Double getTaxAsDouble() {
     return tax;
   }
 
@@ -144,6 +157,15 @@ public class Quote {
    * @return quote shipping and handling value.
    */
   public String getShippingAndHandling() {
+    return getNumberWithFormat(shippingAndHandling);
+  }
+
+  /**
+   * <p>This method gets quote shipping and handling as double.</p>
+   *
+   * @return quote shipping and handling value.
+   */
+  public Double getShippingAndHandlingAsDouble() {
     return shippingAndHandling;
   }
 
@@ -153,8 +175,16 @@ public class Quote {
    * @return quote grand total value.
    */
   public String getGrandTotal() {
-    final String grandTotalValue = String.valueOf(grandTotal);
-    return replaceDots(grandTotalValue);
+    return getNumberWithFormat(grandTotal);
+  }
+
+  /**
+   * <p>This method adds a quote line item to the quote.</p>
+   *
+   * @param product is a Product object type.
+   */
+  public void addQuoteLineItem(Product product) {
+    productList.add(product);
   }
 
   /**
@@ -169,11 +199,17 @@ public class Quote {
   }
 
   /**
-   * <p>This method adds a quote line item to the quote.</p>
+   * <p>This method converts format of double value
+   * to decimal format.</p>
    *
-   * @param product is a Product object type.
+   * @return the value with the new decimal format.
    */
-  public void addQuoteLineItem(Product product) {
-    productList.add(product);
+  private String getNumberWithFormat(double value) {
+    DecimalFormat decimalFormat = new DecimalFormat(",###.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+    symbols.setDecimalSeparator(',');
+    symbols.setGroupingSeparator('.');
+    decimalFormat.setDecimalFormatSymbols(symbols);
+    return decimalFormat.format(value);
   }
 }
