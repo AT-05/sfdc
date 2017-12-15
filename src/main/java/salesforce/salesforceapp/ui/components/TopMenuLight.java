@@ -33,7 +33,8 @@ public class TopMenuLight extends TopMenu {
     @FindBy(xpath = "//*[@id=\"userNavLabel\"]")
     private WebElement userProfile;
 
-    @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
+    @FindBy(xpath = "//a[contains(@href, 'classic')]")
+    @CacheLookup
     private WebElement switchSkinLink;
 
     @FindBy(xpath = "//h1[@class='profile-card-name']/a")
@@ -135,14 +136,14 @@ public class TopMenuLight extends TopMenu {
         productTab.click();
         return new HomeProductPageLightning();
     }
+    /**
+     * This method go to Home Contact.
+     *
+     * @return ContactHomePage object type.
+     */
      @Override
     public ContactHomePage goToContactHomePage() {
-       // waitModal();
-        //driverTools.clickElement(openAllAppsButton);
-        driverTools.clickElement(contactBtn);
-        //wait.until(ExpectedConditions.visibilityOf(openAllAppsButton));
-        //openAllAppsButton.click();
-
-        return new ContactHomePageLight();
+          driverTools.clickElement(contactBtn);
+         return new ContactHomePageLight();
     }
 }

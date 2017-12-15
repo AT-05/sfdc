@@ -43,11 +43,6 @@ public class TopMenuClassic extends TopMenu {
   @CacheLookup
   private WebElement logoutLink;
 
-  public void waitUntilPageObjectIsLoaded() {
-    wait.until(ExpectedConditions.urlContains("home"));
-  }
-
-
   /**
    * <p>This method performs switching of web page skin
    * to classic.</p>

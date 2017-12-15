@@ -18,6 +18,8 @@ public class ContactHomePageClassic extends ContactHomePage{
   }
   @Override
   public void clickNewBtn() {
+
+    System.out.println("++++++++click new button++++++++++++");
     driverTools.clickElement(newBtn);
   }
 }

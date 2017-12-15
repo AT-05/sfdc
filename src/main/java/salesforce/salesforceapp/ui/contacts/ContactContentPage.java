@@ -44,6 +44,12 @@ public abstract class ContactContentPage extends ContentBasePage {
    * @return ContactEditionForm.
    */
   public abstract ContactEditionForm clickEditButton();
+  /**
+   * Opens the  ContactEditionForm for cloning.
+   *
+   * @return ContactEditionForm.
+   */
+  public abstract ContactEditionForm clickCloneButton();
 
   public abstract void clickOnDetails();
 
@@ -63,6 +69,12 @@ public abstract class ContactContentPage extends ContentBasePage {
    * @return ContactHomePage.
    */
   public abstract ContactHomePage deleteContact();
+  /**
+   * Clone the current Contact.
+   *
+   * @return ContactContentPage.
+   */
+  public abstract ContactContentPage cloneContact();
 
   /**
    * Wait for the success message to be visible.

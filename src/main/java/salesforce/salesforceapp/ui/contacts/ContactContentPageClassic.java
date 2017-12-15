@@ -67,6 +67,16 @@ public class ContactContentPageClassic extends ContactContentPage {
     return new ContactEditionFormClassic();
   }
 
+  /**
+   * Opens the  ContactEditionForm for cloning.
+   *
+   * @return ContactEditionForm.
+   */
+  @Override
+  public ContactEditionForm clickCloneButton() {
+    return null;
+  }
+
   @Override
   public void clickOnDetails() {
 
@@ -99,6 +109,16 @@ public class ContactContentPageClassic extends ContactContentPage {
     clickDeleteButton();
     clickConfirmDeleteButton();
     return new ContactHomePageClassic();
+  }
+
+  /**
+   * Clone the current Contact.
+   *
+   * @return ContactContentPage.
+   */
+  @Override
+  public ContactContentPage cloneContact() {
+    return null;
   }
 
   /**

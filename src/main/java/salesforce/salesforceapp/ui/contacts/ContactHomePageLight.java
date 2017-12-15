@@ -18,6 +18,6 @@ public class ContactHomePageLight extends ContactHomePage{
   }
   @Override
   public void clickNewBtn() {
-    driverTools.clickElement(newBtn);
+    driverTools.jsClickClassButton(newBtn);//;clickElement(newBtn);
   }
 }

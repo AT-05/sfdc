@@ -68,6 +68,16 @@ public class ContactContentPageLight extends ContactContentPage {
     return new ContactEditionFormLight();
   }
 
+  /**
+   * Opens the  ContactEditionForm for cloning.
+   *
+   * @return ContactEditionForm.
+   */
+  @Override
+  public ContactEditionForm clickCloneButton() {
+    return null;
+  }
+
   public boolean isContactDisplayed(final String contact) {
     WebElement contactContainer;
     try {
@@ -113,6 +123,16 @@ public class ContactContentPageLight extends ContactContentPage {
     clickDeleteButton();
     clickConfirmDeleteButton();
     return new ContactHomePageLight();
+  }
+
+  /**
+   * Clone the current Contact.
+   *
+   * @return ContactContentPage.
+   */
+  @Override
+  public ContactContentPage cloneContact() {
+    return null;
   }
 
   /**
