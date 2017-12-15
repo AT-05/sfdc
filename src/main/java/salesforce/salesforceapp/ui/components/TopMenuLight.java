@@ -59,10 +59,13 @@ public class TopMenuLight extends TopMenu {
   @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Contacts']")
   private WebElement contactsTextLink;
 
-  private final String lacatorAccounts = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Account')]";
+  private final String locateAccounts = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Account')]";
 
   @FindBy(xpath = "//a[@title='Home']//span")
   private WebElement homeBtn;
+
+  @FindBy(xpath = "//div[@title='Sales']")
+  private WebElement salesBtn;
 
   /**
    * Wait until the page loads.
@@ -101,7 +104,10 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public HomePage goToHomePage() {
-    driverTools.clickElement(homeBtn);
+//    driverTools.clickElement(homeBtn);
+    driverTools.clickElement(appLauncherLink);
+    driverTools.clickElement(salesBtn);
+
     return new HomePageLight();
   }
 
@@ -173,7 +179,7 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public AccountHomePage goToAccountsHomePage() {
-    driverTools.clickElement(By.xpath(lacatorAccounts));
+    driverTools.clickElement(By.xpath(locateAccounts));
     return new AccountHomePageLight();
   }
 }

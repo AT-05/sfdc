@@ -1,4 +1,4 @@
-package salesforce.salesforceapp.entities;
+package salesforce.salesforceapp.entities.account;
 
 /**
  * Created by Administrator on 12/6/2017.
@@ -11,8 +11,7 @@ public class Account {
     private String phone;
     private String sector;
     private String employees;
-    private String streetBilling;
-    private String shippingStreet;
+
 
     public String getName() {
         return name;
@@ -70,22 +69,6 @@ public class Account {
         this.employees = employees;
     }
 
-    public String getStreetBilling() {
-        return streetBilling;
-    }
-
-    public void setStreetBilling(String streetBilling) {
-        this.streetBilling = streetBilling;
-    }
-
-
-    public String getShippingStreet() {
-        return shippingStreet;
-    }
-
-    public void setShippingStreet(String shippingStreet) {
-        this.shippingStreet = shippingStreet;
-    }
 
     public boolean isSame(String name, String type) {
         return (this.name.equalsIgnoreCase(name)

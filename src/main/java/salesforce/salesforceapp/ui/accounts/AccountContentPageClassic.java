@@ -12,7 +12,7 @@ import salesforce.salesforceapp.ui.PageFactory;
 public class AccountContentPageClassic extends AccountContentPage {
 
   @FindBy(xpath = "//div[contains(@class, 'bDescription')]")
-  private WebElement messageErrorCreate;
+  private WebElement messageErrorCreateLabel;
 
   @FindBy(xpath = "//td[@id='topButtonRow']/input[@name='delete']")
   private WebElement deleteBtn;
@@ -22,8 +22,8 @@ public class AccountContentPageClassic extends AccountContentPage {
 
 
   public AccountContentPageClassic() {
-    super.nameText = driver.findElement(By.xpath("//*[@id='acc2_ileinner']"));
-    super.addressText = driver.findElement(By.xpath("//*[@id='acc17_ileinner']"));
+    super.nameInput = driver.findElement(By.xpath("//*[@id='acc2_ileinner']"));
+    super.addressInput = driver.findElement(By.xpath("//*[@id='acc17_ileinner']"));
   }
 
   @Override
@@ -90,6 +90,6 @@ public class AccountContentPageClassic extends AccountContentPage {
    */
   @Override
   public boolean displayedErrorDeleteMessage() {
-    return driverTools.isElementDisplayed(messageErrorCreate);
+    return driverTools.isElementDisplayed(messageErrorCreateLabel);
   }
 }

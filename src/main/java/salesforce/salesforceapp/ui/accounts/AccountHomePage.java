@@ -1,6 +1,6 @@
 package salesforce.salesforceapp.ui.accounts;
 
-import salesforce.salesforceapp.entities.Account;
+import salesforce.salesforceapp.entities.account.Account;
 import salesforce.salesforceapp.ui.HomeBasePage;
 import salesforce.salesforceapp.ui.PageFactory;
 

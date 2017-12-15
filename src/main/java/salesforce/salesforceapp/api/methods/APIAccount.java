@@ -1,7 +1,7 @@
 package salesforce.salesforceapp.api.methods;
 
 
-import salesforce.salesforceapp.entities.Account;
+import salesforce.salesforceapp.entities.account.Account;
 
 public class APIAccount {
 

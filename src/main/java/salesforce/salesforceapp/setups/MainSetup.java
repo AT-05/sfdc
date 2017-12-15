@@ -31,7 +31,7 @@ public class MainSetup {
 //        priceBookProductXLS = xlsFile.getValues(PRICE_BOOK_PRODUCT);
 //
 //        XLSContact.createContacts(contactXLS);
-//        XLSAccount.createAccounts(accountsXLS);
+//        XLSAccount.createAccounts(accountXLS);
 //        XLSOppy.createAccounts(oppyXLS);
 //        XLSQuote.createAccounts(quoteXLS);
 //        XLSPriceBook.createPriceBook(priceBookXLS);

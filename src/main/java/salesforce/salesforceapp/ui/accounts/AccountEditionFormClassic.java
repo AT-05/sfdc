@@ -1,10 +1,9 @@
 package salesforce.salesforceapp.ui.accounts;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import salesforce.salesforceapp.entities.Account;
+import salesforce.salesforceapp.entities.account.Account;
 
 /**
  * Created by Administrator on 12/5/2017.
@@ -35,7 +34,7 @@ public class AccountEditionFormClassic extends AccountEditionForm {
   private WebElement employeesInput;
 
   @FindBy(xpath = "//div[@id='errorDiv_ep']")
-  private WebElement messageErrorOnForm;
+  private WebElement messageErrorOnFormLabel;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -49,7 +48,7 @@ public class AccountEditionFormClassic extends AccountEditionForm {
    * @return
    */
   @Override
-  public AccountContentPage saveNewAccount(Account account) {
+  public AccountContentPage saveAccount(Account account) {
     saveAnAccount(account);
     return new AccountContentPageClassic();
   }
@@ -91,6 +90,6 @@ public class AccountEditionFormClassic extends AccountEditionForm {
    */
   @Override
   public boolean displayedErrorMessage() {
-    return driverTools.isElementDisplayed(messageErrorOnForm);
+    return driverTools.isElementDisplayed(messageErrorOnFormLabel);
   }
 }

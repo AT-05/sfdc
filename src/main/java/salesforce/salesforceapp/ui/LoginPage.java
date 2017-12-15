@@ -55,6 +55,8 @@ public class LoginPage extends BasePage {
     driverTools.clickElement(loginButton);
     wait.until(ExpectedConditions.urlContains("home"));
     PageTransporter.getInstance().switchSkin();
-    return PageFactory.getHomePage();
+    HomePage homePage = PageFactory.getHomePage();
+    homePage=homePage.topMenu.goToHomePage();
+    return homePage;
   }
 }

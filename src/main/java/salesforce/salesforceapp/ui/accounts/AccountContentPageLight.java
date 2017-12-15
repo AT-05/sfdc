@@ -10,18 +10,22 @@ import salesforce.salesforceapp.ui.PageFactory;
  */
 public class AccountContentPageLight extends AccountContentPage {
   @FindBy(xpath = "//div[contains(@class, 'slds-notify--toast forceToastMessage')]")
-  private WebElement message;
+  private WebElement messageLabel;
 
   @FindBy(xpath = "//div[contains(@class, 'detail slds-text-align--center')]")
-  private WebElement messageErrorCreate;
+  private WebElement messageErrorCreateLabel;
 
-  @FindBy(xpath = "//ul[contains(@class, 'forceActionsContainer')]/li[3]")
+  @FindBy(xpath = "//a[@title='Delete']")
   private WebElement deleteBtn;
 
   @FindBy(xpath = "//button[contains(@class, 'slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton')]")
   private WebElement deleteConfirnBtn;
 
-  @FindBy(xpath = "//div[contains(@class, 'slds-truncate') and (contains(@title, 'Modificar') or contains(@title, 'Modify'))]")
+
+  @FindBy(xpath = "//li[@class='slds-button slds-button--icon-border-filled oneActionsDropDown']/div")
+  private WebElement moreOptionBtn;
+
+  @FindBy(xpath = "//a[@title='Edit']")
   private WebElement updateBtn;
 
   @FindBy(xpath = "//a[@title='Details' or @title='Detalles']//span[@class='title']")
@@ -29,11 +33,11 @@ public class AccountContentPageLight extends AccountContentPage {
 
 
   public AccountContentPageLight() {
-    super.nameText = driver.findElement(By.xpath("//h1[contains(@class, 'slds-page-header__title slds-m-right--small')]/span[contains(@class, 'uiOutputText')]"));
+    super.nameInput = driver.findElement(By.xpath("//h1[contains(@class, 'slds-page-header__title slds-m-right--small')]/span[contains(@class, 'uiOutputText')]"));
   }
 
   /**
-   * Verify is show the message after of create an Acoount.
+   * Verify is show the messageLabel after of create an Acoount.
    *
    * @return (true/false)
    */
@@ -43,13 +47,13 @@ public class AccountContentPageLight extends AccountContentPage {
   }
 
   /**
-   * Verify is displayed the message.
+   * Verify is displayed the messageLabel.
    *
    * @return
    */
   @Override
   public boolean displayedCreatedMessage() {
-    return driverTools.isElementDisplayed(message);
+    return driverTools.isElementDisplayed(messageLabel);
   }
 
   /**
@@ -57,6 +61,7 @@ public class AccountContentPageLight extends AccountContentPage {
    */
   @Override
   public void delete() {
+    driverTools.clickElement(moreOptionBtn);
     driverTools.clickElement(deleteBtn);
     driverTools.clickElement(deleteConfirnBtn);
   }
@@ -68,6 +73,7 @@ public class AccountContentPageLight extends AccountContentPage {
    */
   @Override
   public AccountEditionForm clickUpdateAccountBtn() {
+    driverTools.clickElement(moreOptionBtn);
     driverTools.clickElement(updateBtn);
     return PageFactory.getAccountEditionForm();
   }
@@ -96,13 +102,13 @@ public class AccountContentPageLight extends AccountContentPage {
   }
 
   /**
-   * Verify is show the message after of delete an Acoount.
+   * Verify is show the messageLabel after of delete an Acoount.
    *
    * @return (true/false)
    */
   @Override
   public boolean displayedErrorDeleteMessage() {
-    return driverTools.isElementDisplayed(messageErrorCreate);
+    return driverTools.isElementDisplayed(messageErrorCreateLabel);
   }
 
 
