@@ -1,11 +1,13 @@
 package salesforce.steps;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
+import salesforce.salesforceapp.api.methods.APIAccount;
 import salesforce.salesforceapp.entities.Account;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.accounts.AccountContentPage;
@@ -15,8 +17,8 @@ import salesforce.salesforceapp.ui.home.HomePage;
 
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by Administrator on 12/5/2017.
@@ -62,19 +64,23 @@ public class AccountsSteps {
         validateAccount(account);
     }
 
-    @Given("^I have an Acount with the following information:$")
-    public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
-        createANewAccountWithTheFollowingInformation(accountList);
-        accountContentPage.displayedCreatedMessage();
+    @And("^the Account should be saved$")
+    public void theAccountShouldBeSaved() throws Throwable {
+        assertTrue(APIAccount.isAccountSaved(account),"dlfasd;f");
     }
 
+    @Given("^I have an Acount with the following information:$")
+    public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
+//        createANewAccountWithTheFollowingInformation(accountList);
+//        accountContentPage.displayedCreatedMessage();
+        APIAccount.createAccount(accountList.get(0));
+    }
 
     @When("^I select the Account$")
     public void iSelectTheAccount() {
         iGoToAccountsHomePage();
         accountContentPage = accountHomePage.goToAccountContent(account);
     }
-
 
     @And("^I delete the Account$")
     public void deleteAnAccount() {
@@ -137,13 +143,10 @@ public class AccountsSteps {
         accountEditionForm.saveAnAccount(account);
     }
 
-
-
     @Then("^the message should be displayed that is not possible create an Account$")
     public void theMessageShouldBeDisplayedThatIsNotPossibleCreateAnAccount() {
         assertTrue(accountEditionForm.displayedErrorMessage());
     }
-
 
     @Then("^the message should be displayed that is not possible Edit an Account$")
     public void theMessageShouldBeDisplayedThatIsNotPossibleEditAnAccount() {
@@ -156,4 +159,17 @@ public class AccountsSteps {
         accountEditionForm = accountContentPage.clickUpdateAccountBtn();
         accountEditionForm.saveAnAccount(accountToEdit);
     }
+
+    //****************************************************************
+    //Hooks for @Login scenarios
+    //****************************************************************
+    @After(value = "@createAccoount", order = 999)
+    public void afterCreateAccount() {
+        log.info("After hook @Login");
+        if (!APIAccount.isAccountSaved(account)) {
+//            TODO
+//            APIAccount.deleteAccount(account);
+        }
+    }
+
 }
