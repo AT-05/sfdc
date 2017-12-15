@@ -35,7 +35,7 @@ public class TopMenuLight extends TopMenu {
   @FindBy(xpath = "//h1[@class='profile-card-name']/a")
   private WebElement userProfileNameLink;
 
-  @FindBy(xpath = "//a[contains(@href, 'Opportunity')]")
+  @FindBy(xpath = "//a[contains(@href, 'Opportunity')]//span")
   private WebElement opportunitiesBtn;
 
   @FindBy(xpath = "//div[contains(@class, 'slds-icon-waffle')]")
@@ -53,9 +53,6 @@ public class TopMenuLight extends TopMenu {
   @FindBy(xpath = "//span[text()='Products']")
   WebElement productTab;
 
-  @FindBy(xpath = "//*[@id=\"userNavLabel\"]")
-  private WebElement userProfile;
-
   @FindBy(css = ".oneUserProfileCardTrigger")
   private WebElement contactBtn;
 
@@ -63,6 +60,9 @@ public class TopMenuLight extends TopMenu {
   private WebElement contactsTextLink;
 
   private final String lacatorAccounts = "//a[contains(@class, 'slds-context-bar__label-action') and contains(@href, 'Account')]";
+
+  @FindBy(xpath = "//a[@title='Home']//span")
+  private WebElement homeBtn;
 
   /**
    * Wait until the page loads.
@@ -101,6 +101,7 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public HomePage goToHomePage() {
+    driverTools.clickElement(homeBtn);
     return new HomePageLight();
   }
 
@@ -111,6 +112,7 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public OppyHomePage goToOppyHomePage() {
+    driverTools.waitUntilAvailable(opportunitiesBtn);
     driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageLight();
   }

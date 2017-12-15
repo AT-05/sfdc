@@ -26,6 +26,12 @@ public class OppyContentPageLight extends OppyContentPage {
   @FindBy(xpath = "//span[@class='uiOutputDate'")
   private List<WebElement> oppyCloseDateLabel;
 
+  @FindBy(xpath = "//button[contains(@class,' active ')]//span")
+  private WebElement confirmStageBtn;
+
+  @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
+  private WebElement confirmMessage;
+
   @Override
   public void waitUntilPageObjectIsLoaded() {
   }
@@ -65,6 +71,7 @@ public class OppyContentPageLight extends OppyContentPage {
         .findElement(By.xpath(".//*[@id='activityPanelContainer']/div[1]/div/ul"));
     Actions actions = new Actions(driver).moveToElement(ele);
     actions.perform();
+    driverTools.waitUntilAvailable(detailsBtn);
     driverTools.clickElement(detailsBtn);
   }
 
@@ -123,5 +130,22 @@ public class OppyContentPageLight extends OppyContentPage {
     }
     driverTools.clickElement(quoteViewLink);
     return new OppyQuotesViewLight();
+  }
+
+  /**
+   * This method change the stage of an Opportunity
+   *
+   * @param stageName as a string.
+   */
+  @Override
+  public OppyContentPage changeStage(String stageName) {
+    String xpath = String.format("//a[@class='tabHeader']//span[contains(text(), '%s')]", stageName);
+    driverTools.waitUntilAvailable(By.xpath(xpath));
+    WebElement element = driver.findElement(By.xpath(xpath));
+    System.out.println("======= Click in: " + stageName);
+    driverTools.clickElement(element);
+    driverTools.clickElement(confirmStageBtn);
+    displayedCreateMessage();
+    return new OppyContentPageLight();
   }
 }

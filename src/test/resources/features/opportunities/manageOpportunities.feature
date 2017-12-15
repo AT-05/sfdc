@@ -2,7 +2,7 @@
 Feature: Manage Opportunities - CRUD
 
   Background:
-    Given I'm logged to Salesforce
+    Given I am logged to Salesforce
     And I go to Opportunities page
 
   @Smoke @CreateOppy

@@ -16,7 +16,7 @@ public abstract class OppyHomePage extends HomeBasePage {
    */
   public OppyContentPage selectOppy(String linkText) {
     try {
-      Thread.sleep(1000);
+      Thread.sleep(2000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
