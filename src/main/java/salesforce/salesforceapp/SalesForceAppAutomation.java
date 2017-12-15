@@ -6,6 +6,7 @@ import org.apache.log4j.PropertyConfigurator;
 import salesforce.core.selenium.WebDriverConfig;
 import salesforce.core.selenium.WebDriverManager;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
+import salesforce.salesforceapp.setups.MainSetup;
 import salesforce.salesforceapp.ui.*;
 
 
@@ -43,10 +44,11 @@ public class SalesForceAppAutomation {
     PageTransporter.getInstance().navigateToLoginPage();
 
     //Create accounts, opportunities, products, price books, etc.
-//    MainSetup.beforeExecution();
+    MainSetup.beforeExecution();
   }
 
   public void shutDown() throws Exception {
+//    MainSetup.afterExecution();
     WebDriverManager.getInstance().quitDriver();
   }
 }

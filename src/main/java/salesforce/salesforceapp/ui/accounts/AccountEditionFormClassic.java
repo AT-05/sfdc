@@ -81,6 +81,7 @@ public class AccountEditionFormClassic extends AccountEditionForm {
     driverTools.setInputField(employeesInput, account.getEmployees());
     setDropDowField(sectorDropDow, account.getSector());
     driverTools.clickElement(saveBtn);
+
   }
 
   /**
