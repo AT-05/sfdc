@@ -75,6 +75,7 @@ public class CreateQuoteSteps {
     quotesContentPage = quoteEditionForm.openQuote(quoteName);
     quotesContentPage.openQuoteDetails();
     oppy.getQuote(quoteName).setGrandTotal();
+    System.out.println("************tax: " + oppy.getQuote(quoteName).getTax());
     assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
   }
 }

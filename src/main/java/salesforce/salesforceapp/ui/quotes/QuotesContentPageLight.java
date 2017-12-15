@@ -2,8 +2,10 @@ package salesforce.salesforceapp.ui.quotes;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.*;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
@@ -27,8 +29,8 @@ public class QuotesContentPageLight extends QuotesContentPage {
   private WebElement deleteConfirmationLinkLight;
 
   @FindBy(xpath = "//div[5]/div/div/div[3]/div[1]/div/div/div/ul/li[@class='tabs__item uiTabItem']/a[@title='Details']/span[2]")
-  @CacheLookup
   private WebElement quoteDetailsLink;
+
   private WebElement quoteEditedMessage;
 
   @FindBy(xpath = "")
@@ -64,8 +66,8 @@ public class QuotesContentPageLight extends QuotesContentPage {
     boolean result = false;
     quoteEditedMessage = driver.findElement(By.xpath("//span[contains(@class, 'toastMessage')]"));
     if (driverTools.isElementDisplayed(quoteEditedMessage)
-      && quoteEditedMessage.getText().contains("was saved")
-      && quoteEditedMessage.getText().contains(quoteName)) {
+        && quoteEditedMessage.getText().contains("was saved")
+        && quoteEditedMessage.getText().contains(quoteName)) {
       result = true;
     }
     return result;
@@ -76,6 +78,8 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   public void openQuoteDetails() {
+//    wait.until(ExpectedConditions.elementToBeClickable(quoteDetailsLink));
+//    quoteDetailsLink.click();
     driverTools.clickElement(quoteDetailsLink);
   }
 
@@ -84,16 +88,13 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   protected void getLocators() {
-    super.quoteNameLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//span/span[text()='" + super.quoteInfo.getName() + "']");
-    super.quoteExpirationDateLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//span/span[text()='" + super.quoteInfo.getExpirationDate() + "']");
+    super.quoteNameLabel = By.xpath("//div/div[2]/div[1]//div[2]//span[text()='" + super.quoteInfo.getName() + "']");
+    super.quoteExpirationDateLabel = By.xpath("//div[@data-aura-class='forceDetailPanel']//div[1]//div[2]//div[2]//span[text()='" + super.quoteInfo.getExpirationDate() + "']");
     super.quoteStatusLabel = By.xpath("//div[@class='slds-template__container']//div[5]//div[3]/div[2]//div[2]//span[text()='" + super.quoteInfo.getStatus() + "']");
     super.quoteDescriptionLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//span[text()='" + super.quoteInfo.getDescription() + "']");
-    super.quoteTaxLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//div[@class='full forcePageBlock forceRecordLayout']//div" +
-      "[@class='slds-form']/div[1]//span[contains(text(), '" + super.quoteInfo.getTax() + "')]");
-    super.quoteShippingAndHandlingLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//div[@class='full forcePageBlock forceRecordLayout']//div'" +
-      "[@class='slds-form']/div[2]//span[contains(text(), '" + super.quoteInfo.getShippingAndHandling() + "')]");
-    super.quoteGrandTotalLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//div[@class='full forcePageBlock forceRecordLayout']//div" +
-      "[@class='slds-form']/div[3]//span[contains(text(), '" + super.quoteInfo.getGrandTotal() + "')]");
+    super.quoteTaxLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//div[@class='full forcePageBlock forceRecordLayout']/div[2]//div[@class='slds-form']/div[1]/div[2]//div[2]//span[contains(text(), '" + super.quoteInfo.getTax() + "')]");
+    super.quoteShippingAndHandlingLabel = By.xpath("//span[contains(text(), '" + super.quoteInfo.getShippingAndHandling() + "')]");
+    super.quoteGrandTotalLabel = By.xpath("//span/span[contains(text(), '" + super.quoteInfo.getGrandTotal() + "')]");
   }
 
   /**
@@ -118,8 +119,8 @@ public class QuotesContentPageLight extends QuotesContentPage {
     boolean result = false;
     quoteEditedMessage = driver.findElement(By.xpath("//span[contains(@class, 'toastMessage')]"));
     if (driverTools.isElementDisplayed(quoteEditedMessage)
-      && quoteEditedMessage.getText().contains("was deleted")
-      && quoteEditedMessage.getText().contains(quoteName)) {
+        && quoteEditedMessage.getText().contains("was deleted")
+        && quoteEditedMessage.getText().contains(quoteName)) {
       result = true;
     }
     return result;
