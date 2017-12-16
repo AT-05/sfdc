@@ -33,7 +33,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
 
   private WebElement quoteEditedMessage;
 
-  @FindBy(xpath = "")
+  @FindBy(xpath = "//div[@class=\"container\"]//div[1]//article/div[1]/div//li[1]//div")
   @CacheLookup
   private WebElement addLineItemLink;
 

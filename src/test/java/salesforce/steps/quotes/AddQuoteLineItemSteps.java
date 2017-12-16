@@ -33,10 +33,13 @@ public class AddQuoteLineItemSteps {
   private Quote quote;
   //Auxiliary variables
 
-  @And("^I select the Quote created with name \"([^\"]*)\", tax \"([^\"]*)\" and shipping and handling \"([^\"]*)\"$")
-  public void iSelectTheQuoteCreatedWithNameTaxAndShippingAndHandling(String quoteName, double quoteTax, double quoteShippingAndHandling) {
+  @And("^I select the Quote created with name \"([^\"]*)\", expiration date \"([^\"]*)\", status \"([^\"]*)\", description, \"([^\"]*)\", tax \"([^\"]*)\" and shipping and handling \"([^\"]*)\"$")
+  public void iSelectTheQuoteCreatedWithNameExpirationDateStatusDescriptionTaxAndShippingAndHandling(String quoteName, String quoteExpDate, String quoteStatus, String quoteDescription, double quoteTax, double quoteShippingAndHandling) {
     quote = new Quote();
     quote.setName(quoteName);
+    quote.setExpirationDate(quoteExpDate);
+    quote.setStatus(quoteStatus);
+    quote.setDescription(quoteDescription);
     quote.setTax(quoteTax);
     quote.setShippingAndHandling(quoteShippingAndHandling);
     quotesHomePage = PageFactory.getQuotesHomePage();

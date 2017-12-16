@@ -1,10 +1,9 @@
 package salesforce.salesforceapp.ui.quotes;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.*;
-import salesforce.salesforceapp.entities.opportunities.Oppy;
+import org.openqa.selenium.By;
 import salesforce.salesforceapp.entities.quotes.Quote;
-import salesforce.salesforceapp.ui.*;
+import salesforce.salesforceapp.ui.ContentBasePage;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
@@ -59,9 +58,9 @@ public abstract class QuotesContentPage extends ContentBasePage {
     quoteInfo = quote;
     getLocators();
     if (driverTools.isElementVisibility(quoteNameLabel)
-        /*&& driverTools.isElementVisibility(quoteExpirationDateLabel)
+        && driverTools.isElementVisibility(quoteExpirationDateLabel)
         && driverTools.isElementVisibility(quoteStatusLabel)
-        && driverTools.isElementVisibility(quoteDescriptionLabel)*/
+        && driverTools.isElementVisibility(quoteDescriptionLabel)
         && driverTools.isElementVisibility(quoteTaxLabel)
         && driverTools.isElementVisibility(quoteShippingAndHandlingLabel)
         && driverTools.isElementVisibility(quoteSubTotalLabel)
