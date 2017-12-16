@@ -31,7 +31,7 @@ public class OpportunitiesSteps {
   //OpportunitiesSteps Step Definitions
   //****************************************************************
   @And("^I go to Opportunities home page$")
-  public void iGoToAccountsHomePage() {
+  public void iGoToOpportunitiesHomePage() {
     oppyHomePage = homePage.topMenu.goToOppyHomePage();
   }
 

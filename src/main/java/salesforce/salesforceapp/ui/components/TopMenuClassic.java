@@ -1,16 +1,22 @@
 package salesforce.salesforceapp.ui.components;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
+
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.salesforceapp.ui.accounts.AccountHomePage;
+import salesforce.salesforceapp.ui.accounts.AccountHomePageClassic;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;
 import salesforce.salesforceapp.ui.ProfilePageClassic;
+import salesforce.salesforceapp.ui.contacts.ContactHomePage;
+import salesforce.salesforceapp.ui.contacts.ContactHomePageClassic;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.home.HomePageClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
+import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
 import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
 import salesforce.salesforceapp.ui.quotes.QuotesHomePageClassic;
 
@@ -18,32 +24,38 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePageClassic;
  * Created by AT05 team on 12/11/2017.
  */
 public class TopMenuClassic extends TopMenu {
+
+  private final String lacatorAccounts = "//li[@id='Account_Tab']";
+
+  @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
+  WebElement productTab;
+
   @FindBy(id = "userNavLabel")
   private WebElement userProfileLink;
 
-  @FindBy(xpath = "//*[@id=\"userNav-menuItems\"]/a[4]")
-  @CacheLookup
+  @FindBy(xpath = "//*[@id='userNav-menuItems']/a[4]")
   private WebElement switchSkinLink;
 
+  @FindBy(css = "a[title*='Contact']")
+  private WebElement contactBtn;
+
   @FindBy(xpath = "//a[@title='My Profile']")
-  @CacheLookup
   private WebElement userProfileNameLink;
 
   @FindBy(id = "Opportunity_Tab")
-  @CacheLookup
   private WebElement opportunitiesBtn;
 
   @FindBy(id = "Quote_Tab")
-  @CacheLookup
   private WebElement quotesLink;
 
   @FindBy(xpath = "//a[@title='Logout']")
-  @CacheLookup
   private WebElement logoutLink;
 
-  @Override
+  /**
+   * Wait until the page loads.
+   */
   public void waitUntilPageObjectIsLoaded() {
-    wait.until(ExpectedConditions.urlContains("home"));
+    wait.until(ExpectedConditions.visibilityOf(userProfileLink));
   }
 
   /**
@@ -68,11 +80,21 @@ public class TopMenuClassic extends TopMenu {
     return new LoginPage();
   }
 
+  /**
+   * This method go to Home Page
+   *
+   * @return HomePage
+   */
   @Override
   public HomePage goToHomePage() {
     return new HomePageClassic();
   }
 
+  /**
+   * This method go to Opportunity Home Page
+   *
+   * @return OppyHomePage
+   */
   @Override
   public OppyHomePage goToOppyHomePage() {
     driverTools.clickElement(opportunitiesBtn);
@@ -101,4 +123,38 @@ public class TopMenuClassic extends TopMenu {
     driverTools.clickElement(userProfileNameLink);
     return new ProfilePageClassic();
   }
+
+  /**
+   * This method go to Home Product.
+   *
+   * @return homeProduct.
+   */
+  @Override
+  public HomeProductPageClassic goToHomeProduct() {
+    productTab.click();
+    return new HomeProductPageClassic();
+  }
+
+  /**
+   * This method go to Contact Home Contact.
+   *
+   * @return ContactHomePage object type.
+   */
+  @Override
+  public ContactHomePage goToContactHomePage() {
+    driverTools.clickElement(contactBtn);
+    return new ContactHomePageClassic();
+  }
+
+  /**
+   * This method go to Home Account.
+   *
+   * @return Account Home Page object type.
+   */
+  @Override
+  public AccountHomePage goToAccountsHomePage() {
+    driverTools.clickElement(By.xpath(lacatorAccounts));
+    return new AccountHomePageClassic();
+  }
+
 }
