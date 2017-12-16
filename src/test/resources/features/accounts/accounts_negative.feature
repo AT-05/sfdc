@@ -5,7 +5,7 @@ Feature: Unable to delete account
     Given I'm logged to Salesforce
     And I go to Accounts home page
 
-  @createAccount
+  @createAccount1
   Scenario: Verify that it is not possible delete an account with has Won Opportunities
     Given I have Acount  with the following information and has a closed won Opportunity:
       | name          | type		| web			| description | phone 	| sector  | employees | streetBilling | shippingStreet  |

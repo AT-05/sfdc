@@ -26,7 +26,7 @@ public class AccountContentPageLight extends AccountContentPage {
   private WebElement moreOptionBtn;
 
   @FindBy(xpath = "//a[@title='Edit']")
-  private WebElement updateBtn;
+  private WebElement editBtn;
 
   @FindBy(xpath = "//a[@title='Details' or @title='Detalles']//span[@class='title']")
   private WebElement detailsBtn;
@@ -74,7 +74,7 @@ public class AccountContentPageLight extends AccountContentPage {
   @Override
   public AccountEditionForm clickUpdateAccountBtn() {
     driverTools.clickElement(moreOptionBtn);
-    driverTools.clickElement(updateBtn);
+    driverTools.clickElement(editBtn);
     return PageFactory.getAccountEditionForm();
   }
 

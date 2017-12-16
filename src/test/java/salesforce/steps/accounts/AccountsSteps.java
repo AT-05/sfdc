@@ -54,7 +54,7 @@ public class AccountsSteps {
 
   @Then("^the message for the Account created is displayed$")
   public void theMessageForTheAccountCreatedIsDisplayed() {
-    assertTrue(accountContentPage.displayedCreatedMessage(), "The Message was displayed correctly");
+    assertTrue(accountContentPage.displayedCreatedMessage(), "The Message was not displayed");
   }
 
   @And("^the Account should be displayed in Accounts page$")
@@ -71,7 +71,6 @@ public class AccountsSteps {
   @Given("^I have an Acount with the following information:$")
   public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
     createANewAccountWithTheFollowingInformation(accountList);
-    accountContentPage.displayedCreatedMessage();
 //    APIAccount.createAccount(accountList.get(0));
   }
 
@@ -106,13 +105,13 @@ public class AccountsSteps {
   }
 
   private void validateAccount(Account myAccount) {
-    assertTrue(accountContentPage.containsThisElement(myAccount.getName()), "The Name was displayed correctly");
-    assertTrue(accountContentPage.containsThisElement(myAccount.getDescription()), "The Description was displayed correctly");
-    assertTrue(accountContentPage.containsThisElement(myAccount.getEmployees()), "The Employees was displayed correctly");
-    assertTrue(accountContentPage.containsThisElement(myAccount.getPhone()), "The Phone was displayed correctly");
-    assertTrue(accountContentPage.containsThisElement(myAccount.getSector()), "The Indutry was displayed correctly");
-    assertTrue(accountContentPage.containsThisElement(myAccount.getType()), "The Type was displayed correctly");
-    assertTrue(accountContentPage.containsThisElement(myAccount.getWeb()), "The Web adrres was displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getName()), "The Name was not displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getDescription()), "The Description was not displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getEmployees()), "The Employees was not displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getPhone()), "The Phone was not displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getSector()), "The Indutry was not displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getType()), "The Type was not displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getWeb()), "The Web adrres was not displayed correctly");
   }
 
   @Given("^I have Acount  with the following information and has a closed won Opportunity:$")

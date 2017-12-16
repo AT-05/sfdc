@@ -1,6 +1,8 @@
 package salesforce.salesforceapp.ui.accounts;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.entities.account.Account;
 
 /**
@@ -8,7 +10,10 @@ import salesforce.salesforceapp.entities.account.Account;
  */
 public class AccountHomePageLight extends AccountHomePage {
 
-  private String messageLabelXpath = "//span[contains(@class,'toastMessage')]";
+  @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
+  private WebElement messageLabelXpath;
+
+
   private String locatorNameLink;
 
   public AccountHomePageLight() {
@@ -37,10 +42,8 @@ public class AccountHomePageLight extends AccountHomePage {
    */
   @Override
   public boolean containTheAccount(Account account) {
-
-    while (driverTools.isElementVisibility(By.xpath(messageLabelXpath))) {
-    }
-
+    driverTools.waitUntilMessageDisappear(messageLabelXpath);
+    //while (driverTools.isElementVisibility(By.xpath(messageLabelXpath))) {}
     locatorNameLink = "//a[contains(@class, 'slds-truncate') and contains(@title, '" + account.getName() + "')]";
     boolean a = driverTools.isElementVisibility(By.xpath(locatorNameLink));
     System.out.println("+++++++++++++++++++++++++++++++++++++++++++:" + a + ":" + locatorNameLink);
