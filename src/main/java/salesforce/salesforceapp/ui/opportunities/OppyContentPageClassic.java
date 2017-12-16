@@ -43,6 +43,11 @@ public class OppyContentPageClassic extends OppyContentPage {
   public void clickDetailsOppyBtn() {
   }
 
+  @Override
+  public OppyEditionForm clickEditOppyBtn() {
+    return null;
+  }
+
   /**
    * Verify if exist some content in details with div type.
    *

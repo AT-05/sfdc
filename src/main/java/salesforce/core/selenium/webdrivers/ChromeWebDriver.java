@@ -3,6 +3,7 @@ package salesforce.core.selenium.webdrivers;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -33,8 +34,10 @@ public class ChromeWebDriver implements IWebDriver {
    */
   @Override
   public WebDriver initDriver() {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--disable-notifications");
     ChromeDriverManager.getInstance().setup();
-    driver = new ChromeDriver();
+    driver = new ChromeDriver(options);
     //driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
     //wait = new WebDriverWait(driver, 30, 500);
     return driver;

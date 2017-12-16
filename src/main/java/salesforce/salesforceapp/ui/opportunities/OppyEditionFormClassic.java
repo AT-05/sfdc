@@ -1,6 +1,5 @@
 package salesforce.salesforceapp.ui.opportunities;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -46,7 +45,7 @@ public class OppyEditionFormClassic extends OppyEditionForm {
     stageDropDown.selectByValue(oppy.getStage());
     driverTools.setInputField(dateInput, oppy.getCloseDate());
     driverTools.setInputField(accountInput, oppy.getAccount());
-    if(budgetCheckbox.isSelected() != oppy.getBudget()){
+    if(budgetCheckbox.isSelected() != oppy.getPrivateOppy()){
       driverTools.clickElement(budgetCheckbox);
     }
     driverTools.setInputField(amountInput, oppy.getAmountWithFormat());
