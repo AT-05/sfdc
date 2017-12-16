@@ -57,16 +57,14 @@ public abstract class QuotesContentPage extends ContentBasePage {
     quoteInfo = oppy.getQuote(quoteNameInput);
     getLocators();
     if (driverTools.isElementVisibility(quoteNameLabel)
-      && driverTools.isElementVisibility(quoteExpirationDateLabel)
-      && driverTools.isElementVisibility(quoteStatusLabel)
-      && driverTools.isElementVisibility(quoteDescriptionLabel)
-      && driverTools.isElementVisibility(quoteTaxLabel)
-      /*&& driverTools.isElementVisibility(quoteShippingAndHandlingLabel)
-      && driverTools.isElementVisibility(quoteGrandTotalLabel)*/) {
-      log.info("Verification result: The quote information after creating/editing is correct.");
+        && driverTools.isElementVisibility(quoteExpirationDateLabel)
+        && driverTools.isElementVisibility(quoteStatusLabel)
+        && driverTools.isElementVisibility(quoteDescriptionLabel)
+        && driverTools.isElementVisibility(quoteTaxLabel)
+        /*&& driverTools.isElementVisibility(quoteShippingAndHandlingLabel)
+        && driverTools.isElementVisibility(quoteGrandTotalLabel)*/) {
       return true;
     }
-    log.info("Verification result: The quote information after creating/editing is not correct.");
     return false;
   }
 

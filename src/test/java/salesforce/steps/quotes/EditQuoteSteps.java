@@ -80,14 +80,13 @@ public class EditQuoteSteps {
 
   @Then("^A Quote successful editing message should be displayed$")
   public void aQuoteSuccessfulEditingMessageShouldBeDisplayed() {
-    assertTrue(quotesContentPage.isQuoteEditedMessageDisplayed(quoteName));
-    System.out.println("message result: " + quotesContentPage.isQuoteEditedMessageDisplayed(quoteName));
+    assertTrue(quotesContentPage.isQuoteEditedMessageDisplayed(quoteName), "'Quote was saved' message was not displayed");
   }
 
   @And("^The Quote information should be updated correctly$")
   public void theQuoteInformationShouldBeUpdatedCorrectly() {
     quotesContentPage.openQuoteDetails();
     oppy.getQuote(quoteName).setGrandTotal();
-    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
+    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName), "The quote information after editing is not correct");
   }
 }

@@ -156,6 +156,19 @@ public class WebDriverTools {
     selector.selectByVisibleText(text);
   }
 
+  /**
+   * Wait until the item is no longer visible.
+   *
+   * @param element WebElement.
+   */
+  public void waitUntilMessageDisappear(WebElement element) {
+    try {
+      while (element.isDisplayed()) {
+      }
+    } catch (Exception e) {
+    }
+  }
+
   public boolean isElementVisibility(By by) {
     try {
       return isElementDisplayed(by);

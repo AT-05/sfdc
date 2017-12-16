@@ -66,8 +66,7 @@ public class CreateQuoteSteps {
 
   @Then("^A Quote successful creation message should be displayed$")
   public void aQuoteSuccessfulCreationMessageShouldBeDisplayed() {
-    assertTrue(quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName));
-    System.out.println("message result: " + quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName));
+    assertTrue(quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName), "'Quote was created' message was not displayed");
   }
 
   @And("^The Quote should be created with the correct information$")
@@ -75,7 +74,6 @@ public class CreateQuoteSteps {
     quotesContentPage = quoteEditionForm.openQuote(quoteName);
     quotesContentPage.openQuoteDetails();
     oppy.getQuote(quoteName).setGrandTotal();
-    System.out.println("************tax: " + oppy.getQuote(quoteName).getTax());
-    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
+    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName), "The quote information after creating is not correct");
   }
 }

@@ -62,13 +62,13 @@ public class QuotesContentPageClassic extends QuotesContentPage {
    */
   @Override
   protected void getLocators() {
-    super.quoteNameLabel = By.xpath("//div[@id='Name_ileinner' and text()='" + super.quoteInfo.getName() + "']");
-    super.quoteExpirationDateLabel = By.xpath("//div[@id='ExpirationDate_ileinner' and text()='" + super.quoteInfo.getExpirationDate() + "']");
-    super.quoteStatusLabel = By.xpath("//div[@id='Status_ileinner' and text()='" + super.quoteInfo.getStatus() + "']");
-    super.quoteDescriptionLabel = By.xpath("//div[@id='Description_ileinner'  and text()='" + super.quoteInfo.getDescription() + "']");
-    super.quoteTaxLabel = By.xpath("//div[@id='Tax_ileinner' and contains(text(),'" + super.quoteInfo.getTax() + "')]");
-    super.quoteShippingAndHandlingLabel = By.xpath("//div[@id='ShippingHandling_ileinner' and contains(text(),'" + super.quoteInfo.getShippingAndHandling() + "')]");
-    super.quoteGrandTotalLabel = By.xpath("//div[@id='GrandTotal_ileinner' and contains(text(),'" + super.quoteInfo.getGrandTotal() + "')]");
+    super.quoteNameLabel = By.xpath(String.format("//div[@id='Name_ileinner' and text()='%s']", super.quoteInfo.getName()));
+    super.quoteExpirationDateLabel = By.xpath(String.format("//div[@id='ExpirationDate_ileinner' and text()='%s']", super.quoteInfo.getExpirationDate()));
+    super.quoteStatusLabel = By.xpath(String.format("//div[@id='Status_ileinner' and text()='%s']", super.quoteInfo.getStatus()));
+    super.quoteDescriptionLabel = By.xpath(String.format("//div[@id='Description_ileinner'  and text()='%s']", super.quoteInfo.getDescription()));
+    super.quoteTaxLabel = By.xpath(String.format("//div[@id='Tax_ileinner' and contains(text(),'%s')]", super.quoteInfo.getTax()));
+    super.quoteShippingAndHandlingLabel = By.xpath(String.format("//div[@id='ShippingHandling_ileinner' and contains(text(),'%s')]", super.quoteInfo.getShippingAndHandling()));
+    super.quoteGrandTotalLabel = By.xpath(String.format("//div[@id='GrandTotal_ileinner' and contains(text(),'%s')]", super.quoteInfo.getGrandTotal()));
   }
 
   /**

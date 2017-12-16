@@ -20,7 +20,7 @@ public abstract class HomeBasePage extends BasePage {
   }
 
   private By getItemLinkBy(String linkText) {
-    return By.xpath("//a[contains(text(), '" + linkText + "') | @title='" + linkText + "']");
+    return By.xpath("//a[contains(text(), '" + linkText + "')]");
   }
 
   public void selectItem(String linkText) {

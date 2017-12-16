@@ -78,8 +78,6 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   public void openQuoteDetails() {
-//    wait.until(ExpectedConditions.elementToBeClickable(quoteDetailsLink));
-//    quoteDetailsLink.click();
     driverTools.clickElement(quoteDetailsLink);
   }
 
@@ -88,13 +86,13 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   protected void getLocators() {
-    super.quoteNameLabel = By.xpath("//div/div[2]/div[1]//div[2]//span[text()='" + super.quoteInfo.getName() + "']");
-    super.quoteExpirationDateLabel = By.xpath("//div[@data-aura-class='forceDetailPanel']//div[1]//div[2]//div[2]//span[text()='" + super.quoteInfo.getExpirationDate() + "']");
-    super.quoteStatusLabel = By.xpath("//div[@class='slds-template__container']//div[5]//div[3]/div[2]//div[2]//span[text()='" + super.quoteInfo.getStatus() + "']");
-    super.quoteDescriptionLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//span[text()='" + super.quoteInfo.getDescription() + "']");
-    super.quoteTaxLabel = By.xpath("//div[@class='center oneCenterStage forceContentManager']/div[5]//div[@class='full forcePageBlock forceRecordLayout']/div[2]//div[@class='slds-form']/div[1]/div[2]//div[2]//span[contains(text(), '" + super.quoteInfo.getTax() + "')]");
-    super.quoteShippingAndHandlingLabel = By.xpath("//span[contains(text(), '" + super.quoteInfo.getShippingAndHandling() + "')]");
-    super.quoteGrandTotalLabel = By.xpath("//span/span[contains(text(), '" + super.quoteInfo.getGrandTotal() + "')]");
+    super.quoteNameLabel = By.xpath(String.format("//span[text()='Quote Name']/ancestor::div[contains(@class, 'slds-form-element')]//span[text()='%s']", super.quoteInfo.getName()));
+    super.quoteExpirationDateLabel = By.xpath(String.format("//span[text()='Expiration Date']/ancestor::div[contains(@class, 'slds-form-element')]//span[text()='%s']", super.quoteInfo.getExpirationDate()));
+    super.quoteStatusLabel = By.xpath(String.format("//span[text()='Status']/ancestor::div[contains(@class, 'slds-form-element')]//span[text()='%s']", super.quoteInfo.getStatus()));
+    super.quoteDescriptionLabel = By.xpath(String.format("//span[text()='Description']/ancestor::div[contains(@class, 'slds-form-element')]//span[text()='%s']", super.quoteInfo.getDescription()));
+    super.quoteTaxLabel = By.xpath(String.format("//span[text()='Tax']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getTax()));
+    super.quoteShippingAndHandlingLabel = By.xpath(String.format("//span[text()='Shipping and Handling']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getShippingAndHandling()));
+    super.quoteGrandTotalLabel = By.xpath(String.format("//span[text()='Grand Total']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getGrandTotal()));
   }
 
   /**
