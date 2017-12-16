@@ -13,8 +13,11 @@ public class Quote {
   private String expirationDate;
   private String status;
   private String description;
-  private double tax;
-  private double shippingAndHandling;
+  private double tax = 0.0;
+  private double shippingAndHandling = 0.0;
+  private double subTotal = 0.0;
+  private double discount = 0.0;
+  private double totalPrice = 0.0;
   private double grandTotal = 0.0;
   private List<Product> productList;
 
@@ -32,8 +35,8 @@ public class Quote {
     expirationDate = quote.getExpirationDate();
     status = quote.getStatus();
     description = quote.getDescription();
-    this.tax = quote.tax;
-    this.shippingAndHandling = quote.shippingAndHandling;
+    tax = quote.getTaxAsDouble();
+    shippingAndHandling = quote.getShippingAndHandlingAsDouble();
   }
 
   /**
@@ -91,10 +94,36 @@ public class Quote {
   }
 
   /**
+   * <p>This method sets quote sub total value.</p>
+   */
+  public void calculateSubTotal() {
+    for (Product itemProduct : productList) {
+      subTotal += itemProduct.getSubTotalAsDouble();
+    }
+  }
+
+  /**
+   * <p>This method sets quote discount value.</p>
+   */
+  public void calculateDiscount() {
+    double totalPricePercentage = (totalPrice * 100) / subTotal;
+    discount = 100 - totalPricePercentage;
+  }
+
+  /**
+   * <p>This method sets quote total price value.</p>
+   */
+  public void calculateTotalPrice() {
+    for (Product itemProduct : productList) {
+      totalPrice += itemProduct.getTotalPriceAsDouble();
+    }
+  }
+
+  /**
    * <p>This method sets quote grand total value.</p>
    */
-  public void setGrandTotal() {
-    grandTotal = tax + shippingAndHandling;
+  public void calculateGrandTotal() {
+    grandTotal = tax + shippingAndHandling + totalPrice;
   }
 
   /**
@@ -147,7 +176,7 @@ public class Quote {
    *
    * @return quote tax value.
    */
-  public Double getTaxAsDouble() {
+  public double getTaxAsDouble() {
     return tax;
   }
 
@@ -165,8 +194,35 @@ public class Quote {
    *
    * @return quote shipping and handling value.
    */
-  public Double getShippingAndHandlingAsDouble() {
+  public double getShippingAndHandlingAsDouble() {
     return shippingAndHandling;
+  }
+
+  /**
+   * <p>This method gets quote sub total.</p>
+   *
+   * @return quote sub total value.
+   */
+  public String getSubTotal() {
+    return getNumberWithFormat(subTotal);
+  }
+
+  /**
+   * <p>This method gets quote discount.</p>
+   *
+   * @return quote discount value.
+   */
+  public String getDiscount() {
+    return getNumberWithFormat(discount);
+  }
+
+  /**
+   * <p>This method gets quote total price.</p>
+   *
+   * @return quote total price value.
+   */
+  public String getTotalPrice() {
+    return getNumberWithFormat(totalPrice);
   }
 
   /**

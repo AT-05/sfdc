@@ -27,7 +27,7 @@ public class HomeProductPageLightning extends HomeProductPage {
     /**
      * Create new Prodcut.
      *
-     * @return product edition.
+     * @return products edition.
      */
     @Override
     public ProductEditionFormLightning newProduct() {
@@ -38,7 +38,7 @@ public class HomeProductPageLightning extends HomeProductPage {
 
 
     /**
-     * Check if exist a product.
+     * Check if exist a products.
      *
      * @param name string.
      * @return boolean.

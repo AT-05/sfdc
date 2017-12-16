@@ -17,6 +17,9 @@ public abstract class QuotesContentPage extends ContentBasePage {
   protected By quoteDescriptionLabel;
   protected By quoteTaxLabel;
   protected By quoteShippingAndHandlingLabel;
+  protected By quoteSubTotalLabel;
+  protected By quoteDiscountLabel;
+  protected By quoteTotalPriceLabel;
   protected By quoteGrandTotalLabel;
 
   //Entities
@@ -49,20 +52,22 @@ public abstract class QuotesContentPage extends ContentBasePage {
   /**
    * <p>This method checks correction of quote information.</p>
    *
-   * @param oppy           is an Entity object type.
-   * @param quoteNameInput is the quote name given.
+   * @param quote is an Entity object type.
    * @return whether the quote info is correct or not.
    */
-  public boolean isQuoteInfoCorrect(Oppy oppy, String quoteNameInput) {
-    quoteInfo = oppy.getQuote(quoteNameInput);
+  public boolean isQuoteInfoCorrect(Quote quote) {
+    quoteInfo = quote;
     getLocators();
     if (driverTools.isElementVisibility(quoteNameLabel)
-        && driverTools.isElementVisibility(quoteExpirationDateLabel)
+        /*&& driverTools.isElementVisibility(quoteExpirationDateLabel)
         && driverTools.isElementVisibility(quoteStatusLabel)
-        && driverTools.isElementVisibility(quoteDescriptionLabel)
+        && driverTools.isElementVisibility(quoteDescriptionLabel)*/
         && driverTools.isElementVisibility(quoteTaxLabel)
-        /*&& driverTools.isElementVisibility(quoteShippingAndHandlingLabel)
-        && driverTools.isElementVisibility(quoteGrandTotalLabel)*/) {
+        && driverTools.isElementVisibility(quoteShippingAndHandlingLabel)
+        && driverTools.isElementVisibility(quoteSubTotalLabel)
+        && driverTools.isElementVisibility(quoteDiscountLabel)
+        && driverTools.isElementVisibility(quoteTotalPriceLabel)
+        && driverTools.isElementVisibility(quoteGrandTotalLabel)) {
       return true;
     }
     return false;
@@ -117,8 +122,6 @@ public abstract class QuotesContentPage extends ContentBasePage {
    * @return whether the quote totals were updated correctly or not.
    */
   public boolean areQuoteTotalsUpdated(Quote quote) {
-    //Todo Add
-    //Todo Get locators in each skin
-    return false;
+    return isQuoteInfoCorrect(quote);
   }
 }

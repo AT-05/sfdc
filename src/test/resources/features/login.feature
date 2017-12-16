@@ -10,4 +10,4 @@ Feature: Login
 
     Examples: Short pass
       | User Name                          | Password      |
-      | franco.aldunate@fundacion-jala.org | cachito52&CPC |
+      | franco.aldunate@fundacion-jala.org | cachito52CPC  |

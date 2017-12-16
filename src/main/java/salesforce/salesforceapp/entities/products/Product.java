@@ -11,12 +11,12 @@ public class Product {
   private String code;
   private String description;
   private boolean active;
-  private double salesPrice;
-  private double quantity;
-  private double discount;
+  private double salesPrice = 0.0;
+  private double quantity = 0.0;
+  private double discount = 0.0;
   private String lineItemDescription;
-  private double subTotal;
-  private double totalPrice;
+  private double subTotal = 0.0;
+  private double totalPrice = 0.0;
 
   public void setName(String name) {
     this.name = name;
@@ -53,16 +53,16 @@ public class Product {
   }
 
   /**
-   * <p>This method gets product sales price.</p>
+   * <p>This method gets products sales price.</p>
    *
-   * @return the product sales price.
+   * @return the products sales price.
    */
   public String getSalesPrice() {
     return getNumberWithFormat(salesPrice);
   }
 
   /**
-   * <p>This method sets product sales price value.</p>
+   * <p>This method sets products sales price value.</p>
    *
    * @param salesPrice is the sales price given.
    */
@@ -71,16 +71,16 @@ public class Product {
   }
 
   /**
-   * <p>This method gets product quantity.</p>
+   * <p>This method gets products quantity.</p>
    *
-   * @return the product quantity.
+   * @return the products quantity.
    */
   public String getQuantity() {
     return getNumberWithFormat(quantity);
   }
 
   /**
-   * <p>This method sets product quantity value.</p>
+   * <p>This method sets products quantity value.</p>
    *
    * @param quantity is the quantity given.
    */
@@ -89,16 +89,16 @@ public class Product {
   }
 
   /**
-   * <p>This method gets product discount.</p>
+   * <p>This method gets products discount.</p>
    *
-   * @return the product discount.
+   * @return the products discount.
    */
   public String getDiscount() {
     return getNumberWithFormat(discount);
   }
 
   /**
-   * <p>This method sets product discount value.</p>
+   * <p>This method sets products discount value.</p>
    *
    * @param discount is the discount given.
    */
@@ -134,6 +134,15 @@ public class Product {
   }
 
   /**
+   * <p>This method gets sub total as double.</p>
+   *
+   * @return the sub total.
+   */
+  public double getSubTotalAsDouble() {
+    return subTotal;
+  }
+
+  /**
    * <p>This method calculates sub total value.</p>
    */
   public void calculateSubTotal() {
@@ -147,6 +156,15 @@ public class Product {
    */
   public String getTotalPrice() {
     return getNumberWithFormat(totalPrice);
+  }
+
+  /**
+   * <p>This method gets total price as double.</p>
+   *
+   * @return the total price.
+   */
+  public double getTotalPriceAsDouble() {
+    return totalPrice;
   }
 
   /**

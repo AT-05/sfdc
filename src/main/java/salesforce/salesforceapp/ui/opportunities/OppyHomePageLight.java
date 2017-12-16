@@ -30,6 +30,7 @@ public class OppyHomePageLight extends OppyHomePage {
     return title.isDisplayed();
   }
 
+
   /**
    * Verify if an opportunity is in the list of opportunities.
    *
@@ -54,4 +55,21 @@ public class OppyHomePageLight extends OppyHomePage {
     return driverTools.isElementDisplayed(opportunity);
   }
 
+  /**
+   * Select an opportunity from the list of opportunities.
+   *
+   * @param linkText the name of the opportunity.
+   * @return OppyContentPage.
+   */
+  @Override
+  public OppyContentPage selectOppy(String linkText) {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    WebElement elementLink = driver.findElement(By.xpath("//a[@title='" + linkText + "']"));
+    driverTools.clickElement(elementLink);
+    return new OppyContentPageLight();
+  }
 }

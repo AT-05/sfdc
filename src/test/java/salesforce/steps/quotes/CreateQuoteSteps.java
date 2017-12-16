@@ -73,7 +73,7 @@ public class CreateQuoteSteps {
   public void theQuoteShouldBeCreatedWithTheCorrectInformation() {
     quotesContentPage = quoteEditionForm.openQuote(quoteName);
     quotesContentPage.openQuoteDetails();
-    oppy.getQuote(quoteName).setGrandTotal();
-    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName), "The quote information after creating is not correct");
+    oppy.getQuote(quoteName).calculateGrandTotal();
+    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy.getQuote(quoteName)), "The quote information after creating is not correct");
   }
 }

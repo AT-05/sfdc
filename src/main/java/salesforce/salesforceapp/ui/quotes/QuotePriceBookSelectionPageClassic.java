@@ -8,12 +8,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Franco Aldunate on 12/13/2017.
  */
 public class QuotePriceBookSelectionPageClassic extends QuotePriceBookSelectionPage {
-  @FindBy(id = "p1")
-  @CacheLookup
   private By priceBookDropDown;
-
-  @FindBy(xpath = "//td[@id='bottomButtonRow']/input[1]")
-  @CacheLookup
   private By saveBtn;
 
   @Override
@@ -29,14 +24,16 @@ public class QuotePriceBookSelectionPageClassic extends QuotePriceBookSelectionP
    */
   @Override
   public AddQuoteLineItemPage selectPriceBook(String priceBookName) {
+    priceBookDropDown = By.id("p1");
+    saveBtn = By.xpath("//td[@id='bottomButtonRow']/input[1]");
     if (!driverTools.isElementVisibility(priceBookDropDown)
-      && !driverTools.isElementVisibility(saveBtn)) {
+        && !driverTools.isElementVisibility(saveBtn)) {
       return new AddQuoteLineItemPageClassic();
     }
-    final WebElement elementPriceBook = driver.findElement(priceBookDropDown);
-    final WebElement elementSave = driver.findElement(saveBtn);
-    driverTools.selectDropDownLinkText(elementPriceBook, priceBookName);
-    driverTools.clickElement(elementSave);
+    final WebElement dropDownElement = driver.findElement(priceBookDropDown);
+    final WebElement saveElement = driver.findElement(saveBtn);
+    driverTools.selectDropDownLinkText(dropDownElement, priceBookName);
+    driverTools.clickElement(saveElement);
     return new AddQuoteLineItemPageClassic();
   }
 }

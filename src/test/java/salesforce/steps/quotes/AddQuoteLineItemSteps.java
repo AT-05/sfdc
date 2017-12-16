@@ -1,10 +1,11 @@
 package salesforce.steps.quotes;
 
+import static org.testng.Assert.assertTrue;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
-import static org.testng.Assert.assertTrue;
 import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -32,10 +33,12 @@ public class AddQuoteLineItemSteps {
   private Quote quote;
   //Auxiliary variables
 
-  @And("^I select the Quote created with name \"([^\"]*)\"$")
-  public void iSelectTheQuoteCreatedWithName(String quoteName) {
+  @And("^I select the Quote created with name \"([^\"]*)\", tax \"([^\"]*)\" and shipping and handling \"([^\"]*)\"$")
+  public void iSelectTheQuoteCreatedWithNameTaxAndShippingAndHandling(String quoteName, double quoteTax, double quoteShippingAndHandling) {
     quote = new Quote();
     quote.setName(quoteName);
+    quote.setTax(quoteTax);
+    quote.setShippingAndHandling(quoteShippingAndHandling);
     quotesHomePage = PageFactory.getQuotesHomePage();
     quotesContentPage = quotesHomePage.selectQuote(quoteName);
   }
@@ -49,9 +52,9 @@ public class AddQuoteLineItemSteps {
       System.out.println("*******quantity: " + itemProduct.getQuantity());
       System.out.println("*******discount: " + itemProduct.getDiscount());
       itemProduct.calculateSubTotal();
-      System.out.println("*******discount: " + itemProduct.getSubTotal());
+      System.out.println("*******sub total: " + itemProduct.getSubTotal());
       itemProduct.calculateTotalPrice();
-      System.out.println("*******discount: " + itemProduct.getTotalPrice());
+      System.out.println("*******total price: " + itemProduct.getTotalPrice());
     }
     quotePriceBookSelectionPage = quotesContentPage.goToAddLineItem();
     addQuoteLineItemPage = quotePriceBookSelectionPage.selectPriceBook(priceBookName);
@@ -67,6 +70,16 @@ public class AddQuoteLineItemSteps {
   @And("^The Quote Totals should be updated correctly$")
   public void theQuoteTotalsShouldBeUpdatedCorrectly() {
     quotesContentPage.openQuoteDetails();
+    System.out.println("quote tax: " + quote.getTax());
+    System.out.println("quote shipping and handling: " + quote.getShippingAndHandling());
+    quote.calculateSubTotal();
+    System.out.println("quote sub total: " + quote.getSubTotal());
+    quote.calculateTotalPrice();
+    System.out.println("quote total price: " + quote.getTotalPrice());
+    quote.calculateDiscount();
+    System.out.println("quote discount: " + quote.getDiscount());
+    quote.calculateGrandTotal();
+    System.out.println("quote grand total: " + quote.getGrandTotal());
     assertTrue(quotesContentPage.areQuoteTotalsUpdated(quote));
   }
 

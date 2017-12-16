@@ -29,8 +29,8 @@ public class AddQuoteLineItemPageClassic extends AddQuoteLineItemPage {
   @Override
   public QuoteLineItemEditionForm addQuoteLineItem(List<Product> productList) {
     for (Product itemProduct : productList) {
-      final By path = By.xpath(String.format("//span[text()='%s']/ancestor::tr/td[1]//input[@class='checkbox']", itemProduct.getName()));
-      final WebElement elementCheckBox = driver.findElement(path);
+      By path = By.xpath(String.format("//span[text()='%s']/ancestor::tr/td[1]//input[@class='checkbox']", itemProduct.getName()));
+      WebElement elementCheckBox = driver.findElement(path);
       driverTools.selectCheckBox(elementCheckBox);
     }
     driverTools.clickElement(selectBtn);

@@ -1,6 +1,6 @@
 package salesforce.salesforceapp.api.methods;
 
-import salesforce.salesforceapp.entities.product.Product;
+import salesforce.salesforceapp.entities.products.Product;
 
 public class APIProduct {
 

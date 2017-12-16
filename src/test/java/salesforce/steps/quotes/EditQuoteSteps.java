@@ -86,7 +86,7 @@ public class EditQuoteSteps {
   @And("^The Quote information should be updated correctly$")
   public void theQuoteInformationShouldBeUpdatedCorrectly() {
     quotesContentPage.openQuoteDetails();
-    oppy.getQuote(quoteName).setGrandTotal();
-    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName), "The quote information after editing is not correct");
+    oppy.getQuote(quoteName).calculateGrandTotal();
+    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy.getQuote(quoteName)), "The quote information after editing is not correct");
   }
 }

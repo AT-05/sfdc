@@ -68,6 +68,9 @@ public class QuotesContentPageClassic extends QuotesContentPage {
     super.quoteDescriptionLabel = By.xpath(String.format("//div[@id='Description_ileinner'  and text()='%s']", super.quoteInfo.getDescription()));
     super.quoteTaxLabel = By.xpath(String.format("//div[@id='Tax_ileinner' and contains(text(),'%s')]", super.quoteInfo.getTax()));
     super.quoteShippingAndHandlingLabel = By.xpath(String.format("//div[@id='ShippingHandling_ileinner' and contains(text(),'%s')]", super.quoteInfo.getShippingAndHandling()));
+    super.quoteSubTotalLabel = By.xpath(String.format("//div[@id='Subtotal_ileinner' and contains(text(),'%s')]", super.quoteInfo.getSubTotal()));
+    super.quoteDiscountLabel = By.xpath(String.format("//div[@id='Discount_ileinner' and contains(text(),'%s')]", super.quoteInfo.getDiscount()));
+    super.quoteTotalPriceLabel = By.xpath(String.format("//div[@id='TotalPrice_ileinner' and contains(text(),'%s')]", super.quoteInfo.getTotalPrice()));
     super.quoteGrandTotalLabel = By.xpath(String.format("//div[@id='GrandTotal_ileinner' and contains(text(),'%s')]", super.quoteInfo.getGrandTotal()));
   }
 
