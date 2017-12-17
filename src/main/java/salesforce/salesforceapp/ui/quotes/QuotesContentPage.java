@@ -1,7 +1,9 @@
 package salesforce.salesforceapp.ui.quotes;
 
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.ContentBasePage;
 
@@ -99,13 +101,6 @@ public abstract class QuotesContentPage extends ContentBasePage {
   public abstract QuotePriceBookSelectionPage goToAddLineItem();
 
   /**
-   * <p>This method sends to Quote Line Items View Page.</p>
-   *
-   * @return a QuoteLineItemsView object type.
-   */
-  public abstract QuoteLineItemsView goToQuoteLineItemsView();
-
-  /**
    * <p>This method checks if after adding quote line item(s),
    * a successful saved changes message is displayed.</p>
    *
@@ -122,5 +117,22 @@ public abstract class QuotesContentPage extends ContentBasePage {
    */
   public boolean areQuoteTotalsUpdated(Quote quote) {
     return isQuoteInfoCorrect(quote);
+  }
+
+  /**
+   * <p>This method checks if products are found in the quote line items list.</p>
+   *
+   * @param products is an Entity object type list.
+   * @return whether the products are found on the list or not.
+   */
+  public boolean isQuoteLineItemsListUpdated(List<Product> products){
+    int counter = 0;
+    for (Product itemProduct : products) {
+      By itemPath = By.xpath(String.format("//a[text()='%s']", itemProduct.getName()));
+      if (driverTools.isElementVisibility(itemPath)) {
+        counter += 1;
+      }
+    }
+    return counter == products.size();
   }
 }

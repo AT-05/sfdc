@@ -33,8 +33,7 @@ public class DeleteQuoteSteps {
 
   @Then("^A Quote successful deleting message should be displayed$")
   public void aQuoteSuccessfulDeletingMessageShouldBeDisplayed() {
-    assertTrue(quotesContentPage.isQuoteDeletedMessageDisplayed(quote.getName()));
-    System.out.println("message result: " + quotesContentPage.isQuoteDeletedMessageDisplayed(quote.getName()));
+    assertTrue(quotesContentPage.isQuoteDeletedMessageDisplayed(quote.getName()), "'Quote was deleted' message was not displayed");
   }
 
   @And("^The Quote should disappear from the Quotes list$")
@@ -45,6 +44,6 @@ public class DeleteQuoteSteps {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    assertFalse(quotesHomePage.isQuoteElementPresent(quote.getName()));
+    assertFalse(quotesHomePage.isQuoteElementPresent(quote.getName()), "'Quote was not deleted");
   }
 }

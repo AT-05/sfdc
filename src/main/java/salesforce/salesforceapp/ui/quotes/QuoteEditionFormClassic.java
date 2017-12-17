@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 public class QuoteEditionFormClassic extends QuoteEditionForm {
   @FindBy(id = "Status")
   @CacheLookup
-  private WebElement quoteStatusDropDownClassic;
+  private WebElement quoteStatusDropDown;
 
   @FindBy(xpath = "//td[@id='topButtonRow']/input[@value=' Save ']")
   @CacheLookup
@@ -39,7 +39,7 @@ public class QuoteEditionFormClassic extends QuoteEditionForm {
    */
   @Override
   protected void setStatus() {
-    driverTools.selectDropDownValue(quoteStatusDropDownClassic, super.status);
+    driverTools.selectDropDownValue(quoteStatusDropDown, super.status);
   }
 
   /**

@@ -2,10 +2,8 @@ package salesforce.salesforceapp.ui.quotes;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.*;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
@@ -26,16 +24,21 @@ public class QuotesContentPageLight extends QuotesContentPage {
 
   @FindBy(xpath = "//button[@title='Delete']")
   @CacheLookup
-  private WebElement deleteConfirmationLinkLight;
+  private WebElement deleteConfirmationLink;
 
-  @FindBy(xpath = "//div[5]/div/div/div[3]/div[1]/div/div/div/ul/li[@class='tabs__item uiTabItem']/a[@title='Details']/span[2]")
+  @FindBy(xpath = "//li[@class='tabs__item uiTabItem']/a[@title='Details']/span[2]")
   private WebElement quoteDetailsLink;
+
+  @FindBy(xpath = "//a[contains(@data-tab-name, 'Related--')]//span[2]")
+  private WebElement quoteRelatedLink;
 
   private WebElement quoteEditedMessage;
 
   @FindBy(xpath = "//div[@class=\"container\"]//div[1]//article/div[1]/div//li[1]//div")
   @CacheLookup
   private WebElement addLineItemLink;
+
+  private WebElement quoteLineItemAddedMessage;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -92,6 +95,9 @@ public class QuotesContentPageLight extends QuotesContentPage {
     super.quoteDescriptionLabel = By.xpath(String.format("//span[text()='Description']/ancestor::div[contains(@class, 'slds-form-element')]//span[text()='%s']", super.quoteInfo.getDescription()));
     super.quoteTaxLabel = By.xpath(String.format("//span[text()='Tax']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getTax()));
     super.quoteShippingAndHandlingLabel = By.xpath(String.format("//span[text()='Shipping and Handling']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getShippingAndHandling()));
+    super.quoteSubTotalLabel = By.xpath(String.format("//span[text()='Subtotal']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getSubTotal()));
+    super.quoteDiscountLabel = By.xpath(String.format("//span[text()='Discount']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getDiscount()));
+    super.quoteTotalPriceLabel = By.xpath(String.format("//span[text()='Total Price']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getTotalPrice()));
     super.quoteGrandTotalLabel = By.xpath(String.format("//span[text()='Grand Total']/ancestor::div[contains(@class, 'slds-form-element')]//span[contains(text(), '%s')]", super.quoteInfo.getGrandTotal()));
   }
 
@@ -102,7 +108,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
   public void deleteQuote() {
     driverTools.clickElement(showMoreActionsLink);
     driverTools.clickElement(deleteQuoteLink);
-    driverTools.clickElement(deleteConfirmationLinkLight);
+    driverTools.clickElement(deleteConfirmationLink);
   }
 
   /**
@@ -136,17 +142,6 @@ public class QuotesContentPageLight extends QuotesContentPage {
   }
 
   /**
-   * <p>This method sends to Quote Line Items View Page.</p>
-   *
-   * @return a QuoteLineItemsView object type.
-   */
-  @Override
-  public QuoteLineItemsView goToQuoteLineItemsView() {
-    //Todo Add
-    return new QuoteLineItemsViewLight();
-  }
-
-  /**
    * <p>This method checks if after adding quote line item(s),
    * a successful saved changes message is displayed.</p>
    *
@@ -154,7 +149,12 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   public boolean isQuoteLineItemCreatedMessageDisplayed() {
-    //Todo Add
-    return false;
+    boolean result = false;
+    quoteLineItemAddedMessage = driver.findElement(By.xpath("//span[contains(@class, 'toastMessage')]"));
+    if (driverTools.isElementDisplayed(quoteLineItemAddedMessage)
+        && quoteLineItemAddedMessage.getText().contains("Your changes are saved")) {
+      result = true;
+    }
+    return result;
   }
 }

@@ -14,8 +14,8 @@ Feature: Manage Quote Line Items
       | ProdTest1 | 23         | 50       | 5        | description1        |
       | ProdTest2 | 40.50      | 10       | 8        | description2        |
     Then A successful saved changes message should be displayed
+      And I should see the new Products in the Quote Line Items list
       And The Quote Totals should be updated correctly
-      And I should see the new Products in the Quote Line Items view
 
   @EditQuoteLineItem
   Scenario: Verify that is possible to Edit a Quote Line Item
