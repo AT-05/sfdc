@@ -1,11 +1,14 @@
 package salesforce.steps.quotes;
 
+import cucumber.api.java.After;
+import org.apache.log4j.Logger;
 import static org.testng.Assert.assertTrue;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
+import salesforce.salesforceapp.api.methods.APIQuote;
 import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -19,6 +22,8 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
  * Created by Franco Aldunate on 12/13/2017.
  */
 public class AddQuoteLineItemSteps {
+  private Logger log = Logger.getLogger(getClass());
+
   //Pages
   private QuotesHomePage quotesHomePage;
   private QuotesContentPage quotesContentPage;
@@ -76,5 +81,17 @@ public class AddQuoteLineItemSteps {
     quote.calculateDiscount();
     quote.calculateGrandTotal();
     assertTrue(quotesContentPage.areQuoteTotalsUpdated(quote), "The quote totals were not updated correctly");
+  }
+
+  //****************************************************************
+  //Hooks for @@QuoteLineItem scenarios
+  //****************************************************************
+  @After(value = "@@QuoteLineItem", order = 999)
+  public void afterAddQuoteLineItem() {
+    log.info("After hook @@QuoteLineItem");
+    if (!APIQuote.isQuoteLineItemSaved(quote)) {
+      //TODO
+      APIQuote.deleteQuoteLineItem(quote);
+    }
   }
 }

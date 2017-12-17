@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import salesforce.core.utils.ExcelReader;
-import salesforce.salesforceapp.excel.XLSAccount;
+import salesforce.salesforceapp.excel.*;
 
 public class MainSetup {
     private static Logger log = Logger.getLogger("MainSetup");
@@ -32,8 +32,8 @@ public class MainSetup {
 //
 //        XLSContact.createContacts(contactXLS);
 //        XLSAccount.createAccounts(accountsXLS);
-//        XLSOppy.createAccounts(oppyXLS);
-//        XLSQuote.createAccounts(quoteXLS);
+//        XLSOppy.createOppys(oppyXLS);
+//        XLSQuote.createQuotes(quoteXLS);
 //        XLSPriceBook.createPriceBook(priceBookXLS);
 //        XLSProduct.createAccounts(productXLS);
 //        XLSPriceBook.addProductaToPriceBook(priceBookProductXLS);
@@ -43,6 +43,6 @@ public class MainSetup {
 //        TODO
 //        XLSContact.deleteContacts(contactXLS);
 //        XLSAccount.deleteAccounts(accountsXLS);
-
+//        XLSQuote.deleteQuotes(quoteXLS);
     }
 }

@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
+import salesforce.salesforceapp.api.methods.*;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -53,6 +54,9 @@ public class EditQuoteSteps {
     for (Quote itemQuote : quoteCreateInfo) {
       quoteName = itemQuote.getName();
     }
+
+//    APIQuote.createQuote(oppy.getQuote(quoteName));
+
     quoteEditionForm = oppyQuotesView.goToCreateQuote();
     quoteEditionForm.createQuote(oppy, quoteName);
     quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName);
