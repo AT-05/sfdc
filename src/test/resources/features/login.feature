@@ -9,5 +9,5 @@ Feature: Login
     Then I should login successfully
 
     Examples: Short pass
-      | User Name                          | Password      |
-      | franco.aldunate@fundacion-jala.org | cachito52CPC  |
+      | User Name             | Password         |
+      | franco@francosoft.com | ilovejesus100aml |
