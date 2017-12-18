@@ -34,6 +34,14 @@ public class XLSQuote {
       quote.setTax(Double.valueOf(quoteMap.get(QUOTE_TAX)));
       quote.setShippingAndHandling(Double.valueOf(quoteMap.get(QUOTE_SHIPPING_AND_HANDLING)));
 
+      System.out.println("***quote api info***");
+      System.out.println("Quote Name" + quote.getName());
+      System.out.println("Quote Expiration Date" + quote.getExpirationDate());
+      System.out.println("Quote Decription" + quote.getStatus());
+      System.out.println("Quote Status" + quote.getDescription());
+      System.out.println("Quote Tax" + quote.getTax());
+      System.out.println("Quote Shipping and Handling" + quote.getShippingAndHandling());
+
       if (!APIQuote.isQuoteSaved(quote)) {
         APIQuote.createQuote(quote);
       }
