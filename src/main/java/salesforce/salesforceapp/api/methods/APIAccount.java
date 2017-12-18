@@ -11,7 +11,8 @@ public class APIAccount {
     }
 
     public static void createAccount(Account account) {
+    }
 
-
+    public static void deleteAccount(Account account) {
     }
 }

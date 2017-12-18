@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import salesforce.core.utils.ExcelReader;
 import salesforce.salesforceapp.excel.XLSAccount;
+import salesforce.salesforceapp.excel.XLSProduct;
 
 public class MainSetup {
     private static Logger log = Logger.getLogger("MainSetup");
