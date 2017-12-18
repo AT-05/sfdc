@@ -27,7 +27,7 @@ public abstract class HomeBasePage extends BasePage {
    * @return By.
    */
   private By getItemLinkBy(String linkText) {
-    return By.xpath("//a[contains(text(), '" + linkText + "')]");
+    return By.linkText(linkText);
   }
 
   /**
