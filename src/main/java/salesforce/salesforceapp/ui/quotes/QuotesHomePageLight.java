@@ -1,8 +1,5 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 /**
  * Created by Franco Aldunate on 12/5/2017.
  */
@@ -20,8 +17,7 @@ public class QuotesHomePageLight extends QuotesHomePage {
    */
   @Override
   public QuotesContentPage selectQuote(String quoteName) {
-    WebElement element = driver.findElement(By.xpath("//a[@title='" + quoteName + "']"));
-    driverTools.clickElement(element);
+    selectItem(quoteName);
     return new QuotesContentPageLight();
   }
 }

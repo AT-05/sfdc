@@ -43,7 +43,6 @@ public class CreateQuoteSteps {
   @Given("^I go to Opportunities Home Page$")
   public void iGoToOpportunitiesHomePage() {
     homePage = PageFactory.getHomePage();
-//    homePage.topMenu.activateSalesMenu();
     oppyHomePage = homePage.topMenu.goToOppyHomePage();
   }
 
@@ -77,8 +76,8 @@ public class CreateQuoteSteps {
   @And("^The Quote should be created with the correct information$")
   public void theQuoteShouldBeCreatedWithTheCorrectInformation() {
     quotesContentPage = quoteEditionForm.openQuote(quoteName);
-    quotesContentPage.openQuoteDetails();
     oppy.getQuote(quoteName).calculateGrandTotal();
+    quotesContentPage.openQuoteDetails();
     assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy.getQuote(quoteName)), "The quote information after creating is not correct");
   }
 

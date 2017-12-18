@@ -1,6 +1,5 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import salesforce.salesforceapp.ui.HomeBasePage;
 

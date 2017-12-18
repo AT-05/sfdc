@@ -2,7 +2,6 @@ package salesforce.salesforceapp.ui.quotes;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -10,32 +9,21 @@ import org.openqa.selenium.support.FindBy;
  */
 public class QuotesContentPageLight extends QuotesContentPage {
   //Links
-  @FindBy(xpath = "//a[contains(@title, 'Show 3 more actions')]")
-  @CacheLookup
-  private WebElement showMoreActionsLink;
+  @FindBy(xpath = "//div[contains(@title, 'Edit')]")
+  private WebElement editQuoteLink;
 
-  @FindBy(xpath = "//div/ul/li[2]/a[contains(@title, 'Edit')]")
-  @CacheLookup
-  private WebElement editLink;
-
-  @FindBy(xpath = "//div/ul/li[3]/a[@title='Delete']")
-  @CacheLookup
+  @FindBy(xpath = "//div[contains(@title, 'Delete')]")
   private WebElement deleteQuoteLink;
 
   @FindBy(xpath = "//button[@title='Delete']")
-  @CacheLookup
   private WebElement deleteConfirmationLink;
 
-  @FindBy(xpath = "//li[@class='tabs__item uiTabItem']/a[@title='Details']/span[2]")
+  @FindBy(xpath = "//div[@id='brandBand_1']//div[5]//span[text()='Details'] | //div[@id='brandBand_1']//span[text()='Details']")
   private WebElement quoteDetailsLink;
-
-  @FindBy(xpath = "//a[contains(@data-tab-name, 'Related--')]//span[2]")
-  private WebElement quoteRelatedLink;
 
   private WebElement quoteEditedMessage;
 
-  @FindBy(xpath = "//div[@class=\"container\"]//div[1]//article/div[1]/div//li[1]//div")
-  @CacheLookup
+  @FindBy(xpath = "//div[@class='container']//div[1]//article/div[1]/div//li[1]//div")
   private WebElement addLineItemLink;
 
   private WebElement quoteLineItemAddedMessage;
@@ -52,8 +40,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   public QuoteEditionForm goToEditQuote() {
-    showMoreActionsLink.click();
-    editLink.click();
+    driverTools.clickElement(editQuoteLink);
     return new QuoteEditionFormLight();
   }
 
@@ -73,6 +60,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
         && quoteEditedMessage.getText().contains(quoteName)) {
       result = true;
     }
+    driverTools.waitUntilMessageDisappear(quoteEditedMessage);
     return result;
   }
 
@@ -106,7 +94,6 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   public void deleteQuote() {
-    driverTools.clickElement(showMoreActionsLink);
     driverTools.clickElement(deleteQuoteLink);
     driverTools.clickElement(deleteConfirmationLink);
   }

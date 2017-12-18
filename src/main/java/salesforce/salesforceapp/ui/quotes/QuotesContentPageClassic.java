@@ -1,11 +1,9 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.entities.products.Product;
 
 /**
  * Created by Franco Aldunate on 12/5/2017.
@@ -118,17 +116,5 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   @Override
   public boolean isQuoteLineItemCreatedMessageDisplayed() {
     return true; //There is no message displayed for this skin.
-  }
-
-  /**
-   * <p>This method checks if products are found in the quote line items list.</p>
-   *
-   * @param products is an Entity object type list.
-   * @return whether the products are found on the list or not.
-   */
-  @Override
-  public boolean isQuoteLineItemsListUpdated(List<Product> products) {
-    //Todo Add
-    return false;
   }
 }

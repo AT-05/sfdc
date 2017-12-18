@@ -39,11 +39,6 @@ public class DeleteQuoteSteps {
   @And("^The Quote should disappear from the Quotes list$")
   public void theQuoteShouldDisappearFromTheQuotesList() {
     quotesHomePage = quotesContentPage.topMenu.goToQuotesHomePage();
-    try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
     assertFalse(quotesHomePage.isQuoteElementPresent(quote.getName()), "'Quote was not deleted");
   }
 }

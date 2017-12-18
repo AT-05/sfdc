@@ -1,6 +1,7 @@
 package salesforce.salesforceapp.ui.quotes;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import salesforce.salesforceapp.entities.products.Product;
@@ -126,9 +127,10 @@ public abstract class QuotesContentPage extends ContentBasePage {
    * @return whether the products are found on the list or not.
    */
   public boolean isQuoteLineItemsListUpdated(List<Product> products){
+    driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
     int counter = 0;
     for (Product itemProduct : products) {
-      By itemPath = By.xpath(String.format("//a[text()='%s']", itemProduct.getName()));
+      By itemPath = By.xpath(String.format("//th[text()='Product']/ancestor::table//a[text()='%s']", itemProduct.getName()));
       if (driverTools.isElementVisibility(itemPath)) {
         counter += 1;
       }

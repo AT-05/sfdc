@@ -1,8 +1,8 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import java.util.*;
-import salesforce.salesforceapp.entities.products.*;
-import salesforce.salesforceapp.ui.*;
+import java.util.List;
+import salesforce.salesforceapp.entities.products.Product;
+import salesforce.salesforceapp.ui.HomeBasePage;
 
 /**
  * Created by Administrator on 12/13/2017.

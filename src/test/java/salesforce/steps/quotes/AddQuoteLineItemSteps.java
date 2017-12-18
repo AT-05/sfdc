@@ -88,10 +88,10 @@ public class AddQuoteLineItemSteps {
   //****************************************************************
   @After(value = "@@QuoteLineItem", order = 999)
   public void afterAddQuoteLineItem() {
-    log.info("After hook @@QuoteLineItem");
-    if (!APIQuote.isQuoteLineItemSaved(quote)) {
-      //TODO
-      APIQuote.deleteQuoteLineItem(quote);
-    }
+//    log.info("After hook @@QuoteLineItem");
+//    if (!APIQuote.isQuoteLineItemSaved(quote)) {
+//      //TODO
+//      APIQuote.deleteQuoteLineItem(quote);
+//    }
   }
 }
