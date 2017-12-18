@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.PageFactory;
 
@@ -32,6 +33,15 @@ public class OppyContentPageLight extends OppyContentPage {
   @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
   private WebElement confirmMessage;
 
+  @FindBy(xpath = "//li[@class='slds-button slds-button--icon-border-filled oneActionsDropDown']/div")
+  private WebElement moreOptionsBtn;
+
+  @FindBy(xpath = "//a[@title='Edit']")
+  private WebElement editBtn;
+
+  @FindBy(xpath = "//a[@title='Delete']")
+  protected WebElement deleteBtn;
+
   @Override
   public void waitUntilPageObjectIsLoaded() {
   }
@@ -44,8 +54,11 @@ public class OppyContentPageLight extends OppyContentPage {
   @Override
   public boolean displayedCreateMessage() {
     boolean flag = driverTools.isElementDisplayed(createOppyMessage);
+    System.out.println("============ Flag es: " + flag);
     //wait = new WebDriverWait(driver, 2);
+    System.out.println("============ Espera......");
     driverTools.waitUntilMessageDisappear(createOppyMessage);
+    System.out.println("============ Ya no espera ya se fue.");
     return flag;
   }
 
@@ -56,6 +69,7 @@ public class OppyContentPageLight extends OppyContentPage {
    */
   @Override
   public OppyContentPage clickDeleteOppyBtn() {
+    driverTools.clickElement(moreOptionsBtn);
     driverTools.clickElement(deleteBtn);
     WebElement confirmDelete = driver.findElement(By.xpath("//button[@title='Delete']"));
     driverTools.clickElement(confirmDelete);
@@ -73,6 +87,13 @@ public class OppyContentPageLight extends OppyContentPage {
     actions.perform();
     driverTools.waitUntilAvailable(detailsBtn);
     driverTools.clickElement(detailsBtn);
+  }
+
+  @Override
+  public OppyEditionForm clickEditOppyBtn() {
+    driverTools.clickElement(moreOptionsBtn);
+    driverTools.clickElement(editBtn);
+    return PageFactory.getOppyEditionForm();
   }
 
   /**

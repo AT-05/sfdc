@@ -34,7 +34,8 @@ public class TopMenuLight extends TopMenu {
   @FindBy(xpath = "//h1[@class='profile-card-name']/a")
   private WebElement userProfileNameLink;
 
-  @FindBy(xpath = "//a[contains(@href, 'Opportunity')]//span")
+  @FindBy(xpath = "//a[contains(@href, 'Opportunity')]")
+  //@FindBy(xpath = "//a[contains(@class, '-action') and contains(@href, 'Opportunity')]")
   private WebElement opportunitiesBtn;
 
   @FindBy(xpath = "//a[contains(@href, 'Quote')]//span")
@@ -65,6 +66,9 @@ public class TopMenuLight extends TopMenu {
 
   @FindBy(xpath = "//a[@title='Home']//span")
   private WebElement homeBtn;
+
+  @FindBy(xpath = "//div[@title='Sales']")
+  private WebElement salesBtn;
 
   /**
    * Wait until the page loads.
@@ -103,7 +107,9 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public HomePage goToHomePage() {
-    driverTools.clickElement(homeBtn);
+    //driverTools.clickElement(homeBtn);
+    driverTools.clickElement(appLauncherLink);
+    driverTools.clickElement(salesBtn);
     return new HomePageLight();
   }
 
@@ -115,6 +121,7 @@ public class TopMenuLight extends TopMenu {
   @Override
   public OppyHomePage goToOppyHomePage() {
     driverTools.waitUntilAvailable(opportunitiesBtn);
+    driverTools.waitUntilAvailable(appLauncherLink);
     driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageLight();
   }

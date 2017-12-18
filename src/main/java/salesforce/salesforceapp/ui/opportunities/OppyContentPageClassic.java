@@ -43,6 +43,13 @@ public class OppyContentPageClassic extends OppyContentPage {
   public void clickDetailsOppyBtn() {
   }
 
+  @Override
+  public OppyEditionForm clickEditOppyBtn() {
+    String xpath = String.format("//input[@name='edit']");
+    driverTools.clickElement(By.xpath(xpath));
+    return PageFactory.getOppyEditionForm();
+  }
+
   /**
    * Verify if exist some content in details with div type.
    *
@@ -74,7 +81,7 @@ public class OppyContentPageClassic extends OppyContentPage {
    */
   @Override
   public boolean containsCheckbox(String value) {
-    String flag = value.equals("true") ? "Checked" : "Not Checked";
+    String flag = value.equalsIgnoreCase("true") ? "Checked" : "Not Checked";
     String xpath = String.format("//table[@class='detailList']//img[@alt='%s']", flag);
     return driverTools.isElementDisplayed(By.xpath(xpath));
   }
