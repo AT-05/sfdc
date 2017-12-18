@@ -151,7 +151,7 @@ public class WebDriverTools {
    * <p>This method performs selection of text inside a dropdown list.</p>
    *
    * @param dropDown is the dropdown web element given.
-   * @param text    is the text to select.
+   * @param text     is the text to select.
    */
   public void selectDropDownLinkText(WebElement dropDown, String text) {
     Select selector = new Select(dropDown);
@@ -221,7 +221,7 @@ public class WebDriverTools {
    *
    * @param element is the element.
    */
-  private void waitAvailable(WebElement element) {
+  public void waitAvailable(WebElement element) {
     boolean flag = true;
     while (flag) {
       try {
