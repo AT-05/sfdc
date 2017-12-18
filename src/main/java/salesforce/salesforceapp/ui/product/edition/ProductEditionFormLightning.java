@@ -2,7 +2,9 @@ package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.entities.product.Product;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageLightning;
 
 /**
@@ -76,6 +78,17 @@ public class ProductEditionFormLightning extends ProductEditionForm {
         setProductDescriptionInput(product.getDescription());
         setProductCodeInput(product.getCode());
         return clickSaveBnt();
+    }
+
+    /**
+     * After create a price book go to content page.
+     *
+     * @param priceBook price book class.
+     * @return product content page.
+     */
+    @Override
+    public ProductContentPage createPriceBook(PriceBook priceBook) {
+        return null;
     }
 
 

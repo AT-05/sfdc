@@ -1,6 +1,7 @@
 package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.WebElement;
+import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPage;
@@ -15,6 +16,10 @@ public abstract class ProductEditionForm extends BasePage {
     public WebElement productDescriptionInput;
     public WebElement activeCheckBox;
     public WebElement saveBtn;
+
+    public WebElement namePriceBookInput;
+    public WebElement uniqueNamePriceBookInput;
+    public WebElement savePriceBookBnt;
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
@@ -77,5 +82,13 @@ public abstract class ProductEditionForm extends BasePage {
      * @return product content.
      */
     public abstract ProductContentPage editProduct(Product product);
+
+    /**
+     * After create a price book go to content page.
+     *
+     * @param priceBook price book class.
+     * @return product content page.
+     */
+    public abstract ProductContentPage createPriceBook(PriceBook priceBook);
 
 }

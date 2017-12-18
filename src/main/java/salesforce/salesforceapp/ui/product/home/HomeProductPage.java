@@ -5,8 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 
 /**
@@ -15,6 +17,7 @@ import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 public abstract class HomeProductPage extends BasePage {
 
     public WebElement newProduct;
+    public WebElement createPriceBook;
 
     public TopMenu topMenu;
 
@@ -85,5 +88,14 @@ public abstract class HomeProductPage extends BasePage {
      * @return boolean.
      */
     public abstract boolean thereIsProduct(String name);
+
+    /**
+     * This Method create go to create new price book page.
+     *
+     * @param create_new_view selection create price.
+     */
+    public abstract ProductEditionForm goToCreateNewPriceBook(String create_new_view);
+
+
 }
 

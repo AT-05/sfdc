@@ -4,6 +4,7 @@ package salesforce.salesforceapp.ui.product.home;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
+import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
 
 /**
@@ -48,7 +49,16 @@ public class HomeProductPageLightning extends HomeProductPage {
         return exitElement(name);
     }
 
-
+    /**
+     * This Method create go to create new price book page.
+     *
+     * @param create_new_view selection create price.
+     */
+    @Override
+    public ProductEditionForm goToCreateNewPriceBook(String create_new_view) {
+        selectItem(create_new_view);
+        return new ProductEditionFormLightning();
+    }
 }
 
 

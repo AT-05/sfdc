@@ -1,5 +1,6 @@
 package salesforce.salesforceapp.ui.product.home;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
@@ -13,9 +14,12 @@ public class HomeProductPageClassic extends HomeProductPage {
     @FindBy(name = "new")
     WebElement productInput;
 
+    @FindBy(xpath = "//a[contains(text(),'Create New View')]")
+    WebElement priceBookLink;
 
     public HomeProductPageClassic() {
         super.newProduct = productInput;
+        super.createPriceBook = createPriceBook;
     }
 
     @Override
@@ -45,6 +49,20 @@ public class HomeProductPageClassic extends HomeProductPage {
     @Override
     public boolean thereIsProduct(String name) {
         return exitElement(name);
+    }
+
+    /**
+     * This Method create go to create new price book page.
+     *
+     * @param create_new_view selection create price.
+     */
+    @Override
+    public ProductEditionForm goToCreateNewPriceBook(String create_new_view) {
+        System.out.println("entro a buscar create*******************");
+        waitUntilPageObjectIsLoaded();
+        createPriceBook = priceBookLink.findElements(By.xpath("//a[contains(text(),'Create New View')]")).get(0);
+        createPriceBook.click();
+        return new ProductEditionFormClassic();
     }
 
 

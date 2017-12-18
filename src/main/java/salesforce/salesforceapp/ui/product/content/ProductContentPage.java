@@ -3,6 +3,8 @@ package salesforce.salesforceapp.ui.product.content;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.components.TopMenu;
@@ -24,7 +26,10 @@ public abstract class ProductContentPage extends BasePage {
     public WebElement productDescriptionLabel;
     public WebElement activeCheckBox;
 
+    public WebElement namePriceBookLabel;
 
+
+    public Select selectPriceBookDropDown;
     /**
      * Check if is present the Alert and accept delete product.
      */
@@ -67,4 +72,6 @@ public abstract class ProductContentPage extends BasePage {
      * @return Home product page.
      */
     public abstract HomeProductPage goToHomProductPage();
+
+    public abstract boolean validatePriceBookCreated(PriceBook priceBook);
 }

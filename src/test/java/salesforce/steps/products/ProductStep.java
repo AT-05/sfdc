@@ -1,4 +1,4 @@
-package salesforce.steps;
+package salesforce.steps.products;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -28,7 +28,7 @@ public class ProductStep {
     //Pages
     private LoginPage loginPage;
     private HomePage homePage;
-    private HomeProductPage homeProductPage;
+    public HomeProductPage homeProductPage;
     private ProductEditionForm productEditionForm;
     private ProductContentPage productContentPage;
 
@@ -36,6 +36,8 @@ public class ProductStep {
 
     public ProductStep() throws Exception {
         this.pageTransporter = PageTransporter.getInstance();
+
+
     }
 
 
@@ -47,7 +49,7 @@ public class ProductStep {
             return;
         }
 */
-      //  homeProductPage = homePage.topMenu.goToHomeProduct();
+        //  homeProductPage = homePage.topMenu.goToHomeProduct();
 
         if (pageTransporter.isOnLogin()) { //If the user is not logged
             loginPage = new LoginPage();

@@ -1,7 +1,10 @@
 package salesforce.salesforceapp.ui.product.content;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
@@ -37,6 +40,13 @@ public class ProductContentPageClassic extends ProductContentPage {
     @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
     WebElement productTab;
 
+    @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
+    WebElement priceBookdropDown;
+
+
+    ///////////////
+
+
     /**
      * Constructor Product content page.
      */
@@ -47,6 +57,8 @@ public class ProductContentPageClassic extends ProductContentPage {
         super.productCodeLabel = elementCodeLabel;
         super.productDescriptionLabel = elementDescriptionLabel;
         super.activeCheckBox = elementCheckBox;
+
+
     }
 
 
@@ -99,6 +111,13 @@ public class ProductContentPageClassic extends ProductContentPage {
     public HomeProductPage goToHomProductPage() {
         productTab.click();
         return new HomeProductPageClassic();
+    }
+
+    @Override
+    public boolean validatePriceBookCreated(PriceBook priceBook) {
+     //   selectPriceBookDropDown == new Select(priceBookdropDown.findElement(By.id("years")));
+        //dropdownYear.selectByValue(year);
+        return true;
     }
 
 
