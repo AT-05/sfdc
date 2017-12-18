@@ -1,12 +1,14 @@
 package salesforce.salesforceapp.setups;
 
-import static salesforce.salesforceapp.SalesforceConstants.ACCOUNTS;
-
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import salesforce.core.utils.ExcelReader;
-import salesforce.salesforceapp.excel.*;
+import static salesforce.salesforceapp.SalesforceConstants.*;
+import salesforce.salesforceapp.excel.XLSAccount;
+import salesforce.salesforceapp.excel.XLSPriceBook;
+import salesforce.salesforceapp.excel.XLSProduct;
+import salesforce.salesforceapp.excel.XLSQuote;
 
 public class MainSetup {
     private static Logger log = Logger.getLogger("MainSetup");
@@ -21,15 +23,14 @@ public class MainSetup {
     public static void beforeExecution() {
         log.info("Start Main before setup...");
 //          TODO
-//        ExcelReader xlsFile = new ExcelReader("Main.xls");
+        ExcelReader xlsFile = new ExcelReader("main.xlsx");
 //        contactXLS = xlsFile.getValues(CONTACT);
 //        accountXLS = xlsFile.getValues(ACCOUNT);
 //        oppyXLS = xlsFile.getValues(OPPY);
-//        quoteXLS = xlsFile.getValues(QUOTE);
+//        quoteXLS = xlsFile.getValues(QUOTES);
 //        productXLS = xlsFile.getValues(PRODUCT);
 //        priceBookXLS = xlsFile.getValues(PRICE_BOOK);
 //        priceBookProductXLS = xlsFile.getValues(PRICE_BOOK_PRODUCT);
-//
 //        XLSContact.createContacts(contactXLS);
 //        XLSAccount.createAccounts(accountsXLS);
 //        XLSOppy.createOppys(oppyXLS);
