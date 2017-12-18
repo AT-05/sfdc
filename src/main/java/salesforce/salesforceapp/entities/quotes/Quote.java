@@ -1,6 +1,7 @@
 package salesforce.salesforceapp.entities.quotes;
 
-import java.text.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import salesforce.salesforceapp.entities.products.Product;
