@@ -5,7 +5,7 @@ Feature: Manage Quote Line Items
   Background:
     Given I am logged to Salesforce
       And I go to Quotes Home Page
-      And I select the Quote created with name "Premium", expiration date "12/12/2018", status "Draft", description, "Quote Description4", tax "2.0" and shipping and handling "30.0"
+      And I select the Quote created with name "Premium", expiration date "12/12/2018", status "Draft", description, "Promo", tax "2.0" and shipping and handling "30.0"
 
   @AddQuoteLineItem @Smoke
   Scenario: Verify that is possible to Add Quote Line Items
