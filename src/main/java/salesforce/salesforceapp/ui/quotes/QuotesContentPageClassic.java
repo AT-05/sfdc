@@ -1,6 +1,7 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,9 +18,9 @@ public class QuotesContentPageClassic extends QuotesContentPage {
   @CacheLookup
   private WebElement deleteQuoteLink;
 
-  public QuotesContentPageClassic() {
-
-  }
+  @FindBy(xpath = "//input[@value='Add Line Item']")
+  @CacheLookup
+  private WebElement addLineItemLink;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -62,13 +63,16 @@ public class QuotesContentPageClassic extends QuotesContentPage {
    */
   @Override
   protected void getLocators() {
-    super.quoteNameLabel = By.xpath("//div[@id='Name_ileinner' and text()='" + super.quoteInfo.getName() + "']");
-    super.quoteExpirationDateLabel = By.xpath("//div[@id='ExpirationDate_ileinner' and text()='" + super.quoteInfo.getExpirationDate() + "']");
-    super.quoteStatusLabel = By.xpath("//div[@id='Status_ileinner' and text()='" + super.quoteInfo.getStatus() + "']");
-    super.quoteDescriptionLabel = By.xpath("//div[@id='Description_ileinner'  and text()='" + super.quoteInfo.getDescription() + "']");
-    super.quoteTaxLabel = By.xpath("//div[@id='Tax_ileinner' and contains(text(),'" + super.quoteInfo.replaceDots(super.quoteInfo.getTax()) + "')]");
-    super.quoteShippingAndHandlingLabel = By.xpath("//div[@id='ShippingHandling_ileinner' and contains(text(),'" + super.quoteInfo.replaceDots(super.quoteInfo.getShippingAndHandling()) + "')]");
-    super.quoteGrandTotalLabel = By.xpath("//div[@id='GrandTotal_ileinner' and contains(text(),'" + super.quoteInfo.getGrandTotal() + "')]");
+    super.quoteNameLabel = By.xpath(String.format("//div[@id='Name_ileinner' and text()='%s']", super.quoteInfo.getName()));
+    super.quoteExpirationDateLabel = By.xpath(String.format("//div[@id='ExpirationDate_ileinner' and text()='%s']", super.quoteInfo.getExpirationDate()));
+    super.quoteStatusLabel = By.xpath(String.format("//div[@id='Status_ileinner' and text()='%s']", super.quoteInfo.getStatus()));
+    super.quoteDescriptionLabel = By.xpath(String.format("//div[@id='Description_ileinner'  and text()='%s']", super.quoteInfo.getDescription()));
+    super.quoteTaxLabel = By.xpath(String.format("//div[@id='Tax_ileinner' and contains(text(),'%s')]", super.quoteInfo.getTax()));
+    super.quoteShippingAndHandlingLabel = By.xpath(String.format("//div[@id='ShippingHandling_ileinner' and contains(text(),'%s')]", super.quoteInfo.getShippingAndHandling()));
+    super.quoteSubTotalLabel = By.xpath(String.format("//div[@id='Subtotal_ileinner' and contains(text(),'%s')]", super.quoteInfo.getSubTotal()));
+    super.quoteDiscountLabel = By.xpath(String.format("//div[@id='Discount_ileinner' and contains(text(),'%s')]", super.quoteInfo.getDiscount()));
+    super.quoteTotalPriceLabel = By.xpath(String.format("//div[@id='TotalPrice_ileinner' and contains(text(),'%s')]", super.quoteInfo.getTotalPrice()));
+    super.quoteGrandTotalLabel = By.xpath(String.format("//div[@id='GrandTotal_ileinner' and contains(text(),'%s')]", super.quoteInfo.getGrandTotal()));
   }
 
   /**
@@ -89,6 +93,28 @@ public class QuotesContentPageClassic extends QuotesContentPage {
    */
   @Override
   public boolean isQuoteDeletedMessageDisplayed(String quoteName) {
+    return true; //There is no message displayed for this skin.
+  }
+
+  /**
+   * <p>This method sends to Price Book Selection Page.</p>
+   *
+   * @return a QuotePriceBookSelectionPage object type.
+   */
+  @Override
+  public QuotePriceBookSelectionPage goToAddLineItem() {
+    driverTools.clickElement(addLineItemLink);
+    return new QuotePriceBookSelectionPageClassic();
+  }
+
+  /**
+   * <p>This method checks if after adding quote line item(s),
+   * a successful saved changes message is displayed.</p>
+   *
+   * @return whether the message was displayed or not.
+   */
+  @Override
+  public boolean isQuoteLineItemCreatedMessageDisplayed() {
     return true; //There is no message displayed for this skin.
   }
 }

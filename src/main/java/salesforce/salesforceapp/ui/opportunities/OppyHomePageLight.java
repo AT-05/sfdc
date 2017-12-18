@@ -28,6 +28,7 @@ public class OppyHomePageLight extends OppyHomePage {
     return titleLabel.isDisplayed();
   }
 
+
   /**
    * Verify if an oppyLink is in the list of opportunities.
    *
@@ -51,5 +52,4 @@ public class OppyHomePageLight extends OppyHomePage {
         .implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(), TimeUnit.SECONDS);
     return driverTools.isElementDisplayed(oppyLink);
   }
-
 }

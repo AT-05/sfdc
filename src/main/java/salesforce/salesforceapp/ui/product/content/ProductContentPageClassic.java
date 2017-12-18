@@ -2,7 +2,7 @@ package salesforce.salesforceapp.ui.product.content;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.entities.product.Product;
+import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
 import salesforce.salesforceapp.ui.product.home.HomeProductPage;
@@ -51,9 +51,9 @@ public class ProductContentPageClassic extends ProductContentPage {
 
 
     /**
-     * Check is the product fields are corrects.
+     * Check is the products fields are corrects.
      *
-     * @param product product.
+     * @param product products.
      * @return boolean.
      */
     @Override
@@ -66,7 +66,7 @@ public class ProductContentPageClassic extends ProductContentPage {
     }
 
     /**
-     * Go to edit existing product.
+     * Go to edit existing products.
      *
      * @return ProductEditionForm.
      */
@@ -78,7 +78,7 @@ public class ProductContentPageClassic extends ProductContentPage {
 
 
     /**
-     * Delete an existing product.
+     * Delete an existing products.
      *
      * @return Home Product Page.
      */
@@ -93,7 +93,7 @@ public class ProductContentPageClassic extends ProductContentPage {
     /**
      * Go to Home Product page.
      *
-     * @return Home product page.
+     * @return Home products page.
      */
     @Override
     public HomeProductPage goToHomProductPage() {

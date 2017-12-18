@@ -95,7 +95,7 @@ public class OppyContentPageClassic extends OppyContentPage {
    */
   @Override
   public OppyQuotesView goToQuotesView() {
-    return new OppyQuotesViewClassic();
+    return new OppyQuotesViewClassic(); //It is not necessary for this skin
   }
 
   /**

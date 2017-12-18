@@ -183,8 +183,8 @@ public class Oppy {
         itemQuote.setExpirationDate(quoteEdited.getExpirationDate());
         itemQuote.setStatus(quoteEdited.getStatus());
         itemQuote.setDescription(quoteEdited.getDescription());
-        itemQuote.setTax(quoteEdited.getTax().toString());
-        itemQuote.setShippingAndHandling(quoteEdited.getShippingAndHandling().toString());
+        itemQuote.setTax(quoteEdited.getTaxAsDouble());
+        itemQuote.setShippingAndHandling(quoteEdited.getShippingAndHandlingAsDouble());
       }
     }
   }
