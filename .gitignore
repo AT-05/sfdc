@@ -1,12 +1,10 @@
 /.gradle/
 /.idea/
-/gradle/
+out/
 gradlew
 *.bat
 *.iml
 *.class
 build/
-enviroments.json
-/environments.json
 classes/
-src/main/resources/
+

@@ -1,14 +1,32 @@
 {
   "Environments": [
     {
-      "id": "login",
+      "id": "devOrgGerman",
       "url": "https://login.salesforce.com/",
-      "user name": "abner@atgui.org",
-      "user password": "cream.com2"
+      "user name": "",
+      "user password": ""
     },
     {
-      "id": "developer",
-      "url": "https://developers.salesforce.com/",
+      "id": "devOrgAbner",
+      "url": "https://login.salesforce.com/",
+      "user name": "",
+      "user password": ""
+    },
+    {
+      "id": "devOrgOscar",
+      "url": "https://login.salesforce.com/",
+      "user name": "oscar.delgadillo@at05.com",
+      "user password": "password123"
+    },
+    {
+      "id": "devOrgFranco",
+      "url": "https://login.salesforce.com/",
+      "user name": "",
+      "user password": ""
+    },
+    {
+      "id": "devOrgMarco",
+      "url": "https://login.salesforce.com/",
       "user name": "",
       "user password": ""
     }

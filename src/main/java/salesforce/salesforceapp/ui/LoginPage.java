@@ -56,7 +56,7 @@ public class LoginPage extends BasePage {
     //wait.until(ExpectedConditions.urlContains("home"));
     PageTransporter.getInstance().switchSkin();
     HomePage homePage = PageFactory.getHomePage();
-    homePage=homePage.topMenu.goToHomePage();
+    homePage = homePage.topMenu.goToHomePage();
     return homePage;
   }
 }

@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
+import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
@@ -31,6 +32,7 @@ public class ManageSteps {
   private OppyHomePage oppyHomePage;
   private OppyEditionForm oppyEditionForm;
   private OppyContentPage oppyContentPage;
+  private TopMenu topMenu;
 
   private ManageSteps manageSteps;
 
@@ -53,11 +55,9 @@ public class ManageSteps {
 
   @And("^I (?:have|create) Opportunity with the following information$")
   public void iHaveOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
-    //this.oppy = oppy.get(0);
     this.oppy.setOppy(oppy.get(0));
     oppyEditionForm = oppyHomePage.clickNewOppyBtn();
     oppyContentPage = oppyEditionForm.createOppy(this.oppy);
-    oppyContentPage.displayedCreateMessage();
   }
 
   @Then("^a message should be displayed saying that the Opportunity was (?:created|saved|deleted)$")
@@ -111,7 +111,7 @@ public class ManageSteps {
     assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()), "Stage is incorrect:");
     assertTrue(oppyContentPage.containsLinkElement(oppy.getAccount()), "Account is incorrect:");
     assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()), "Amount is incorrect:");
-    assertTrue(oppyContentPage.containsCheckbox(oppy.getBudgetAsString()), "Budget is incorrect:");
+    assertTrue(oppyContentPage.containsCheckbox(oppy.getPrivateCheckedAsString()), "private checked is incorrect:");
   }
 
 
