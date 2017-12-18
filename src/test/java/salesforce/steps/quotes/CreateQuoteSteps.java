@@ -43,6 +43,7 @@ public class CreateQuoteSteps {
   @Given("^I go to Opportunities Home Page$")
   public void iGoToOpportunitiesHomePage() {
     homePage = PageFactory.getHomePage();
+//    homePage.topMenu.activateSalesMenu();
     oppyHomePage = homePage.topMenu.goToOppyHomePage();
   }
 
@@ -86,10 +87,10 @@ public class CreateQuoteSteps {
   //****************************************************************
   @After(value = "@Quote", order = 999)
   public void afterCreateQuote() {
-    log.info("After hook @Quote");
-    if (!APIQuote.isQuoteSaved(oppy.getQuote(quoteName))) {
-      //TODO
-      APIQuote.deleteQuote(oppy.getQuote(quoteName));
-    }
+//    log.info("After hook @Quote");
+//    if (!APIQuote.isQuoteSaved(oppy.getQuote(quoteName))) {
+//      //TODO
+//      APIQuote.deleteQuote(oppy.getQuote(quoteName));
+//    }
   }
 }
