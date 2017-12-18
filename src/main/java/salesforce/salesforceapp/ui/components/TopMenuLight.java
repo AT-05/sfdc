@@ -38,6 +38,9 @@ public class TopMenuLight extends TopMenu {
   @FindBy(xpath = "//a[contains(@href, 'Opportunity')]//span")
   private WebElement opportunitiesBtn;
 
+  @FindBy(xpath = "//a[contains(@href, 'Quote')]//span")
+  private WebElement quotesLink;
+
   @FindBy(xpath = "//div[contains(@class, 'slds-icon-waffle')]")
   private WebElement appLauncherLink;
 
@@ -124,8 +127,7 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public QuotesHomePage goToQuotesHomePage() {
-    driverTools.clickElement(appLauncherLink);
-    driverTools.selectElementInList(featuresList, "Quotes");
+    driverTools.clickElement(quotesLink);
     return new QuotesHomePageLight();
   }
 

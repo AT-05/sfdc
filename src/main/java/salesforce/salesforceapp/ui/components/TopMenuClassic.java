@@ -156,5 +156,4 @@ public class TopMenuClassic extends TopMenu {
     driverTools.clickElement(By.xpath(lacatorAccounts));
     return new AccountHomePageClassic();
   }
-
 }
