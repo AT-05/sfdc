@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import salesforce.core.selenium.WebDriverConfig;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 
-
 public class OppyHomePageClassic extends OppyHomePage {
 
    @FindBy(xpath = ".//*[@class='pageType']")
@@ -51,18 +50,5 @@ public class OppyHomePageClassic extends OppyHomePage {
     driver.manage().timeouts()
         .implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(), TimeUnit.SECONDS);
     return driverTools.isElementDisplayed(opportunity);
-  }
-
-  /**
-   * Select an opportunity from the list of opportunities.
-   *
-   * @param linkText the name of the opportunity.
-   * @return OppyContentPage.
-   */
-  @Override
-  public OppyContentPage selectOppy(String linkText) {
-    WebElement elementLink = driver.findElement(By.xpath("//a[contains(text(), '" + linkText + "')]"));
-    driverTools.clickElement(elementLink);
-    return new OppyContentPageClassic();
   }
 }

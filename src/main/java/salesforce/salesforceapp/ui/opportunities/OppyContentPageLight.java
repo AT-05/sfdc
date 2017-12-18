@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.PageFactory;
 
 public class OppyContentPageLight extends OppyContentPage {
-  @FindBy(xpath = "(//h2[@id='header']/a/span)[5]")
+  @FindBy(xpath = "//div[@class='container']/div[5]//h2[@id='header']/a/span[1]")
   private WebElement quoteViewLink;
 
   @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
@@ -123,7 +123,7 @@ public class OppyContentPageLight extends OppyContentPage {
     if (capabilities.getBrowserName().equals("chrome")) {
       try {
         ((JavascriptExecutor) driver).executeScript(
-          "arguments[0].scrollIntoView(true);", quoteViewLink);
+            "arguments[0].scrollIntoView(true);", quoteViewLink);
       } catch (Exception e) {
 
       }

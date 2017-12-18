@@ -1,7 +1,5 @@
 package salesforce.salesforceapp.ui.opportunities;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.HomeBasePage;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -14,7 +12,10 @@ public abstract class OppyHomePage extends HomeBasePage {
    * @param linkText the name of the opportunity.
    * @return OppyContentPage.
    */
-  public abstract OppyContentPage selectOppy(String linkText);
+  public OppyContentPage selectOppy(String linkText) {
+    selectItem(linkText);
+    return PageFactory.getOppyContentPage();
+  }
 
   /**
    * Made a click in the button for create a new opportunity.

@@ -2,11 +2,9 @@ package salesforce.salesforceapp.ui.opportunities;
 
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.core.selenium.WebDriverConfig;
-import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 
 public class OppyHomePageLight extends OppyHomePage {
@@ -53,23 +51,5 @@ public class OppyHomePageLight extends OppyHomePage {
     driver.manage().timeouts()
         .implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(), TimeUnit.SECONDS);
     return driverTools.isElementDisplayed(opportunity);
-  }
-
-  /**
-   * Select an opportunity from the list of opportunities.
-   *
-   * @param linkText the name of the opportunity.
-   * @return OppyContentPage.
-   */
-  @Override
-  public OppyContentPage selectOppy(String linkText) {
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    WebElement elementLink = driver.findElement(By.xpath("//a[@title='" + linkText + "']"));
-    driverTools.clickElement(elementLink);
-    return new OppyContentPageLight();
   }
 }
