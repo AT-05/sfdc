@@ -1,5 +1,6 @@
 package salesforce.salesforceapp.ui.quotes;
 
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -74,6 +75,7 @@ public class QuoteEditionFormLight extends QuoteEditionForm {
    */
   @Override
   public QuotesContentPage openQuote(String quoteName) {
+    driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
     WebElement element = driver.findElement(By.xpath("//a[@title='" + quoteName + "']"));
     driverTools.clickElement(element);
     return new QuotesContentPageLight();
