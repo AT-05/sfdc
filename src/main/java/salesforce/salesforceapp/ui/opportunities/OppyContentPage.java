@@ -22,4 +22,11 @@ public abstract class OppyContentPage extends ContentBasePage {
    * @return a OppyQuotesView object type.
    */
   public abstract OppyQuotesView goToQuotesView();
+
+  /**
+   * This method change the stage of an Opportunity
+   *
+   * @param stageName as a string.
+   */
+  public abstract OppyContentPage changeStage(String stageName);
 }

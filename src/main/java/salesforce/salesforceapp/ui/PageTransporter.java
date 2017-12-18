@@ -43,8 +43,7 @@ public class PageTransporter {
   public String getCurrentURL() {
     return webDriver.getCurrentUrl();
   }
-
-
+  
   public Boolean isOnWeb() {
     return (webDriver.getCurrentUrl().contains(baseURL));
   }
@@ -75,7 +74,7 @@ public class PageTransporter {
    */
   public void switchSkin() {
     if (!getCurrentSkin().equals(SalesForceAppEnvsConfig.getInstance().getSkin())) {
-    TopMenu topMenu = PageFactory.getTopMenu(getCurrentSkin());
+      TopMenu topMenu = PageFactory.getTopMenu(getCurrentSkin());
       topMenu.switchSkin();
     }
   }

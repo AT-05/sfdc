@@ -30,7 +30,7 @@ public class OpportunityPageSteps {
   //Entities
   private Oppy oppy;
 
-  public OpportunityPageSteps() {
+    public OpportunityPageSteps() {
     pageTransporter = PageTransporter.getInstance();
   }
 
@@ -45,11 +45,6 @@ public class OpportunityPageSteps {
       String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
       homePage = loginPage.login(username, password);
     }
-  }
-
-  @And("^I go to Opportunities page$")
-  public void iGoToOpportunitiesPage() {
-    oppyHomePage = homePage.topMenu.goToOppyHomePage();
   }
 
   @Then("^the Opportunities page should be displayed$")
