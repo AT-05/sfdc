@@ -39,13 +39,3 @@ Feature: Manage Opportunities - CRUD
     Then a message should be displayed saying that the Opportunity was deleted
     And the Opportunity should be delete of the list
 
-  @Functional
-  Scenario: User should be able to duplicate Opportunity
-    Given I have Opportunity with the following information
-      | oppyName | closeDate | stage         | account      |
-      | Opp test | 6/12/2018 | Qualification | Acme (Sample)|
-
-    And I select the Opportunity created from the list
-    When I Duplicate that Opportunity
-    Then a message should be displayed saying that the Opportunity was created
-    And two Opportunities with the same information should be displayed in the Opportunities list

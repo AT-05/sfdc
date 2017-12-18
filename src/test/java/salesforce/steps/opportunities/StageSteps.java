@@ -6,6 +6,8 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.interactions.Actions;
+import salesforce.core.selenium.webdrivers.DriverFactory;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
@@ -39,29 +41,22 @@ public class StageSteps {
   //****************************************************************
   @When("^I change the stage with \"([^\"]*)\" option$")
   public void iChangeTheStageWithOption(String stageName) {
-    System.out.println("========= content x factory");
     oppyContentPage = PageFactory.getOppyContentPage();
-    System.out.println("========= go oppy home page");
-    oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
-    System.out.println("========= select oppy: " + oppy.getOppyName());
-    oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());
-    System.out.println("========= change stage");
+    oppyContentPage.displayedCreateMessage();
     oppyContentPage = oppyContentPage.changeStage(stageName);
     oppy.setStage(stageName);
   }
 
   @Then("^the stage selected should be associate to the Opportunity$")
   public void theStageSelectedShouldBeAssociateToTheOpportunity() {
-    System.out.println("===============================");
-    System.out.println("========= go to oppy home page");
-    oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
-    System.out.println("========= select oppy");
-    oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());
-    System.out.println("========= click details");
     oppyContentPage.clickDetailsOppyBtn();
-    System.out.println("========= verify the stage: " + oppy.getStage());
     assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()), "The stage was incorrect:");
-    System.out.println("========= back to HomePage ");
     oppyContentPage.topMenu.goToHomePage();
+
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }

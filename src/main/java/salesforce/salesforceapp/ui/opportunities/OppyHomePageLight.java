@@ -10,9 +10,9 @@ import salesforce.salesforceapp.entities.opportunities.Oppy;
 public class OppyHomePageLight extends OppyHomePage {
 
   @FindBy(xpath = "//ol//span[@class='uiOutputText']")
-  private WebElement title;
+  private WebElement titleLabel;
 
-  private WebElement opportunity;
+  private WebElement oppyLink;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -25,14 +25,14 @@ public class OppyHomePageLight extends OppyHomePage {
    */
   @Override
   public boolean isOpportunitiesHomePage() {
-    return title.isDisplayed();
+    return titleLabel.isDisplayed();
   }
 
 
   /**
-   * Verify if an opportunity is in the list of opportunities.
+   * Verify if an oppyLink is in the list of opportunities.
    *
-   * @param oppy object the values of opportunity.
+   * @param oppy object the values of oppyLink.
    * @return boolean.
    */
   @Override
@@ -42,7 +42,7 @@ public class OppyHomePageLight extends OppyHomePage {
             oppy.getOppyName());
     driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     try {
-      opportunity = driver.findElement(By.xpath(xpath));
+      oppyLink = driver.findElement(By.xpath(xpath));
     } catch (Exception ex) {
       driver.manage().timeouts()
           .implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(), TimeUnit.SECONDS);
@@ -50,6 +50,6 @@ public class OppyHomePageLight extends OppyHomePage {
     }
     driver.manage().timeouts()
         .implicitlyWait(WebDriverConfig.getInstance().getImplicitWaitTime(), TimeUnit.SECONDS);
-    return driverTools.isElementDisplayed(opportunity);
+    return driverTools.isElementDisplayed(oppyLink);
   }
 }

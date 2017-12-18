@@ -7,7 +7,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.PageFactory;
 
@@ -54,11 +53,7 @@ public class OppyContentPageLight extends OppyContentPage {
   @Override
   public boolean displayedCreateMessage() {
     boolean flag = driverTools.isElementDisplayed(createOppyMessage);
-    System.out.println("============ Flag es: " + flag);
-    //wait = new WebDriverWait(driver, 2);
-    System.out.println("============ Espera......");
     driverTools.waitUntilMessageDisappear(createOppyMessage);
-    System.out.println("============ Ya no espera ya se fue.");
     return flag;
   }
 
@@ -160,10 +155,9 @@ public class OppyContentPageLight extends OppyContentPage {
    */
   @Override
   public OppyContentPage changeStage(String stageName) {
-    String xpath = String.format("//a[@class='tabHeader']//span[contains(text(), '%s')]", stageName);
-    driverTools.waitUntilAvailable(By.xpath(xpath));
+    String xpath = String.format("//a[@data-tab-name='%s']", stageName);
     WebElement element = driver.findElement(By.xpath(xpath));
-    System.out.println("======= Click in: " + stageName);
+    driverTools.waitUntilAvailable(By.xpath(xpath));
     driverTools.clickElement(element);
     driverTools.clickElement(confirmStageBtn);
     displayedCreateMessage();

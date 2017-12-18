@@ -10,8 +10,8 @@ public abstract class HomeBasePage extends BasePage {
 
   public TopMenu topMenu;
 
-  @FindBy(xpath = ".//*[@title='New']")
-  @CacheLookup
+  //@FindBy(xpath = "//*[@title='New']")
+  @FindBy(xpath = "//input[@title='New']|//div[@title='New']")
   protected WebElement newBtn;
 
   public HomeBasePage() {
@@ -27,6 +27,7 @@ public abstract class HomeBasePage extends BasePage {
    * @return By.
    */
   private By getItemLinkBy(String linkText) {
+    //return By.xpath("//a[contains(text(),'" + linkText + "')]");
     return By.linkText(linkText);
   }
 

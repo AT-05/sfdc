@@ -45,7 +45,7 @@ public class OppyEditionFormClassic extends OppyEditionForm {
     stageDropDown.selectByValue(oppy.getStage());
     driverTools.setInputField(dateInput, oppy.getCloseDate());
     driverTools.setInputField(accountInput, oppy.getAccount());
-    if(privateCheckbox.isSelected() != oppy.getPrivateOppy()){
+    if (privateCheckbox.isSelected() != oppy.getPrivateOppy()) {
       driverTools.clickElement(privateCheckbox);
     }
     driverTools.setInputField(amountInput, oppy.getAmountWithFormat());
