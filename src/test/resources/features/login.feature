@@ -7,7 +7,6 @@ Feature: Login
     Given I navigate to Login page
     When I login as "<User Name>" with password "<Password>"
     Then I should login successfully
-
     Examples: Short pass
       | User Name                          | Password      |
       | franco.aldunate@fundacion-jala.org | cachito52&CPC |
