@@ -8,7 +8,7 @@ import salesforce.salesforceapp.entities.opportunities.Oppy;
 public class OppyEditionFormClassic extends OppyEditionForm {
 
   @FindBy(id = "opp3")
-  private WebElement oppyInput;
+  private WebElement oppyNameInput;
 
   @FindBy(id = "opp4")
   private WebElement accountInput;
@@ -22,8 +22,8 @@ public class OppyEditionFormClassic extends OppyEditionForm {
   @FindBy(xpath = "//input[@name='save']")
   private WebElement saveBtn;
 
-  @FindBy(id = "00N1I00000H2afx")
-  private WebElement budgetCheckbox;
+  @FindBy(id = "opp2")
+  private WebElement privateCheckbox;
 
   @FindBy(id = "opp7")
   private WebElement amountInput;
@@ -40,13 +40,13 @@ public class OppyEditionFormClassic extends OppyEditionForm {
    */
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
-    driverTools.setInputField(oppyInput, oppy.getOppyName());
+    driverTools.setInputField(oppyNameInput, oppy.getOppyName());
     Select stageDropDown = new Select(stageSelect);
     stageDropDown.selectByValue(oppy.getStage());
     driverTools.setInputField(dateInput, oppy.getCloseDate());
     driverTools.setInputField(accountInput, oppy.getAccount());
-    if(budgetCheckbox.isSelected() != oppy.getPrivateOppy()){
-      driverTools.clickElement(budgetCheckbox);
+    if(privateCheckbox.isSelected() != oppy.getPrivateOppy()){
+      driverTools.clickElement(privateCheckbox);
     }
     driverTools.setInputField(amountInput, oppy.getAmountWithFormat());
     driverTools.clickElement(saveBtn);

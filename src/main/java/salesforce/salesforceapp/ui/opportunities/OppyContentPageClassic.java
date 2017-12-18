@@ -45,7 +45,9 @@ public class OppyContentPageClassic extends OppyContentPage {
 
   @Override
   public OppyEditionForm clickEditOppyBtn() {
-    return null;
+    String xpath = String.format("//input[@name='edit']");
+    driverTools.clickElement(By.xpath(xpath));
+    return PageFactory.getOppyEditionForm();
   }
 
   /**
@@ -79,7 +81,7 @@ public class OppyContentPageClassic extends OppyContentPage {
    */
   @Override
   public boolean containsCheckbox(String value) {
-    String flag = value.equals("true") ? "Checked" : "Not Checked";
+    String flag = value.equalsIgnoreCase("true") ? "Checked" : "Not Checked";
     String xpath = String.format("//table[@class='detailList']//img[@alt='%s']", flag);
     return driverTools.isElementDisplayed(By.xpath(xpath));
   }

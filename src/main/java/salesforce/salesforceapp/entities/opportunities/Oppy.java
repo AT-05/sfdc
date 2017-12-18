@@ -102,7 +102,7 @@ public class Oppy {
    *
    * @return as a string.
    */
-  public String getBudgetAsString() {
+  public String getPrivateCheckedAsString() {
     return privateOppy ? "True" : "False";
   }
   public boolean getPrivateOppy() {

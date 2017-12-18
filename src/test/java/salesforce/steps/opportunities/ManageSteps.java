@@ -111,7 +111,7 @@ public class ManageSteps {
     assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()), "Stage is incorrect:");
     assertTrue(oppyContentPage.containsLinkElement(oppy.getAccount()), "Account is incorrect:");
     assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()), "Amount is incorrect:");
-    assertTrue(oppyContentPage.containsCheckbox(oppy.getBudgetAsString()), "Budget is incorrect:");
+    assertTrue(oppyContentPage.containsCheckbox(oppy.getPrivateCheckedAsString()), "private checked is incorrect:");
   }
 
 
