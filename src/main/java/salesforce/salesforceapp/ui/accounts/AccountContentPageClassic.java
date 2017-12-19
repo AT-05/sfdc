@@ -12,7 +12,7 @@ import salesforce.salesforceapp.ui.PageFactory;
 public class AccountContentPageClassic extends AccountContentPage {
 
   @FindBy(xpath = "//div[contains(@class, 'bDescription')]")
-  private WebElement messageErrorCreate;
+  private WebElement messageErrorCreateLabel;
 
   @FindBy(xpath = "//td[@id='topButtonRow']/input[@name='delete']")
   private WebElement deleteBtn;
@@ -22,8 +22,8 @@ public class AccountContentPageClassic extends AccountContentPage {
 
 
   public AccountContentPageClassic() {
-    super.nameText = driver.findElement(By.xpath("//*[@id='acc2_ileinner']"));
-    super.addressText = driver.findElement(By.xpath("//*[@id='acc17_ileinner']"));
+    super.nameInput = driver.findElement(By.xpath("//*[@id='acc2_ileinner']"));
+    super.addressInput = driver.findElement(By.xpath("//*[@id='acc17_ileinner']"));
   }
 
   @Override
@@ -77,9 +77,10 @@ public class AccountContentPageClassic extends AccountContentPage {
    */
   @Override
   public boolean containsThisElement(String name) {
-    String path = String.format("%s%s%s%s%s%s%s%s%s", "//td[contains(@class, 'dataCol')]/div[text()='", name, "']|",
+    String path = String.format("%s%s%s%s%s%s%s%s%s", "//td[contains(@class, 'data2Col')]/div[text()='", name, "']|",
         "//td[contains(@class, 'dataCol')]/div/*[contains(text(), '", name, "')]|",
         "//td[contains(@class, 'dataCol')]/div[contains(text(), '", name, "')]");
+    System.out.println("======================"+path);
     return driverTools.isElementVisibility(By.xpath(path));
   }
 
@@ -90,6 +91,14 @@ public class AccountContentPageClassic extends AccountContentPage {
    */
   @Override
   public boolean displayedErrorDeleteMessage() {
-    return driverTools.isElementDisplayed(messageErrorCreate);
+    return driverTools.isElementDisplayed(messageErrorCreateLabel);
+  }
+
+  /**
+   * Wait until the creation message disappears
+   */
+  @Override
+  public void waitUntilMessageDisappear() {
+
   }
 }

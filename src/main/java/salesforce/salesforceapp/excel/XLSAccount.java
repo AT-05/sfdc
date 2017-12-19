@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.api.methods.APIAccount;
-import salesforce.salesforceapp.entities.Account;
+import salesforce.salesforceapp.entities.account.Account;
 
 public class XLSAccount {
     private static Logger log = Logger.getLogger("XLSAccount");

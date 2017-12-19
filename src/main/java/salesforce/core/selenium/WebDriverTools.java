@@ -61,6 +61,7 @@ public class WebDriverTools {
    */
   public void clickElement(By by) {
     wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    wait.until(ExpectedConditions.elementToBeClickable(by));
     driver.findElement(by).click();
   }
 
@@ -167,6 +168,20 @@ public class WebDriverTools {
   public void waitUntilMessageDisappear(WebElement element) {
     try {
       while (element.isDisplayed()) {
+      }
+    } catch (Exception e) {
+    }
+  }
+
+  /**
+   * Wait until the item is no longer visible.
+   *
+   * @param by By of the WebElement.
+   */
+  public void waitUntilMessageDisappear(By by) {
+    try {
+      WebElement message= driver.findElement(by);
+      while (message.isDisplayed()) {
       }
     } catch (Exception e) {
     }

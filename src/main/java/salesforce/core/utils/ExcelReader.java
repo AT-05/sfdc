@@ -17,10 +17,10 @@ import org.apache.log4j.Logger;
  * Created by Silvia Valencia on 5/29/2015.
  */
 public class ExcelReader {
-  private Logger log = Logger.getLogger(getClass());
-  private String path = System.getProperty("user.dir") + File.separator;
-  Workbook workbook = null;
-  Sheet sheet;
+    private Logger log = Logger.getLogger(getClass());
+    private String path = System.getProperty("user.dir") + File.separator;
+    Workbook workbook = null;
+    Sheet sheet;
 
   public ExcelReader(String excelFileName) {
     log.info("Reading the excel file: " + excelFileName);
