@@ -18,8 +18,7 @@ import org.apache.log4j.Logger;
  */
 public class ExcelReader {
     private Logger log = Logger.getLogger(getClass());
-    private String path = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" +
-            File.separator + "resources" + File.separator + "excelfiles" + File.separator;
+    private String path = System.getProperty("user.dir") + File.separator;
     Workbook workbook = null;
     Sheet sheet;
 

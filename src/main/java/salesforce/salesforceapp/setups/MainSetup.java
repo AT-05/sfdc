@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import salesforce.core.utils.ExcelReader;
 import static salesforce.salesforceapp.SalesforceConstants.*;
 import salesforce.salesforceapp.excel.XLSAccount;
+import salesforce.salesforceapp.excel.XLSOppy;
 import salesforce.salesforceapp.excel.XLSPriceBook;
 import salesforce.salesforceapp.excel.XLSProduct;
 import salesforce.salesforceapp.excel.XLSQuote;
@@ -23,7 +24,8 @@ public class MainSetup {
     public static void beforeExecution() {
         log.info("Start Main before setup...");
 //          TODO
-        ExcelReader xlsFile = new ExcelReader("main.xlsx");
+        ExcelReader xlsFile = new ExcelReader("main.xls");
+            oppyXLS = xlsFile.getValues(OPPORTUNITY);
 //        contactXLS = xlsFile.getValues(CONTACT);
 //        accountXLS = xlsFile.getValues(ACCOUNT);
 //        oppyXLS = xlsFile.getValues(OPPY);
@@ -33,7 +35,7 @@ public class MainSetup {
 //        priceBookProductXLS = xlsFile.getValues(PRICE_BOOK_PRODUCT);
 //        XLSContact.createContacts(contactXLS);
 //        XLSAccount.createAccounts(accountsXLS);
-//        XLSOppy.createOppys(oppyXLS);
+        XLSOppy.createOppy(oppyXLS);
 //        XLSQuote.createQuotes(quoteXLS);
 //        XLSPriceBook.createPriceBook(priceBookXLS);
 //        XLSProduct.createAccounts(productXLS);

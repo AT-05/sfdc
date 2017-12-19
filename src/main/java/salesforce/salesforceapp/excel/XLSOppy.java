@@ -1,5 +1,7 @@
 package salesforce.salesforceapp.excel;
 
+import static salesforce.salesforceapp.SalesforceConstants.*;
+
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
@@ -11,12 +13,6 @@ import salesforce.salesforceapp.entities.opportunities.Oppy;
  */
 public class XLSOppy {
   private static Logger log = Logger.getLogger("XLSOppy");
-  private static String OPPY_NAME;
-  private static String OPPY_CLOSE_DATE;
-  private static String OPPY_STAGE;
-  private static String OPPY_ACCOUNT_NAME;
-  private static String OPPY_PRIVATE;
-  private static String OPPY_AMOUNT;
 
   /**
    * <p>Create Opportunities by API from excel sheet.</p>
@@ -40,7 +36,7 @@ public class XLSOppy {
       System.out.println("Oppy Stage: " + oppy.getStage());
       System.out.println("Oppy Account Name: " + oppy.getAccount());
       System.out.println("Oppy Private: " + oppy.getPrivateOppy());
-      System.out.println("Oppy Amount: " + oppy.getAmount());
+      System.out.println("Oppy Amount: " + Double.valueOf(oppy.getAmount()));
 
       if (!APIOppy.isOppySaved(oppy)) {
         APIOppy.createOppy(oppy);
