@@ -5,7 +5,7 @@ Feature: Manage Accounts
     Given I am logged to Salesforce
       And I go to Accounts home page
 
-  @SmokeTest @createAccount
+  @SmokeTest @createAccount1
   Scenario: Verify that it is possible to Create an Account
     When I create a New Account with the following information:
       | name   | type     | web           | description | phone   | sector  | employees |
