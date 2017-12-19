@@ -7,7 +7,6 @@ import salesforce.salesforceapp.entities.opportunities.Oppy;
 
 public class OppyEditionFormLight extends OppyEditionForm {
 
-  //@FindBy(xpath = "//input[@class=' input']")
   @FindBy(xpath = "//span[text() = 'Opportunity Name']/../following-sibling::input")
   private WebElement oppyInput;
 
@@ -27,7 +26,6 @@ public class OppyEditionFormLight extends OppyEditionForm {
 
   private WebElement stageDropDown;
 
-  //@FindBy(xpath = "//div[contains(@class, 'checkbox')]//input")
   @FindBy(xpath = "//span[text() = 'Private']/../following-sibling::input")
   private WebElement privateCheckbox;
 
@@ -49,36 +47,26 @@ public class OppyEditionFormLight extends OppyEditionForm {
    */
   @Override
   public OppyContentPage createOppy(Oppy oppy) {
-    //driverTools.setInputField(amountInput, oppy.getAmountWithFormat());
     driverTools.setInputField(amountInput, Double.toString(oppy.getAmount()));
-
     driverTools.setInputField(oppyInput, oppy.getOppyName());
-
     driverTools.clickElement(accountInput);
     driverTools.setInputField(accountInput, oppy.getAccount());
     String accountElement = String
         .format("//div[@role='listbox']//div[@title='%s']", oppy.getAccount());
-
     driverTools.waitUntilAvailable(By.xpath(accountElement));
     accountSelected = driver.findElement(By.xpath(accountElement));
     driverTools.clickElement(accountSelected);
-
     driverTools.clickElement(closeDate);
     driverTools.clickElement(today);
     driverTools.setInputField(closeDate, oppy.getCloseDate());
-
     driverTools.clickElement(stageInput);
-
     String webElement = String.format("//ul[@class='scrollable']//a[text()='%s']", oppy.getStage());
     stageDropDown = driver.findElement(By.xpath(webElement));
     driverTools.clickElement(stageDropDown);
-
-    if(privateCheckbox.isSelected() != oppy.getPrivateOppy()){
+    if (privateCheckbox.isSelected() != oppy.getPrivateOppy()) {
       driverTools.clickElement(privateCheckbox);
     }
-
     driverTools.clickElement(saveBtn);
-
     return new OppyContentPageLight();
   }
 

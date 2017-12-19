@@ -8,4 +8,6 @@ public enum SalesForcesObjectEnums {
     PRODUCT,
     CONTACT,
     OPPY,
-    }
+    QUOTE,
+    PRICE_BOOK
+}

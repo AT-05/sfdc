@@ -1,7 +1,7 @@
 package salesforce.steps.quotes;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -33,18 +33,12 @@ public class DeleteQuoteSteps {
 
   @Then("^A Quote successful deleting message should be displayed$")
   public void aQuoteSuccessfulDeletingMessageShouldBeDisplayed() {
-    assertTrue(quotesContentPage.isQuoteDeletedMessageDisplayed(quote.getName()));
-    System.out.println("message result: " + quotesContentPage.isQuoteDeletedMessageDisplayed(quote.getName()));
+    assertTrue(quotesContentPage.isQuoteDeletedMessageDisplayed(quote.getName()), "'Quote was deleted' message was not displayed");
   }
 
   @And("^The Quote should disappear from the Quotes list$")
   public void theQuoteShouldDisappearFromTheQuotesList() {
     quotesHomePage = quotesContentPage.topMenu.goToQuotesHomePage();
-    try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    assertFalse(quotesHomePage.isQuoteElementPresent(quote.getName()));
+    assertFalse(quotesHomePage.isQuoteElementPresent(quote.getName()), "'Quote was not deleted");
   }
 }

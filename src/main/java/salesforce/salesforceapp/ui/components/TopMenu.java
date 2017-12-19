@@ -1,6 +1,5 @@
 package salesforce.salesforceapp.ui.components;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;

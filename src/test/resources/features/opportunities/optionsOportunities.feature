@@ -29,3 +29,14 @@ Feature: Verifying options when creates new Opportunities
   Scenario: Verify when I create a new opportunity all fields required must be fill
     When I try to save whitout fill requiered fields
     Then the app should be display a message of error
+
+  @Functional
+  Scenario: User should be able to duplicate Opportunity
+    Given I have Opportunity with the following information
+      | oppyName | closeDate | stage         | account      |
+      | Opp test | 6/12/2018 | Qualification | Acme (Sample)|
+
+    And I select the Opportunity created from the list
+    When I Duplicate that Opportunity
+    Then a message should be displayed saying that the Opportunity was created
+    And two Opportunities with the same information should be displayed in the Opportunities list

@@ -121,6 +121,21 @@ public class PageFactory {
     }
   }
 
+  /**
+   * <p>This method gets a QuotesHomePage object type
+   * depending on the current web page skin.</p>
+   *
+   * @return a QuotesHomePage object type.
+   */
+  public static QuotesHomePage getQuotesHomePage() {
+    switch (skin) {
+      case CLASSIC:
+        return new QuotesHomePageClassic();
+      default:
+        return new QuotesHomePageLight();
+    }
+  }
+
   public static ContactContentPage getContactContentPage() {
     switch (skin) {
       case CLASSIC:

@@ -2,7 +2,7 @@ package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.entities.product.Product;
+import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageLightning;
 
 /**
@@ -39,7 +39,7 @@ public class ProductEditionFormLightning extends ProductEditionForm {
     /**
      * Click products data save btn.
      *
-     * @return product content.
+     * @return products content.
      */
     private ProductContentPageLightning clickSaveBnt() {
         saveBtn.click();
@@ -48,9 +48,9 @@ public class ProductEditionFormLightning extends ProductEditionForm {
 
 
     /**
-     * Create a new product.
+     * Create a new products.
      *
-     * @param product product.
+     * @param product products.
      * @return ProductContent.
      */
     @Override
@@ -64,10 +64,10 @@ public class ProductEditionFormLightning extends ProductEditionForm {
     }
 
     /**
-     * Edit an existing product.
+     * Edit an existing products.
      *
-     * @param product product.
-     * @return product content.
+     * @param product products.
+     * @return products content.
      */
 
     @Override

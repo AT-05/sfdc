@@ -1,13 +1,13 @@
 package salesforce.steps.quotes;
 
-import cucumber.api.*;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
+import salesforce.salesforceapp.api.methods.*;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -54,6 +54,9 @@ public class EditQuoteSteps {
     for (Quote itemQuote : quoteCreateInfo) {
       quoteName = itemQuote.getName();
     }
+
+//    APIQuote.createQuote(oppy.getQuote(quoteName));
+
     quoteEditionForm = oppyQuotesView.goToCreateQuote();
     quoteEditionForm.createQuote(oppy, quoteName);
     quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName);
@@ -63,7 +66,7 @@ public class EditQuoteSteps {
 
   @And("^I go to Quotes Home Page$")
   public void iGoToQuotesHomePage() {
-    homePage = quoteEditionForm.topMenu.goToHomePage();
+    homePage = PageFactory.getHomePage();
     quotesHomePage = homePage.topMenu.goToQuotesHomePage();
   }
 
@@ -81,14 +84,13 @@ public class EditQuoteSteps {
 
   @Then("^A Quote successful editing message should be displayed$")
   public void aQuoteSuccessfulEditingMessageShouldBeDisplayed() {
-    assertTrue(quotesContentPage.isQuoteEditedMessageDisplayed(quoteName));
-    System.out.println("message result: " + quotesContentPage.isQuoteEditedMessageDisplayed(quoteName));
+    assertTrue(quotesContentPage.isQuoteEditedMessageDisplayed(quoteName), "'Quote was saved' message was not displayed");
   }
 
   @And("^The Quote information should be updated correctly$")
   public void theQuoteInformationShouldBeUpdatedCorrectly() {
     quotesContentPage.openQuoteDetails();
-    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
-    System.out.println("verification result: " + quotesContentPage.isQuoteInfoCorrect(oppy, quoteName));
+    oppy.getQuote(quoteName).calculateGrandTotal();
+    assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy.getQuote(quoteName)), "The quote information after editing is not correct");
   }
 }

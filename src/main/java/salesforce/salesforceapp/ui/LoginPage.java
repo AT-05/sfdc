@@ -8,13 +8,13 @@ import salesforce.salesforceapp.ui.home.HomePage;
 public class LoginPage extends BasePage {
 
   @FindBy(id = "username")
-  private WebElement userName;
+  private WebElement userNameInput;
 
   @FindBy(id = "password")
-  private WebElement password;
+  private WebElement passwordInput;
 
   @FindBy(id = "Login")
-  private WebElement loginButton;
+  private WebElement loginBtn;
 
   /**
    * <p>This method implements wait time for login url direction.</p>
@@ -27,36 +27,34 @@ public class LoginPage extends BasePage {
   /**
    * <p>This method fills user name field value.</p>
    *
-   * @param userNameInput is the user name given.
+   * @param userName is the user name given.
    */
-  private void setUsername(String userNameInput) {
-    driverTools.setInputField(userName, userNameInput);
+  private void setUsername(String userName) {
+    driverTools.setInputField(userNameInput, userName);
   }
 
   /**
-   * <p>This method fills user password field value.</p>
+   * <p>This method fills user passwordInput field value.</p>
    *
-   * @param passwordInput is the user password given.
+   * @param password is the user passwordInput given.
    */
-  private void setPassword(String passwordInput) {
-    driverTools.setInputField(password, passwordInput);
+  private void setPassword(String password) {
+    driverTools.setInputField(passwordInput, password);
   }
 
   /**
    * <p>This method performs login of user into the application.</p>
    *
    * @param username is the user name given.
-   * @param password is the user password given.
+   * @param password is the user passwordInput given.
    * @return a HomePage object type.
    */
   public HomePage login(String username, String password) {
     setUsername(username);
     setPassword(password);
-    driverTools.clickElement(loginButton);
-    //wait.until(ExpectedConditions.urlContains("home"));
+    driverTools.clickElement(loginBtn);
+    wait.until(ExpectedConditions.urlContains("home"));
     PageTransporter.getInstance().switchSkin();
-    HomePage homePage = PageFactory.getHomePage();
-    homePage = homePage.topMenu.goToHomePage();
-    return homePage;
+    return PageFactory.getHomePage();
   }
 }
