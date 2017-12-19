@@ -1,11 +1,10 @@
 package salesforce.salesforceapp.ui.components;
 
-
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.accounts.AccountHomePage;
 import salesforce.salesforceapp.ui.accounts.AccountHomePageClassic;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;
@@ -156,5 +155,4 @@ public class TopMenuClassic extends TopMenu {
     driverTools.clickElement(By.xpath(lacatorAccounts));
     return new AccountHomePageClassic();
   }
-
 }

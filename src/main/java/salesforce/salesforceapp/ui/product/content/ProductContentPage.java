@@ -3,7 +3,7 @@ package salesforce.salesforceapp.ui.product.content;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import salesforce.salesforceapp.entities.product.Product;
+import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
@@ -26,7 +26,7 @@ public abstract class ProductContentPage extends BasePage {
 
 
     /**
-     * Check if is present the Alert and accept delete product.
+     * Check if is present the Alert and accept delete products.
      */
     public void checkAlert() {
         wait.until(ExpectedConditions.alertIsPresent());
@@ -40,22 +40,22 @@ public abstract class ProductContentPage extends BasePage {
     }
 
     /**
-     * Check is the product fields are corrects.
+     * Check is the products fields are corrects.
      *
-     * @param product product.
+     * @param product products.
      * @return boolean.
      */
     public abstract boolean validateProductFields(Product product);
 
     /**
-     * Go to edit existing product.
+     * Go to edit existing products.
      *
      * @return ProductEditionForm.
      */
     public abstract ProductEditionForm editProduct();
 
     /**
-     * Delete an existing product.
+     * Delete an existing products.
      *
      * @return Home Product Page.
      */
@@ -64,7 +64,7 @@ public abstract class ProductContentPage extends BasePage {
     /**
      * Go to Home Product page.
      *
-     * @return Home product page.
+     * @return Home products page.
      */
     public abstract HomeProductPage goToHomProductPage();
 }

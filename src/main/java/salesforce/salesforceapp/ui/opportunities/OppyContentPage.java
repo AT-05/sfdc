@@ -10,6 +10,8 @@ public abstract class OppyContentPage extends ContentBasePage {
 
   public abstract void clickDetailsOppyBtn();
 
+  public abstract OppyEditionForm clickEditOppyBtn();
+
   public abstract boolean containsSpanElement(String value);
 
   public abstract boolean containsLinkElement(String value);

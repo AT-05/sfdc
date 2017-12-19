@@ -26,7 +26,7 @@ public class HomeProductPageClassic extends HomeProductPage {
     /**
      * Create new Prodcut.
      *
-     * @return product edition.
+     * @return products edition.
      */
     @Override
     public ProductEditionFormClassic newProduct() {
@@ -37,7 +37,7 @@ public class HomeProductPageClassic extends HomeProductPage {
 
 
     /**
-     * Check if exist a product.
+     * Check if exist a products.
      *
      * @param name string.
      * @return boolean.

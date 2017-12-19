@@ -1,6 +1,5 @@
 package salesforce.salesforceapp.ui.quotes;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import salesforce.salesforceapp.ui.HomeBasePage;
 
@@ -8,8 +7,6 @@ import salesforce.salesforceapp.ui.HomeBasePage;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public abstract class QuotesHomePage extends HomeBasePage {
-  //utilities
-  private Logger log = Logger.getLogger(getClass());
 
   /**
    * <p>This method sends to a quote's content page.</p>
@@ -29,10 +26,8 @@ public abstract class QuotesHomePage extends HomeBasePage {
   public boolean isQuoteElementPresent(String quoteName){
     By element = By.xpath("//a[text()='" + quoteName + "']");
     if (driverTools.isElementVisibility(element)) {
-      log.info("Verification result: The quote was deleted successfully.");
       return true;
     }
-    log.info("Verification result: The quote was not deleted.");
     return false;
   }
 }

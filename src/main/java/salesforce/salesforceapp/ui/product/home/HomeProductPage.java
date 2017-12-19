@@ -48,7 +48,7 @@ public abstract class HomeProductPage extends BasePage {
     /**
      * Create new Prodcut.
      *
-     * @return product edition.
+     * @return products edition.
      */
     public abstract ProductEditionForm newProduct();
 
@@ -72,14 +72,14 @@ public abstract class HomeProductPage extends BasePage {
     }
 
     /**
-     * Click New product.
+     * Click New products.
      */
     protected void clickNewBtn() {
         driverTools.clickElement(newBtn);
     }
 
     /**
-     * Check if exist a product.
+     * Check if exist a products.
      *
      * @param name string.
      * @return boolean.

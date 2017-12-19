@@ -1,7 +1,7 @@
 package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.WebElement;
-import salesforce.salesforceapp.entities.product.Product;
+import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 
@@ -22,7 +22,7 @@ public abstract class ProductEditionForm extends BasePage {
     }
 
     /**
-     * Set the field product name input.
+     * Set the field products name input.
      *
      * @param name string.
      */
@@ -32,7 +32,7 @@ public abstract class ProductEditionForm extends BasePage {
     }
 
     /**
-     * Set the field product code input.
+     * Set the field products code input.
      *
      * @param code string.
      */
@@ -42,7 +42,7 @@ public abstract class ProductEditionForm extends BasePage {
     }
 
     /**
-     * Set the field product description input.
+     * Set the field products description input.
      *
      * @param description string.
      */
@@ -63,18 +63,18 @@ public abstract class ProductEditionForm extends BasePage {
     }
 
     /**
-     * Create a new product.
+     * Create a new products.
      *
-     * @param product product.
+     * @param product products.
      * @return ProductContent.
      */
     public abstract ProductContentPage createProduct(Product product);
 
     /**
-     * Edit an existing product.
+     * Edit an existing products.
      *
-     * @param product product.
-     * @return product content.
+     * @param product products.
+     * @return products content.
      */
     public abstract ProductContentPage editProduct(Product product);
 
