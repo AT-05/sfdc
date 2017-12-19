@@ -1,4 +1,4 @@
-@Negative @Account
+@Negative @Account @NegativeAccount
 Feature: Unable to delete account
 
   Background:
@@ -16,7 +16,7 @@ Feature: Unable to delete account
   Scenario: Verify that is not possible edit an Account without Name
     Given I have an Acount with the following information:
       | name   | type     | web           | description | phone   | sector  | employees |
-      | Alaska | Prospect | www.higos.com | description | 7742515 | Banking | 248       |
+      | Cocacola | Prospect | www.higos.com | description | 7742515 | Banking | 248       |
     When I select the Account
      And I edit that Account with the following information without Name:
       | name | type     | web           | description | phone   | sector  | employees |

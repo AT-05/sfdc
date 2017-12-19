@@ -1,4 +1,4 @@
-@Funtional @Account
+@Funtional @Account @crudAccount
 Feature: Manage Accounts
 
   Background:
