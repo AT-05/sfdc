@@ -2,7 +2,6 @@ package salesforce.salesforceapp.ui;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.components.TopMenu;
 
@@ -29,7 +28,6 @@ public abstract class HomeBasePage extends BasePage {
    * @return By.
    */
   private By getItemLinkBy(String linkText) {
-    //return By.xpath("//a[contains(text(),'" + linkText + "')]");
     return By.linkText(linkText);
   }
 

@@ -18,9 +18,6 @@ public class QuotesContentPageLight extends QuotesContentPage {
   @FindBy(xpath = "//button[@title='Delete']")
   private WebElement deleteConfirmationLink;
 
-  @FindBy(xpath = "//div[@id='brandBand_1']//div[5]//span[text()='Details'] | //div[@id='brandBand_1']//span[text()='Details']")
-  private WebElement quoteDetailsLink;
-
   private WebElement quoteEditedMessage;
 
   @FindBy(xpath = "//div[@class='container']//div[1]//article/div[1]/div//li[1]//div")
@@ -69,6 +66,7 @@ public class QuotesContentPageLight extends QuotesContentPage {
    */
   @Override
   public void openQuoteDetails() {
+    By quoteDetailsLink = By.xpath("//div[@id='brandBand_1']//span[text()='Details']");
     driverTools.clickElement(quoteDetailsLink);
   }
 
