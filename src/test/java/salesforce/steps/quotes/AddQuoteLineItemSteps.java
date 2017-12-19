@@ -75,11 +75,11 @@ public class AddQuoteLineItemSteps {
 
   @And("^The Quote Totals should be updated correctly$")
   public void theQuoteTotalsShouldBeUpdatedCorrectly() {
-    quotesContentPage.openQuoteDetails();
     quote.calculateSubTotal();
     quote.calculateTotalPrice();
     quote.calculateDiscount();
     quote.calculateGrandTotal();
+    quotesContentPage.openQuoteDetails();
     assertTrue(quotesContentPage.areQuoteTotalsUpdated(quote), "The quote totals were not updated correctly");
   }
 
