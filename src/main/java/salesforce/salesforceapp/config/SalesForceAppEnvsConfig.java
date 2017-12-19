@@ -18,6 +18,10 @@ public class SalesForceAppEnvsConfig {
   private static final String USER_NAME = "user name";
   private static final String USER_PASSWORD = "user password";
   private static final String SKIN = "skin";
+  private static final String CONSUMER_KEY = "consumer key";
+  private static final String CONSUMER_SECRET = "consumer secret";
+  private static final String SECURITY_TOKEN = "security token";
+
 
   private JsonReader envReader;
 
@@ -25,6 +29,9 @@ public class SalesForceAppEnvsConfig {
   private String url;
   private String userName;
   private String userPassword;
+  private String consumerKey;
+  private String consumerSecret;
+  private String securityToken;
 
   private static SalesForceAppEnvsConfig instance;
 
@@ -49,6 +56,9 @@ public class SalesForceAppEnvsConfig {
     url = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, URL);
     userName = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_NAME);
     userPassword = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_PASSWORD);
+    consumerKey = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, CONSUMER_KEY);
+    consumerSecret = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, CONSUMER_SECRET);
+    securityToken = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, SECURITY_TOKEN);
   }
 
   public String getUrl() {
@@ -65,5 +75,17 @@ public class SalesForceAppEnvsConfig {
 
   public Skin getSkin() {
     return skin;
+  }
+
+  public String getConsumerKey() {
+    return consumerKey;
+  }
+
+  public String getConsumerSecret() {
+    return consumerSecret;
+  }
+
+  public String getSecurityToken() {
+    return securityToken;
   }
 }
