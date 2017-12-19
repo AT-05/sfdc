@@ -1,8 +1,7 @@
 package salesforce.salesforceapp.ui.accounts;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import salesforce.salesforceapp.entities.Account;
+import salesforce.salesforceapp.entities.account.Account;
 
 /**
  * Created by Administrator on 12/5/2017.

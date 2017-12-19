@@ -1,10 +1,9 @@
 package salesforce.salesforceapp.ui.accounts;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.entities.Account;
+import salesforce.salesforceapp.entities.account.Account;
 
 /**
  * Created by Administrator on 12/5/2017.
@@ -29,15 +28,14 @@ public class AccountEditionFormLight extends AccountEditionForm {
   @FindBy(xpath = "//input[contains(@type, 'tel')]")
   private WebElement phoneInput;
 
-  @FindBy(xpath = "//a[@class='select' and @aria-label='Sector']")
+  @FindBy(xpath = "//a[@class='select' and @aria-label='Industry']")
   private WebElement sectorDropDow;
 
   @FindBy(xpath = "//input[@step='1']")
   private WebElement employeesInput;
 
-
   @FindBy(xpath = "//div[contains(@class, 'genericNotification')]")
-  private WebElement messageErrorOnForm;
+  private WebElement messageErrorOnFormLabel;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -51,7 +49,7 @@ public class AccountEditionFormLight extends AccountEditionForm {
    * @return
    */
   @Override
-  public AccountContentPage saveNewAccount(Account account) {
+  public AccountContentPage saveAccount(Account account) {
     saveAnAccount(account);
     return new AccountContentPageLight();
   }
@@ -91,6 +89,6 @@ public class AccountEditionFormLight extends AccountEditionForm {
    */
   @Override
   public boolean displayedErrorMessage() {
-    return driverTools.isElementDisplayed(messageErrorOnForm);
+    return driverTools.isElementDisplayed(messageErrorOnFormLabel);
   }
 }

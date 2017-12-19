@@ -1,6 +1,6 @@
 package salesforce.salesforceapp.ui.accounts;
 
-import salesforce.salesforceapp.entities.Account;
+import salesforce.salesforceapp.entities.account.Account;
 import salesforce.salesforceapp.ui.BasePage;
 
 /**
@@ -14,7 +14,7 @@ public abstract class AccountEditionForm extends BasePage {
    * @param account Entiti for an account.
    * @return
    */
-  public abstract AccountContentPage saveNewAccount(Account account);
+  public abstract AccountContentPage saveAccount(Account account);
 
   /**
    * Create an Acount and save the values.

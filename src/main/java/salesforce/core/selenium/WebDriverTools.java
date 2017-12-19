@@ -174,6 +174,20 @@ public class WebDriverTools {
   }
 
   /**
+   * Wait until the item is no longer visible.
+   *
+   * @param by By of the WebElement.
+   */
+  public void waitUntilMessageDisappear(By by) {
+    try {
+      WebElement message= driver.findElement(by);
+      while (message.isDisplayed()) {
+      }
+    } catch (Exception e) {
+    }
+  }
+
+  /**
    * Check when an element is displayed.
    *
    * @param by is the xpath.
