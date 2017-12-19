@@ -1,9 +1,12 @@
 package salesforce.steps.contacts;
 
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
+import salesforce.salesforceapp.api.methods.APIAccount;
+import salesforce.salesforceapp.api.methods.APIContact;
 import salesforce.salesforceapp.entities.contact.Contact;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.contacts.ContactContentPage;
@@ -58,11 +61,11 @@ public class ContactsSteps {
   @Then("^the Contact should be displayed in Contact content page$")
   public void theContactShouldBeDisplayedInContactContentPage() {
     contactContentPage.clickOnDetails();
-    assertTrue(contactContentPage.getNameLabel().equals(this.contact.getName()));
-    assertTrue(contactContentPage.getLastNameLabel().equals(this.contact.getLastName()));
-    assertTrue(contactContentPage.getAccountNameLabel().equals(this.contact.getAccountName()));
-    assertTrue(contactContentPage.getTitleLabel().equals(this.contact.getTitle()));
-    assertTrue(contactContentPage.getPhoneLabel().equals(this.contact.getPhone()));
+    assertTrue(contactContentPage.getNameLabel().equals(this.contact.getName()), "Contact name is displayed in Web");
+    assertTrue(contactContentPage.getLastNameLabel().equals(this.contact.getLastName()), "Contact last name is displayed in Web");
+    assertTrue(contactContentPage.getAccountNameLabel().equals(this.contact.getAccountName()), "Contact Acount name is displayed in Web");
+    assertTrue(contactContentPage.getTitleLabel().equals(this.contact.getTitle()), "Contact title is displayed in Web");
+    assertTrue(contactContentPage.getPhoneLabel().equals(this.contact.getPhone()), "Contact phone is displayed in Web");
   }
 
   @And("^I have a Contact with the following information:$")
@@ -70,7 +73,8 @@ public class ContactsSteps {
     //get data from feature file and set in Contact object
     this.contact = contacts.get(0);
     iSelectNewContact();
-    contactContentPage = contactEditionForm.createContact(contact);
+    contactContentPage = contactEditionForm.createContact(this.contact);
+    //  APIContact.createContact(contacts.get(0));
   }
 
   @When("^I edit this Contact with the following information:$")
@@ -80,33 +84,21 @@ public class ContactsSteps {
     contactEditionForm = contactContentPage.clickEditButton();
     contactContentPage = contactEditionForm.editContact(this.contact);
   }
+
   @And("^This Contact has associated a Case$")
-  public void iAContactAsociatedToCase() {
+  public void iAContactAssociatedToCase() {
     //get data from feature file and set in Contact object
 
     contactContentPage = contactEditionForm.createContact(contact);
   }
+
   @Then("^Contact was saved message should be displayed in Contact Content Page$")
   public void messageShouldBeDisplayed() throws InterruptedException {
-
-    final String msgExpected = "";
-    System.out.println("****************ini message**********************");
-    System.out.println(contactContentPage.
-      getContactNameText());
-    System.out.println("****************end message**********************");
-    //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
 
   @Then("^Contact was created message should be displayed in Contact Content Page$")
   public void createdMessageShouldBeDisplayed() throws InterruptedException {
-
-    final String msgExpected = "";
-    System.out.println("****************ini message**********************");
-    System.out.println(contactContentPage.
-      getContactNameText());
-    System.out.println("****************end message**********************");
-    //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
 
@@ -114,6 +106,7 @@ public class ContactsSteps {
   public void iDeleteThisContact() throws InterruptedException {
     contactContentPage.deleteContact();
   }
+
   @When("^I clone this Contact$")
   public void iCloneThisContact() throws InterruptedException {
     contactContentPage.cloneContact();
@@ -121,16 +114,11 @@ public class ContactsSteps {
 
   @Then("^Contact was deleted message should be displayed in Contact Content Page$")
   public void deleteMessageShouldBeDisplayed() throws InterruptedException {
-
-    final String msgExpected = "";
-    System.out.println("****************ini message**********************");
-    System.out.println(contactContentPage.
-      getContactNameText());
-    System.out.println("****************end message**********************");
     //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
-  @And("^I create a Contact with the following information:\"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\"$" )
+
+  @And("^I create a Contact with the following information:\"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\" \"(.*?)\"$")
   public void iCreateAContact(
       String name,
       String lastName,
@@ -141,7 +129,7 @@ public class ContactsSteps {
       String street,
       String city,
       String state,
-      String country ) {
+      String country) {
     //get data from feature file and set in Contact object
     this.contact.setName(name);
     this.contact.setLastName(lastName);
@@ -156,24 +144,40 @@ public class ContactsSteps {
 
     contactContentPage = contactEditionForm.createContact(this.contact);
   }
+
   @Then("^the message \"These required fields must be completed\"  should be displayed in Contact Content Page$")
   public void contactCreateErrorMessageShouldBeDisplayed() throws InterruptedException {
     //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
+
   @Then("^Contact created message error should be displayed in Contact Content Page$")
   public void contactEditErrorMessageShouldBeDisplayed() throws InterruptedException {
     //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
+
   @Then("^Contact delete could not be completed  message should be displayed in Contact Content Page$")
   public void contactDeleteErrorMessageShouldBeDisplayed() throws InterruptedException {
     //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
+
   @Then("^Contact created message error should be displayed in Contact Content Page$")
   public void contactDeleteMessageShouldBeDisplayed() throws InterruptedException {
     //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
+  }
+
+  //****************************************************************
+  //Hooks for @create scenarios
+  //****************************************************************
+  @After(value = "@create", order = 997)
+  public void afterCreateAccount() {
+    log.info("After hook @Login");
+    if (!APIContact.isContactSaved(contact)) {
+//            TODO
+//            APIContact.deleteContact(contact);
+    }
   }
 }
