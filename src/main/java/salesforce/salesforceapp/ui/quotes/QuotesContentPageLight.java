@@ -18,8 +18,8 @@ public class QuotesContentPageLight extends QuotesContentPage {
   @FindBy(xpath = "//button[@title='Delete']")
   private WebElement deleteConfirmationLink;
 
-  @FindBy(xpath = "//div[@id='brandBand_1']//div[5]//span[text()='Details'] | //div[@id='brandBand_1']//span[text()='Details']")
-  private WebElement quoteDetailsLink;
+  @FindBy(xpath = "//div[@id='brandBand_1']//div[4]//span[text()='Details'] | //div[@id='brandBand_1']//span[text()='Details']")
+  private By quoteDetailsLink;
 
   private WebElement quoteEditedMessage;
 
