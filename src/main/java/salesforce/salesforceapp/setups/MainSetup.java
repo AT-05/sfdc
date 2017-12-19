@@ -27,14 +27,14 @@ public class MainSetup {
         ExcelReader xlsFile = new ExcelReader("main.xls");
             oppyXLS = xlsFile.getValues(OPPORTUNITY);
 //        contactXLS = xlsFile.getValues(CONTACT);
-//        accountXLS = xlsFile.getValues(ACCOUNT);
+        accountXLS = xlsFile.getValues(ACCOUNT);
 //        oppyXLS = xlsFile.getValues(OPPY);
 //        quoteXLS = xlsFile.getValues(QUOTES);
 //        productXLS = xlsFile.getValues(PRODUCT);
 //        priceBookXLS = xlsFile.getValues(PRICE_BOOK);
 //        priceBookProductXLS = xlsFile.getValues(PRICE_BOOK_PRODUCT);
 //        XLSContact.createContacts(contactXLS);
-//        XLSAccount.createAccounts(accountsXLS);
+        XLSAccount.createAccount(accountXLS);
         XLSOppy.createOppy(oppyXLS);
 //        XLSQuote.createQuotes(quoteXLS);
 //        XLSPriceBook.createPriceBook(priceBookXLS);
