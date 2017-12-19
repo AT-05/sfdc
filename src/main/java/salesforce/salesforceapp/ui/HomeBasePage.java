@@ -44,6 +44,13 @@ public abstract class HomeBasePage extends BasePage {
    * Click new Item btn.
    */
   protected void clickNewBtn() {
+    driverTools.clickElement(newBtn);
+  }
+
+  /**
+      * Click new Item btn.
+      */
+  protected void clickNewBtnBy() {
     //newBtn = driver.findElement(By.xpath("//input[@title='New']|//div[@title='New']"));
     driverTools.clickElement(newBtnBy);
   }

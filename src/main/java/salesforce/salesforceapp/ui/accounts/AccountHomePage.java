@@ -15,7 +15,7 @@ public abstract class AccountHomePage extends HomeBasePage {
    * @return new edition form.
    */
   public AccountEditionForm clickNewAccountBtn() {
-    clickNewBtn();
+    clickNewBtnBy();
     return PageFactory.getAccountEditionForm();
   }
 
@@ -34,5 +34,7 @@ public abstract class AccountHomePage extends HomeBasePage {
    * @return (true/false)
    */
   public abstract boolean containTheAccount(Account account);
+
+
 
 }
