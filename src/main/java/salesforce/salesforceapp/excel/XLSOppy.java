@@ -36,7 +36,7 @@ public class XLSOppy {
       System.out.println("Oppy Stage: " + oppy.getStage());
       System.out.println("Oppy Account Name: " + oppy.getAccount());
       System.out.println("Oppy Private: " + oppy.getPrivateOppy());
-      System.out.println("Oppy Amount: " + Double.valueOf(oppy.getAmount()));
+      System.out.println("Oppy Amount: " + oppy.getAmount());
 
       if (!APIOppy.isOppySaved(oppy)) {
         APIOppy.createOppy(oppy);

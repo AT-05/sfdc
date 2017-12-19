@@ -70,13 +70,6 @@ public class AccountsSteps {
 
   @Given("^I have an Acount with the following information:$")
   public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
-    System.out.println("================Esperando ");
-//    try {
-//      Thread.sleep(30000);
-//    } catch (InterruptedException e) {
-//      e.printStackTrace();
-//    }
-//    System.out.println("================Creamos nueva cuenta  ");
     createANewAccountWithTheFollowingInformation(accountList);
     accountContentPage.waitUntilMessageDisappear();
 //    APIAccount.createAccount(accountList.get(0));
