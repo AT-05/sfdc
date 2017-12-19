@@ -3,7 +3,7 @@ package salesforce.salesforceapp;
 public class SalesforceConstants {
 
   //Accounts
-  public final static String ACCOUNTS = "Accounts";
+  public final static String ACCOUNTS = "Account";
   public final static String ACCOUNT_NAME = "Account Name";
   public final static String ACCOUNT_ADDRESS = "Account Address";
 
@@ -17,7 +17,16 @@ public class SalesforceConstants {
   public final static String QUOTE_SHIPPING_AND_HANDLING = "Quote Shipping And Handling";
 
   //Price Books
-  public final static String PRICEBOOKS = "PriceBooks";
+  public final static String PRICEBOOKS = "Price Book";
   public final static String PRICE_BOOK_NAME = "Price Book Name";
   public final static String PRICE_BOOK_ACTIVE = "Price Book Active";
+
+  //Opportunities
+  public final static String OPPORTUNITY = "Opportunity";
+  public final static String OPPY_NAME = "Oppy Name";
+  public final static String OPPY_CLOSE_DATE = "Close Date";
+  public final static String OPPY_STAGE = "Stage";
+  public final static String OPPY_ACCOUNT_NAME = "Account Name";
+  public final static String OPPY_PRIVATE = "Private";
+  public final static String OPPY_AMOUNT = "Amount";
 }

@@ -60,7 +60,8 @@ public class WebDriverTools {
    * @param by By to wait and click
    */
   public void clickElement(By by) {
-    //wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    wait.until(ExpectedConditions.elementToBeClickable(by));
     driver.findElement(by).click();
   }
 
