@@ -5,7 +5,7 @@ Feature: Manage Accounts
     Given I am logged to Salesforce
       And I go to Accounts home page
 
-  @SmokeTest @createAccount1 @uno2
+  @SmokeTest @createAccount
   Scenario: Verify that it is possible to Create an Account
     When I create a New Account with the following information:
       | name   | type     | web           | description | phone   | sector  | employees |
@@ -14,7 +14,7 @@ Feature: Manage Accounts
     And the Account should be displayed in Accounts page
     And the Account should be saved
 
-  @editAccount1 @uno2
+  @editAccount
   Scenario: Verify that it is possible to Edit an Account
     Given I have an Acount with the following information:
       | name       | type     | web           | description | phone   | sector  | employees |
@@ -25,7 +25,7 @@ Feature: Manage Accounts
       | PuertoVelo 2 | Prospect | www.lostiempos.com | description 2 | 444444 | Banking | 28        |
     Then I should see the Account updated in the Accounts page
 
-  @deleteAccount1
+  @deleteAccount
   Scenario: Verify that it is possible to Delete an Account without opportunities
     Given I have an Acount with the following information:
       | name    | type     | web           | description | phone   | sector  | employees |
