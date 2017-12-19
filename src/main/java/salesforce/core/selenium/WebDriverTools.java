@@ -35,7 +35,7 @@ public class WebDriverTools {
    * Sets an Input Field.
    *
    * @param webElement Input WebElement
-   * @param text Text to fill
+   * @param text       Text to fill
    */
   public void setInputField(WebElement webElement, String text) {
     wait.until(ExpectedConditions.visibilityOf(webElement));
@@ -60,7 +60,7 @@ public class WebDriverTools {
    * @param by By to wait and click
    */
   public void clickElement(By by) {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    //wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     driver.findElement(by).click();
   }
 
@@ -123,7 +123,7 @@ public class WebDriverTools {
    * <p>This method performs selection of element of a list.</p>
    *
    * @param webElements is a lis of WebElement elements.
-   * @param keyWord is the value to compare element attribute with.
+   * @param keyWord     is the value to compare element attribute with.
    */
   public void selectElementInList(List<WebElement> webElements, String keyWord) {
     for (WebElement element : webElements) {
@@ -139,12 +139,24 @@ public class WebDriverTools {
    * <p>This method performs selection of value inside a dropdown list.</p>
    *
    * @param dropDown is the dropdown web element given.
-   * @param value is the value to select.
+   * @param value    is the value to select.
    */
   public void selectDropDownValue(WebElement dropDown, String value) {
     Select selector = new Select(dropDown);
     wait.until(ExpectedConditions.visibilityOf(dropDown));
     selector.selectByValue(value);
+  }
+
+  /**
+   * <p>This method performs selection of text inside a dropdown list.</p>
+   *
+   * @param dropDown is the dropdown web element given.
+   * @param text     is the text to select.
+   */
+  public void selectDropDownLinkText(WebElement dropDown, String text) {
+    Select selector = new Select(dropDown);
+    wait.until(ExpectedConditions.visibilityOf(dropDown));
+    selector.selectByVisibleText(text);
   }
 
   /**
@@ -209,7 +221,7 @@ public class WebDriverTools {
    *
    * @param element is the element.
    */
-  private void waitAvailable(WebElement element) {
+  public void waitAvailable(WebElement element) {
     boolean flag = true;
     while (flag) {
       try {

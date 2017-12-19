@@ -30,7 +30,7 @@ public class OpportunityPageSteps {
   //Entities
   private Oppy oppy;
 
-    public OpportunityPageSteps() {
+  public OpportunityPageSteps() {
     pageTransporter = PageTransporter.getInstance();
   }
 

@@ -12,7 +12,7 @@ public class Oppy {
   private String closeDate;
   private String stage;
   private String account;
-  private boolean budget;
+  private boolean privateOppy;
   private double amount;
   private List<Quote> quoteList;
 
@@ -91,10 +91,10 @@ public class Oppy {
   /**
    * Set Budget of the opportunity.
    *
-   * @param budget boolean.
+   * @param privateOppy boolean.
    */
-  public void setBudget(boolean budget) {
-    this.budget = budget;
+  public void setPrivateOppy(boolean privateOppy) {
+    this.privateOppy = privateOppy;
   }
 
   /**
@@ -102,11 +102,11 @@ public class Oppy {
    *
    * @return as a string.
    */
-  public String getBudgetAsString() {
-    return budget ? "True" : "False";
+  public String getPrivateCheckedAsString() {
+    return privateOppy ? "True" : "False";
   }
-  public boolean getBudget() {
-    return budget;
+  public boolean getPrivateOppy() {
+    return privateOppy;
   }
 
   /**
@@ -126,8 +126,8 @@ public class Oppy {
   public String getAmountWithFormat() {
     DecimalFormat df = new DecimalFormat(",###.00");
     DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-    symbols.setDecimalSeparator(',');
-    symbols.setGroupingSeparator('.');
+    symbols.setDecimalSeparator('.');
+    symbols.setGroupingSeparator(',');
     df.setDecimalFormatSymbols(symbols);
     return df.format(amount);
   }
@@ -183,8 +183,8 @@ public class Oppy {
         itemQuote.setExpirationDate(quoteEdited.getExpirationDate());
         itemQuote.setStatus(quoteEdited.getStatus());
         itemQuote.setDescription(quoteEdited.getDescription());
-        itemQuote.setTax(quoteEdited.getTax().toString());
-        itemQuote.setShippingAndHandling(quoteEdited.getShippingAndHandling().toString());
+        itemQuote.setTax(quoteEdited.getTaxAsDouble());
+        itemQuote.setShippingAndHandling(quoteEdited.getShippingAndHandlingAsDouble());
       }
     }
   }
@@ -194,7 +194,7 @@ public class Oppy {
     this.closeDate = oppy.getCloseDate();
     this.stage = oppy.getStage();
     this.account = oppy.getAccount();
-    this.budget = oppy.getBudget();
+    this.privateOppy = oppy.getPrivateOppy();
     this.amount = oppy.getAmount();
   }
 }

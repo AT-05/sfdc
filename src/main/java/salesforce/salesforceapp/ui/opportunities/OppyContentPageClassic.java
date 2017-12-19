@@ -4,6 +4,8 @@ import java.util.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import salesforce.salesforceapp.ui.PageFactory;
 
 public class OppyContentPageClassic extends OppyContentPage {
@@ -43,6 +45,13 @@ public class OppyContentPageClassic extends OppyContentPage {
   public void clickDetailsOppyBtn() {
   }
 
+  @Override
+  public OppyEditionForm clickEditOppyBtn() {
+    String xpath = String.format("//input[@name='edit']");
+    driverTools.clickElement(By.xpath(xpath));
+    return PageFactory.getOppyEditionForm();
+  }
+
   /**
    * Verify if exist some content in details with div type.
    *
@@ -74,7 +83,7 @@ public class OppyContentPageClassic extends OppyContentPage {
    */
   @Override
   public boolean containsCheckbox(String value) {
-    String flag = value.equals("true") ? "Checked" : "Not Checked";
+    String flag = value.equalsIgnoreCase("true") ? "Checked" : "Not Checked";
     String xpath = String.format("//table[@class='detailList']//img[@alt='%s']", flag);
     return driverTools.isElementDisplayed(By.xpath(xpath));
   }
@@ -86,7 +95,7 @@ public class OppyContentPageClassic extends OppyContentPage {
    */
   @Override
   public OppyQuotesView goToQuotesView() {
-    return new OppyQuotesViewClassic();
+    return new OppyQuotesViewClassic(); //It is not necessary for this skin
   }
 
   /**
@@ -96,6 +105,14 @@ public class OppyContentPageClassic extends OppyContentPage {
    */
   @Override
   public OppyContentPage changeStage(String stageName) {
-    return null;
+    Actions action = new Actions(driver);
+    WebElement element = driver.findElement(By.id("opp11_ileinner"));
+    action.doubleClick(element).perform();
+    WebElement stageSelect = driver.findElement(By.id("opp11"));
+    Select stageDropDown = new Select(stageSelect);
+    stageDropDown.selectByVisibleText(stageName);
+    driverTools.clickElement(By.xpath("//input[@value='OK']"));
+    driverTools.clickElement(By.xpath("//*[@id='topButtonRow']/input[@title='Save']"));
+    return PageFactory.getOppyContentPage();
   }
 }

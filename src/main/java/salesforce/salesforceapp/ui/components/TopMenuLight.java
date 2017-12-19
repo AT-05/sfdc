@@ -2,9 +2,12 @@ package salesforce.salesforceapp.ui.components;
 
 import java.util.List;
 
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Duration;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.ProfilePage;
@@ -35,8 +38,12 @@ public class TopMenuLight extends TopMenu {
   @FindBy(xpath = "//h1[@class='profile-card-name']/a")
   private WebElement userProfileNameLink;
 
-  @FindBy(xpath = "//a[contains(@href, 'Opportunity')]//span")
+  //@FindBy(xpath = "//a[contains(@href, 'Opportunity')]")
+  @FindBy(xpath = "//a[contains(@class, '-action') and contains(@href, 'Opportunity')]")
   private WebElement opportunitiesBtn;
+
+  @FindBy(xpath = "//a[contains(@href, 'Quote')]//span")
+  private WebElement quotesLink;
 
   @FindBy(xpath = "//div[contains(@class, 'slds-icon-waffle')]")
   private WebElement appLauncherLink;
@@ -63,6 +70,9 @@ public class TopMenuLight extends TopMenu {
 
   @FindBy(xpath = "//a[@title='Home']//span")
   private WebElement homeBtn;
+
+  @FindBy(xpath = "//div[@title='Sales']")
+  private WebElement salesBtn;
 
   /**
    * Wait until the page loads.
@@ -101,7 +111,9 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public HomePage goToHomePage() {
-    driverTools.clickElement(homeBtn);
+    //driverTools.clickElement(homeBtn);
+    driverTools.clickElement(appLauncherLink);
+    driverTools.clickElement(salesBtn);
     return new HomePageLight();
   }
 
@@ -112,7 +124,9 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public OppyHomePage goToOppyHomePage() {
+    driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
     driverTools.waitUntilAvailable(opportunitiesBtn);
+    driverTools.waitUntilAvailable(appLauncherLink);
     driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageLight();
   }
@@ -124,8 +138,7 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public QuotesHomePage goToQuotesHomePage() {
-    driverTools.clickElement(appLauncherLink);
-    driverTools.selectElementInList(featuresList, "Quotes");
+    driverTools.clickElement(quotesLink);
     return new QuotesHomePageLight();
   }
 

@@ -8,5 +8,5 @@ Feature: Login
     When I login as "<User Name>" with password "<Password>"
     Then I should login successfully
     Examples: Short pass
-      | User Name                          | Password      |
-      | franco.aldunate@fundacion-jala.org | cachito52&CPC |
+      | User Name             | Password         |
+      | franco@francosoft.com | ilovejesus100aml |

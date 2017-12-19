@@ -8,13 +8,13 @@ import org.testng.annotations.BeforeTest;
 import salesforce.salesforceapp.SalesForceAppAutomation;
 
 @CucumberOptions(
-  monochrome = true,
-  format = {"pretty",
-    "html:target/test-report",
-    "json:target/test-report.json",
-    "junit:target/test-report.xml"},
-  features = {"src/test/resources/features"},
-  glue = {"salesforce"})
+    monochrome = true,
+    format = {"pretty",
+        "html:target/test-report",
+        "json:target/test-report.json",
+        "junit:target/test-report.xml"},
+    features = {"src/test/resources/features"},
+    glue = {"salesforce"})
 public class RunCukesTest extends AbstractTestNGCucumberTests {
 
   private static Logger log = Logger.getLogger("RunCukesTest");
@@ -40,7 +40,7 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
   public void afterExecution() {
     try {
       System.out.println("\n=============== AFTER TEST ===============\n");
-        SalesForceAppAutomation.getInstance().shutDown();
+      SalesForceAppAutomation.getInstance().shutDown();
     } catch (Exception ex) {
       log.error("Exception in after execution", ex);
     }

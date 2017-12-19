@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.ui.PageFactory;
 
 public class OppyContentPageLight extends OppyContentPage {
-  @FindBy(xpath = "(//h2[@id='header']/a/span)[5]")
+  @FindBy(xpath = "//div[@class='container']/div[5]//h2[@id='header']/a/span[1]")
   private WebElement quoteViewLink;
 
   @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
@@ -32,6 +32,15 @@ public class OppyContentPageLight extends OppyContentPage {
   @FindBy(xpath = "//span[contains(@class,'toastMessage')]")
   private WebElement confirmMessage;
 
+  @FindBy(xpath = "//li[@class='slds-button slds-button--icon-border-filled oneActionsDropDown']/div")
+  private WebElement moreOptionsBtn;
+
+  @FindBy(xpath = "//a[@title='Edit']")
+  private WebElement editBtn;
+
+  @FindBy(xpath = "//a[@title='Delete']")
+  protected WebElement deleteBtn;
+
   @Override
   public void waitUntilPageObjectIsLoaded() {
   }
@@ -44,7 +53,6 @@ public class OppyContentPageLight extends OppyContentPage {
   @Override
   public boolean displayedCreateMessage() {
     boolean flag = driverTools.isElementDisplayed(createOppyMessage);
-    //wait = new WebDriverWait(driver, 2);
     driverTools.waitUntilMessageDisappear(createOppyMessage);
     return flag;
   }
@@ -56,6 +64,7 @@ public class OppyContentPageLight extends OppyContentPage {
    */
   @Override
   public OppyContentPage clickDeleteOppyBtn() {
+    driverTools.clickElement(moreOptionsBtn);
     driverTools.clickElement(deleteBtn);
     WebElement confirmDelete = driver.findElement(By.xpath("//button[@title='Delete']"));
     driverTools.clickElement(confirmDelete);
@@ -73,6 +82,13 @@ public class OppyContentPageLight extends OppyContentPage {
     actions.perform();
     driverTools.waitUntilAvailable(detailsBtn);
     driverTools.clickElement(detailsBtn);
+  }
+
+  @Override
+  public OppyEditionForm clickEditOppyBtn() {
+    driverTools.clickElement(moreOptionsBtn);
+    driverTools.clickElement(editBtn);
+    return PageFactory.getOppyEditionForm();
   }
 
   /**
@@ -123,7 +139,7 @@ public class OppyContentPageLight extends OppyContentPage {
     if (capabilities.getBrowserName().equals("chrome")) {
       try {
         ((JavascriptExecutor) driver).executeScript(
-          "arguments[0].scrollIntoView(true);", quoteViewLink);
+            "arguments[0].scrollIntoView(true);", quoteViewLink);
       } catch (Exception e) {
 
       }
@@ -139,10 +155,9 @@ public class OppyContentPageLight extends OppyContentPage {
    */
   @Override
   public OppyContentPage changeStage(String stageName) {
-    String xpath = String.format("//a[@class='tabHeader']//span[contains(text(), '%s')]", stageName);
-    driverTools.waitUntilAvailable(By.xpath(xpath));
+    String xpath = String.format("//a[@data-tab-name='%s']", stageName);
     WebElement element = driver.findElement(By.xpath(xpath));
-    System.out.println("======= Click in: " + stageName);
+    driverTools.waitUntilAvailable(By.xpath(xpath));
     driverTools.clickElement(element);
     driverTools.clickElement(confirmStageBtn);
     displayedCreateMessage();
