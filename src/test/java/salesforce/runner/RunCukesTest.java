@@ -40,7 +40,7 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
   public void afterExecution() {
     try {
       System.out.println("\n=============== AFTER TEST ===============\n");
-      //SalesForceAppAutomation.getInstance().shutDown();
+      SalesForceAppAutomation.getInstance().shutDown();
     } catch (Exception ex) {
       log.error("Exception in after execution", ex);
     }
