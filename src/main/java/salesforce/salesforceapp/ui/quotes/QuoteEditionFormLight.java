@@ -64,6 +64,7 @@ public class QuoteEditionFormLight extends QuoteEditionForm {
         && quoteCreatedMessage.getText().contains(quoteName)) {
       result = true;
     }
+    driverTools.waitUntilMessageDisappear(quoteCreatedMessage);
     return result;
   }
 
