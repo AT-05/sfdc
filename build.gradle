@@ -39,6 +39,10 @@ dependencies {
     compile group: 'joda-time', name: 'joda-time', version: '2.9.6'
     compile group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '1.7.2'
+
+    // https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured
+    compile group: 'com.jayway.restassured', name: 'rest-assured', version: '1.6'
+
 }
 
 

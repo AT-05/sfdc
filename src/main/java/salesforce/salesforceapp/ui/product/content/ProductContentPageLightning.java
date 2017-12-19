@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
@@ -122,6 +123,25 @@ public class ProductContentPageLightning extends ProductContentPage {
         return new HomeProductPageLightning();
     }
 
+    @Override
+    public boolean validatePriceBookCreated(PriceBook priceBook) {
+        return false;
+    }
+
+    @Override
+    public void addPriceBook(PriceBook priceBook) {
+
+    }
+
+    @Override
+    public boolean validatePriceBookAdded(PriceBook priceBook) {
+        return false;
+    }
+
+    @Override
+    public void editPriceBook(PriceBook priceBook) {
+
+    }
 
 
 }

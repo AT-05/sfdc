@@ -74,4 +74,10 @@ public abstract class ProductContentPage extends BasePage {
     public abstract HomeProductPage goToHomProductPage();
 
     public abstract boolean validatePriceBookCreated(PriceBook priceBook);
+
+    public abstract void addPriceBook(PriceBook priceBook);
+
+    public abstract boolean validatePriceBookAdded(PriceBook priceBook);
+
+    public abstract void editPriceBook(PriceBook priceBook);
 }

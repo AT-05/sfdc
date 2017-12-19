@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
@@ -42,8 +43,31 @@ public class ProductContentPageClassic extends ProductContentPage {
 
     @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
     WebElement priceBookdropDown;
+    //////////////
+    @FindBy(name = "add")
+    WebElement addBtn;
+
+    @FindBy(name = "td0_2")
+    WebElement standardPriceInput;
+
+    @FindBy(name = "save")
+    WebElement saveStandardPriceBtn;
+
+    @FindBy(id = "save_filter_Pricebook2")
+    WebElement searchPriceBook;
+
+    @FindBy(id = "ids0")
+    WebElement checkPriceBook;
+
+    @FindBy(name = "edit")
+    WebElement selectPriceBook;
 
 
+    @FindBy(id = "td0_8")
+    WebElement priceBookValueInput;
+
+    @FindBy(xpath = "")
+    WebElement elementPriceBookAdd;
     ///////////////
 
 
@@ -115,9 +139,47 @@ public class ProductContentPageClassic extends ProductContentPage {
 
     @Override
     public boolean validatePriceBookCreated(PriceBook priceBook) {
-     //   selectPriceBookDropDown == new Select(priceBookdropDown.findElement(By.id("years")));
+        //   selectPriceBookDropDown == new Select(priceBookdropDown.findElement(By.id("years")));
         //dropdownYear.selectByValue(year);
         return true;
+    }
+
+    @Override
+    public void addPriceBook(PriceBook priceBook) {
+
+        addBtn.click();
+        //      System.out.println("clicked to btn standard price book");
+        waitUntilPageObjectIsLoaded();
+        standardPriceInput.sendKeys("0");
+        //   System.out.println("put 0 in standard price book");
+        saveStandardPriceBtn.click();
+        //   System.out.println("Save data of standard price");
+
+        waitUntilPageObjectIsLoaded();
+        addBtn.click();
+        //   System.out.println("clicked to btn add price book");
+        // searchPriceBook.click();
+        //  System.out.println("clicked search btn price book");
+        checkPriceBook.click();
+        //System.out.println("checked first price book red");
+
+        selectPriceBook.click();
+        // System.out.println("save price book");
+        priceBookValueInput.sendKeys("10");
+        //  System.out.println("put value in price book ");
+        saveStandardPriceBtn.click();
+        //   System.out.println("save data price book");
+    }
+
+    @Override
+    public boolean validatePriceBookAdded(PriceBook priceBook) {
+        elementPriceBookAdd=driver.findElement(By.xpath("//a[contains(text(),'Red')]"));
+        return elementPriceBookAdd.getText().trim().equalsIgnoreCase("Red");
+    }
+
+    @Override
+    public void editPriceBook(PriceBook priceBook) {
+
     }
 
 

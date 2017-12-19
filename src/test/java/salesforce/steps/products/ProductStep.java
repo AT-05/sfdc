@@ -1,11 +1,13 @@
 package salesforce.steps.products;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
+import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.entities.product.Product;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageTransporter;
@@ -31,6 +33,7 @@ public class ProductStep {
     public HomeProductPage homeProductPage;
     private ProductEditionForm productEditionForm;
     private ProductContentPage productContentPage;
+    private PriceBook priceBook;
 
     private Product product;
 
@@ -118,5 +121,32 @@ public class ProductStep {
     @Then("^the Product should be removed from the Product List$")
     public void theProductShouldBeRemovedFromTheProductList() throws Throwable {
         assertFalse(homeProductPage.thereIsProduct(product.getName()));
+    }
+
+
+    @And("^I add price book to product$")
+    public void iAddPriceBookWithTheFollowingInformation() {
+        productContentPage.addPriceBook(priceBook);
+        System.out.println("Finished************");
+    }
+
+    @Then("^the price book should be add to the product$")
+    public void theProductShouldBeAddToThePriceBoo() throws Throwable {
+        assertTrue(productContentPage.validatePriceBookAdded(priceBook));
+        System.out.println("Finished-------------///////************" + productContentPage.validatePriceBookAdded(priceBook));
+    }
+
+    @And("^I have a Price Book wih the following information :$")
+    public void iHaveAPriceBookWihTheFollowingInformation(List<PriceBook> priceBookList) {
+        System.out.println("**************++++++++++++++++++++++++*22*************");
+        productEditionForm = homeProductPage.goToCreateNewPriceBook("Create New View");
+        priceBook = priceBookList.get(0);
+        productContentPage = productEditionForm.createPriceBook(priceBook);
+        homeProductPage = productContentPage.goToHomProductPage();
+    }
+
+    @When("^I select the price book$")
+    public void iSelectThePriceBook() throws Throwable {
+        productContentPage = homeProductPage.selectPriceBook(priceBook);
     }
 }

@@ -1,8 +1,12 @@
 package salesforce.salesforceapp.ui.product.home;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import salesforce.salesforceapp.entities.product.PriceBook;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
@@ -56,9 +60,42 @@ public class HomeProductPageLightning extends HomeProductPage {
      */
     @Override
     public ProductEditionForm goToCreateNewPriceBook(String create_new_view) {
-        selectItem(create_new_view);
+        System.out.println("CLick launcher 1");
+        try {
+            Thread.sleep(30000);
+            System.out.println("CLick launcher 2");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        wait=new WebDriverWait(driver,30);
+        waitUntilPageObjectIsLoaded();
+        launcherBtn.click();
+
+        System.out.println("CLick launcher 2");
+        wait=new WebDriverWait(driver,30);
+        waitUntilPageObjectIsLoaded();
+        priceBookTab= driver.findElements(By.xpath("//span[text()='Price Books']")).get(0);
+        priceBookTab.click();
+
+        System.out.println("CLick launcher 3");
+        wait=new WebDriverWait(driver,30);
+        waitUntilPageObjectIsLoaded();
+        newProduct.click();
+        System.out.println("CLick launcher 4");
         return new ProductEditionFormLightning();
     }
+
+    @Override
+    public ProductContentPage selectPriceBook(PriceBook priceBook) {
+        return null;
+    }
+
+
+    @FindBy(xpath = "//one-app-launcher-header/button")
+    WebElement launcherBtn;
+
+    @FindBy(xpath = "//span[text()='Price Books']")
+    WebElement priceBookTab;
 }
 
 

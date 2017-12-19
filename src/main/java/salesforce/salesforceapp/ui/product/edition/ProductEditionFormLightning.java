@@ -27,6 +27,23 @@ public class ProductEditionFormLightning extends ProductEditionForm {
     @FindBy(xpath = "//div/button[3]")
     private WebElement elementSaveBtn;
 
+
+    /////////////////
+
+
+    @FindBy(xpath = "//div/div/div/div/div/div/div/div/input")
+    private WebElement elementNamePrice;
+
+    @FindBy(xpath = "//div[2]/div/div/div/div/input]")
+    private WebElement elementUniqueNamePriceBook;
+
+    @FindBy(xpath = "//div[2]/div/div/div/input")
+    private WebElement elementUniqueNamePriceBookCheck;
+
+    @FindBy(xpath = "//div/button[3]")
+    WebElement elementSavePriceBook;
+    ///////////////
+
     /**
      * Constructor ProductEditionLightning.
      */
@@ -88,7 +105,16 @@ public class ProductEditionFormLightning extends ProductEditionForm {
      */
     @Override
     public ProductContentPage createPriceBook(PriceBook priceBook) {
-        return null;
+
+        System.out.println("element name*********");
+        elementNamePrice.clear();
+        elementNamePrice.sendKeys(priceBook.getName());
+        System.out.println("element name********* :" + priceBook.getName());
+        elementUniqueNamePriceBook.clear();
+        elementUniqueNamePriceBook.sendKeys(priceBook.getUniqueName());
+        elementUniqueNamePriceBookCheck.click();
+        elementSavePriceBook.click();
+        return new ProductContentPageLightning();
     }
 
 
