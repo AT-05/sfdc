@@ -50,4 +50,8 @@ public abstract class AccountContentPage extends ContentBasePage {
    */
   public abstract boolean displayedErrorDeleteMessage();
 
+  /**
+   * Wait until the creation message disappears
+   */
+  public abstract void waitUntilMessageDisappear();
 }

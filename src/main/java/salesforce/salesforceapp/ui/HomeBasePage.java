@@ -10,9 +10,10 @@ public abstract class HomeBasePage extends BasePage {
 
   public TopMenu topMenu;
 
-  @FindBy(xpath = ".//*[@title='New']")
-  @CacheLookup
+
   protected WebElement newBtn;
+
+  private By newBtnBy= By.xpath("//input[@title='New']|//div[@title='New']");
 
   public HomeBasePage() {
     this.topMenu = PageFactory.getTopMenu();
@@ -43,7 +44,8 @@ public abstract class HomeBasePage extends BasePage {
    * Click new Item btn.
    */
   protected void clickNewBtn() {
-    driverTools.clickElement(newBtn);
+    //newBtn = driver.findElement(By.xpath("//input[@title='New']|//div[@title='New']"));
+    driverTools.clickElement(newBtnBy);
   }
 
 }

@@ -47,7 +47,7 @@ public class AccountsSteps {
 
   @When("^I create a New Account with the following information:$")
   public void createANewAccountWithTheFollowingInformation(List<Account> accountList) {
-    account = accountList.get(0);
+    account = accountList.get(0);//accountHomePage
     accountEditionForm = accountHomePage.clickNewAccountBtn();
     accountContentPage = accountEditionForm.saveAccount(account);
   }
@@ -70,7 +70,15 @@ public class AccountsSteps {
 
   @Given("^I have an Acount with the following information:$")
   public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
+    System.out.println("================Esperando ");
+//    try {
+//      Thread.sleep(30000);
+//    } catch (InterruptedException e) {
+//      e.printStackTrace();
+//    }
+//    System.out.println("================Creamos nueva cuenta  ");
     createANewAccountWithTheFollowingInformation(accountList);
+    accountContentPage.waitUntilMessageDisappear();
 //    APIAccount.createAccount(accountList.get(0));
   }
 

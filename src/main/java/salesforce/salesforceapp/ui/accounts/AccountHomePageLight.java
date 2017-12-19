@@ -17,7 +17,7 @@ public class AccountHomePageLight extends AccountHomePage {
   private String locatorNameLink;
 
   public AccountHomePageLight() {
-    super.newBtn = driver.findElement(By.xpath("//ul[contains(@class, 'forceActionsContainer')]/li[1]"));
+    //super.newBtn = driver.findElement(By.xpath("//ul[contains(@class, 'forceActionsContainer')]/li[1]"));
   }
 
   /**

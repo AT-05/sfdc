@@ -93,4 +93,12 @@ public class AccountContentPageClassic extends AccountContentPage {
   public boolean displayedErrorDeleteMessage() {
     return driverTools.isElementDisplayed(messageErrorCreateLabel);
   }
+
+  /**
+   * Wait until the creation message disappears
+   */
+  @Override
+  public void waitUntilMessageDisappear() {
+
+  }
 }

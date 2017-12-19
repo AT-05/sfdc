@@ -9,6 +9,8 @@ import salesforce.salesforceapp.ui.PageFactory;
  * Created by Administrator on 12/5/2017.
  */
 public class AccountContentPageLight extends AccountContentPage {
+
+  private By savedMessageBy = By.xpath("//span[contains(@class,'toastMessage')]");
   @FindBy(xpath = "//div[contains(@class, 'slds-notify--toast forceToastMessage')]")
   private WebElement messageLabel;
 
@@ -22,14 +24,16 @@ public class AccountContentPageLight extends AccountContentPage {
   private WebElement deleteConfirnBtn;
 
 
-  @FindBy(xpath = "//li[@class='slds-button slds-button--icon-border-filled oneActionsDropDown']/div")
-  private WebElement moreOptionBtn;
+//  @FindBy(xpath = "//li[@class='slds-button slds-button--icon-border-filled oneActionsDropDown']/div")
+//  private WebElement moreOptionBtn;
+  private By moreOptionBtnBy = By.xpath("//li[@class='slds-button slds-button--icon-border-filled oneActionsDropDown']/div");
 
   @FindBy(xpath = "//a[@title='Edit']")
   private WebElement editBtn;
 
-  @FindBy(xpath = "//a[@title='Details' or @title='Detalles']//span[@class='title']")
-  private WebElement detailsBtn;
+//  @FindBy(xpath = "//a[@title='Details' or @title='Detalles']//span[@class='title']")
+//  private WebElement detailsBtn;
+  private By detailsBtnBy = By.xpath("//a[@title='Details' or @title='Detalles']//span[@class='title']");
 
 
   public AccountContentPageLight() {
@@ -61,7 +65,7 @@ public class AccountContentPageLight extends AccountContentPage {
    */
   @Override
   public void delete() {
-    driverTools.clickElement(moreOptionBtn);
+    driverTools.clickElement(moreOptionBtnBy);
     driverTools.clickElement(deleteBtn);
     driverTools.clickElement(deleteConfirnBtn);
   }
@@ -73,7 +77,7 @@ public class AccountContentPageLight extends AccountContentPage {
    */
   @Override
   public AccountEditionForm clickUpdateAccountBtn() {
-    driverTools.clickElement(moreOptionBtn);
+    driverTools.clickElement(moreOptionBtnBy);
     driverTools.clickElement(editBtn);
     return PageFactory.getAccountEditionForm();
   }
@@ -83,9 +87,8 @@ public class AccountContentPageLight extends AccountContentPage {
    */
   @Override
   public void clickOnDetails() {
-    while (driverTools.isElementVisibility(By.xpath("//span[contains(@class,'toastMessage')]"))) {
-    }
-    driverTools.clickElement(detailsBtn);
+    waitUntilMessageDisappear();
+    driverTools.clickElement(detailsBtnBy);
   }
 
   /**
@@ -109,6 +112,14 @@ public class AccountContentPageLight extends AccountContentPage {
   @Override
   public boolean displayedErrorDeleteMessage() {
     return driverTools.isElementDisplayed(messageErrorCreateLabel);
+  }
+
+  /**
+   * Wait until the creation message disappears
+   */
+  @Override
+  public void waitUntilMessageDisappear() {
+    driverTools.waitUntilMessageDisappear(savedMessageBy);
   }
 
 
