@@ -64,6 +64,7 @@ public class ProductStep {
 
     @And("^I go to Product Home page$")
     public void iGoToProductHomePage() {
+        System.out.println("estoy yendo product home");
         homeProductPage = homePage.topMenu.goToHomeProduct();
     }
 
