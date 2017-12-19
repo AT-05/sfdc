@@ -23,18 +23,18 @@ public class MainSetup {
     public static void beforeExecution() {
         log.info("Start Main before setup...");
 //          TODO
-        ExcelReader xlsFile = new ExcelReader("main.xlsx");
+        ExcelReader xlsFile = new ExcelReader("main.xls");
 //        contactXLS = xlsFile.getValues(CONTACT);
 //        accountXLS = xlsFile.getValues(ACCOUNT);
 //        oppyXLS = xlsFile.getValues(OPPY);
-//        quoteXLS = xlsFile.getValues(QUOTES);
+        quoteXLS = xlsFile.getValues(QUOTES);
 //        productXLS = xlsFile.getValues(PRODUCT);
 //        priceBookXLS = xlsFile.getValues(PRICE_BOOK);
 //        priceBookProductXLS = xlsFile.getValues(PRICE_BOOK_PRODUCT);
 //        XLSContact.createContacts(contactXLS);
 //        XLSAccount.createAccounts(accountsXLS);
 //        XLSOppy.createOppys(oppyXLS);
-//        XLSQuote.createQuotes(quoteXLS);
+        XLSQuote.createQuotes(quoteXLS);
 //        XLSPriceBook.createPriceBook(priceBookXLS);
 //        XLSProduct.createAccounts(productXLS);
 //        XLSPriceBook.addProductaToPriceBook(priceBookProductXLS);
