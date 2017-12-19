@@ -17,92 +17,90 @@ import org.json.JSONTokener;
 import java.io.IOException;
 
 public class Main {
-    
-  static final String USERNAME     = "marticus123@gmail.com";
-  static final String PASSWORD     = "MM77884632mmYcIUAsjKVfcTCP1iUpBzDiJ7U";
-  static final String LOGINURL     = "https://login.salesforce.com";
-  static final String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
-  static final String CLIENTID     = "3MVG9g9rbsTkKnAWiLjlmeV55qsw.ER1yqbzrACUbniyhN2sgEUyHexclth8zUyp_443K2i.fV9ydgCD9YfMs";
-  static final String CLIENTSECRET = "630723412882675209";
 
-  public static void main(String[] args) {
+    static final String USERNAME = "marco@monkeysoft.com";
+    static final String PASSWORD = "MM77884632mmkRCe5cLFOk6hVuSTWxcElCEL";
+    static final String LOGINURL = "https://login.salesforce.com";
+    static final String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
+    static final String CLIENTID = "3MVG9g9rbsTkKnAWV1Lk6731UUUtxGnMmmVO87mFYpeXjRkiZkSkEytJGBGmckIAw2Rh6.E3aX7YBq_KchUOK";
+    static final String CLIENTSECRET = "643257347336618396";
 
-    DefaultHttpClient httpclient = new DefaultHttpClient();
+    public static void main(String[] args) {
 
-    // Assemble the login request URL
-    String loginURL = LOGINURL +
-        GRANTSERVICE +
-        "&client_id=" + CLIENTID +
-        "&client_secret=" + CLIENTSECRET +
-        "&username=" + USERNAME +
-        "&password=" + PASSWORD;
+        DefaultHttpClient httpclient = new DefaultHttpClient();
 
-    // Login requests must be POSTs
-    HttpPost httpPost = new HttpPost(loginURL);
+        // Assemble the login request URL
+        String loginURL = LOGINURL +
+                GRANTSERVICE +
+                "&client_id=" + CLIENTID +
+                "&client_secret=" + CLIENTSECRET +
+                "&username=" + USERNAME +
+                "&password=" + PASSWORD;
 
-   HttpResponse response = null;
+        // Login requests must be POSTs
+        HttpPost httpPost = new HttpPost(loginURL);
 
-
-    try {
-      // Execute the login POST request
-      response = httpclient.execute(httpPost);
-    } catch (ClientProtocolException cpException) {
-      // Handle protocol exception
-    } catch (IOException ioException) {
-      // Handle system IO exception
-    }
-
-    // verify response is HTTP OK
-    final int statusCode = response.getStatusLine().getStatusCode();
-    if (statusCode != HttpStatus.SC_OK) {
-      System.out.println("Error authenticating to Force.com: "+statusCode);
-      // Error is in EntityUtils.toString(response.getEntity())
-      return;
-    }
-
-    String getResult = null;
-    try {
-      getResult = EntityUtils.toString(response.getEntity());
-    } catch (IOException ioException) {
-      // Handle system IO exception
-    }
-    JSONObject jsonObject = null;
-    String loginAccessToken = null;
-    String loginInstanceUrl = null;
-    try {
-      jsonObject = (JSONObject) new JSONTokener(getResult).nextValue();
-      loginAccessToken = jsonObject.getString("access_token");
-      loginInstanceUrl = jsonObject.getString("instance_url");
-    } catch (JSONException jsonException) {
-      // Handle JSON exception
-    }
+        HttpResponse response = null;
 
 
+        try {
+            // Execute the login POST request
+            response = httpclient.execute(httpPost);
+        } catch (ClientProtocolException cpException) {
+            // Handle protocol exception
+        } catch (IOException ioException) {
+            // Handle system IO exception
+        }
 
-  //***************************************************
+        // verify response is HTTP OK
+        final int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode != HttpStatus.SC_OK) {
+            System.out.println("Error authenticating to Force.com: " + statusCode);
+            // Error is in EntityUtils.toString(response.getEntity())
+            return;
+        }
 
-    System.out.println("Successful login");
-    System.out.println("  instance URL: "+loginInstanceUrl);
-    System.out.println("  access token/session ID: "+loginAccessToken);
+        String getResult = null;
+        try {
+            getResult = EntityUtils.toString(response.getEntity());
+        } catch (IOException ioException) {
+            // Handle system IO exception
+        }
+        JSONObject jsonObject = null;
+        String loginAccessToken = null;
+        String loginInstanceUrl = null;
+        try {
+            jsonObject = (JSONObject) new JSONTokener(getResult).nextValue();
+            loginAccessToken = jsonObject.getString("access_token");
+            loginInstanceUrl = jsonObject.getString("instance_url");
+        } catch (JSONException jsonException) {
+            // Handle JSON exception
+        }
 
-    // release connection
-    httpPost.releaseConnection();
+
+        //***************************************************
+
+        System.out.println("Successful login");
+        System.out.println("  instance URL: " + loginInstanceUrl);
+        System.out.println("  access token/session ID: " + loginAccessToken);
+
+        // release connection
+        httpPost.releaseConnection();
 
 
-
-    //*********************************************
+        //*********************************************
   /*  DefaultHttpClient httpclient2 = new DefaultHttpClient();
     HttpGet get=new HttpGet(loginInstanceUrl);
     HttpResponse response2 = null;
     response = httpclient2.execute(get);*/
-    RestAssured.baseURI = loginInstanceUrl+"/services/data/v41.0/sobjects";
+        RestAssured.baseURI = loginInstanceUrl + "/services/data/v41.0/sobjects";
 
-    RequestSpecification httpRequest = RestAssured.given();
+        RequestSpecification httpRequest = RestAssured.given();
 
-    Response response2 = httpRequest.request(Method.GET, "/product2");
+        Response response2 = httpRequest.request(Method.GET, "/product2");
 
-    String responseBody = response2.getBody().asString();
-    System.out.println("Response Body is =>  " + responseBody);
+        String responseBody = response2.getBody().asString();
+        System.out.println("Response Body is =>  " + responseBody);
 
-  }
+    }
 }
