@@ -1,6 +1,5 @@
 package salesforce.steps.contacts;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;

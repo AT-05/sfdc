@@ -69,7 +69,6 @@ public class Account {
         this.employees = employees;
     }
 
-
     public boolean isSame(String name, String type) {
         return (this.name.equalsIgnoreCase(name)
                 && this.web.equalsIgnoreCase(type));

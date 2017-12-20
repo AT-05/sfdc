@@ -1,14 +1,8 @@
 package salesforce.salesforceapp.ui.product.home;
 
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import salesforce.salesforceapp.entities.product.PriceBook;
-import salesforce.salesforceapp.ui.product.content.ProductContentPage;
-import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
-import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
 
 /**
