@@ -2,7 +2,6 @@ package salesforce.salesforceapp.config;
 
 import org.apache.log4j.Logger;
 import salesforce.core.utils.JsonReader;
-import salesforce.salesforceapp.SalesforceEnums;
 import salesforce.salesforceapp.SalesforceEnums.Skin;
 
 public class SalesForceAppEnvsConfig {
@@ -18,9 +17,13 @@ public class SalesForceAppEnvsConfig {
   private static final String USER_NAME = "user name";
   private static final String USER_PASSWORD = "user password";
   private static final String SKIN = "skin";
-  private static final String CONSUMER_KEY = "consumer key";
-  private static final String CONSUMER_SECRET = "consumer secret";
-  private static final String SECURITY_TOKEN = "security token";
+  //api
+  private final String USER_TOKEN = "user token";
+  private final String GRANT_TYPE = "grant type";
+  private final String CLIENT_ID = "client id";
+  private final String CLIENT_SECRET = "client secret";
+  private final String TOKEN_BASE_URI = "token base uri";
+  private final String SERVICE_BASE_URI = "service base uri";
 
 
   private JsonReader envReader;
@@ -29,9 +32,12 @@ public class SalesForceAppEnvsConfig {
   private String url;
   private String userName;
   private String userPassword;
-  private String consumerKey;
-  private String consumerSecret;
-  private String securityToken;
+  private String userToken;
+  private String grantType;
+  private String clientId;
+  private String clientSecret;
+  private String tokenBaseUri;
+  private String serviceBaseUri;
 
   private static SalesForceAppEnvsConfig instance;
 
@@ -56,9 +62,14 @@ public class SalesForceAppEnvsConfig {
     url = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, URL);
     userName = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_NAME);
     userPassword = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_PASSWORD);
-    consumerKey = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, CONSUMER_KEY);
-    consumerSecret = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, CONSUMER_SECRET);
-    securityToken = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, SECURITY_TOKEN);
+
+    //api
+    userToken = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_TOKEN);
+    grantType = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, GRANT_TYPE);
+    clientId = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, CLIENT_ID);
+    clientSecret = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, CLIENT_SECRET);
+    tokenBaseUri = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, TOKEN_BASE_URI);
+    serviceBaseUri = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, SERVICE_BASE_URI);
   }
 
   public String getUrl() {
@@ -77,15 +88,47 @@ public class SalesForceAppEnvsConfig {
     return skin;
   }
 
-  public String getConsumerKey() {
-    return consumerKey;
+  /**
+   *
+   * @return
+   */
+  public String getUserToken() {
+    return userToken;
   }
 
-  public String getConsumerSecret() {
-    return consumerSecret;
+  public String getGrantType() {
+    return grantType;
   }
 
-  public String getSecurityToken() {
-    return securityToken;
+  /**
+   *
+   * @return
+   */
+  public String getClientId() {
+    return clientId;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public String getClientSecret() {
+    return clientSecret;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public String getTokenBaseUri() {
+    return tokenBaseUri;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public String getServiceBaseUri() {
+    return serviceBaseUri;
   }
 }

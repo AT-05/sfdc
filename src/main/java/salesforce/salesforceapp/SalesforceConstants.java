@@ -3,7 +3,7 @@ package salesforce.salesforceapp;
 public class SalesforceConstants {
 
   //Accounts
-  public final static String ACCOUNT = "Account";
+  public final static String ACCOUNT = "account";
   public final static String ACCOUNT_NAME = "Account Name";
   public final static String ACCOUNT_TYPE = "Account Type";
   public final static String ACCOUNT_WEB = "Account Web";
