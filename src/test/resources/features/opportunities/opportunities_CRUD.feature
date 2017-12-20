@@ -8,8 +8,8 @@ Feature: Manage Opportunities - CRUD
   @Smoke @CreateOppy
   Scenario: User should be able to create an Opportunity
     Given I create Opportunity with the following information
-      | oppyName | closeDate | stage         | account | privateOppy | amount |
-      | Opp test | 6/12/2018 | Qualification | Acme    | true        | 10000  |
+      | oppyName  | closeDate | stage         | account | privateOppy | amount |
+      | Oppy test | 6/12/2018 | Qualification | Acme    | true        | 10000  |
 
     Then a message should be displayed saying that the Opportunity was created
     And the Opportunity created should be had the correct values
@@ -31,8 +31,8 @@ Feature: Manage Opportunities - CRUD
   @Functional @DeleteOppy
   Scenario: User should be able to delete an Opportunity
     Given I have Opportunity with the following information
-      | oppyName | closeDate | stage         | account | privateOppy | amount |
-      | Opp test | 6/12/2018 | Qualification | Acme    | true        | 10000  |
+      | oppyName     | closeDate | stage         | account | privateOppy | amount |
+      | Oppy testing | 6/12/2018 | Qualification | Acme    | true        | 10000  |
 
     And I select to delete the Opportunity created from the list
     When I delete that Opportunity
