@@ -1,12 +1,14 @@
 package salesforce.salesforceapp.excel;
 
+import static salesforce.salesforceapp.SalesforceConstants.*;
+
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import static salesforce.salesforceapp.SalesforceConstants.*;
+import org.json.simple.JSONObject;
 import salesforce.salesforceapp.api.methods.APIQuote;
 import salesforce.salesforceapp.entities.quotes.Quote;
-import salesforce.salesforceapp.json.*;
+import salesforce.salesforceapp.json.QuotesJsonUtils;
 
 /**
  * Created by Franco Aldunate on 12/17/2017.
@@ -30,17 +32,20 @@ public class XLSQuote {
       quote.setTax(Double.valueOf(quoteMap.get(QUOTE_TAX)));
       quote.setShippingAndHandling(Double.valueOf(quoteMap.get(QUOTE_SHIPPING_AND_HANDLING)));
 
-      System.out.println("***quote excel info***");
+      System.out.println("*******quote excel info*******");
       System.out.println("Quote Name: " + quote.getName());
       System.out.println("Quote Expiration Date: " + quote.getExpirationDate());
-      System.out.println("Quote Decription: " + quote.getStatus());
-      System.out.println("Quote Status: " + quote.getDescription());
+      System.out.println("Quote Status: " + quote.getStatus());
+      System.out.println("Quote Description: " + quote.getDescription());
       System.out.println("Quote Tax: " + quote.getTax());
       System.out.println("Quote Shipping and Handling: " + quote.getShippingAndHandling());
 
+      //Building the json object
       QuotesJsonUtils quotesJsonUtils = new QuotesJsonUtils();
-      final String jsonResult = quotesJsonUtils.buildJsonFile(quote);
-      System.out.println("\nJson file" + jsonResult);
+      //passing the entity to the json builder
+      JSONObject jsonObjectResult = quotesJsonUtils.buildJsonFile(quote);
+      //Reading the built json object
+      quotesJsonUtils.readJsonObject(jsonObjectResult);
 
       if (!APIQuote.isQuoteSaved(quote)) {
         APIQuote.createQuote(quote);
