@@ -1,4 +1,4 @@
-import net.masterthought.cucumber.ReportBuilder
+//import net.masterthought.cucumber.ReportBuilder
 
 group 'salesforce.com'
 version '1.0-SNAPSHOT'
@@ -21,7 +21,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.masterthought:cucumber-reporting:3.9.0'
+        //classpath 'net.masterthought:cucumber-reporting:3.9.0'
+        classpath 'net.masterthought:cucumber-reporting:0.9.0'
     }
 }
 
