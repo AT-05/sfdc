@@ -21,7 +21,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.masterthought:cucumber-reporting:3.9.0'
+        classpath 'net.masterthought:cucumber-reporting:0.1.0'
     }
 }
 
@@ -90,6 +90,7 @@ task executeFeatures(type: Test) {
         generateReport('build/cucumber/cucumber.json', 'build/cucumber/reports')
     }
 }
+/*
 
 def generateReport(String pathCucumber, String pathReport) {
     File reportOutputDirectory = new File(pathReport)
@@ -111,5 +112,32 @@ def generateReport(String pathCucumber, String pathReport) {
     configuration.setBuildNumber(buildNumber)
 
     ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, configuration)
+    reportBuilder.generateReports()
+}*/
+
+//Code for 0.1.0 report
+def generateReport(String pathCucumber, String pathReport) {
+    File reportOutputDirectory = new File(pathReport)
+    List<String> jsonReportFiles = new ArrayList<>()
+    jsonReportFiles.add(pathCucumber)
+
+    String buildNumber = "1"
+    String buildProjectName = "cucumber-report"
+    String pluginUrlPath = ""
+    boolean skippedFails = true
+    boolean pendingFails = true
+    boolean undefinedFails = true
+    boolean missingFails = true
+    boolean flashCharts = true
+    boolean runWithJenkins = false
+    boolean artifactsEnabled = false
+    String artifactConfig = ""
+    boolean highCharts = true
+    boolean parallelTesting = false
+
+    ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, reportOutputDirectory,
+            pluginUrlPath, buildNumber, buildProjectName, skippedFails, pendingFails,
+            undefinedFails, missingFails, flashCharts, runWithJenkins, artifactsEnabled,
+            artifactConfig, highCharts, parallelTesting)
     reportBuilder.generateReports()
 }

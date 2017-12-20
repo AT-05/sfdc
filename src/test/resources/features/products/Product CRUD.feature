@@ -1,5 +1,5 @@
 @productCrud
-Feature: management product
+Feature: Product CRUD
 
   Background:
     Given I am logged to Salesforce
