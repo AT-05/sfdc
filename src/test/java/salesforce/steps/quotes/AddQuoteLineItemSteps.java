@@ -8,7 +8,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
-import salesforce.salesforceapp.api.methods.APIQuote;
+
 import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.PageFactory;
