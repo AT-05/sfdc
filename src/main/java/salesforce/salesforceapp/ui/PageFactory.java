@@ -19,9 +19,6 @@ import salesforce.salesforceapp.ui.opportunities.OppyEditionFormClassic;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionFormLight;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageClassic;
-import salesforce.salesforceapp.ui.product.home.HomeProductPage;
-import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
-import salesforce.salesforceapp.ui.product.home.HomeProductPageLightning;
 import salesforce.salesforceapp.ui.quotes.*;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePageLight;
 
@@ -173,6 +170,5 @@ public class PageFactory {
       default:
         return new AccountContentPageLight();
     }
-
   }
 }

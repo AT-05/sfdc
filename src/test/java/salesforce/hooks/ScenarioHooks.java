@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import salesforce.core.selenium.WebDriverManager;
 
-
 public class ScenarioHooks {
     private Logger log = Logger.getLogger(getClass());
     //****************************************************************

@@ -1,7 +1,6 @@
 package salesforce.salesforceapp.api.methods;
 
 
-import org.omg.CORBA.PUBLIC_MEMBER;
 import salesforce.salesforceapp.entities.account.Account;
 
 public class APIAccount {

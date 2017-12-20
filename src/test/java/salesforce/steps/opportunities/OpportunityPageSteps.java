@@ -2,10 +2,8 @@ package salesforce.steps.opportunities;
 
 import static org.testng.Assert.assertTrue;
 
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.entities.opportunities.Oppy;

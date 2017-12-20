@@ -8,8 +8,6 @@ import static salesforce.salesforceapp.SalesforceConstants.*;
 import salesforce.salesforceapp.excel.XLSAccount;
 import salesforce.salesforceapp.excel.XLSContact;
 import salesforce.salesforceapp.excel.XLSOppy;
-import salesforce.salesforceapp.excel.XLSPriceBook;
-import salesforce.salesforceapp.excel.XLSProduct;
 import salesforce.salesforceapp.excel.XLSQuote;
 
 public class MainSetup {
