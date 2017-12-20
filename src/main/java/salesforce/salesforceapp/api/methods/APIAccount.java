@@ -1,6 +1,5 @@
 package salesforce.salesforceapp.api.methods;
 
-
 import io.restassured.response.*;
 import java.util.*;
 import org.omg.CORBA.PUBLIC_MEMBER;
@@ -31,21 +30,6 @@ public class APIAccount {
     String totalSize = (apiManager.getQuery(QUERY, ACCOUNT, accountFieldsMap).jsonPath().get("totalSize")).toString();
     System.out.println("total size: " + totalSize);
     return Integer.parseInt(totalSize) > 0;
-
-
-//        List<Map<String, ?>> accounts = apiManager.get(ACCOUNT_ENDPOINT).jsonPath().get();
-//        accounts.forEach(accountRecord ->
-//                apiManager.delete(ACCOUNT_ENDPOINT.concat(SLASH).concat(accountRecord.get(ID_FIELD).toString())));
-//                System.out.println(accountRecord.get("recentItems")));
-
-//        Map<String, ?> accounts =
-//        System.out.println(accounts.get("recentItems"));
-//        List<Object> list = new ArrayList<>();
-//        list = Arrays.asList(accounts.get("recentItems"));
-//        System.out.println(list.get(0));
-//
-//        System.out.println(jsonObject.get("Id"));
-//        return false;
   }
 
   public void createAccount() {

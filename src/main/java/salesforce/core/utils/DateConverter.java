@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public final class DateConverter {
   public static final String ORIGINAL_FORMAT = "MM/dd/yyyy";
-  public static final String NEW_FORMAT = "2yyy-MM-dd HH:mm:ss";
+  public static final String NEW_FORMAT = "yyyy-MM-dd";
 
   /**
    * <p>This method converts the format of date from

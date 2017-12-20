@@ -3,6 +3,7 @@ package salesforce.salesforceapp.excel;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
+import salesforce.salesforceapp.api.methods.*;
 import salesforce.salesforceapp.entities.account.Account;
 
 import static salesforce.salesforceapp.SalesforceConstants.*;
