@@ -4,9 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import salesforce.salesforceapp.entities.product.PriceBook;
 import salesforce.salesforceapp.ui.BasePage;
 import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 
 /**
@@ -15,7 +18,6 @@ import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 public abstract class HomeProductPage extends BasePage {
 
     public WebElement newProduct;
-
     public TopMenu topMenu;
 
     @FindBy(id = "new")
@@ -46,7 +48,7 @@ public abstract class HomeProductPage extends BasePage {
     }
 
     /**
-     * Create new Prodcut.
+     * Create new Product.
      *
      * @return products edition.
      */
@@ -85,5 +87,6 @@ public abstract class HomeProductPage extends BasePage {
      * @return boolean.
      */
     public abstract boolean thereIsProduct(String name);
+
 }
 

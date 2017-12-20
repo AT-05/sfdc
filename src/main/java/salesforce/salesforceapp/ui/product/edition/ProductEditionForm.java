@@ -16,6 +16,9 @@ public abstract class ProductEditionForm extends BasePage {
     public WebElement activeCheckBox;
     public WebElement saveBtn;
 
+    /**
+     * Wait.
+     */
     @Override
     public void waitUntilPageObjectIsLoaded() {
 

@@ -48,7 +48,7 @@ public class ProductContentPageLightning extends ProductContentPage {
         super.productNameLabel = nameLabel;
         super.productCodeLabel = codeLabel;
         super.productDescriptionLabel = descriptionLabel;
-        super.activeCheckBox=elementCheckBox;
+        super.activeCheckBox = elementCheckBox;
     }
 
     /**
@@ -61,7 +61,6 @@ public class ProductContentPageLightning extends ProductContentPage {
         return By.xpath("//span[text()='" + linkText + "']");
     }
 
-
     /**
      * Check is the products fields are corrects.
      *
@@ -70,7 +69,6 @@ public class ProductContentPageLightning extends ProductContentPage {
      */
     @Override
     public boolean validateProductFields(Product product) {
-        System.out.println("veriicando ************");
         boolean active = elementCheckBox.getAttribute("Alt").equalsIgnoreCase("True") ? true : false;
         productNameLabel = driver.findElements(getItemLinkBy(product.getName())).get(0);
         productCodeLabel = driver.findElements(getItemLinkBy(product.getCode())).get(0);
@@ -78,7 +76,7 @@ public class ProductContentPageLightning extends ProductContentPage {
         return productNameLabel.getText().equalsIgnoreCase(product.getName()) == true
                 && productCodeLabel.getText().equalsIgnoreCase(product.getCode()) == true
                 && productDescriptionLabel.getText().equalsIgnoreCase(product.getDescription()) == true
-                && active==product.getActive();
+                && active == product.getActive();
     }
 
     /**
@@ -91,7 +89,6 @@ public class ProductContentPageLightning extends ProductContentPage {
         this.editBtn.click();
         return new ProductEditionFormLightning();
     }
-
 
     /**
      * Delete an existing products.
@@ -106,7 +103,6 @@ public class ProductContentPageLightning extends ProductContentPage {
         return new HomeProductPageLightning();
     }
 
-
     /**
      * Go to Home Product page.
      *
@@ -114,15 +110,13 @@ public class ProductContentPageLightning extends ProductContentPage {
      */
     @Override
     public HomeProductPageLightning goToHomProductPage() {
-        wait=new WebDriverWait(driver,30);
+        wait = new WebDriverWait(driver, 30);
         waitUntilPageObjectIsLoaded();
         launcherBtn.click();
         waitUntilPageObjectIsLoaded();
         productTab.click();
         return new HomeProductPageLightning();
     }
-
-
 
 }
 
