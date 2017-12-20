@@ -18,9 +18,6 @@ import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 public abstract class HomeProductPage extends BasePage {
 
     public WebElement newProduct;
-    public WebElement createPriceBook;
-    public Select priceBookDropDown;
-
     public TopMenu topMenu;
 
     @FindBy(id = "new")
@@ -51,9 +48,9 @@ public abstract class HomeProductPage extends BasePage {
     }
 
     /**
-     * Create new Prodcut.
+     * Create new Product.
      *
-     * @return product edition.
+     * @return products edition.
      */
     public abstract ProductEditionForm newProduct();
 
@@ -77,28 +74,19 @@ public abstract class HomeProductPage extends BasePage {
     }
 
     /**
-     * Click New product.
+     * Click New products.
      */
     protected void clickNewBtn() {
         driverTools.clickElement(newBtn);
     }
 
     /**
-     * Check if exist a product.
+     * Check if exist a products.
      *
      * @param name string.
      * @return boolean.
      */
     public abstract boolean thereIsProduct(String name);
 
-    /**
-     * This Method create go to create new price book page.
-     *
-     * @param create_new_view selection create price.
-     */
-    public abstract ProductEditionForm goToCreateNewPriceBook(String create_new_view);
-
-
-    public abstract ProductContentPage selectPriceBook(PriceBook priceBook);
 }
 

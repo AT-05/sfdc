@@ -1,5 +1,6 @@
 package salesforce.salesforceapp.ui.quotes;
 
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -11,8 +12,8 @@ import org.openqa.selenium.support.FindBy;
 public class QuoteEditionFormLight extends QuoteEditionForm {
   @FindBy(css = ".select")
   @CacheLookup
-  private WebElement quoteStatusLinkLight;
-  private WebElement statusBtnLight;
+  private WebElement quoteStatusLink;
+  private WebElement statusBtn;
 
   @FindBy(css = ".modal-footer button[title='Save']")
   @CacheLookup
@@ -42,9 +43,9 @@ public class QuoteEditionFormLight extends QuoteEditionForm {
    */
   @Override
   protected void setStatus() {
-    driverTools.clickElement(quoteStatusLinkLight);
-    statusBtnLight = driver.findElement(By.xpath("//li[@class='uiMenuItem uiRadioMenuItem']/a[@title='" + super.status + "']"));
-    driverTools.clickElement(statusBtnLight);
+    driverTools.clickElement(quoteStatusLink);
+    statusBtn = driver.findElement(By.xpath("//li[@class='uiMenuItem uiRadioMenuItem']/a[@title='" + super.status + "']"));
+    driverTools.clickElement(statusBtn);
   }
 
   /**
@@ -59,10 +60,11 @@ public class QuoteEditionFormLight extends QuoteEditionForm {
     boolean result = false;
     quoteCreatedMessage = driver.findElement(By.xpath("//span[contains(@class, 'toastMessage')]"));
     if (driverTools.isElementDisplayed(quoteCreatedMessage)
-      && quoteCreatedMessage.getText().contains("was created")
-      && quoteCreatedMessage.getText().contains(quoteName)) {
+        && quoteCreatedMessage.getText().contains("was created")
+        && quoteCreatedMessage.getText().contains(quoteName)) {
       result = true;
     }
+    driverTools.waitUntilMessageDisappear(quoteCreatedMessage);
     return result;
   }
 
@@ -74,6 +76,7 @@ public class QuoteEditionFormLight extends QuoteEditionForm {
    */
   @Override
   public QuotesContentPage openQuote(String quoteName) {
+    driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
     WebElement element = driver.findElement(By.xpath("//a[@title='" + quoteName + "']"));
     driverTools.clickElement(element);
     return new QuotesContentPageLight();

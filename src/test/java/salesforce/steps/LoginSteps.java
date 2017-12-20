@@ -26,7 +26,7 @@ public class LoginSteps {
   private ProfilePage profilePage;
 
   public LoginSteps() throws Exception {
-    //this.pageTransporter = PageTransporter.getInstance();
+    this.pageTransporter = PageTransporter.getInstance();
   }
 
   //****************************************************************
@@ -66,12 +66,4 @@ public class LoginSteps {
     log.info("After hook @Login");
     homePage.topMenu.logout();
   }
-
-
-    @Then("^Product Page should be displayed with the information updated$")
-    public void productPageShouldBeDisplayedWithTheInformationUpdated()  {
-      System.out.println("Selecciono bien************");
-    }
 }
-
-

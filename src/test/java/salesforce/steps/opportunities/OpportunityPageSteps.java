@@ -44,12 +44,8 @@ public class OpportunityPageSteps {
       String username = SalesForceAppEnvsConfig.getInstance().getUserName();
       String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
       homePage = loginPage.login(username, password);
+      
     }
-  }
-
-  @And("^I go to Opportunities page$")
-  public void iGoToOpportunitiesPage() {
-    oppyHomePage = homePage.topMenu.goToOppyHomePage();
   }
 
   @Then("^the Opportunities page should be displayed$")

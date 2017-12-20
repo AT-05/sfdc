@@ -4,8 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import salesforce.salesforceapp.entities.product.PriceBook;
-import salesforce.salesforceapp.entities.product.Product;
+import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
 import salesforce.salesforceapp.ui.product.home.HomeProductPage;
@@ -49,7 +48,7 @@ public class ProductContentPageLightning extends ProductContentPage {
         super.productNameLabel = nameLabel;
         super.productCodeLabel = codeLabel;
         super.productDescriptionLabel = descriptionLabel;
-        super.activeCheckBox=elementCheckBox;
+        super.activeCheckBox = elementCheckBox;
     }
 
     /**
@@ -62,16 +61,14 @@ public class ProductContentPageLightning extends ProductContentPage {
         return By.xpath("//span[text()='" + linkText + "']");
     }
 
-
     /**
-     * Check is the product fields are corrects.
+     * Check is the products fields are corrects.
      *
-     * @param product product.
+     * @param product products.
      * @return boolean.
      */
     @Override
     public boolean validateProductFields(Product product) {
-        System.out.println("veriicando ************");
         boolean active = elementCheckBox.getAttribute("Alt").equalsIgnoreCase("True") ? true : false;
         productNameLabel = driver.findElements(getItemLinkBy(product.getName())).get(0);
         productCodeLabel = driver.findElements(getItemLinkBy(product.getCode())).get(0);
@@ -79,11 +76,11 @@ public class ProductContentPageLightning extends ProductContentPage {
         return productNameLabel.getText().equalsIgnoreCase(product.getName()) == true
                 && productCodeLabel.getText().equalsIgnoreCase(product.getCode()) == true
                 && productDescriptionLabel.getText().equalsIgnoreCase(product.getDescription()) == true
-                && active==product.getActive();
+                && active == product.getActive();
     }
 
     /**
-     * Go to edit existing product.
+     * Go to edit existing products.
      *
      * @return ProductEditionForm.
      */
@@ -93,9 +90,8 @@ public class ProductContentPageLightning extends ProductContentPage {
         return new ProductEditionFormLightning();
     }
 
-
     /**
-     * Delete an existing product.
+     * Delete an existing products.
      *
      * @return Home Product Page.
      */
@@ -107,42 +103,20 @@ public class ProductContentPageLightning extends ProductContentPage {
         return new HomeProductPageLightning();
     }
 
-
     /**
      * Go to Home Product page.
      *
-     * @return Home product page.
+     * @return Home products page.
      */
     @Override
     public HomeProductPageLightning goToHomProductPage() {
-        wait=new WebDriverWait(driver,30);
+        wait = new WebDriverWait(driver, 30);
         waitUntilPageObjectIsLoaded();
         launcherBtn.click();
         waitUntilPageObjectIsLoaded();
         productTab.click();
         return new HomeProductPageLightning();
     }
-
-    @Override
-    public boolean validatePriceBookCreated(PriceBook priceBook) {
-        return false;
-    }
-
-    @Override
-    public void addPriceBook(PriceBook priceBook) {
-
-    }
-
-    @Override
-    public boolean validatePriceBookAdded(PriceBook priceBook) {
-        return false;
-    }
-
-    @Override
-    public void editPriceBook(PriceBook priceBook) {
-
-    }
-
 
 }
 

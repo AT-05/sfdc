@@ -19,7 +19,9 @@ public class HomeProductPageLightning extends HomeProductPage {
     @FindBy(xpath = ".//*[@id='brandBand_1']/div/div/div[2]/div/div/div[1]/div[1]/div[2]/ul/li/a")
     WebElement newBtn;
 
-
+    /**
+     * Go to product page light.
+     */
     public HomeProductPageLightning() {
         super.newProduct = newBtn;
     }
@@ -32,7 +34,7 @@ public class HomeProductPageLightning extends HomeProductPage {
     /**
      * Create new Prodcut.
      *
-     * @return product edition.
+     * @return products edition.
      */
     @Override
     public ProductEditionFormLightning newProduct() {
@@ -41,9 +43,8 @@ public class HomeProductPageLightning extends HomeProductPage {
         return new ProductEditionFormLightning();
     }
 
-
     /**
-     * Check if exist a product.
+     * Check if exist a products.
      *
      * @param name string.
      * @return boolean.
@@ -52,44 +53,6 @@ public class HomeProductPageLightning extends HomeProductPage {
     public boolean thereIsProduct(String name) {
         return exitElement(name);
     }
-
-    /**
-     * This Method create go to create new price book page.
-     *
-     * @param create_new_view selection create price.
-     */
-    @Override
-    public ProductEditionForm goToCreateNewPriceBook(String create_new_view) {
-        System.out.println("CLick launcher 1");
-        try {
-            Thread.sleep(30000);
-            System.out.println("CLick launcher 2");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        wait=new WebDriverWait(driver,30);
-        waitUntilPageObjectIsLoaded();
-        launcherBtn.click();
-
-        System.out.println("CLick launcher 2");
-        wait=new WebDriverWait(driver,30);
-        waitUntilPageObjectIsLoaded();
-        priceBookTab= driver.findElements(By.xpath("//span[text()='Price Books']")).get(0);
-        priceBookTab.click();
-
-        System.out.println("CLick launcher 3");
-        wait=new WebDriverWait(driver,30);
-        waitUntilPageObjectIsLoaded();
-        newProduct.click();
-        System.out.println("CLick launcher 4");
-        return new ProductEditionFormLightning();
-    }
-
-    @Override
-    public ProductContentPage selectPriceBook(PriceBook priceBook) {
-        return null;
-    }
-
 
     @FindBy(xpath = "//one-app-launcher-header/button")
     WebElement launcherBtn;

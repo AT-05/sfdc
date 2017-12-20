@@ -1,6 +1,5 @@
 package salesforce.steps.opportunities;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -14,6 +13,8 @@ import org.apache.log4j.Logger;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
+import salesforce.salesforceapp.ui.components.TopMenu;
+import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.opportunities.OppyContentPage;
 import salesforce.salesforceapp.ui.opportunities.OppyEditionForm;
 import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
@@ -27,24 +28,34 @@ public class ManageSteps {
   private PageTransporter pageTransporter;
 
   //Pages
+  private HomePage homePage;
   private OppyHomePage oppyHomePage;
   private OppyEditionForm oppyEditionForm;
   private OppyContentPage oppyContentPage;
+  private TopMenu topMenu;
+
+  private ManageSteps manageSteps;
 
   //Entities
   private Oppy oppy;
 
-  public ManageSteps() {
-    pageTransporter = PageTransporter.getInstance();
+  public ManageSteps(Oppy oppy) {
+    //pageTransporter = PageTransporter.getInstance();
+    this.oppy = oppy;
   }
 
   //****************************************************************
   //Manager Step Definitions
   //****************************************************************
+  @And("^I go to Opportunities page$")
+  public void iGoToOpportunitiesPage() {
+    homePage = PageFactory.getHomePage();
+    oppyHomePage = homePage.topMenu.goToOppyHomePage();
+  }
+
   @And("^I (?:have|create) Opportunity with the following information$")
   public void iHaveOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
-    this.oppy = oppy.get(0);
-    oppyHomePage = PageFactory.getOppyHomePage();
+    this.oppy.setOppy(oppy.get(0));
     oppyEditionForm = oppyHomePage.clickNewOppyBtn();
     oppyContentPage = oppyEditionForm.createOppy(this.oppy);
   }
@@ -95,12 +106,12 @@ public class ManageSteps {
    * Verify content of element with the content of the object.
    */
   private void validationOpportunity(){
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getOppyName()));
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getCloseDate()));
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()));
-    assertTrue(oppyContentPage.containsLinkElement(oppy.getAccount()));
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()));
-    assertTrue(oppyContentPage.containsCheckbox(oppy.getBudgetAsString()));
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getOppyName()), "Name opportunity is incorrect:");
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getCloseDate()), "Close data is incorrect:");
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()), "Stage is incorrect:");
+    assertTrue(oppyContentPage.containsLinkElement(oppy.getAccount()), "Account is incorrect:");
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()), "Amount is incorrect:");
+    assertTrue(oppyContentPage.containsCheckbox(oppy.getPrivateCheckedAsString()), "private checked is incorrect:");
   }
 
 

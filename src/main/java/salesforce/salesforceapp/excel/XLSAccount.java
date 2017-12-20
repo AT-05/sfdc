@@ -1,30 +1,40 @@
 package salesforce.salesforceapp.excel;
 
-import static salesforce.salesforceapp.SalesforceConstants.ACCOUNT_ADDRESS;
-import static salesforce.salesforceapp.SalesforceConstants.ACCOUNT_NAME;
-
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.api.methods.APIAccount;
-import salesforce.salesforceapp.entities.Account;
+import salesforce.salesforceapp.entities.account.Account;
+
+import static salesforce.salesforceapp.SalesforceConstants.*;
 
 public class XLSAccount {
     private static Logger log = Logger.getLogger("XLSAccount");
 
     /**
      * Create the accounts by API from excel sheet
-     *
      * @param accountsXLS
      */
-    public static void createAccounts(List<Map<String, String>> accountsXLS) {
+    public static void createAccount(List<Map<String, String>> accountsXLS) {
         log.info("Create Accounts");
         for (Map<String, String> accountMap : accountsXLS) {
             Account account = new Account();
+            account.setName(accountMap.get(ACCOUNT_NAME));
+            account.setType(accountMap.get(ACCOUNT_TYPE));
+            account.setWeb(accountMap.get(ACCOUNT_WEB));
+            account.setDescription(accountMap.get(ACCOUNT_DESCRIPTION));
+            account.setPhone(accountMap.get(ACCOUNT_PHONE));
+            account.setSector(accountMap.get(ACCOUNT_SECTOR));
+            account.setEmployees(accountMap.get(ACCOUNT_EMPLOYEES));
 
-            account.setAccountName(accountMap.get(ACCOUNT_NAME));
-            account.setAddressName(accountMap.get(ACCOUNT_ADDRESS));
-            //for all the fields
+            System.out.println("*** Account api info ***");
+            System.out.println("Account Name: " + account.getName());
+            System.out.println("Account Type: " + account.getType());
+            System.out.println("Account Web: " + account.getWeb());
+            System.out.println("Account Description: " + account.getDescription());
+            System.out.println("Account Phone: " + account.getPhone());
+            System.out.println("Account Sector: " + account.getSector());
+            System.out.println("Account Employees: " + account.getEmployees());
 
             if (!APIAccount.isAccountSaved(account)) {
                 APIAccount.createAccount(account);
@@ -32,7 +42,7 @@ public class XLSAccount {
         }
     }
 
-    public static void deleteAccounts(List<Map<String, String>> accountsXLS) {
+    public static void deleteAccount(List<Map<String, String>> accountsXLS) {
 
     }
 }

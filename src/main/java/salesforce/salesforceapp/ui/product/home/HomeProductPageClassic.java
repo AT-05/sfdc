@@ -26,8 +26,6 @@ public class HomeProductPageClassic extends HomeProductPage {
 
     public HomeProductPageClassic() {
         super.newProduct = productInput;
-        super.createPriceBook = createPriceBook;
-        super.priceBookDropDown = new Select(elementSelectPriceBook);
     }
 
     @Override
@@ -38,18 +36,17 @@ public class HomeProductPageClassic extends HomeProductPage {
     /**
      * Create new Prodcut.
      *
-     * @return product edition.
+     * @return products edition.
      */
     @Override
     public ProductEditionFormClassic newProduct() {
-        System.out.println("Entrooo a  Classic *******************marcoooo*********");
         newProduct.click();
         return new ProductEditionFormClassic();
     }
 
 
     /**
-     * Check if exist a product.
+     * Check if exist a products.
      *
      * @param name string.
      * @return boolean.
@@ -59,27 +56,7 @@ public class HomeProductPageClassic extends HomeProductPage {
         return exitElement(name);
     }
 
-    /**
-     * This Method create go to create new price book page.
-     *
-     * @param create_new_view selection create price.
-     */
-    @Override
-    public ProductEditionForm goToCreateNewPriceBook(String create_new_view) {
-        System.out.println("entro a buscar create*******************");
-        waitUntilPageObjectIsLoaded();
-        createPriceBook = priceBookLink.findElements(By.xpath("//a[contains(text(),'Create New View')]")).get(0);
-        createPriceBook.click();
-        return new ProductEditionFormClassic();
-    }
 
-    @Override
-    public ProductContentPage selectPriceBook(PriceBook priceBook) {
-        priceBookDropDown = new Select(elementSelectPriceBook);
-        priceBookDropDown.selectByVisibleText("Price Book test1");
-        System.out.println("selectionado coarajo**********************");
-        return new ProductContentPageClassic();
-    }
 
 
 }

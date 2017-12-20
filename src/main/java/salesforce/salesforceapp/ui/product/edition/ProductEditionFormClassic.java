@@ -2,8 +2,7 @@ package salesforce.salesforceapp.ui.product.edition;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.entities.product.PriceBook;
-import salesforce.salesforceapp.entities.product.Product;
+import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.ui.product.content.ProductContentPage;
 import salesforce.salesforceapp.ui.product.content.ProductContentPageClassic;
 
@@ -28,19 +27,9 @@ public class ProductEditionFormClassic extends ProductEditionForm {
     @FindBy(name = "save")
     private WebElement elementBtn;
 
-    ////
-
-    @FindBy(id = "fname")
-    private WebElement elementNamePrice;
-
-    @FindBy(id = "devname")
-    private WebElement elementUniqueNamePriceBook;
-
-    @FindBy(name = "save")
-    WebElement elementSavePriceBook;
 
     /**
-     * Constructor product form.
+     * Constructor products form.
      */
     public ProductEditionFormClassic() {
         super.productNameInput = elementNameInput;
@@ -48,27 +37,22 @@ public class ProductEditionFormClassic extends ProductEditionForm {
         super.productDescriptionInput = elementDescriptionInput;
         super.saveBtn = elementBtn;
         super.activeCheckBox = elementCheckBox;
-
-        super.namePriceBookInput = elementNamePrice;
-        super.uniqueNamePriceBookInput = elementUniqueNamePriceBook;
-        super.savePriceBookBnt = elementSavePriceBook;
     }
 
     /**
      * Click save products data.
      *
-     * @return product content.
+     * @return products content.
      */
     private ProductContentPageClassic clickSaveBnt() {
         saveBtn.click();
         return new ProductContentPageClassic();
     }
 
-
     /**
-     * Create a new product.
+     * Create a new products.
      *
-     * @param product product.
+     * @param product products.
      * @return ProductContent.
      */
     @Override
@@ -81,10 +65,10 @@ public class ProductEditionFormClassic extends ProductEditionForm {
     }
 
     /**
-     * Edit an existing product.
+     * Edit an existing products.
      *
-     * @param product product.
-     * @return product content.
+     * @param product products.
+     * @return products content.
      */
     @Override
     public ProductContentPage editProduct(Product product) {
@@ -94,22 +78,5 @@ public class ProductEditionFormClassic extends ProductEditionForm {
         setActiveCheckBox(product.getActive());
         return clickSaveBnt();
     }
-
-    /**
-     * After create a price book go to content page.
-     *
-     * @param priceBook price book class.
-     * @return product content page.
-     */
-    @Override
-    public ProductContentPage createPriceBook(PriceBook priceBook) {
-        namePriceBookInput.clear();
-        namePriceBookInput.sendKeys(priceBook.getName());
-        uniqueNamePriceBookInput.clear();
-        uniqueNamePriceBookInput.sendKeys(priceBook.getUniqueName());
-        savePriceBookBnt.click();
-        return new ProductContentPageClassic();
-    }
-
 
 }

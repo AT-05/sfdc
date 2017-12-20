@@ -1,16 +1,49 @@
 {
   "Environments": [
     {
-      "id": "login",
+      "id": "devOrgGerman",
       "url": "https://login.salesforce.com/",
-      "user name": "marco@monkeysoft.com",
-      "user password": "MM77884632mm"
+      "user name": "",
+      "user password": "",
+      "consumer key" : "",
+      "consumer secret" : "",
+      "security token" : ""
     },
     {
-      "id": "developer",
-      "url": "https://developers.salesforce.com/",
-      "user name": "",
-      "user password": ""
+      "id": "devOrgAbner",
+      "url": "https://login.salesforce.com/",
+      "user name": "abner@atgui.org",
+      "user password": "cream.com2",
+      "consumer key" : "",
+      "consumer secret" : "",
+      "security token" : ""
+    },
+    {
+      "id": "devOrgOscar",
+      "url": "https://login.salesforce.com/",
+      "user name": "oscar.delgadillo@at05.com",
+      "user password": "password123",
+      "consumer key" : "3MVG9mclR62wycM04B_Qm6ZNfV_7Jaxp8Vhe6pkpKsLFxOM.mXMt2B3VKaQRobp5F3dw9sJ.aG9pUol8kzHj1",
+      "consumer secret" : "3993952417210649632",
+      "security token" : "vzUNKhYwyMUCRygInMaru7eS"
+    },
+    {
+      "id": "devOrgFranco",
+      "url": "https://login.salesforce.com/",
+      "user name": "franco@francosoft.com",
+      "user password": "ilovejesus100aml",
+      "consumer key" : "",
+      "consumer secret" : "",
+      "security token" : ""
+    },
+    {
+      "id": "devOrgMarco",
+      "url": "https://login.salesforce.com/",
+      "user name": "marco@monkeysoft.com",
+      "user password": "MM77884632mm",
+      "consumer key" : "",
+      "consumer secret" : "",
+      "security token" : ""
     }
   ]
 }
