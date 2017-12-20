@@ -46,7 +46,6 @@ public class ProductEditionFormLightning extends ProductEditionForm {
         return new ProductContentPageLightning();
     }
 
-
     /**
      * Create a new products.
      *
@@ -77,6 +76,5 @@ public class ProductEditionFormLightning extends ProductEditionForm {
         setProductCodeInput(product.getCode());
         return clickSaveBnt();
     }
-
 
 }

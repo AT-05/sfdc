@@ -1,7 +1,12 @@
 package salesforce.salesforceapp.ui.product.home;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+import salesforce.salesforceapp.entities.product.PriceBook;
+import salesforce.salesforceapp.ui.product.content.ProductContentPage;
+import salesforce.salesforceapp.ui.product.content.ProductContentPageClassic;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
 
@@ -13,6 +18,11 @@ public class HomeProductPageClassic extends HomeProductPage {
     @FindBy(name = "new")
     WebElement productInput;
 
+    @FindBy(xpath = "//a[contains(text(),'Create New View')]")
+    WebElement priceBookLink;
+
+    @FindBy(xpath = ".//*[@id='fcf_pricebook']")
+    WebElement elementSelectPriceBook;
 
     public HomeProductPageClassic() {
         super.newProduct = productInput;
@@ -30,7 +40,6 @@ public class HomeProductPageClassic extends HomeProductPage {
      */
     @Override
     public ProductEditionFormClassic newProduct() {
-        System.out.println("Entrooo a  Classic *******************marcoooo*********");
         newProduct.click();
         return new ProductEditionFormClassic();
     }
@@ -46,6 +55,8 @@ public class HomeProductPageClassic extends HomeProductPage {
     public boolean thereIsProduct(String name) {
         return exitElement(name);
     }
+
+
 
 
 }

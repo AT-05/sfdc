@@ -44,7 +44,6 @@ public class OpportunityPageSteps {
       String username = SalesForceAppEnvsConfig.getInstance().getUserName();
       String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
       homePage = loginPage.login(username, password);
-      
     }
   }
 
