@@ -46,7 +46,15 @@ public class ContactContentPageLight extends ContactContentPage {
   public void waitUntilPageObjectIsLoaded() {
     wait.until(ExpectedConditions.visibilityOf(contactFullName));
   }
-
+  /**
+   * Verify is show the message .
+   *
+   * @return (true/false)
+   */
+  @Override
+  public boolean displayMessage() {
+    return successMessage.isDisplayed();
+  }
   /**
    * This method gets name label.
    *

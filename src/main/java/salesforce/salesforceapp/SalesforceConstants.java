@@ -12,6 +12,19 @@ public class SalesforceConstants {
   public final static String ACCOUNT_SECTOR = "Account Sector";
   public final static String ACCOUNT_EMPLOYEES = "Account Employees";
 
+  //Contacts
+  public final static String CONTACT="Contact";
+  public final static String CONTACT_NAME="Contact Name";
+  public final static String CONTACT_LAST_NAME="Contact Last Name";
+  public final static String CONTACT_ACCOUNT_NAME="Contact Account Name";
+  public final static String CONTACT_TITLE="Contact Title";
+  public final static String CONTACT_EMAIL="Contact Email";
+  public final static String CONTACT_PHONE="Contact Phone";
+  public final static String CONTACT_STREET="Contact Street";
+  public final static String CONTACT_CITY="Contact City";
+  public final static String CONTACT_STATE="Contact State";
+  public final static String CONTACT_COUNTRY="Contact Country";
+
   //Quotes
   public final static String QUOTES = "Quote";
   public final static String QUOTE_NAME = "Quote Name";
