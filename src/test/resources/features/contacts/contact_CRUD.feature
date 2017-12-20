@@ -1,4 +1,4 @@
-@Contacts @Functional @NewContact
+@Contacts @Functional
 Feature: Manage Contacts
 
   Background:
@@ -31,7 +31,7 @@ Feature: Manage Contacts
       | test | tester   | Acme          | Buyer | test@mail.com | 5551212 | 100 Chestnut Street | Toronto | Ontario | Canada  |
 
     When I delete this Contact
- #Then Contact was deleted message should be not displayed in Contact Content Page
+    Then I should see the Contact is removed from the Accounts page
 
 
 
