@@ -84,11 +84,7 @@ public class AccountContentPageLight extends AccountContentPage {
    */
   @Override
   public void clickOnDetails() {
-    try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    wait.until(ExpectedConditions.invisibilityOfElementLocated(savedMessageBy));
     waitUntilMessageDisappear();
     driverTools.clickElement(detailsBtnBy);
   }
