@@ -49,7 +49,7 @@ public class AccountsSteps {
 
   @When("^I create a New Account with the following information:$")
   public void createANewAccountWithTheFollowingInformation(List<Account> accountList) {
-    account = accountList.get(0);//accountHomePage
+    account = accountList.get(0);
     accountEditionForm = accountHomePage.clickNewAccountBtn();
     accountContentPage = accountEditionForm.saveAccount(account);
   }
@@ -70,7 +70,7 @@ public class AccountsSteps {
     //assertTrue(APIAccount.isAccountSaved(account), "The account was successfully saved");
   }
 
-  @Given("^I have an Acount with the following information:$")
+  @Given("^I have an Account with the following information:$")
   public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
     createANewAccountWithTheFollowingInformation(accountList);
     accountContentPage.waitUntilMessageDisappear();
@@ -94,7 +94,7 @@ public class AccountsSteps {
   }
 
 
-  @Then("^I should see the Acount is removed from the Accounts page$")
+  @Then("^I should see the Account is removed from the Accounts page$")
   public void iShouldSeeTheAcountIsRemovedFromTheAccountsPage() {
     assertFalse(accountHomePage.containTheAccount(account));
   }
@@ -122,7 +122,7 @@ public class AccountsSteps {
     assertTrue(accountContentPage.containsThisElement(myAccount.getWebsite()), "The Web adrres was not displayed correctly");
   }
 
-  @Given("^I have Acount  with the following information and has a closed won Opportunity:$")
+  @Given("^I have Account with the following information and has a closed won Opportunity:$")
   public void iHaveAcountWithTheFollowingInformationAndHasAClosedWonOpportunity(List<Account> accountList) {
     account = accountList.get(0);
   }

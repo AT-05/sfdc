@@ -67,13 +67,9 @@ public class ManageSteps {
 
   @And("^the Opportunity (?:created|edited) should be had the correct values$")
   public void theOpportunityCreatedShouldBeDisplayInTheOpportunitiesList() {
-    System.out.println("====== click tab");
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
-    System.out.println("====== select oppy");
     oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());
-    System.out.println("====== click details");
     oppyContentPage.clickDetailsOppyBtn();
-    System.out.println("====== validation");
     validationOpportunity();
   }
 
@@ -105,13 +101,17 @@ public class ManageSteps {
   /**
    * Verify content of element with the content of the object.
    */
-  private void validationOpportunity(){
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getOppyName()), "Name opportunity is incorrect:");
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getCloseDate()), "Close data is incorrect:");
+  private void validationOpportunity() {
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getOppyName()),
+        "Name opportunity is incorrect:");
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getCloseDate()),
+        "Close data is incorrect:");
     assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()), "Stage is incorrect:");
     assertTrue(oppyContentPage.containsLinkElement(oppy.getAccount()), "Account is incorrect:");
-    assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()), "Amount is incorrect:");
-    assertTrue(oppyContentPage.containsCheckbox(oppy.getPrivateCheckedAsString()), "private checked is incorrect:");
+    assertTrue(oppyContentPage.containsSpanElement(oppy.getAmountWithFormat()),
+        "Amount is incorrect:");
+    assertTrue(oppyContentPage.containsCheckbox(oppy.getPrivateCheckedAsString()),
+        "private checked is incorrect:");
   }
 
 

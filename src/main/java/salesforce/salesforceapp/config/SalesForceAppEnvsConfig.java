@@ -5,18 +5,17 @@ import salesforce.core.utils.JsonReader;
 import salesforce.salesforceapp.SalesforceEnums.Skin;
 
 public class SalesForceAppEnvsConfig {
-
   private Logger log = Logger.getLogger(getClass());
 
-  //private static final String ENV_ID = "login";
-  private static final String ENV_ID = System.getProperty("env_id");
+  //web
+  private final String ENV_ID = "envId";
+  private final String SKIN = "skin";
+  private final String ENVIRONMENTS = "Environments";
+  private final String ID = "id";
+  private final String URL = "url";
+  private final String USER_NAME = "user name";
+  private final String USER_PASSWORD = "user password";
 
-  private static final String ENVIRONMENTS = "Environments";
-  private static final String ID = "id";
-  private static final String URL = "url";
-  private static final String USER_NAME = "user name";
-  private static final String USER_PASSWORD = "user password";
-  private static final String SKIN = "skin";
   //api
   private final String USER_TOKEN = "user token";
   private final String GRANT_TYPE = "grant type";
@@ -26,8 +25,7 @@ public class SalesForceAppEnvsConfig {
   private final String SERVICE_BASE_URI = "service base uri";
 
 
-  private JsonReader envReader;
-
+  private String envId;
   private Skin skin;
   private String url;
   private String userName;
@@ -39,10 +37,8 @@ public class SalesForceAppEnvsConfig {
   private String tokenBaseUri;
   private String serviceBaseUri;
 
-  private static SalesForceAppEnvsConfig instance;
 
-  protected SalesForceAppEnvsConfig() {
-  }
+  private static SalesForceAppEnvsConfig instance;
 
   public static SalesForceAppEnvsConfig getInstance() {
     if (instance == null) {
@@ -52,40 +48,68 @@ public class SalesForceAppEnvsConfig {
   }
 
   public void initialize(String sampleAppEnvsConfigFileName) {
-    log.info("-----Read the credentials-----");
+    log.info("SalesforceEnvsConfig initialize: Read the environments settings");
+
+    JsonReader envReader = new JsonReader(sampleAppEnvsConfigFileName);
+
+    //Get the environment system property
+    envId = System.getProperty(ENV_ID);
+    log.info("Environment Id --> " + envId);
 
     //Get the skin system property
     skin = Skin.getSkinEnumBySkinName(System.getProperty(SKIN));
     log.info("Skin --> " + skin);
 
-    envReader = new JsonReader(sampleAppEnvsConfigFileName);
-    url = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, URL);
-    userName = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_NAME);
-    userPassword = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_PASSWORD);
+    //web
+    url = envReader.getKeyValue(ENVIRONMENTS, ID, envId, URL);
+    userName = envReader.getKeyValue(ENVIRONMENTS, ID, envId, USER_NAME);
+    userPassword = envReader.getKeyValue(ENVIRONMENTS, ID, envId, USER_PASSWORD);
 
     //api
-    userToken = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, USER_TOKEN);
-    grantType = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, GRANT_TYPE);
-    clientId = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, CLIENT_ID);
-    clientSecret = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, CLIENT_SECRET);
-    tokenBaseUri = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, TOKEN_BASE_URI);
-    serviceBaseUri = envReader.getKeyValue(ENVIRONMENTS, ID, ENV_ID, SERVICE_BASE_URI);
+    userToken = envReader.getKeyValue(ENVIRONMENTS, ID, envId, USER_TOKEN);
+    grantType = envReader.getKeyValue(ENVIRONMENTS, ID, envId, GRANT_TYPE);
+    clientId = envReader.getKeyValue(ENVIRONMENTS, ID, envId, CLIENT_ID);
+    clientSecret = envReader.getKeyValue(ENVIRONMENTS, ID, envId, CLIENT_SECRET);
+    tokenBaseUri = envReader.getKeyValue(ENVIRONMENTS, ID, envId, TOKEN_BASE_URI);
+    serviceBaseUri = envReader.getKeyValue(ENVIRONMENTS, ID, envId, SERVICE_BASE_URI);
   }
 
-  public String getUrl() {
-    return url;
+  /**
+   *
+   * @return
+   */
+  public String getEnvId() {
+    return envId;
   }
 
-  public String getUserName() {
-    return userName;
-  }
-
-  public String getUserPassword() {
-    return userPassword;
-  }
-
+  /**
+   *
+   * @return
+   */
   public Skin getSkin() {
     return skin;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public String getUrl() {
+    return  url;
+  }
+
+  /**
+   * @return
+   */
+  public String getUserName() {
+    return  userName;
+  }
+
+  /**
+   * @return
+   */
+  public String getUserPassword() {
+    return  userPassword;
   }
 
   /**

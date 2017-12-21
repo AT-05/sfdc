@@ -1,6 +1,5 @@
 package salesforce.salesforceapp.ui.product.content;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.salesforceapp.entities.products.Product;

@@ -2,7 +2,6 @@ package salesforce.salesforceapp.ui.home;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 
 public class HomePageLight extends HomePage {
 

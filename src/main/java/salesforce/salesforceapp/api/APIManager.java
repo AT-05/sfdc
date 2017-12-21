@@ -2,20 +2,14 @@ package salesforce.salesforceapp.api;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
-
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import java.util.*;
 import org.apache.log4j.Logger;
-
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.put;
-import static io.restassured.RestAssured.responseSpecification;
 import static io.restassured.http.ContentType.JSON;
 import salesforce.salesforceapp.config.*;
-import salesforce.salesforceapp.entities.account.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class APIManager {
   private Logger log = Logger.getLogger(getClass());

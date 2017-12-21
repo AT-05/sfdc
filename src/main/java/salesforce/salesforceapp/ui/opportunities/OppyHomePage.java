@@ -13,11 +13,6 @@ public abstract class OppyHomePage extends HomeBasePage {
    * @return OppyContentPage.
    */
   public OppyContentPage selectOppy(String linkText) {
-    /*try {
-      Thread.sleep(3000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }*/
     selectItem(linkText);
     return PageFactory.getOppyContentPage();
   }
