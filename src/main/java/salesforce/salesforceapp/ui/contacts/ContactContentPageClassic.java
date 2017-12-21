@@ -51,6 +51,16 @@ public class ContactContentPageClassic extends ContactContentPage {
 
   }
 
+  /**
+   * Verify is show the message .
+   *
+   * @return (true/false)
+   */
+  @Override
+  public boolean displayMessage() {
+    return true;
+  }
+
   @Override
   public String getContactNameText() {
     return null;

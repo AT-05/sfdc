@@ -15,7 +15,6 @@ import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 public abstract class HomeProductPage extends BasePage {
 
     public WebElement newProduct;
-
     public TopMenu topMenu;
 
     @FindBy(id = "new")
@@ -46,7 +45,7 @@ public abstract class HomeProductPage extends BasePage {
     }
 
     /**
-     * Create new Prodcut.
+     * Create new Product.
      *
      * @return products edition.
      */
@@ -85,5 +84,6 @@ public abstract class HomeProductPage extends BasePage {
      * @return boolean.
      */
     public abstract boolean thereIsProduct(String name);
+
 }
 

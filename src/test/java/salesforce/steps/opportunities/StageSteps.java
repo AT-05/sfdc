@@ -2,12 +2,9 @@ package salesforce.steps.opportunities;
 
 import static org.testng.Assert.assertTrue;
 
-import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.interactions.Actions;
-import salesforce.core.selenium.webdrivers.DriverFactory;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;

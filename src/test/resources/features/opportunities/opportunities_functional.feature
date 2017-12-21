@@ -1,4 +1,4 @@
-@Stages
+@Stages @FunctionalOppy
 Feature: Verify changes when assignment other stage of a opportunity
 
   @Functional

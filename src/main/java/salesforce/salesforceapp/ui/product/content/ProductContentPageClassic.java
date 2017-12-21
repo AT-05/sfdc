@@ -8,13 +8,13 @@ import salesforce.salesforceapp.ui.product.edition.ProductEditionFormClassic;
 import salesforce.salesforceapp.ui.product.home.HomeProductPage;
 import salesforce.salesforceapp.ui.product.home.HomeProductPageClassic;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * Created by Marco Mendez.
  */
 public class ProductContentPageClassic extends ProductContentPage {
 
-
-    private static final String PRODUCT_DETAIL = "Product Detail";
 
     @FindBy(name = "edit")
     private WebElement elementEditBtn;
@@ -47,8 +47,8 @@ public class ProductContentPageClassic extends ProductContentPage {
         super.productCodeLabel = elementCodeLabel;
         super.productDescriptionLabel = elementDescriptionLabel;
         super.activeCheckBox = elementCheckBox;
-    }
 
+    }
 
     /**
      * Check is the products fields are corrects.
@@ -58,11 +58,10 @@ public class ProductContentPageClassic extends ProductContentPage {
      */
     @Override
     public boolean validateProductFields(Product product) {
-        boolean active = activeCheckBox.getAttribute("Alt").equalsIgnoreCase("Not checked") ? false : true;
-        return productNameLabel.getText().equalsIgnoreCase(product.getName().toString()) == true
-                && productCodeLabel.getText().equalsIgnoreCase(product.getCode()) == true
-                && productDescriptionLabel.getText().equalsIgnoreCase(product.getDescription()) == true
-                && active == product.getActive();
+        assertTrue(productNameLabel.getText().equalsIgnoreCase(product.getName().toString()));
+        assertTrue(productCodeLabel.getText().equalsIgnoreCase(product.getCode()));
+        assertTrue(productDescriptionLabel.getText().equalsIgnoreCase(product.getDescription()));
+        return productNameLabel.getText().equalsIgnoreCase(product.getName().toString()) == true;
     }
 
     /**
@@ -76,7 +75,6 @@ public class ProductContentPageClassic extends ProductContentPage {
         return new ProductEditionFormClassic();
     }
 
-
     /**
      * Delete an existing products.
      *
@@ -89,7 +87,6 @@ public class ProductContentPageClassic extends ProductContentPage {
         return new HomeProductPageClassic();
     }
 
-
     /**
      * Go to Home Product page.
      *
@@ -100,6 +97,5 @@ public class ProductContentPageClassic extends ProductContentPage {
         productTab.click();
         return new HomeProductPageClassic();
     }
-
 
 }

@@ -10,6 +10,8 @@ import salesforce.salesforceapp.entities.products.Product;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class Quote {
+  private String id;
+  private String opportunityId;
   private String name;
   private String expirationDate;
   private String status;
@@ -38,6 +40,25 @@ public class Quote {
     description = quote.getDescription();
     tax = quote.getTaxAsDouble();
     shippingAndHandling = quote.getShippingAndHandlingAsDouble();
+  }
+
+  /**
+   * <p>This method sets the id value of the opportunity
+   * which this quote belongs to.</p>
+   *
+   * @param opportunityId is the opportunity id value given.
+   */
+  public void setOpportunityId(String opportunityId) {
+    this.opportunityId = opportunityId;
+  }
+
+  /**
+   * <p>This method sets quote id value.</p>
+   *
+   * @param id is the quote id value given.
+   */
+  public void setId(String id) {
+    this.id = id;
   }
 
   /**
@@ -125,6 +146,24 @@ public class Quote {
    */
   public void calculateGrandTotal() {
     grandTotal = tax + shippingAndHandling + totalPrice;
+  }
+
+  /**
+   * <p>This method gets opportuniy id.</p>
+   *
+   * @return opportuniy id value.
+   */
+  public String getOpportunityId() {
+    return opportunityId;
+  }
+
+  /**
+   * <p>This method gets quote id.</p>
+   *
+   * @return quote id value.
+   */
+  public String getId() {
+    return id;
   }
 
   /**

@@ -3,7 +3,6 @@ package salesforce.salesforceapp.excel;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import salesforce.salesforceapp.api.methods.APIAccount;
 import salesforce.salesforceapp.entities.account.Account;
 
 import static salesforce.salesforceapp.SalesforceConstants.*;
@@ -36,9 +35,9 @@ public class XLSAccount {
             System.out.println("Account Sector: " + account.getSector());
             System.out.println("Account Employees: " + account.getEmployees());
 
-            if (!APIAccount.isAccountSaved(account)) {
-                APIAccount.createAccount(account);
-            }
+//            if (!APIAccount.isAccountSaved()) {
+//                APIAccount.createAccount();
+//            }
         }
     }
 

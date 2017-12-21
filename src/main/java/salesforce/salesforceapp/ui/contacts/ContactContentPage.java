@@ -25,6 +25,12 @@ public abstract class ContactContentPage extends ContentBasePage {
   @FindBy(css = "[title='Details']")
   @CacheLookup
   protected WebElement detailsLinkBtn;
+  /**
+   * Verify is show the message .
+   *
+   * @return (true/false)
+   */
+  public abstract boolean displayMessage();
 
   public abstract String getContactNameText();
 
