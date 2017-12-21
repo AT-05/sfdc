@@ -1,9 +1,12 @@
 package salesforce.steps.contacts;
 
+import static org.testng.Assert.assertTrue;
+
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import java.util.List;
 import org.apache.log4j.Logger;
 import salesforce.salesforceapp.entities.contact.Contact;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -12,14 +15,11 @@ import salesforce.salesforceapp.ui.contacts.ContactEditionForm;
 import salesforce.salesforceapp.ui.contacts.ContactHomePage;
 import salesforce.salesforceapp.ui.home.HomePage;
 
-import java.util.List;
-
-import static org.testng.Assert.assertTrue;
-
 /**
  * Created by Administrator on 12/5/2017.
  */
 public class ContactsSteps {
+
   private Logger log = Logger.getLogger(getClass());
 
   //Pages
@@ -58,7 +58,7 @@ public class ContactsSteps {
   @Then("^the Contact should be displayed in Contact content page$")
   public void theContactShouldBeDisplayedInContactContentPage() {
     contactContentPage.clickOnDetails();
-   // assertTrue(contactContentPage.getNameLabel().equals(this.contact.getName()));
+    // assertTrue(contactContentPage.getNameLabel().equals(this.contact.getName()));
     //assertTrue(contactContentPage.getLastNameLabel().equals(this.contact.getLastName()));
     assertTrue(contactContentPage.getAccountNameLabel().equals(this.contact.getAccountName()));
     assertTrue(contactContentPage.getTitleLabel().equals(this.contact.getTitle()));
@@ -74,11 +74,12 @@ public class ContactsSteps {
   }
 
   @When("^I edit this Contact with the following information:$")
-  public void iEditThisAContactWithTheFollowingInformation(List<Contact> contacts) throws InterruptedException {
-            //get data from feature file and set in Contact object
+  public void iEditThisAContactWithTheFollowingInformation(List<Contact> contacts)
+      throws InterruptedException {
+    //get data from feature file and set in Contact object
     this.contact = contacts.get(0);
     iGoToContactHomePage();
-    contactContentPage=contactHomePage.selectContact(this.contact.getName());
+    contactContentPage = contactHomePage.selectContact(this.contact.getName());
     contactEditionForm = contactContentPage.clickEditButton();
     contactContentPage = contactEditionForm.editContact(this.contact);
   }
@@ -89,7 +90,7 @@ public class ContactsSteps {
     final String msgExpected = "";
     System.out.println("****************ini message**********************");
     System.out.println(contactContentPage.
-      getContactNameText());
+        getContactNameText());
     System.out.println("****************end message**********************");
     //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
@@ -101,7 +102,7 @@ public class ContactsSteps {
     final String msgExpected = "";
     System.out.println("****************ini message**********************");
     System.out.println(contactContentPage.
-      getContactNameText());
+        getContactNameText());
     System.out.println("****************end message**********************");
     //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
@@ -110,7 +111,7 @@ public class ContactsSteps {
   @When("^I delete this Contact$")
   public void iDeleteThisContact() throws InterruptedException {
     iGoToContactHomePage();
-    contactContentPage=contactHomePage.selectContact(contact.getName());
+    contactContentPage = contactHomePage.selectContact(contact.getName());
     contactContentPage.deleteContact();
   }
 
@@ -120,26 +121,41 @@ public class ContactsSteps {
     final String msgExpected = "";
     System.out.println("****************ini message**********************");
     System.out.println(contactContentPage.
-      getContactNameText());
+        getContactNameText());
     System.out.println("****************end message**********************");
     //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
+
   @Then("^I should see the Contact is removed from the Accounts page$")
   public void iShouldSeeTheContactIsRemovedFromTheAccountsPage() throws Throwable {
     assertTrue(contactHomePage.containContact(contact));
   }
+
+  @Then("^Contact created message error should be displayed in Contact Edit Page$")
+  public void contactCreatedMessageErrorShouldBeDisplayedInContactEditPage() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    assertTrue(contactEditionForm.displayedErrorMessage());
+  }
+
+  @Then("^Contact edited message error should be displayed in Contact Edit Page$")
+  public void contactEditedMessageErrorShouldBeDisplayedInContactEditPage() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    assertTrue(contactEditionForm.displayedErrorMessage());
+  }
+
   //****************************************************************
   //Hooks for @CRUD scenarios
   //****************************************************************
   @After(value = "@createContact", order = 997)
-  public void afterCreateContact() throws Throwable{
+  public void afterCreateContact() throws Throwable {
     log.info("After hook @createContact");
     contactContentPage.deleteContact();
   }
+
   @After(value = "@editContact", order = 996)
-  public void afterEditContact() throws Throwable{
-      contactContentPage.deleteContact();
+  public void afterEditContact() throws Throwable {
+    contactContentPage.deleteContact();
   }
 
 

@@ -104,12 +104,19 @@ public class ContactEditionFormLight extends ContactEditionForm {
   @CacheLookup
   private WebElement mailingCountryInput;
 
+  @FindBy(xpath = "//div[contains(@class, 'genericNotification')]")
+  private WebElement messageErrorOnFormLabel;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
     wait.until(ExpectedConditions.visibilityOf(contactNameInput));
   }
 
+  /**
+   *
+   * @param contact Entity
+   * @return
+   */
   @Override
   public ContactContentPage createContact(Contact contact) {
     //sets
@@ -179,6 +186,15 @@ public class ContactEditionFormLight extends ContactEditionForm {
    */
   public void clickCancelButton() {
     driverTools.clickElement(cancelBtn);
+  }
+  /**
+   * Verify is show the error message on create/edit an Contact.
+   *
+   * @return (true/false)
+   */
+  @Override
+  public boolean displayedErrorMessage() {
+    return driverTools.isElementDisplayed(messageErrorOnFormLabel);
   }
 
 }
