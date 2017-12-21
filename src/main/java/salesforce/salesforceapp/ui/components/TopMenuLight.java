@@ -110,8 +110,11 @@ public class TopMenuLight extends TopMenu {
   @Override
   public HomePage goToHomePage() {
     //driverTools.clickElement(homeBtn);
-    driverTools.clickElement(appLauncherLink);
-    driverTools.clickElement(salesBtn);
+
+//    driverTools.clickElement(appLauncherLink);
+//    driverTools.clickElement(salesBtn);
+//    return new HomePageLight();
+
     return new HomePageLight();
   }
 
