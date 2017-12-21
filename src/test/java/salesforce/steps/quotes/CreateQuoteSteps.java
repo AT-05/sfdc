@@ -60,10 +60,8 @@ public class CreateQuoteSteps {
 
   @When("^I create a Quote with the following information$")
   public void iCreateAQuoteWithTheFollowingInformation(List<Quote> quoteCreateInfo) {
-    oppy.setQuoteList(quoteCreateInfo);
-    for (Quote itemQuote : quoteCreateInfo) {
-      quoteName = itemQuote.getName();
-    }
+    oppy.addQuote(quoteCreateInfo.get(0));
+    quoteName = quoteCreateInfo.get(0).getName();
     quoteEditionForm = oppyQuotesView.goToCreateQuote();
     quoteEditionForm.createQuote(oppy, quoteName);
   }
