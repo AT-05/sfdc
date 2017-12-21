@@ -32,7 +32,7 @@ public abstract class APIBase {
 
   public boolean isSObjectRecordSaved() {
     String totalSize = (apiManager.getQuery(apiSObjectName, removeFields(fieldsMap)).jsonPath().get(TOTAL_SIZE)).toString();
-    System.out.println("*******response: " + apiManager.getQuery(apiSObjectName, removeFields(fieldsMap)).asString());
+    System.out.println("*******response of query: " + apiManager.getQuery(apiSObjectName, removeFields(fieldsMap)).asString());
     System.out.println("total size: " + totalSize);
     if (totalSize != null) {
       return Integer.parseInt(totalSize) > 0;
@@ -43,19 +43,8 @@ public abstract class APIBase {
   public String getSObjectRecordFieldValueByField(String sObjectFieldNameFrom,
                                                   String sObjectFieldNameWhere,
                                                   String sObjectFieldValueWhere) {
-    System.out.println("queryyyyyyyyyyyyyyyyyyyyy: " + apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
-        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get("records"));
-
-    JsonPath jsonPath = apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
-        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get("records");
-
-    System.out.println(jsonPath);
-    return jsonPath.toString();
-
-//    return (apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
-//        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get("records")).toString();
-//    return (apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
-//        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get(sObjectFieldNameFrom));
+    return (apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
+        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get(sObjectFieldNameFrom));
   }
 
 
@@ -63,7 +52,7 @@ public abstract class APIBase {
 
   public void createSObjectRecord() {
     response = APIManager.getInstance().post(apiSObjectName, fieldsMap);
-    System.out.println("response of creating record" + response.asString());
+    System.out.println("response of creating record: " + response.asString());
     setAPIObjectId();
   }
 
@@ -71,6 +60,6 @@ public abstract class APIBase {
 
   public void deleteSObjectRecord() {
     response = APIManager.getInstance().delete(apiSObjectName, getAPIObjectId());
-    System.out.println("*******response" + response.asString());
+    System.out.println("*******response of deleting: " + response.asString());
   }
 }

@@ -1,5 +1,7 @@
 package salesforce.steps.quotes;
 
+import cucumber.api.java.*;
+import org.apache.log4j.*;
 import static org.testng.Assert.assertTrue;
 
 import cucumber.api.java.en.And;
@@ -8,6 +10,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
 
+import salesforce.core.utils.*;
 import salesforce.salesforceapp.api.methods.*;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
@@ -24,6 +27,8 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class EditQuoteSteps {
+  private Logger log = Logger.getLogger(getClass());
+
   private HomePage homePage;
   private OppyHomePage oppyHomePage;
   private OppyQuotesView oppyQuotesView;
@@ -63,6 +68,7 @@ public class EditQuoteSteps {
     //Setting oppy api id in quote
     quote.setOpportunityId(oppy.getId());
 
+    System.out.println("date" + quote.getExpirationDate());
     //Creating quote
     apiQuote = new APIQuote(quote);
     System.out.println("******creating quote from api");
@@ -103,5 +109,16 @@ public class EditQuoteSteps {
     quotesContentPage.openQuoteDetails();
     oppy.getQuote(quoteName).calculateGrandTotal();
     assertTrue(quotesContentPage.isQuoteInfoCorrect(oppy.getQuote(quoteName)), "The quote information after editing is not correct");
+  }
+
+  //****************************************************************
+  //Hooks for @Quote scenarios
+  //****************************************************************
+  @After(value = "@EditQuote", order = 999)
+  public void afterEditQuote() {
+    log.info("After hook @EditQuote");
+    if (!apiQuote.isSObjectRecordSaved()){
+      apiQuote.deleteSObjectRecord();
+    }
   }
 }

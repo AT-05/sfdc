@@ -1,5 +1,7 @@
 package salesforce.steps.quotes;
 
+import cucumber.api.java.*;
+import org.apache.log4j.*;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertFalse;
 
@@ -15,6 +17,8 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class DeleteQuoteSteps {
+  private Logger log = Logger.getLogger(getClass());
+
   private QuotesContentPage quotesContentPage;
   private QuotesHomePage quotesHomePage;
 

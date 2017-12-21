@@ -27,20 +27,6 @@ public class APIOppy extends APIBase {
   /**
    * <p>This method converts the </p>
    *
-   * @param oppy
-   * @return
-   */
-  public Map<String, Object> covertOppyToMapToGet(Oppy oppy) {
-    Map<String, Object> oppyMap = new HashMap<>();
-    oppyMap.put("Name", oppy.getOppyName());
-    oppyMap.put("StageName", oppy.getStage());
-    oppyMap.put("CloseDate", oppy.getCloseDate());
-    return oppyMap;
-  }
-
-  /**
-   * <p>This method converts the </p>
-   *
    * @return
    */
   @Override

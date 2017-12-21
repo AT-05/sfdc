@@ -27,11 +27,13 @@ public class Oppy {
   }
 
   public String getId() {
-    if (id == null) {
-      System.out.println("getting oppy api id with query");
-      APIOppy apiOppy = new APIOppy(this);
-      id = apiOppy.getSObjectRecordFieldValueByField("id", "Name", oppyName);
-    }
+//    if (id == null) {
+//      System.out.println("getting oppy api id with query");
+//      APIOppy apiOppy = new APIOppy(this);
+//      id = apiOppy.getSObjectRecordFieldValueByField("id", "Name", oppyName);
+//    }
+    setId("0061I000007UZAUQA4");
+    System.out.println("id: " + id);
     return id;
   }
 
