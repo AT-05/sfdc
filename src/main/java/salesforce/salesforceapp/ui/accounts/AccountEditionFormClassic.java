@@ -92,4 +92,9 @@ public class AccountEditionFormClassic extends AccountEditionForm {
   public boolean displayedErrorMessage() {
     return driverTools.isElementDisplayed(messageErrorOnFormLabel);
   }
+
+  @Override
+  public void closeMessageError() {
+
+  }
 }

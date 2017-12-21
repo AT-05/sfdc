@@ -3,6 +3,8 @@ package salesforce.salesforceapp.ui.accounts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.entities.account.Account;
 
 /**
@@ -36,6 +38,8 @@ public class AccountEditionFormLight extends AccountEditionForm {
 
   @FindBy(xpath = "//div[contains(@class, 'genericNotification')]")
   private WebElement messageErrorOnFormLabel;
+
+  By closseMessageBy = By.xpath("//button[contains(@class, 'slds-modal__close closeIcon')]");
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -89,6 +93,14 @@ public class AccountEditionFormLight extends AccountEditionForm {
    */
   @Override
   public boolean displayedErrorMessage() {
-    return driverTools.isElementDisplayed(messageErrorOnFormLabel);
+    boolean resultMessage= driverTools.isElementDisplayed(messageErrorOnFormLabel);
+    closeMessageError();
+    return resultMessage;
+  }
+
+  @Override
+  public void closeMessageError() {
+    driverTools.clickElement(closseMessageBy);
+    wait.until(ExpectedConditions.invisibilityOfElementLocated(closseMessageBy));
   }
 }

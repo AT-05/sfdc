@@ -7,13 +7,13 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
+import salesforce.salesforceapp.SalesforceEnums;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.ui.LoginPage;
-import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.ProfilePage;
-import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.home.HomePage;
+import salesforce.salesforceapp.SalesforceEnums.Skin;
 
 /**
  * Created by AT05 team on 12/11/2017.
@@ -57,10 +57,6 @@ public class LoginSteps {
       final String userName = SalesForceAppEnvsConfig.getInstance().getUserName();
       final String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
       login(userName, password);
-    } else {
-      TopMenu topMenu = PageFactory.getTopMenu();
-      topMenu.goToHomePage();
-      homePage= PageFactory.getHomePage();
     }
   }
 
@@ -70,6 +66,9 @@ public class LoginSteps {
   @After(value = "@Login, @Account", order = 999)
   public void afterLoginScenario() {
     log.info("After hook @Login");
-    homePage.topMenu.logout();
+    Skin skin = SalesForceAppEnvsConfig.getInstance().getSkin();
+    if (skin == Skin.LIGHT){
+      homePage.topMenu.logout();
+    }
   }
 }

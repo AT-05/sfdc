@@ -3,6 +3,7 @@ package salesforce.salesforceapp.ui.accounts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.PageFactory;
 
 /**
@@ -10,6 +11,7 @@ import salesforce.salesforceapp.ui.PageFactory;
  */
 public class AccountContentPageLight extends AccountContentPage {
 
+  private  By closeMessagePopup = By.xpath("//button[contains(@class, 'slds-modal__close closeIcon')]");
   private By savedMessageBy = By.xpath("//span[contains(@class,'toastMessage')]");
   @FindBy(xpath = "//div[contains(@class, 'slds-notify--toast forceToastMessage')]")
   private WebElement messageLabel;
@@ -23,16 +25,11 @@ public class AccountContentPageLight extends AccountContentPage {
   @FindBy(xpath = "//button[contains(@class, 'slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton')]")
   private WebElement deleteConfirnBtn;
 
-
-//  @FindBy(xpath = "//li[@class='slds-button slds-button--icon-border-filled oneActionsDropDown']/div")
-//  private WebElement moreOptionBtn;
   private By moreOptionBtnBy = By.xpath("//li[@class='slds-button slds-button--icon-border-filled oneActionsDropDown']/div");
 
   @FindBy(xpath = "//a[@title='Edit']")
   private WebElement editBtn;
 
-//  @FindBy(xpath = "//a[@title='Details' or @title='Detalles']//span[@class='title']")
-//  private WebElement detailsBtn;
   private By detailsBtnBy = By.xpath("//a[@title='Details' or @title='Detalles']//*[@class='title']");
 
 
@@ -87,6 +84,11 @@ public class AccountContentPageLight extends AccountContentPage {
    */
   @Override
   public void clickOnDetails() {
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     waitUntilMessageDisappear();
     driverTools.clickElement(detailsBtnBy);
   }
@@ -111,7 +113,15 @@ public class AccountContentPageLight extends AccountContentPage {
    */
   @Override
   public boolean displayedErrorDeleteMessage() {
-    return driverTools.isElementDisplayed(messageErrorCreateLabel);
+    boolean resultDisplayed= driverTools.isElementDisplayed(messageErrorCreateLabel);
+    closeMessagePopup();
+    return resultDisplayed;
+  }
+
+  private void closeMessagePopup() {
+    driverTools.clickElement(closeMessagePopup);
+    wait.until(ExpectedConditions.invisibilityOfElementLocated(closeMessagePopup));
+    topMenu.goToAccountsHomePage();
   }
 
   /**
