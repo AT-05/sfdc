@@ -2,12 +2,9 @@ package salesforce.salesforceapp.api.methods;
 
 import salesforce.core.utils.*;
 import static salesforce.salesforceapp.SalesforceConstants.*;
-import static salesforce.salesforceapp.api.APIManager.*;
 
-import io.restassured.response.Response;
 import java.util.HashMap;
 import java.util.Map;
-import salesforce.salesforceapp.api.APIManager;
 import salesforce.salesforceapp.entities.quotes.Quote;
 
 /**
@@ -19,7 +16,7 @@ public class APIQuote extends APIBase {
   public APIQuote(Quote quote) {
     this.quote = quote;
     fieldsMap = covertQuoteToMap();
-    apiObject = QUOTE;
+    apiSObjectName = QUOTE;
   }
 
   @Override
@@ -41,7 +38,7 @@ public class APIQuote extends APIBase {
   }
 
   @Override
-  protected String gettAPIObjectId() {
+  protected String getAPIObjectId() {
     return quote.getId();
   }
 }
