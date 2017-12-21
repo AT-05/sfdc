@@ -2,6 +2,8 @@ package salesforce.salesforceapp.api;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.*;
+import io.restassured.parsing.*;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import java.util.*;
@@ -112,6 +114,7 @@ public class APIManager {
    */
   public Response getFieldXByFieldY(String sObject, String sObjectFieldNameFrom,
                                     String sObjectFieldNameWhere, String sObjectFieldValueWhere) {
+    RestAssured.defaultParser = Parser.JSON;
     try {
       return given()
           .spec(requestSpecification)
@@ -193,9 +196,11 @@ public class APIManager {
     return query.toString();
   }
 
-  public String buildSQLQueryField(String sObject, String sObjectfieldNameFrom,
+  public String buildSQLQueryField(String sObject, String sObjectFieldNameFrom,
                                    String sObjectFieldNameWhere, String sObjectFieldValueWhere) {
-    return "SELECT  " + sObjectfieldNameFrom + " from " + sObject + " where "
-        + sObjectFieldNameWhere + " = " + sObjectFieldValueWhere;
+    System.out.println("SELECT " + sObjectFieldNameFrom + " from " + sObject + " where "
+        + sObjectFieldNameWhere + "='" + sObjectFieldValueWhere + "'");
+    return "SELECT " + sObjectFieldNameFrom + " from " + sObject + " where "
+        + sObjectFieldNameWhere + "='" + sObjectFieldValueWhere + "'";
   }
 }

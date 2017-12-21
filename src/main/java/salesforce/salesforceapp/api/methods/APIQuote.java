@@ -15,12 +15,12 @@ public class APIQuote extends APIBase {
 
   public APIQuote(Quote quote) {
     this.quote = quote;
-    fieldsMap = covertQuoteToMap();
+    fieldsMap = covertEntityToMap();
     apiSObjectName = QUOTE;
   }
 
   @Override
-  protected Map<String, Object> covertQuoteToMap() {
+  protected Map<String, Object> covertEntityToMap() {
     Map<String, Object> quoteMap = new HashMap<>();
     quoteMap.put("Name", quote.getName());
     quoteMap.put("OpportunityId", quote.getOpportunityId());
@@ -30,6 +30,11 @@ public class APIQuote extends APIBase {
     quoteMap.put("Tax", quote.getTaxAsDouble());
     quoteMap.put("ShippingHandling", quote.getShippingAndHandlingAsDouble());
     return quoteMap;
+  }
+
+  @Override
+  protected Map<String, Object> removeFields(Map<String, Object> inputMap) {
+    return null;
   }
 
   @Override

@@ -9,7 +9,7 @@ import static salesforce.salesforceapp.api.APIManager.*;
 import salesforce.salesforceapp.entities.account.Account;
 
 public class APIAccount {
-
+/*
   //  private final String ACCOUNT_ENDPOINT = "/sobjects/Account/";
   private final String QUERY = "/query";
 //  private final String ID_FIELD = "Id";
@@ -53,5 +53,5 @@ public class APIAccount {
     map.put("Name", account.getName());
     map.put("Phone", account.getPhone());
     return map;
-  }
+  }*/
 }

@@ -1,7 +1,10 @@
 package salesforce.salesforceapp.api.methods;
 
+import io.restassured.http.*;
+import io.restassured.path.json.*;
 import io.restassured.response.*;
 import java.util.*;
+import org.json.simple.*;
 import static salesforce.salesforceapp.SalesforceConstants.*;
 import salesforce.salesforceapp.api.*;
 
@@ -14,7 +17,6 @@ public abstract class APIBase {
   protected Map<String, Object> fieldsMap;
   protected String apiSObjectName;
 
-
   public APIBase() {
     fieldsMap = new HashMap<>();
   }
@@ -24,19 +26,36 @@ public abstract class APIBase {
    *
    * @return
    */
-  protected abstract Map<String, Object> covertQuoteToMap();
+  protected abstract Map<String, Object> covertEntityToMap();
+
+  protected abstract Map<String, Object> removeFields(Map<String, Object> inputMap);
 
   public boolean isSObjectRecordSaved() {
-    String totalSize = (apiManager.getQuery(apiSObjectName, fieldsMap).jsonPath().get(TOTAL_SIZE)).toString();
+    String totalSize = (apiManager.getQuery(apiSObjectName, removeFields(fieldsMap)).jsonPath().get(TOTAL_SIZE)).toString();
+    System.out.println("*******response: " + apiManager.getQuery(apiSObjectName, removeFields(fieldsMap)).asString());
     System.out.println("total size: " + totalSize);
-    return Integer.parseInt(totalSize) > 0;
+    if (totalSize != null) {
+      return Integer.parseInt(totalSize) > 0;
+    }
+    return false;
   }
 
   public String getSObjectRecordFieldValueByField(String sObjectFieldNameFrom,
                                                   String sObjectFieldNameWhere,
                                                   String sObjectFieldValueWhere) {
-    return (apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
-        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get(sObjectFieldNameFrom)).toString();
+    System.out.println("queryyyyyyyyyyyyyyyyyyyyy: " + apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
+        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get("records"));
+
+    JsonPath jsonPath = apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
+        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get("records");
+
+    System.out.println(jsonPath);
+    return jsonPath.toString();
+
+//    return (apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
+//        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get("records")).toString();
+//    return (apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
+//        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get(sObjectFieldNameFrom));
   }
 
 
@@ -44,6 +63,7 @@ public abstract class APIBase {
 
   public void createSObjectRecord() {
     response = APIManager.getInstance().post(apiSObjectName, fieldsMap);
+    System.out.println("response of creating record" + response.asString());
     setAPIObjectId();
   }
 

@@ -53,20 +53,10 @@ public class EditQuoteSteps {
 //    oppyHomePage = homePage.topMenu.goToOppyHomePage();
     oppy = new Oppy();
     oppy.setOppyName(opportunityName);
-    oppy.setCloseDate("12/12/2018"); //Global setup
-    oppy.setStage("Qualification"); //Global setup
 //    oppyContentPage = oppyHomePage.selectOppy(opportunityName);
 //    oppyQuotesView = oppyContentPage.goToQuotesView();
     oppy.addQuote(quoteCreateInfo.get(0));
     quoteName = quoteCreateInfo.get(0).getName();
-
-    //Creating oppy
-    apiOppy = new APIOppy(oppy);
-    apiOppy.createOppy();
-    //Getting oppy id
-    oppy.setId(apiOppy.getOppyId());
-    System.out.println("************is oppy saved: ");
-    apiOppy.isOppySaved();
 
     //Dependency injection variable setting
     quote.setQuote(quoteCreateInfo.get(0));
@@ -75,10 +65,11 @@ public class EditQuoteSteps {
 
     //Creating quote
     apiQuote = new APIQuote(quote);
+    System.out.println("******creating quote from api");
     apiQuote.createSObjectRecord();
-    //Setting quote api id
+    System.out.println("******validating creation of quote from api");
     apiQuote.isSObjectRecordSaved();
-
+//
 //    quoteEditionForm = oppyQuotesView.goToCreateQuote();
 //    quoteEditionForm.createSObjectRecord(oppy, quoteName);
 //    quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName);
