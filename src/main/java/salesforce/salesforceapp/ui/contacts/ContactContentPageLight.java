@@ -12,40 +12,42 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ContactContentPageLight extends ContactContentPage {
 
 
+  //  @FindBy(css = "a[title='Edit']")
+  @FindBy(xpath = "//a[@title='Edit']")
+  protected WebElement editBtn;
+  //  @FindBy(css = "div[title='Delete']")
+  @FindBy(xpath = "//a[@title='Delete']")
+  protected WebElement deleteBtn;
+  @FindBy(css = "button[title='Delete']")
+  protected WebElement confirmDeleteBtn;
   @FindBy(xpath = "//h1[contains(@class, 'slds-page-header__title slds-m-right--small slds-truncate slds-align-middle')]")
   private WebElement contactFullName;
-
   @FindBy(xpath = "//span[contains(text(), 'Name')]/parent::div/following-sibling::div/span/span")
   private WebElement nameLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Phone')]/parent::div/following-sibling::div/span/span")
   private WebElement phoneLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Account Name')]/parent::div/following-sibling::div/span/div/a")
   private WebElement accountNameLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Title')]/parent::div/following-sibling::div/span/span")
   private WebElement titleLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Mailing Address')]/parent::div/following-sibling::div/span/a")
   private WebElement mailingAddressLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Home Phone')]/parent::div/following-sibling::div/span/span")
   private WebElement homePhoneLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Mobile')]/parent::div/following-sibling::div/span/span")
   private WebElement mobileLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Fax')]/parent::div/following-sibling::div/span/span")
   private WebElement faxLabel;
-
   @FindBy(xpath = "//span[contains(text(), 'Email')]/parent::div/following-sibling::div/span/span/a")
   private WebElement emailLabel;
+  @FindBy(xpath = "//*[contains(@title, 'Show 6 more actions')]")
+  private WebElement moreOptionBtn;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
     wait.until(ExpectedConditions.visibilityOf(contactFullName));
   }
+
   /**
    * Verify is show the message .
    *
@@ -55,6 +57,7 @@ public class ContactContentPageLight extends ContactContentPage {
   public boolean displayMessage() {
     return successMessage.isDisplayed();
   }
+
   /**
    * This method gets name label.
    *
@@ -72,7 +75,10 @@ public class ContactContentPageLight extends ContactContentPage {
    */
   @Override
   public ContactEditionForm clickEditButton() {
-    driverTools.clickElement(editBtn);
+    wait.until(ExpectedConditions.visibilityOf(moreOptionBtn));
+    moreOptionBtn.click();
+    wait.until(ExpectedConditions.visibilityOf(editBtn));
+    editBtn.click();
     return new ContactEditionFormLight();
   }
 
@@ -99,7 +105,11 @@ public class ContactContentPageLight extends ContactContentPage {
    */
   @Override
   public void clickDeleteButton() {
-    driverTools.clickElement(deleteBtn);
+    wait.until(ExpectedConditions.visibilityOf(moreOptionBtn));
+    moreOptionBtn.click();
+    wait.until(ExpectedConditions.visibilityOf(deleteBtn));
+    deleteBtn.click();
+
   }
 
   /**
@@ -120,6 +130,7 @@ public class ContactContentPageLight extends ContactContentPage {
   public ContactHomePage deleteContact() {
     clickDeleteButton();
     clickConfirmDeleteButton();
+
     return new ContactHomePageLight();
   }
 

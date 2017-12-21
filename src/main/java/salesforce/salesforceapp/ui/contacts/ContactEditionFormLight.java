@@ -104,8 +104,13 @@ public class ContactEditionFormLight extends ContactEditionForm {
   @CacheLookup
   private WebElement mailingCountryInput;
 
-  @FindBy(xpath = "//div[contains(@class, 'genericNotification')]")
+//  @FindBy(xpath = "//div[contains(@class, 'genericNotification')]")
+@FindBy(xpath = "//div[contains(@class, 'desktop forcePageError')]")
   private WebElement messageErrorOnFormLabel;
+  @FindBy(id = "close")
+  private WebElement closeEditFormBtn;
+
+  private boolean errorMessage;
 
   @Override
   public void waitUntilPageObjectIsLoaded() {
@@ -164,6 +169,11 @@ public class ContactEditionFormLight extends ContactEditionForm {
    */
   public ContactContentPage clickSaveButton() {
     driverTools.clickElement(saveBtn);
+    if(messageErrorOnFormLabel.isDisplayed()){
+      cancelBtn.click();
+      errorMessage=true;
+    }
+    errorMessage=false;
     return new ContactContentPageLight();
   }
 
@@ -171,7 +181,7 @@ public class ContactEditionFormLight extends ContactEditionForm {
    * Clicks the close form button.
    */
   public void clickCloseButton() {
-    driverTools.clickElement(closeBtn);
+    driverTools.clickElement(closeEditFormBtn);
   }
 
   /**
@@ -194,7 +204,7 @@ public class ContactEditionFormLight extends ContactEditionForm {
    */
   @Override
   public boolean displayedErrorMessage() {
-    return driverTools.isElementDisplayed(messageErrorOnFormLabel);
+   return errorMessage;
   }
 
 }

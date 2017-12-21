@@ -59,7 +59,7 @@ public class EditQuoteSteps {
 //    oppyQuotesView = oppyContentPage.goToQuotesView();
     oppy.addQuote(quoteCreateInfo.get(0));
     quoteName = quoteCreateInfo.get(0).getName();
-
+/*
     //Creating oppy
     apiOppy = new APIOppy(oppy);
     apiOppy.createOppy();
@@ -77,7 +77,7 @@ public class EditQuoteSteps {
     apiQuote = new APIQuote(quote);
     apiQuote.createSObjectRecord();
     //Setting quote api id
-    apiQuote.isSObjectRecordSaved();
+    apiQuote.isSObjectRecordSaved();*/
 
 //    quoteEditionForm = oppyQuotesView.goToCreateQuote();
 //    quoteEditionForm.createSObjectRecord(oppy, quoteName);

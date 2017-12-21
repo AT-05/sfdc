@@ -29,5 +29,5 @@ Feature: Unable to delete account
       | name          | type     | web           | description | phone   | sector  | employees |
       | Acme (Sample) | Prospect | www.higos.com | description | 7742515 | Banking | 248       |
     When I select an Account
-      And I delete an Account
+    And I delete an Account
     Then I verify that display the message that the account can not be Delete

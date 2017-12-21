@@ -12,7 +12,7 @@ import salesforce.salesforceapp.entities.quotes.*;
 /**
  * Created by Oz64 on 19/12/2017.
  */
-public class APIOppy {
+public class APIOppy {/*
   private final String QUERY = "/query";
   private final Oppy oppy;
   private static final APIManager apiManager = APIManager.getInstance();
@@ -58,26 +58,26 @@ public class APIOppy {
    *
    * @param oppy
    * @return
-   */
+   *//*
   public Map<String, Object> covertOppyToMap(Oppy oppy) {
     Map<String, Object> oppyMap = new HashMap<>();
     oppyMap.put("Name", oppy.getOppyName());
     oppyMap.put("StageName", oppy.getStage());
     oppyMap.put("CloseDate", DateConverter.convertDateFormat(oppy.getCloseDate()));
     return oppyMap;
-  }
-
+  }*/
+/*
   /**
    * <p>This method converts the </p>
    *
    * @param oppy
    * @return
-   */
+   *//*
   public Map<String, Object> covertOppyToMapToGet(Oppy oppy) {
     Map<String, Object> oppyMap = new HashMap<>();
     oppyMap.put("Name", oppy.getOppyName());
     oppyMap.put("StageName", oppy.getStage());
 //    oppyMap.put("CloseDate", oppy.getCloseDate());
     return oppyMap;
-  }
+  }*/
 }
