@@ -33,7 +33,7 @@ public class AccountContentPageLight extends AccountContentPage {
 
 //  @FindBy(xpath = "//a[@title='Details' or @title='Detalles']//span[@class='title']")
 //  private WebElement detailsBtn;
-  private By detailsBtnBy = By.xpath("//a[@title='Details' or @title='Detalles']//span[@class='title']");
+  private By detailsBtnBy = By.xpath("//a[@title='Details' or @title='Detalles']//*[@class='title']");
 
 
   public AccountContentPageLight() {
@@ -120,6 +120,7 @@ public class AccountContentPageLight extends AccountContentPage {
   @Override
   public void waitUntilMessageDisappear() {
     driverTools.waitUntilMessageDisappear(savedMessageBy);
+    //driverTools.waitUntilMessageDisappear(messageLabel);
   }
 
 

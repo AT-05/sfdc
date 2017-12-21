@@ -28,7 +28,7 @@ Feature: Manage Accounts
   @deleteAccount1
   Scenario: Verify that it is possible to Delete an Account without opportunities
     Given I have an Account with the following information:
-      | name    | type     | website           | description | phone   | sector  | employees |
+      | name    | type     | web           | description | phone   | sector  | employees |
       | facundo | Prospect | www.higos.com | description | 7742515 | Banking | 248       |
 
     When I select the Account
