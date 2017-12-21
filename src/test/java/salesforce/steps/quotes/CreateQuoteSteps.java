@@ -87,7 +87,7 @@ public class CreateQuoteSteps {
 //    log.info("After hook @Quote");
 //    if (!APIQuote.isOppySaved(oppy.getQuote(quoteName))) {
 //      //TODO
-//      APIQuote.deleteQuote(oppy.getQuote(quoteName));
+//      APIQuote.deleteSObjectRecord(oppy.getQuote(quoteName));
 //    }
   }
 }

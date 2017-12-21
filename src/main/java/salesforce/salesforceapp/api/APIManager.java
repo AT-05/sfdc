@@ -106,6 +106,26 @@ public class APIManager {
   }
 
   /**
+   * Executes the get request
+   *
+   * @return {@link Response}
+   */
+  public Response getFieldXByFieldY(String sObject, String sObjectFieldNameFrom,
+                                    String sObjectFieldNameWhere, String sObjectFieldValueWhere) {
+    try {
+      return given()
+          .spec(requestSpecification)
+          .param(QUERY, buildSQLQueryField(sObject, sObjectFieldNameFrom,
+              sObjectFieldNameWhere, sObjectFieldValueWhere))
+          .when()
+          .get(QUERY_ENDPOINT);
+    } catch (Exception e) {
+      log.error("The GET request failed", e);
+      throw new IllegalStateException("The GET request failed");
+    }
+  }
+
+  /**
    * Executes the post request given a Map as a data
    *
    * @param endPoint service endpoint
@@ -171,5 +191,11 @@ public class APIManager {
     query.append(String.join(" and ", list));
     System.out.println("********query: " + query.toString());
     return query.toString();
+  }
+
+  public String buildSQLQueryField(String sObject, String sObjectfieldNameFrom,
+                                   String sObjectFieldNameWhere, String sObjectFieldValueWhere) {
+    return "SELECT  " + sObjectfieldNameFrom + " from " + sObject + " where "
+        + sObjectFieldNameWhere + " = " + sObjectFieldValueWhere;
   }
 }
