@@ -48,7 +48,7 @@ public class StageSteps {
   public void theStageSelectedShouldBeAssociateToTheOpportunity() {
     oppyContentPage.clickDetailsOppyBtn();
     assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()), "The stage was incorrect:");
-    oppyContentPage.topMenu.goToHomePage();
+//    oppyContentPage.topMenu.goToHomePage();
 
     try {
       Thread.sleep(5000);

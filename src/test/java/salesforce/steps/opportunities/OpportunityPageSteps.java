@@ -17,7 +17,7 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
  */
 public class OpportunityPageSteps {
 
-  private Logger log = Logger.getLogger(getClass());
+  /*private Logger log = Logger.getLogger(getClass());
   private PageTransporter pageTransporter;
 
   //Pages
@@ -32,9 +32,9 @@ public class OpportunityPageSteps {
     pageTransporter = PageTransporter.getInstance();
   }
 
-  //****************************************************************
+  /*//****************************************************************
   //Login Step Definitions
-  //****************************************************************
+  /*//****************************************************************
   @Given("^I'm logged to Salesforce$")
   public void iMLoggedToSalesforce() {
     loginPage = pageTransporter.navigateToLoginPage();
@@ -49,5 +49,5 @@ public class OpportunityPageSteps {
   public void theOpportunitiesPageShouldBeDisplayed() {
     assertTrue(oppyHomePage.isOpportunitiesHomePage(),
         "User is able to see opportunities home page.");
-  }
+  }*/
 }
