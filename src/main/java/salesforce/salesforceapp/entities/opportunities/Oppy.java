@@ -8,6 +8,7 @@ import salesforce.salesforceapp.entities.quotes.Quote;
 
 public class Oppy {
 
+  private String id;
   private String oppyName;
   private String closeDate;
   private String stage;
@@ -15,6 +16,14 @@ public class Oppy {
   private boolean privateOppy;
   private double amount;
   private List<Quote> quoteList;
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   /**
    * Get name of the opportunity.

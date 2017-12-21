@@ -28,7 +28,7 @@ public class MainSetup {
         contactXLS = xlsFile.getValues(CONTACT);
         accountXLS = xlsFile.getValues(ACCOUNT);
 //        oppyXLS = xlsFile.getValues(OPPY);
-        quoteXLS = xlsFile.getValues(QUOTES);
+        quoteXLS = xlsFile.getValues(QUOTE);
 //        productXLS = xlsFile.getValues(PRODUCT);
 //        priceBookXLS = xlsFile.getValues(PRICE_BOOK);
 //        priceBookProductXLS = xlsFile.getValues(PRICE_BOOK_PRODUCT);

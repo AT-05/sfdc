@@ -74,7 +74,7 @@ public class AccountEditionFormClassic extends AccountEditionForm {
   public void saveAnAccount(Account account) {
     driverTools.setInputField(nameInput, account.getName());
     setDropDowField(typeDropDow, account.getType());
-    driverTools.setInputField(webInput, account.getWeb());
+    driverTools.setInputField(webInput, account.getWebsite());
     driverTools.setInputField(descriptionInput, account.getDescription());
     driverTools.setInputField(phoneInput, account.getPhone());
     driverTools.setInputField(employeesInput, account.getEmployees());
