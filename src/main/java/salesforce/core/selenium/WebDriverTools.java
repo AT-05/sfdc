@@ -49,7 +49,6 @@ public class WebDriverTools {
    * @param webElement WebElement to wait and click
    */
   public void clickElement(WebElement webElement) {
-    wait.until(ExpectedConditions.visibilityOf(webElement));
     wait.until(ExpectedConditions.elementToBeClickable(webElement));
     webElement.click();
   }
@@ -237,17 +236,7 @@ public class WebDriverTools {
    * @param element is the element.
    */
   public void waitAvailable(WebElement element) {
-    boolean flag = true;
-    while (flag) {
-      try {
-        wait.until(ExpectedConditions.visibilityOf(element));
-        System.out.println("==== Elem is visible");
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        System.out.println("==== Elem is clickable");
-        flag = false;
-      } catch (Exception ex) {
-      }
-    }
+    wait.until(ExpectedConditions.elementToBeClickable(element));
   }
 
   /**

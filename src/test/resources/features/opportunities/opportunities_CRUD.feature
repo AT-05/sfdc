@@ -7,16 +7,16 @@ Feature: Manage Opportunities - CRUD
 
   @Smoke @CreateOppy
   Scenario: User should be able to create an Opportunity
-    Given I create Opportunity with the following information
+    Given I create an Opportunity with the following information
       | oppyName  | closeDate | stage         | account | privateOppy | amount |
       | Oppy test | 6/12/2018 | Qualification | Acme    | true        | 10000  |
 
     Then a message should be displayed saying that the Opportunity was created
-    And the Opportunity created should be had the correct values
+    And the Opportunity created should have the correct values
 
   @Functional @EditOppy
   Scenario: User should be able to edit an Opportunity
-    Given I have Opportunity with the following information
+    Given I have an Opportunity with the following information
       | oppyName | closeDate | stage         | account | privateOppy | amount |
       | Opp test | 6/12/2018 | Qualification | Acme    | false       | 10000  |
 
@@ -26,11 +26,11 @@ Feature: Manage Opportunities - CRUD
       | Opp testing | 6/2/2019  | Value Proposition | salesforce.com | true        | 5000   |
 
     Then a message should be displayed saying that the Opportunity was saved
-    And the Opportunity edited should be had the correct values
+    And the Opportunity edited should have the correct values
 
   @Functional @DeleteOppy
   Scenario: User should be able to delete an Opportunity
-    Given I have Opportunity with the following information
+    Given I have an Opportunity with the following information
       | oppyName     | closeDate | stage         | account | privateOppy | amount |
       | Oppy testing | 6/12/2018 | Qualification | Acme    | true        | 10000  |
 

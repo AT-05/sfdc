@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
+import salesforce.salesforceapp.SalesforceEnums.Skin;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.ui.LoginPage;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -60,17 +61,19 @@ public class LoginSteps {
     }
     else{
       TopMenu topMenu = PageFactory.getTopMenu();
-      topMenu.goToHomePage();
-      homePage = PageFactory.getHomePage();
+      homePage = topMenu.goToHomePage();
     }
   }
 
   //****************************************************************
   //Hooks for @Login scenarios
   //****************************************************************
-  @After(value = "@Login", order = 999)
+  @After(value = "@Login, @CrudOppy, @Stages", order = 999)
   public void afterLoginScenario() {
     log.info("After hook @Login");
-    homePage.topMenu.logout();
+    Skin skin = SalesForceAppEnvsConfig.getInstance().getSkin();
+    if (skin == Skin.LIGHT){
+      homePage.topMenu.logout();
+    }
   }
 }
