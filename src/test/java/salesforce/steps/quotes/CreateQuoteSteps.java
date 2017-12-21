@@ -82,12 +82,13 @@ public class CreateQuoteSteps {
   //****************************************************************
   //Hooks for @Quote scenarios
   //****************************************************************
-  @After(value = "@Quote", order = 999)
+  @After(value = "@CreateQuote", order = 999)
   public void afterCreateQuote() {
-//    log.info("After hook @Quote");
+    log.info("After hook @CreateQuote");
 //    if (!APIQuote.isOppySaved(oppy.getQuote(quoteName))) {
 //      //TODO
 //      APIQuote.deleteSObjectRecord(oppy.getQuote(quoteName));
 //    }
+    quotesContentPage.deleteQuote();
   }
 }
