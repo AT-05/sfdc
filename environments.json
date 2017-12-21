@@ -4,45 +4,60 @@
       "id": "devOrgGerman",
       "url": "https://login.salesforce.com/",
       "user name": "german@atgui.org",
-      "user password": "63rm4n47gu1",
-      "consumer secret" : "",
-      "security token" : ""
+      "user token": "8nGs32mmGwQBJAhxnIeY2H1O",
+      "grant type": "password",
+      "client id": "3MVG9g9rbsTkKnAU8u8bq7HZdGXvicjnx9Hqvi85hhf.24YS.KrC2lKgSx2l3mke1Jp4bj.84CRTbg0jSWheS",
+      "client secret": "9101779818373849951",
+      "token base uri": "https://na73.salesforce.com/services/oauth2/token",
+      "service base uri": "https://na73.salesforce.com/services/data/v20.0"
     },
     {
       "id": "devOrgAbner",
       "url": "https://login.salesforce.com/",
       "user name": "abner@atgui.org",
       "user password": "cream.com2",
-      "consumer key" : "",
-      "consumer secret" : "",
-      "security token" : ""
+      "user token": "8nGs32mmGwQBJAhxnIeY2H1O",
+      "grant type": "password",
+      "client id": "3MVG9g9rbsTkKnAU8u8bq7HZdGXvicjnx9Hqvi85hhf.24YS.KrC2lKgSx2l3mke1Jp4bj.84CRTbg0jSWheS",
+      "client secret": "9101779818373849951",
+      "token base uri": "https://na73.salesforce.com/services/oauth2/token",
+      "service base uri": "https://na73.salesforce.com/services/data/v20.0"
     },
     {
       "id": "devOrgOscar",
       "url": "https://login.salesforce.com/",
       "user name": "oscar.delgadillo@at05.com",
       "user password": "password123",
-      "consumer key" : "3MVG9mclR62wycM04B_Qm6ZNfV_7Jaxp8Vhe6pkpKsLFxOM.mXMt2B3VKaQRobp5F3dw9sJ.aG9pUol8kzHj1",
-      "consumer secret" : "3993952417210649632",
-      "security token" : "vzUNKhYwyMUCRygInMaru7eS"
+      "user token": "8nGs32mmGwQBJAhxnIeY2H1O",
+      "grant type": "password",
+      "client id": "3MVG9g9rbsTkKnAU8u8bq7HZdGXvicjnx9Hqvi85hhf.24YS.KrC2lKgSx2l3mke1Jp4bj.84CRTbg0jSWheS",
+      "client secret": "9101779818373849951",
+      "token base uri": "https://na73.salesforce.com/services/oauth2/token",
+      "service base uri": "https://na73.salesforce.com/services/data/v20.0"
     },
     {
       "id": "devOrgFranco",
       "url": "https://login.salesforce.com/",
       "user name": "franco@francosoft.com",
       "user password": "ilovejesus100aml",
-      "consumer key" : "",
-      "consumer secret" : "",
-      "security token" : ""
+      "user token": "Z83D4YY0A0CKdxHR5he5obMN",
+      "grant type": "password",
+      "client id": "3MVG9g9rbsTkKnAU_d0jI5uEglgmLcZiL16kEZe0Xou4gaLdP05qKdK4xN_SCuW8Y7l.qsnLPjpQ7JKML5LVC",
+      "client secret": "7185729773811150250",
+      "token base uri": "https://na73.salesforce.com/services/oauth2/token",
+      "service base uri": "https://na73.salesforce.com/services/data/v20.0"
     },
     {
       "id": "devOrgMarco",
       "url": "https://login.salesforce.com/",
-      "user name": "",
-      "user password": "",
-      "consumer key" : "",
-      "consumer secret" : "",
-      "security token" : ""
+      "user name": "marco@monkeysoft.com",
+      "user password": "MM77884632mm",
+      "user token": "8nGs32mmGwQBJAhxnIeY2H1O",
+      "grant type": "password",
+      "client id": "3MVG9g9rbsTkKnAU8u8bq7HZdGXvicjnx9Hqvi85hhf.24YS.KrC2lKgSx2l3mke1Jp4bj.84CRTbg0jSWheS",
+      "client secret": "9101779818373849951",
+      "token base uri": "https://na73.salesforce.com/services/oauth2/token",
+      "service base uri": "https://na73.salesforce.com/services/data/v20.0"
     }
   ]
 }

@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
+
 import salesforce.salesforceapp.api.methods.*;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
@@ -38,30 +39,53 @@ public class EditQuoteSteps {
   //Auxiliary variables
   private String quoteName;
 
+  //Api
+  private APIOppy apiOppy;
+  private APIQuote apiQuote;
+
   public EditQuoteSteps(Quote quote) {
     this.quote = quote;
   }
 
   @Given("^I have a Quote created in opportunity \"([^\"]*)\" with the following information$")
   public void iHaveAQuoteCreatedInOpportunityWithTheFollowingInformation(String opportunityName, List<Quote> quoteCreateInfo) {
-    homePage = PageFactory.getHomePage();
-    oppyHomePage = homePage.topMenu.goToOppyHomePage();
+//    homePage = PageFactory.getHomePage();
+//    oppyHomePage = homePage.topMenu.goToOppyHomePage();
     oppy = new Oppy();
     oppy.setOppyName(opportunityName);
-    oppyContentPage = oppyHomePage.selectOppy(opportunityName);
-    oppyQuotesView = oppyContentPage.goToQuotesView();
+    oppy.setCloseDate("12/12/2018");
+    oppy.setStage("Qualification");
+//    oppyContentPage = oppyHomePage.selectOppy(opportunityName);
+//    oppyQuotesView = oppyContentPage.goToQuotesView();
     oppy.setQuoteList(quoteCreateInfo);
     for (Quote itemQuote : quoteCreateInfo) {
       quoteName = itemQuote.getName();
     }
 
-//    APIQuote.createQuote(oppy.getQuote(quoteName));
+    //Creating oppy
+    apiOppy = new APIOppy(oppy);
+    apiOppy.createOppy();
+    //Getting oppy id
+    oppy.setId(apiOppy.getOppyId());
+    System.out.println("************is oppy saved: ");
+    apiOppy.isOppySaved();
 
-    quoteEditionForm = oppyQuotesView.goToCreateQuote();
-    quoteEditionForm.createQuote(oppy, quoteName);
-    quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName);
-    //Dependency injection variable setting
+    //Setting quote
     quote.setQuote(oppy.getQuote(quoteName));
+    //Setting oppy api id in quote
+    quote.setOpportunityId(oppy.getId());
+
+    //Creating quote
+    apiQuote = new APIQuote(quote);
+    apiQuote.createQuote();
+    //Setting quote api id
+    apiQuote.isQuoteSaved();
+
+//    quoteEditionForm = oppyQuotesView.goToCreateQuote();
+//    quoteEditionForm.createQuote(oppy, quoteName);
+//    quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName);
+    //Dependency injection variable setting
+
   }
 
   @And("^I go to Quotes Home Page$")

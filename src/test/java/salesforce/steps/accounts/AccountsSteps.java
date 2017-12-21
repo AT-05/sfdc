@@ -32,6 +32,8 @@ public class AccountsSteps {
   private AccountEditionForm accountEditionForm;
   private Account account;
   private Account accountToEdit;
+  //APIAccount
+  APIAccount apiAccount;
 
 
   public AccountsSteps() throws Exception {
@@ -47,7 +49,7 @@ public class AccountsSteps {
 
   @When("^I create a New Account with the following information:$")
   public void createANewAccountWithTheFollowingInformation(List<Account> accountList) {
-    account = accountList.get(0);//accountHomePage
+    account = accountList.get(0);
     accountEditionForm = accountHomePage.clickNewAccountBtn();
     accountContentPage = accountEditionForm.saveAccount(account);
   }
@@ -68,11 +70,16 @@ public class AccountsSteps {
     //assertTrue(APIAccount.isAccountSaved(account), "The account was successfully saved");
   }
 
-  @Given("^I have an Acount with the following information:$")
+  @Given("^I have an Account with the following information:$")
   public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
     createANewAccountWithTheFollowingInformation(accountList);
     accountContentPage.waitUntilMessageDisappear();
-//    APIAccount.createAccount(accountList.get(0));
+//    apiAccount = new APIAccount(accountList.get(0));
+//    account = accountList.get(0);
+//    apiAccount.createAccount();
+//    System.out.println("************is account saved: ");
+//    apiAccount.isAccountSaved();
+//    apiAccount.deleteAccount();
   }
 
   @When("^I select the Account$")
@@ -87,7 +94,7 @@ public class AccountsSteps {
   }
 
 
-  @Then("^I should see the Acount is removed from the Accounts page$")
+  @Then("^I should see the Account is removed from the Accounts page$")
   public void iShouldSeeTheAcountIsRemovedFromTheAccountsPage() {
     assertFalse(accountHomePage.containTheAccount(account));
   }
@@ -112,10 +119,10 @@ public class AccountsSteps {
     assertTrue(accountContentPage.containsThisElement(myAccount.getPhone()), "The Phone was not displayed correctly");
     assertTrue(accountContentPage.containsThisElement(myAccount.getSector()), "The Indutry was not displayed correctly");
     assertTrue(accountContentPage.containsThisElement(myAccount.getType()), "The Type was not displayed correctly");
-    assertTrue(accountContentPage.containsThisElement(myAccount.getWeb()), "The Web adrres was not displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getWebsite()), "The Web adrres was not displayed correctly");
   }
 
-  @Given("^I have Acount  with the following information and has a closed won Opportunity:$")
+  @Given("^I have Account with the following information and has a closed won Opportunity:$")
   public void iHaveAcountWithTheFollowingInformationAndHasAClosedWonOpportunity(List<Account> accountList) {
     account = accountList.get(0);
   }
@@ -165,10 +172,10 @@ public class AccountsSteps {
   @After(value = "@createAccoount", order = 999)
   public void afterCreateAccount() {
     log.info("After hook @Login");
-    if (!APIAccount.isAccountSaved(account)) {
-//            TODO
-//            APIAccount.deleteAccount(account);
-    }
+//    if (!APIAccount.isAccountSaved(account)) {
+////            TODO
+////            APIAccount.deleteAccount(account);
+//    }
   }
 
 }

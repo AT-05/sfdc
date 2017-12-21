@@ -170,6 +170,5 @@ public class PageFactory {
       default:
         return new AccountContentPageLight();
     }
-
   }
 }

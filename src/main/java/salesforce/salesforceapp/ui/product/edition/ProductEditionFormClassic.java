@@ -27,6 +27,7 @@ public class ProductEditionFormClassic extends ProductEditionForm {
     @FindBy(name = "save")
     private WebElement elementBtn;
 
+
     /**
      * Constructor products form.
      */
@@ -47,7 +48,6 @@ public class ProductEditionFormClassic extends ProductEditionForm {
         saveBtn.click();
         return new ProductContentPageClassic();
     }
-
 
     /**
      * Create a new products.
@@ -78,6 +78,5 @@ public class ProductEditionFormClassic extends ProductEditionForm {
         setActiveCheckBox(product.getActive());
         return clickSaveBnt();
     }
-
 
 }

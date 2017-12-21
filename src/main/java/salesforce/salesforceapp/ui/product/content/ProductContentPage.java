@@ -14,16 +14,13 @@ import salesforce.salesforceapp.ui.product.home.HomeProductPage;
  */
 public abstract class ProductContentPage extends BasePage {
 
-
     public TopMenu topMenu;
-
     public WebElement editBtn;
     public WebElement deleteBtn;
     public WebElement productNameLabel;
     public WebElement productCodeLabel;
     public WebElement productDescriptionLabel;
     public WebElement activeCheckBox;
-
 
     /**
      * Check if is present the Alert and accept delete products.
@@ -33,7 +30,6 @@ public abstract class ProductContentPage extends BasePage {
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }
-
 
     @Override
     public void waitUntilPageObjectIsLoaded() {
@@ -67,4 +63,5 @@ public abstract class ProductContentPage extends BasePage {
      * @return Home products page.
      */
     public abstract HomeProductPage goToHomProductPage();
+
 }

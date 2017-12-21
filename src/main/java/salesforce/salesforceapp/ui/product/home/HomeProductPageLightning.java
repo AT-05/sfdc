@@ -3,7 +3,6 @@ package salesforce.salesforceapp.ui.product.home;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionFormLightning;
 
 /**
@@ -14,7 +13,9 @@ public class HomeProductPageLightning extends HomeProductPage {
     @FindBy(xpath = ".//*[@id='brandBand_1']/div/div/div[2]/div/div/div[1]/div[1]/div[2]/ul/li/a")
     WebElement newBtn;
 
-
+    /**
+     * Go to product page light.
+     */
     public HomeProductPageLightning() {
         super.newProduct = newBtn;
     }
@@ -36,7 +37,6 @@ public class HomeProductPageLightning extends HomeProductPage {
         return new ProductEditionFormLightning();
     }
 
-
     /**
      * Check if exist a products.
      *
@@ -48,7 +48,11 @@ public class HomeProductPageLightning extends HomeProductPage {
         return exitElement(name);
     }
 
+    @FindBy(xpath = "//one-app-launcher-header/button")
+    WebElement launcherBtn;
 
+    @FindBy(xpath = "//span[text()='Price Books']")
+    WebElement priceBookTab;
 }
 
 

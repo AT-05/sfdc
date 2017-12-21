@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.ui.LoginPage;
+import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.ui.product.edition.ProductEditionForm;
@@ -22,16 +23,13 @@ import static org.testng.AssertJUnit.assertFalse;
 public class ProductStep {
     private Logger log = Logger.getLogger(getClass());
     private PageTransporter pageTransporter;
-    // Variables
     private final String email = SalesForceAppEnvsConfig.getInstance().getUserName();
     private final String pass = SalesForceAppEnvsConfig.getInstance().getUserPassword();
-    //Pages
     private LoginPage loginPage;
     private HomePage homePage;
     private HomeProductPage homeProductPage;
     private ProductEditionForm productEditionForm;
     private ProductContentPage productContentPage;
-
     private Product product;
 
     public ProductStep() throws Exception {
@@ -41,14 +39,6 @@ public class ProductStep {
 
     @Given("^I'm logged in Sales Force$")
     public void iMLoggedInSalesForce() {
-      /*  if (!pageTransporter.isOnLogin()) {
-            loginPage = pageTransporter.navigateToLoginPage();
-            homePage = loginPage.login(email, pass);
-            return;
-        }
-*/
-      //  homeProductPage = homePage.topMenu.goToHomeProduct();
-
         if (pageTransporter.isOnLogin()) { //If the user is not logged
             loginPage = new LoginPage();
             final String userName = SalesForceAppEnvsConfig.getInstance().getUserName();
@@ -59,6 +49,7 @@ public class ProductStep {
 
     @And("^I go to Product Home page$")
     public void iGoToProductHomePage() {
+        homePage = PageFactory.getHomePage();
         homeProductPage = homePage.topMenu.goToHomeProduct();
     }
 
@@ -73,11 +64,8 @@ public class ProductStep {
 
     @Then("^Product Details Page should be display with the information of the product created$")
     public void productDetailsPageShouldBeDisplayWithTheInformationOfTheProductCreated() {
-        System.out.println("de ida a verificar ************");
         assertTrue(productContentPage.validateProductFields(product));
-
     }
-
 
     @Given("^I have a New Product with the following information:$")
 
@@ -107,10 +95,7 @@ public class ProductStep {
 
     @And("^I delete the product$")
     public void iDeleteTheProduct() {
-
         homeProductPage = productContentPage.deleteProduct();
-
-
     }
 
     @Then("^the Product should be removed from the Product List$")

@@ -8,8 +8,6 @@ import static salesforce.salesforceapp.SalesforceConstants.*;
 import salesforce.salesforceapp.excel.XLSAccount;
 import salesforce.salesforceapp.excel.XLSContact;
 import salesforce.salesforceapp.excel.XLSOppy;
-import salesforce.salesforceapp.excel.XLSPriceBook;
-import salesforce.salesforceapp.excel.XLSProduct;
 import salesforce.salesforceapp.excel.XLSQuote;
 
 public class MainSetup {
@@ -30,7 +28,7 @@ public class MainSetup {
         contactXLS = xlsFile.getValues(CONTACT);
         accountXLS = xlsFile.getValues(ACCOUNT);
 //        oppyXLS = xlsFile.getValues(OPPY);
-        quoteXLS = xlsFile.getValues(QUOTES);
+        quoteXLS = xlsFile.getValues(QUOTE);
 //        productXLS = xlsFile.getValues(PRODUCT);
 //        priceBookXLS = xlsFile.getValues(PRICE_BOOK);
 //        priceBookProductXLS = xlsFile.getValues(PRICE_BOOK_PRODUCT);

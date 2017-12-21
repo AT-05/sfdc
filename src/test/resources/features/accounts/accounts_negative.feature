@@ -14,7 +14,7 @@ Feature: Unable to delete account
 
   @editAccount
   Scenario: Verify that is not possible edit an Account without Name
-    Given I have an Acount with the following information:
+    Given I have an Account with the following information:
       | name   | type     | web           | description | phone   | sector  | employees |
       | Cocacola | Prospect | www.higos.com | description | 7742515 | Banking | 248       |
     When I select the Account
@@ -25,7 +25,7 @@ Feature: Unable to delete account
 
   @deleteAccount
   Scenario: Verify that it is not possible delete an account with has Won Opportunities
-    Given I have Acount  with the following information and has a closed won Opportunity:
+    Given I have Account with the following information and has a closed won Opportunity:
       | name          | type     | web           | description | phone   | sector  | employees |
       | Acme (Sample) | Prospect | www.higos.com | description | 7742515 | Banking | 248       |
     When I select an Account

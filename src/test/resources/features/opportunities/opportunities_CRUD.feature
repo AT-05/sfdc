@@ -1,4 +1,4 @@
-@CRUD
+@CrudOppy @FunctionalOppy
 Feature: Manage Opportunities - CRUD
 
   Background:
