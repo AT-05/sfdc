@@ -87,7 +87,7 @@ public class CreateQuoteSteps {
   @After(value = "@Quote", order = 999)
   public void afterCreateQuote() {
 //    log.info("After hook @Quote");
-//    if (!APIQuote.isQuoteSaved(oppy.getQuote(quoteName))) {
+//    if (!APIQuote.isOppySaved(oppy.getQuote(quoteName))) {
 //      //TODO
 //      APIQuote.deleteQuote(oppy.getQuote(quoteName));
 //    }

@@ -3,7 +3,7 @@ package salesforce.salesforceapp.excel;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import salesforce.salesforceapp.api.methods.APIAccount;
+import salesforce.salesforceapp.api.methods.*;
 import salesforce.salesforceapp.entities.account.Account;
 
 import static salesforce.salesforceapp.SalesforceConstants.*;
@@ -21,7 +21,7 @@ public class XLSAccount {
             Account account = new Account();
             account.setName(accountMap.get(ACCOUNT_NAME));
             account.setType(accountMap.get(ACCOUNT_TYPE));
-            account.setWeb(accountMap.get(ACCOUNT_WEB));
+            account.setWebsite(accountMap.get(ACCOUNT_WEB));
             account.setDescription(accountMap.get(ACCOUNT_DESCRIPTION));
             account.setPhone(accountMap.get(ACCOUNT_PHONE));
             account.setSector(accountMap.get(ACCOUNT_SECTOR));
@@ -30,15 +30,15 @@ public class XLSAccount {
             System.out.println("*** Account api info ***");
             System.out.println("Account Name: " + account.getName());
             System.out.println("Account Type: " + account.getType());
-            System.out.println("Account Web: " + account.getWeb());
+            System.out.println("Account Web: " + account.getWebsite());
             System.out.println("Account Description: " + account.getDescription());
             System.out.println("Account Phone: " + account.getPhone());
             System.out.println("Account Sector: " + account.getSector());
             System.out.println("Account Employees: " + account.getEmployees());
 
-            if (!APIAccount.isAccountSaved(account)) {
-                APIAccount.createAccount(account);
-            }
+//            if (!APIAccount.isAccountSaved()) {
+//                APIAccount.createAccount();
+//            }
         }
     }
 

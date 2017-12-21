@@ -32,6 +32,8 @@ public class AccountsSteps {
   private AccountEditionForm accountEditionForm;
   private Account account;
   private Account accountToEdit;
+  //APIAccount
+  APIAccount apiAccount;
 
 
   public AccountsSteps() throws Exception {
@@ -72,7 +74,12 @@ public class AccountsSteps {
   public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
     createANewAccountWithTheFollowingInformation(accountList);
     accountContentPage.waitUntilMessageDisappear();
-//    APIAccount.createAccount(accountList.get(0));
+//    apiAccount = new APIAccount(accountList.get(0));
+//    account = accountList.get(0);
+//    apiAccount.createAccount();
+//    System.out.println("************is account saved: ");
+//    apiAccount.isAccountSaved();
+//    apiAccount.deleteAccount();
   }
 
   @When("^I select the Account$")
@@ -112,7 +119,7 @@ public class AccountsSteps {
     assertTrue(accountContentPage.containsThisElement(myAccount.getPhone()), "The Phone was not displayed correctly");
     assertTrue(accountContentPage.containsThisElement(myAccount.getSector()), "The Indutry was not displayed correctly");
     assertTrue(accountContentPage.containsThisElement(myAccount.getType()), "The Type was not displayed correctly");
-    assertTrue(accountContentPage.containsThisElement(myAccount.getWeb()), "The Web adrres was not displayed correctly");
+    assertTrue(accountContentPage.containsThisElement(myAccount.getWebsite()), "The Web adrres was not displayed correctly");
   }
 
   @Given("^I have Account with the following information and has a closed won Opportunity:$")
@@ -165,10 +172,10 @@ public class AccountsSteps {
   @After(value = "@createAccoount", order = 999)
   public void afterCreateAccount() {
     log.info("After hook @Login");
-    if (!APIAccount.isAccountSaved(account)) {
-//            TODO
-//            APIAccount.deleteAccount(account);
-    }
+//    if (!APIAccount.isAccountSaved(account)) {
+////            TODO
+////            APIAccount.deleteAccount(account);
+//    }
   }
 
 }

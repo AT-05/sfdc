@@ -47,9 +47,9 @@ public class XLSQuote {
       //Reading the built json object
       quotesJsonUtils.readJsonObject(jsonObjectResult);
 
-      if (!APIQuote.isQuoteSaved(quote)) {
-        APIQuote.createQuote(quote);
-      }
+//      if (!APIQuote.isQuoteSaved(quote)) {
+//        APIQuote.createQuote(quote);
+//      }
     }
   }
 

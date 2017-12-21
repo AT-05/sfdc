@@ -4,73 +4,82 @@ package salesforce.salesforceapp.entities.account;
  * Created by Administrator on 12/6/2017.
  */
 public class Account {
-    private String name;
-    private String type;
-    private String web;
-    private String description;
-    private String phone;
-    private String sector;
-    private String employees;
+  private String id;
+  private String name;
+  private String type;
+  private String website;
+  private String description;
+  private String phone;
+  private String sector;
+  private String employees;
 
 
-    public String getName() {
-        return name;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getWeb() {
-        return web;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public void setWeb(String web) {
-        this.web = web;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getWebsite() {
+    return website;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setWebsite(String website) {
+    this.website = website;
+  }
 
-    public String getPhone() {
-        return phone;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public String getSector() {
-        return sector;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public void setSector(String sector) {
-        this.sector = sector;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    public String getEmployees() {
-        return employees;
-    }
+  public String getSector() {
+    return sector;
+  }
 
-    public void setEmployees(String employees) {
-        this.employees = employees;
-    }
+  public void setSector(String sector) {
+    this.sector = sector;
+  }
+
+  public String getEmployees() {
+    return employees;
+  }
+
+  public void setEmployees(String employees) {
+    this.employees = employees;
+  }
 
     public boolean isSame(String name, String type) {
         return (this.name.equalsIgnoreCase(name)
-                && this.web.equalsIgnoreCase(type));
+                && this.website.equalsIgnoreCase(type));
     }
 }

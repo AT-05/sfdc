@@ -38,9 +38,9 @@ public class XLSOppy {
       System.out.println("Oppy Private: " + oppy.getPrivateOppy());
       System.out.println("Oppy Amount: " + oppy.getAmount());
 
-      if (!APIOppy.isOppySaved(oppy)) {
-        APIOppy.createOppy(oppy);
-      }
+//      if (!APIOppy.isOppySaved(oppy)) {
+//        APIOppy.createOppy(oppy);
+//      }
     }
   }
 }
