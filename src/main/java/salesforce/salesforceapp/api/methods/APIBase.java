@@ -32,6 +32,14 @@ public abstract class APIBase {
     return Integer.parseInt(totalSize) > 0;
   }
 
+  public String getSObjectRecordFieldValueByField(String sObjectFieldNameFrom,
+                                                  String sObjectFieldNameWhere,
+                                                  String sObjectFieldValueWhere) {
+    return (apiManager.getFieldXByFieldY(apiSObjectName, sObjectFieldNameFrom,
+        sObjectFieldNameWhere, sObjectFieldValueWhere).jsonPath().get(sObjectFieldNameFrom)).toString();
+  }
+
+
   protected abstract void setAPIObjectId();
 
   public void createSObjectRecord() {

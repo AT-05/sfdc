@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import salesforce.salesforceapp.api.methods.*;
 import salesforce.salesforceapp.entities.products.Product;
 
 /**
@@ -163,6 +164,10 @@ public class Quote {
    * @return quote id value.
    */
   public String getId() {
+    if (id.isEmpty()) {
+      APIQuote apiQuote = new APIQuote(this);
+      id = apiQuote.getSObjectRecordFieldValueByField("id", "Name", name);
+    }
     return id;
   }
 
