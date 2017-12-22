@@ -5,7 +5,7 @@ Feature: Verify changes when assignment other stage of a opportunity
   Scenario Outline: Users should be able to change the stage of a opportunity created
     Given I am logged to Salesforce
       And I go to Opportunities page
-      And I have Opportunity with the following information
+      And I have an Opportunity with the following information
         | oppyName   | closeDate | stage         | account | privateOppy | amount |
         | <oppyName> | 6/12/2018 | Qualification | Acme    | false       | 8000   |
 

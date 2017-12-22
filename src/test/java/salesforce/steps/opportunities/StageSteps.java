@@ -39,7 +39,6 @@ public class StageSteps {
   @When("^I change the stage with \"([^\"]*)\" option$")
   public void iChangeTheStageWithOption(String stageName) {
     oppyContentPage = PageFactory.getOppyContentPage();
-    oppyContentPage.displayedCreateMessage();
     oppyContentPage = oppyContentPage.changeStage(stageName);
     oppy.setStage(stageName);
   }
@@ -48,12 +47,5 @@ public class StageSteps {
   public void theStageSelectedShouldBeAssociateToTheOpportunity() {
     oppyContentPage.clickDetailsOppyBtn();
     assertTrue(oppyContentPage.containsSpanElement(oppy.getStage()), "The stage was incorrect:");
-    oppyContentPage.topMenu.goToHomePage();
-
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
   }
 }
