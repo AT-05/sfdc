@@ -29,4 +29,6 @@ public abstract class AccountEditionForm extends BasePage {
    * @return (true/false)
    */
   public abstract boolean displayedErrorMessage();
+
+  public abstract void closeMessageError();
 }

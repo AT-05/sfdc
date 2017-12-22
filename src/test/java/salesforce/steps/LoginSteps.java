@@ -15,6 +15,7 @@ import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.ProfilePage;
 import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.home.HomePage;
+import salesforce.salesforceapp.SalesforceEnums.Skin;
 
 /**
  * Created by AT05 team on 12/11/2017.
@@ -68,7 +69,7 @@ public class LoginSteps {
   //****************************************************************
   //Hooks for @Login scenarios
   //****************************************************************
-  @After(value = "@Login, @CrudOppy, @Stages", order = 999)
+  @After(value = "@Login, @CrudOppy, @Stages, @Account", order = 999)
   public void afterLoginScenario() {
     log.info("After hook @Login");
     Skin skin = SalesForceAppEnvsConfig.getInstance().getSkin();

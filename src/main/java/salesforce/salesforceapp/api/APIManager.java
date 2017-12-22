@@ -23,7 +23,9 @@ public class APIManager {
   private final String AUTHORIZATION = "Authorization";
   private final String OAUTH = "OAuth ";     //It contains an space intentionally
   private final String QUERY = "q";
-  public static final String SOBJECTS = "sobjects/";
+  private final String QUERY_ENDPOINT = "/query";
+  public static final String SOBJECTS = "/sobjects/";
+  protected final String SLASH = "/";
 
   private SalesForceAppEnvsConfig salesForceAppEnvsConfig = SalesForceAppEnvsConfig.getInstance();
 
@@ -57,7 +59,6 @@ public class APIManager {
         .param(USERNAME, salesForceAppEnvsConfig.getUserName())
         .param(PASSWORD, salesForceAppEnvsConfig.getUserPassword().concat(salesForceAppEnvsConfig.getUserToken()))
         .post();
-    System.out.println("******tokeeeeeeeeeeen*****************" + authenticationResponse.jsonPath().get(ACCESS_TOKEN).toString());
     return authenticationResponse.jsonPath().get(ACCESS_TOKEN);
   }
 
@@ -66,15 +67,6 @@ public class APIManager {
       apiManager = new APIManager();
     }
     return apiManager;
-  }
-
-  /**
-   * Gets the request specification
-   *
-   * @return {@link RequestSpecification}
-   */
-  public RequestSpecification getRequestSpecification() {
-    return requestSpecification;
   }
 
   /**
@@ -98,23 +90,40 @@ public class APIManager {
   /**
    * Executes the get request
    *
-   * @param endPoint service endpoint
    * @return {@link Response}
    */
-  public Response getQuery(final String endPoint, String sObject, Map<String, Object> queryFields) {
+  public Response getQuery(String sObject, Map<String, Object> queryFields) {
     try {
-      System.out.println("https://na73.salesforce.com/services/data/v20.0" + endPoint);
       return given()
           .spec(requestSpecification)
           .param(QUERY, buildSQLQuery(sObject, queryFields))
           .when()
-          .get(salesForceAppEnvsConfig.getServiceBaseUri() + endPoint);
+          .get(QUERY_ENDPOINT);
     } catch (Exception e) {
       log.error("The GET request failed", e);
       throw new IllegalStateException("The GET request failed");
     }
   }
 
+  /**
+   * Executes the get request
+   *
+   * @return {@link Response}
+   */
+  public Response getFieldXByFieldY(String sObject, String sObjectFieldNameFrom,
+                                    String sObjectFieldNameWhere, String sObjectFieldValueWhere) {
+    try {
+      return given()
+          .spec(requestSpecification)
+          .param(QUERY, buildSQLQueryField(sObject, sObjectFieldNameFrom,
+              sObjectFieldNameWhere, sObjectFieldValueWhere))
+          .when()
+          .get(QUERY_ENDPOINT);
+    } catch (Exception e) {
+      log.error("The GET request failed", e);
+      throw new IllegalStateException("The GET request failed");
+    }
+  }
 
   /**
    * Executes the post request given a Map as a data
@@ -129,7 +138,7 @@ public class APIManager {
           .contentType(JSON)
           .body(body)
           .when()
-          .post(salesForceAppEnvsConfig.getServiceBaseUri() + "/" + endPoint);
+          .post(SOBJECTS + endPoint);
     } catch (Exception e) {
       log.error("The POST request failed", e);
       throw new IllegalStateException("The POST request failed");
@@ -142,11 +151,11 @@ public class APIManager {
    * @param endPoint String route of the end point.
    * @return {@link Response}
    */
-  public Response delete(final String endPoint) {
+  public Response delete(final String endPoint, String id) {
     try {
       return given().spec(requestSpecification)
           .when()
-          .delete(salesForceAppEnvsConfig.getServiceBaseUri() + "/" + endPoint);
+          .delete(SOBJECTS + endPoint + SLASH + id);
     } catch (Exception e) {
       log.error("The DELETE request failed", e);
       throw new IllegalStateException("The DELETE request failed");
@@ -155,7 +164,7 @@ public class APIManager {
 
   /**
    * @param sObject
-   * @param fields  <sObjectFieldName enum, sObjectFieldValue></>
+   * @param fields  <sObjectFieldName, sObjectFieldValue></>
    * @return
    */
   public String buildSQLQuery(String sObject, final Map<String, Object> fields) {
@@ -182,5 +191,11 @@ public class APIManager {
     query.append(String.join(" and ", list));
     System.out.println("********query: " + query.toString());
     return query.toString();
+  }
+
+  public String buildSQLQueryField(String sObject, String sObjectfieldNameFrom,
+                                   String sObjectFieldNameWhere, String sObjectFieldValueWhere) {
+    return "SELECT  " + sObjectfieldNameFrom + " from " + sObject + " where "
+        + sObjectFieldNameWhere + " = " + sObjectFieldValueWhere;
   }
 }

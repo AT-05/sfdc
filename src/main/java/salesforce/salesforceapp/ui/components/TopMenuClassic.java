@@ -25,7 +25,7 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePageClassic;
  */
 public class TopMenuClassic extends TopMenu {
 
-  private final String lacatorAccounts = "//li[@id='Account_Tab']";
+  private final String locatorAccounts = "//li[@id='Account_Tab']";
 
   @FindBy(xpath = ".//*[@id='Product2_Tab']/a")
   WebElement productTab;
@@ -163,7 +163,7 @@ public class TopMenuClassic extends TopMenu {
    */
   @Override
   public AccountHomePage goToAccountsHomePage() {
-    driverTools.clickElement(By.xpath(lacatorAccounts));
+    driverTools.clickElement(By.xpath(locatorAccounts));
     return new AccountHomePageClassic();
   }
 }
