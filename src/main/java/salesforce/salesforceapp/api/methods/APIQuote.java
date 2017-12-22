@@ -43,6 +43,7 @@ public class APIQuote extends APIBase {
     map.remove("Description");
     map.remove("Tax");
     map.remove("ShippingHandling");
+    map.remove("OpportunityId");
     return map;
   }
 
