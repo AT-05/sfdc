@@ -16,7 +16,7 @@ Feature: Manage Accounts
 
   @editAccount1
   Scenario: Verify that it is possible to Edit an Account
-    Given I have an Acount with the following information:
+    Given I have an Account with the following information:
       | name       | type     | web           | description | phone   | sector  | employees |
       | PuertoVelo | Prospect | www.higos.com | description | 7742515 | Banking | 248       |
     When I select the Account
@@ -27,11 +27,11 @@ Feature: Manage Accounts
 
   @deleteAccount1
   Scenario: Verify that it is possible to Delete an Account without opportunities
-    Given I have an Acount with the following information:
-      | name    | type     | website           | description | phone   | sector  | employees |
+    Given I have an Account with the following information:
+      | name    | type     | web           | description | phone   | sector  | employees |
       | facundo | Prospect | www.higos.com | description | 7742515 | Banking | 248       |
 
     When I select the Account
     And I delete the Account
-    Then I should see the Acount is removed from the Accounts page
+    Then I should see the Account is removed from the Accounts page
 

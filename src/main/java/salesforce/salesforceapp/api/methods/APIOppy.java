@@ -29,11 +29,12 @@ public class APIOppy {
   }
 
   public boolean isOppySaved() {
-    oppyFieldsMap = covertOppyToMapToGet(oppy);
-    System.out.println(apiManager.getQuery(QUERY, OPPORTUNITY, oppyFieldsMap).asString());
-    String totalSize = (apiManager.getQuery(QUERY, OPPORTUNITY, oppyFieldsMap).jsonPath().get("totalSize")).toString();
-    System.out.println("total size: " + totalSize);
-    return Integer.parseInt(totalSize) > 0;
+//    oppyFieldsMap = covertOppyToMapToGet(oppy);
+//    System.out.println(apiManager.getQuery(QUERY, OPPORTUNITY, oppyFieldsMap).asString());
+//    String totalSize = (apiManager.getQuery(QUERY, OPPORTUNITY, oppyFieldsMap).jsonPath().get("totalSize")).toString();
+//    System.out.println("total size: " + totalSize);
+//    return Integer.parseInt(totalSize) > 0;
+    return false;
   }
 
   public void createOppy() {
@@ -49,8 +50,8 @@ public class APIOppy {
     System.out.println("********delete oppy id: " + oppy.getId());
     String endPoint = SOBJECTS + OPPORTUNITY + "/" + oppy.getId();
     System.out.println("*******deleting oppy");
-    Response responseAccount = APIManager.getInstance().delete(endPoint);
-    System.out.println("*******response" + responseAccount.asString());
+//    Response responseAccount = APIManager.getInstance().delete(endPoint);
+//    System.out.println("*******response" + responseAccount.asString());
   }
 
   /**

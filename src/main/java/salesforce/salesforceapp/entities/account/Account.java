@@ -7,7 +7,7 @@ public class Account {
   private String id;
   private String name;
   private String type;
-  private String website;
+  private String web;
   private String description;
   private String phone;
   private String sector;
@@ -38,12 +38,12 @@ public class Account {
     this.type = type;
   }
 
-  public String getWebsite() {
-    return website;
+  public String getWeb() {
+    return web;
   }
 
-  public void setWebsite(String website) {
-    this.website = website;
+  public void setWeb(String web) {
+    this.web = web;
   }
 
   public String getDescription() {
@@ -80,6 +80,6 @@ public class Account {
 
     public boolean isSame(String name, String type) {
         return (this.name.equalsIgnoreCase(name)
-                && this.website.equalsIgnoreCase(type));
+                && this.web.equalsIgnoreCase(type));
     }
 }
