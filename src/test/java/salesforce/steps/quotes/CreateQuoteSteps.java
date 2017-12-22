@@ -1,15 +1,14 @@
 package salesforce.steps.quotes;
 
-import cucumber.api.java.After;
-import org.apache.log4j.Logger;
 import static org.testng.Assert.assertTrue;
 
+import org.apache.log4j.Logger;
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
-
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.PageFactory;
@@ -82,12 +81,9 @@ public class CreateQuoteSteps {
   //****************************************************************
   //Hooks for @Quote scenarios
   //****************************************************************
-  @After(value = "@Quote", order = 999)
+  @After(value = "@CreateQuote", order = 999)
   public void afterCreateQuote() {
-//    log.info("After hook @Quote");
-//    if (!APIQuote.isOppySaved(oppy.getQuote(quoteName))) {
-//      //TODO
-//      APIQuote.deleteSObjectRecord(oppy.getQuote(quoteName));
-//    }
+    log.info("After hook @CreateQuote");
+    quotesContentPage.deleteQuote();
   }
 }

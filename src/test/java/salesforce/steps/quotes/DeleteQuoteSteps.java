@@ -15,6 +15,7 @@ import salesforce.salesforceapp.ui.quotes.QuotesHomePage;
  * Created by Franco Aldunate on 12/5/2017.
  */
 public class DeleteQuoteSteps {
+
   private QuotesContentPage quotesContentPage;
   private QuotesHomePage quotesHomePage;
 

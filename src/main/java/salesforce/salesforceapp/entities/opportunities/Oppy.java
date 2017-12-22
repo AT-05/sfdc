@@ -2,7 +2,10 @@ package salesforce.salesforceapp.entities.opportunities;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import salesforce.salesforceapp.api.methods.APIOppy;
 import salesforce.salesforceapp.entities.quotes.Quote;
 
 public class Oppy {
@@ -24,6 +27,13 @@ public class Oppy {
   }
 
   public String getId() {
+//    if (id == null) {
+//      System.out.println("getting oppy api id with query");
+//      APIOppy apiOppy = new APIOppy(this);
+//      id = apiOppy.getSObjectRecordFieldValueByField("id", "Name", oppyName);
+//    }
+    setId("0061I000007UZAUQA4");
+    System.out.println("id: " + id);
     return id;
   }
 

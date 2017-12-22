@@ -40,12 +40,12 @@ public class XLSQuote {
       System.out.println("Quote Tax: " + quote.getTax());
       System.out.println("Quote Shipping and Handling: " + quote.getShippingAndHandling());
 
-      //Building the json object
-      QuotesJsonUtils quotesJsonUtils = new QuotesJsonUtils();
-      //passing the entity to the json builder
-      JSONObject jsonObjectResult = quotesJsonUtils.buildJsonFile(quote);
-      //Reading the built json object
-      quotesJsonUtils.readJsonObject(jsonObjectResult);
+//      //Building the json object
+//      QuotesJsonUtils quotesJsonUtils = new QuotesJsonUtils();
+//      //passing the entity to the json builder
+//      JSONObject jsonObjectResult = quotesJsonUtils.buildJsonFile(quote);
+//      //Reading the built json object
+//      quotesJsonUtils.readJsonObject(jsonObjectResult);
 
 //      if (!APIQuote.isQuoteSaved(quote)) {
 //        APIQuote.createQuote(quote);
