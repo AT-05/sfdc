@@ -36,7 +36,7 @@ public class ContactsSteps {
   }
 
   //****************************************************************
-  //OpportunitiesSteps Step Definitions
+  //Contacts Step Definitions
   //****************************************************************
   @And("^I go to Contacts home page$")
   public void iGoToContactHomePage() {
@@ -107,9 +107,9 @@ public class ContactsSteps {
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
 
-  @Then("^I should see the Contact is removed from the Accounts page$")
+  @Then("^I should see the Contact is removed from the contacts page$")
   public void iShouldSeeTheContactIsRemovedFromTheAccountsPage() throws Throwable {
-    assertTrue(contactHomePage.containContact(contact));
+    assertTrue(!contactHomePage.containContact(contact), "Contact should not found");
   }
 
   @Then("^Contact created message error should be displayed in Contact Edit Page$")
@@ -133,10 +133,9 @@ public class ContactsSteps {
     contactContentPage.deleteContact();
   }
 
-  @After(value = "@editContact", order = 996)
+  @After(value = "@editContact,@@ContactEditNegative", order = 996)
   public void afterEditContact() throws Throwable {
     contactContentPage.deleteContact();
   }
-
 
 }

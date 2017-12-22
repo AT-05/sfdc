@@ -31,7 +31,7 @@ Feature: Manage Contacts
       | test | tester   | Acme          | Buyer | test@mail.com | 5551212 | 100 Chestnut Street | Toronto | Ontario | Canada  |
 
     When I delete this Contact
-    Then I should see the Contact is removed from the Accounts page
+    Then I should see the Contact is removed from the contacts page
 
 
 
