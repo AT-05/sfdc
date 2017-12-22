@@ -50,6 +50,7 @@ public class WebDriverTools {
    */
   public void clickElement(WebElement webElement) {
     wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    wait.until(ExpectedConditions.visibilityOf(webElement));
     webElement.click();
   }
 
