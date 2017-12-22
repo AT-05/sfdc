@@ -58,11 +58,12 @@ public class ContactsSteps {
   @Then("^the Contact should be displayed in Contact content page$")
   public void theContactShouldBeDisplayedInContactContentPage() {
     contactContentPage.clickOnDetails();
-    // assertTrue(contactContentPage.getNameLabel().equals(this.contact.getName()));
-    //assertTrue(contactContentPage.getLastNameLabel().equals(this.contact.getLastName()));
-    assertTrue(contactContentPage.getAccountNameLabel().equals(this.contact.getAccountName()));
-    assertTrue(contactContentPage.getTitleLabel().equals(this.contact.getTitle()));
-    assertTrue(contactContentPage.getPhoneLabel().equals(this.contact.getPhone()));
+    assertTrue(contactContentPage.getAccountNameLabel().equals(this.contact.getAccountName()),
+        "Contact Acount name is displayed in Web");
+    assertTrue(contactContentPage.getTitleLabel().equals(this.contact.getTitle()),
+        "Contact title is displayed in Web");
+    assertTrue(contactContentPage.getPhoneLabel().equals(this.contact.getPhone()),
+        "Contact phone is displayed in Web");
   }
 
   @And("^I have a Contact with the following information:$")
@@ -86,25 +87,11 @@ public class ContactsSteps {
 
   @Then("^Contact was saved message should be displayed in Contact Content Page$")
   public void messageShouldBeDisplayed() throws InterruptedException {
-
-    final String msgExpected = "";
-    System.out.println("****************ini message**********************");
-    System.out.println(contactContentPage.
-        getContactNameText());
-    System.out.println("****************end message**********************");
-    //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
 
   @Then("^Contact was created message should be displayed in Contact Content Page$")
   public void createdMessageShouldBeDisplayed() throws InterruptedException {
-
-    final String msgExpected = "";
-    System.out.println("****************ini message**********************");
-    System.out.println(contactContentPage.
-        getContactNameText());
-    System.out.println("****************end message**********************");
-    //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
 
@@ -117,13 +104,6 @@ public class ContactsSteps {
 
   @Then("^Contact was deleted message should be displayed in Contact Content Page$")
   public void deleteMessageShouldBeDisplayed() throws InterruptedException {
-
-    final String msgExpected = "";
-    System.out.println("****************ini message**********************");
-    System.out.println(contactContentPage.
-        getContactNameText());
-    System.out.println("****************end message**********************");
-    //assertTrue(contactContentPage.successMessageText().contains(msgExpected));
     contactContentPage.waitUntilSuccessMessageDisappear();
   }
 
