@@ -1,58 +1,57 @@
 package salesforce.salesforceapp.api.methods;
 
-import io.restassured.response.*;
 import java.util.*;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import static salesforce.salesforceapp.SalesforceConstants.*;
-import salesforce.salesforceapp.api.*;
-import static salesforce.salesforceapp.api.APIManager.*;
 import salesforce.salesforceapp.entities.account.Account;
 
-public class APIAccount {
-/*
-  //  private final String ACCOUNT_ENDPOINT = "/sobjects/Account/";
-  private final String QUERY = "/query";
-//  private final String ID_FIELD = "Id";
-
+public class APIAccount extends APIBase{
   private final Account account;
-
-  private static APIManager apiManager = APIManager.getInstance();
-
-  Map<String, Object> accountFieldsMap = new HashMap<>();
 
   public APIAccount(Account account) {
     this.account = account;
-    accountFieldsMap = covertAccountToMap(account);
+    fieldsMap = covertEntityToMap();
+    apiSObjectName = ACCOUNT;
   }
 
-  public boolean isAccountSaved() {
-//    System.out.println(apiManager.getQuery(QUERY, ACCOUNT, accountFieldsMap).asString());
-//    String totalSize = (apiManager.getQuery(QUERY, ACCOUNT, accountFieldsMap).jsonPath().get("totalSize")).toString();
-//    System.out.println("total size: " + totalSize);
-//    return Integer.parseInt(totalSize) > 0;
-    return false;
-  }
-
-  public void createAccount() {
-    String endPoint = SOBJECTS + ACCOUNT + "/";
-    System.out.println("*******creating account");
-    Response responseAccount = APIManager.getInstance().post(endPoint, accountFieldsMap);
-    System.out.println("*******response" + responseAccount.asString());
-    account.setId(responseAccount.jsonPath().get("id"));
-    System.out.println("********create account id: " + account.getId());}
-
-  public void deleteAccount() {
-    System.out.println("********delete account id: " + account.getId());
-    String endPoint = SOBJECTS + ACCOUNT + "/" + account.getId();
-    System.out.println("*******deleting account");
-//    Response responseAccount = APIManager.getInstance().delete(endPoint);
-//    System.out.println("*******response" + responseAccount.asString());
-  }
-
-  public Map<String, Object> covertAccountToMap(Account account) {
+  /**
+   * <p>This method converts the </p>
+   *
+   * @return
+   */
+  @Override
+  protected Map<String, Object> covertEntityToMap() {
     Map<String, Object> map = new HashMap<>();
     map.put("Name", account.getName());
+    map.put("Phone", account.getType());
+    map.put("Website", account.getWeb());
+    map.put("Description", account.getDescription());
     map.put("Phone", account.getPhone());
+    map.put("Industry", account.getSector());
+    map.put("NumberOfEmployees", account.getEmployees());
     return map;
-  }*/
+  }
+
+  @Override
+  protected Map<String, Object> removeFields(Map<String, Object> inputMap) {
+    Map<String,Object> map = new HashMap<>();
+    Iterator it =  fieldsMap.keySet().iterator();
+    while(it.hasNext()){
+      String key = it.next().toString();
+      map.put(key,fieldsMap.get(key));
+    }
+    map.remove("Description");
+    map.remove("NumberOfEmployees");
+    map.remove("Phone");
+    return map;
+  }
+
+  @Override
+  protected void setAPIObjectId() {
+    account.setId(response.jsonPath().get(ID).toString());
+  }
+
+  @Override
+  protected String getAPIObjectId() {
+    return account.getId();
+  }
 }
