@@ -8,7 +8,23 @@ import salesforce.salesforceapp.ui.BasePage;
  */
 public abstract class ContactEditionForm extends BasePage {
 
+  /**
+   * Create an Contact and save the values.
+   * @param contact Entity
+   * @return ContactContentPage object type
+   */
   public abstract ContactContentPage createContact(Contact contact);
-
+  /**
+   * Edit an Contact and save the values.
+   * @param contact Entity
+   * @return ContactContentPage object type
+   */
   public abstract ContactContentPage editContact(Contact contact);
+
+  /**
+   * Verify is show the error message on create/edit an Contact.
+   *
+   * @return (true/false)
+   */
+  public abstract boolean displayedErrorMessage();
 }

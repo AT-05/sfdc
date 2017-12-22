@@ -26,10 +26,11 @@ public class APIAccount {
   }
 
   public boolean isAccountSaved() {
-    System.out.println(apiManager.getQuery(QUERY, ACCOUNT, accountFieldsMap).asString());
-    String totalSize = (apiManager.getQuery(QUERY, ACCOUNT, accountFieldsMap).jsonPath().get("totalSize")).toString();
-    System.out.println("total size: " + totalSize);
-    return Integer.parseInt(totalSize) > 0;
+//    System.out.println(apiManager.getQuery(QUERY, ACCOUNT, accountFieldsMap).asString());
+//    String totalSize = (apiManager.getQuery(QUERY, ACCOUNT, accountFieldsMap).jsonPath().get("totalSize")).toString();
+//    System.out.println("total size: " + totalSize);
+//    return Integer.parseInt(totalSize) > 0;
+    return false;
   }
 
   public void createAccount() {
@@ -44,8 +45,8 @@ public class APIAccount {
     System.out.println("********delete account id: " + account.getId());
     String endPoint = SOBJECTS + ACCOUNT + "/" + account.getId();
     System.out.println("*******deleting account");
-    Response responseAccount = APIManager.getInstance().delete(endPoint);
-    System.out.println("*******response" + responseAccount.asString());
+//    Response responseAccount = APIManager.getInstance().delete(endPoint);
+//    System.out.println("*******response" + responseAccount.asString());
   }
 
   public Map<String, Object> covertAccountToMap(Account account) {

@@ -58,7 +58,7 @@ public class TopMenuLight extends TopMenu {
   @FindBy(xpath = "//span[text()='Products']")
   WebElement productTab;
 
-  @FindBy(css = ".oneUserProfileCardTrigger")
+  @FindBy(css = "a[href*='Contact']")
   private WebElement contactBtn;
 
   @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Contacts']")
@@ -110,8 +110,8 @@ public class TopMenuLight extends TopMenu {
   @Override
   public HomePage goToHomePage() {
     //driverTools.clickElement(homeBtn);
-    driverTools.clickElement(appLauncherLink);
-    driverTools.clickElement(salesBtn);
+//    driverTools.clickElement(appLauncherLink);
+//    driverTools.clickElement(salesBtn);
     return new HomePageLight();
   }
 
