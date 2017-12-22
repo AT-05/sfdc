@@ -1,5 +1,6 @@
 package salesforce.salesforceapp.excel;
 
+import salesforce.core.utils.*;
 import static salesforce.salesforceapp.SalesforceConstants.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import salesforce.salesforceapp.entities.opportunities.Oppy;
  */
 public class XLSOppy {
   private static Logger log = Logger.getLogger("XLSOppy");
+  private static APIOppy apiOppy;
 
   /**
    * <p>Create Opportunities by API from excel sheet.</p>
@@ -24,7 +26,7 @@ public class XLSOppy {
     for (Map<String, String> oppyMap : oppyXLS) {
       Oppy oppy = new Oppy();
       oppy.setOppyName(oppyMap.get(OPPY_NAME));
-      oppy.setCloseDate(oppyMap.get(OPPY_CLOSE_DATE));
+      oppy.setCloseDate(DateConverter.convertDateFormat(oppyMap.get(OPPY_CLOSE_DATE)));
       oppy.setStage(oppyMap.get(OPPY_STAGE));
       oppy.setAccount(oppyMap.get(OPPY_ACCOUNT_NAME));
       oppy.setPrivateOppy(Boolean.valueOf(oppyMap.get(OPPY_PRIVATE)));
@@ -38,9 +40,11 @@ public class XLSOppy {
       System.out.println("Oppy Private: " + oppy.getPrivateOppy());
       System.out.println("Oppy Amount: " + oppy.getAmount());
 
-//      if (!APIOppy.isOppySaved(oppy)) {
-//        APIOppy.createOppy(oppy);
-//      }
+      apiOppy = new APIOppy(oppy);
+      if (!apiOppy.isSObjectRecordSaved()) {
+        System.out.println("*******Creating oppy for setup");
+        apiOppy.createSObjectRecord();
+      }
     }
   }
 }

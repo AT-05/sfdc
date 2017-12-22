@@ -1,14 +1,13 @@
 package salesforce.steps.quotes;
 
-import cucumber.api.java.After;
-import org.apache.log4j.Logger;
 import static org.testng.Assert.assertTrue;
 
+import cucumber.api.java.After;
+import org.apache.log4j.Logger;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.util.List;
-
 import salesforce.salesforceapp.entities.products.Product;
 import salesforce.salesforceapp.entities.quotes.Quote;
 import salesforce.salesforceapp.ui.PageFactory;

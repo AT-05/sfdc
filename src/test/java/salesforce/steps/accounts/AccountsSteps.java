@@ -33,7 +33,7 @@ public class AccountsSteps {
   private Account account;
   private Account accountToEdit;
   //APIAccount
-  APIAccount apiAccount;
+  private APIAccount apiAccount;
 
 
   public AccountsSteps() throws Exception {
@@ -72,14 +72,12 @@ public class AccountsSteps {
 
   @Given("^I have an Account with the following information:$")
   public void iHaveAcountWithTheFollowingInformation(List<Account> accountList) {
-    createANewAccountWithTheFollowingInformation(accountList);
-    accountContentPage.waitUntilMessageDisappear();
-//    apiAccount = new APIAccount(accountList.get(0));
-//    account = accountList.get(0);
-//    apiAccount.createAccount();
-//    System.out.println("************is account saved: ");
-//    apiAccount.isAccountSaved();
-//    apiAccount.deleteAccount();
+//    createANewAccountWithTheFollowingInformation(accountList);
+//    accountContentPage.waitUntilMessageDisappear();
+    apiAccount = new APIAccount(accountList.get(0));
+    account = accountList.get(0);
+    apiAccount.createSObjectRecord();
+    apiAccount.isSObjectRecordSaved();
   }
 
   @When("^I select the Account$")
@@ -170,15 +168,11 @@ public class AccountsSteps {
   //****************************************************************
   //Hooks for @Login scenarios
   //****************************************************************
-  @After(value = "@createAccoount_", order = 999)
+  @After(value = "@editAccount1", order = 999)
   public void afterCreateAccount() {
-    log.info("After hook @Login");
-//    if (!APIAccount.isAccountSaved(account)) {
-////            TODO
-////            APIAccount.deleteAccount(account);
-//    }
+    log.info("After hook @editAccount1");
+    if (!apiAccount.isSObjectRecordSaved()) {
+      apiAccount.deleteSObjectRecord();
+    }
   }
-
-
-
 }

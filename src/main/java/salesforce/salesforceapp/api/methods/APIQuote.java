@@ -1,10 +1,9 @@
 package salesforce.salesforceapp.api.methods;
 
-import salesforce.core.utils.*;
-import static salesforce.salesforceapp.SalesforceConstants.*;
-
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import static salesforce.salesforceapp.SalesforceConstants.*;
 import salesforce.salesforceapp.entities.quotes.Quote;
 
 /**
@@ -15,16 +14,16 @@ public class APIQuote extends APIBase {
 
   public APIQuote(Quote quote) {
     this.quote = quote;
-    fieldsMap = covertQuoteToMap();
+    fieldsMap = covertEntityToMap();
     apiSObjectName = QUOTE;
   }
 
   @Override
-  protected Map<String, Object> covertQuoteToMap() {
+  protected Map<String, Object> covertEntityToMap() {
     Map<String, Object> quoteMap = new HashMap<>();
     quoteMap.put("Name", quote.getName());
     quoteMap.put("OpportunityId", quote.getOpportunityId());
-    quoteMap.put("ExpirationDate", DateConverter.convertDateFormat(quote.getExpirationDate()));
+    quoteMap.put("ExpirationDate", quote.getExpirationDate());
     quoteMap.put("Status", quote.getStatus());
     quoteMap.put("Description", quote.getDescription());
     quoteMap.put("Tax", quote.getTaxAsDouble());
@@ -33,12 +32,28 @@ public class APIQuote extends APIBase {
   }
 
   @Override
+  protected Map<String, Object> removeFields(Map<String, Object> inputMap) {
+    Map<String, Object> map = new HashMap<>();
+    Iterator it = fieldsMap.keySet().iterator();
+    while (it.hasNext()) {
+      String key = it.next().toString();
+      map.put(key, fieldsMap.get(key));
+    }
+    map.remove("ExpirationDate");
+    map.remove("Description");
+    map.remove("Tax");
+    map.remove("ShippingHandling");
+    return map;
+  }
+
+  @Override
   protected void setAPIObjectId() {
-    quote.setId(response.jsonPath().get(ID));
+    quote.setId(response.jsonPath().get(ID).toString());
   }
 
   @Override
   protected String getAPIObjectId() {
+    System.out.println("quote id: " + quote.getId());
     return quote.getId();
   }
 }

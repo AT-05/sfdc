@@ -20,7 +20,7 @@ Feature: Manage Quotes
   Scenario: Verify that is possible to Edit a Quote
     Given I have a Quote created in opportunity "FrancoOpportunityTest" with the following information
       | name       | expirationDate | status | description        | tax | shippingAndHandling |
-      | QuoteTest2 | 30/12/2017     | Draft  | Quote Description2 | 1   | 77                  |
+      | QuoteTest2 | 2018-12-30     | Draft  | Quote Description2 | 1   | 77                  |
     And I go to Quotes Home Page
     And I select the Quote created
     When I edit the Quote with the following information
@@ -33,7 +33,7 @@ Feature: Manage Quotes
   Scenario: Verify that is possible to Delete a Quote
     Given I have a Quote created in opportunity "FrancoOpportunityTest" with the following information
       | name       | expirationDate | status | description        | tax | shippingAndHandling |
-      | QuoteTest3 | 07/12/2018     | Draft  | Quote Description3 | 2   | 50                  |
+      | QuoteTest3 | 2018-12-30     | Draft  | Quote Description3 | 2   | 50                  |
     And I go to Quotes Home Page
     And I select the Quote created
     When I delete the Quote
