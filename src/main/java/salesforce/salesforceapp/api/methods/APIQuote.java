@@ -1,9 +1,9 @@
 package salesforce.salesforceapp.api.methods;
 
-import java.util.*;
-import salesforce.core.utils.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import static salesforce.salesforceapp.SalesforceConstants.*;
-
 import salesforce.salesforceapp.entities.quotes.Quote;
 
 /**

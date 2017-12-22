@@ -12,7 +12,6 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import salesforce.salesforceapp.config.*;
 
-
 public class APIManager {
   private Logger log = Logger.getLogger(getClass());
 

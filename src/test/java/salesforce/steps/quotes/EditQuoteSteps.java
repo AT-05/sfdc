@@ -54,31 +54,16 @@ public class EditQuoteSteps {
 
   @Given("^I have a Quote created in opportunity \"([^\"]*)\" with the following information$")
   public void iHaveAQuoteCreatedInOpportunityWithTheFollowingInformation(String opportunityName, List<Quote> quoteCreateInfo) {
-//    homePage = PageFactory.getHomePage();
-//    oppyHomePage = homePage.topMenu.goToOppyHomePage();
     oppy = new Oppy();
     oppy.setOppyName(opportunityName);
-//    oppyContentPage = oppyHomePage.selectOppy(opportunityName);
-//    oppyQuotesView = oppyContentPage.goToQuotesView();
     oppy.addQuote(quoteCreateInfo.get(0));
     quoteName = quoteCreateInfo.get(0).getName();
-
     //Dependency injection variable setting
     quote.setQuote(quoteCreateInfo.get(0));
-    //Setting oppy api id in quote
     quote.setOpportunityId(oppy.getId());
-
-    System.out.println("date" + quote.getExpirationDate());
-    //Creating quote
     apiQuote = new APIQuote(quote);
-    System.out.println("******creating quote from api");
     apiQuote.createSObjectRecord();
-    System.out.println("******validating creation of quote from api");
     apiQuote.isSObjectRecordSaved();
-//
-//    quoteEditionForm = oppyQuotesView.goToCreateQuote();
-//    quoteEditionForm.createSObjectRecord(oppy, quoteName);
-//    quoteEditionForm.isQuoteCreatedMessageDisplayed(quoteName);
   }
 
   @And("^I go to Quotes Home Page$")

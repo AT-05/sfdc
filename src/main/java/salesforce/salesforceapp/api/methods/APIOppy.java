@@ -1,22 +1,16 @@
 package salesforce.salesforceapp.api.methods;
 
-import io.restassured.response.*;
-import java.util.*;
-import salesforce.core.utils.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import static salesforce.salesforceapp.SalesforceConstants.*;
-import salesforce.salesforceapp.api.*;
-import static salesforce.salesforceapp.api.APIManager.*;
-import salesforce.salesforceapp.entities.opportunities.*;
-import salesforce.salesforceapp.entities.quotes.*;
+import salesforce.salesforceapp.entities.opportunities.Oppy;
 
 /**
  * Created by Oz64 on 19/12/2017.
  */
 public class APIOppy extends APIBase {
-  private final String QUERY = "/query";
   private final Oppy oppy;
-  private static final APIManager apiManager = APIManager.getInstance();
-  private Map<String, Object> oppyFieldsMap;
 
   public APIOppy(Oppy oppy) {
     this.oppy = oppy;
@@ -52,7 +46,7 @@ public class APIOppy extends APIBase {
 
   @Override
   protected void setAPIObjectId() {
-    oppy.setId(response.jsonPath().get(ID));
+    oppy.setId(response.jsonPath().get(ID).toString());
   }
 
   @Override
