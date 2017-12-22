@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.PageFactory;
 
 public class OppyContentPageLight extends OppyContentPage {
@@ -155,9 +156,8 @@ public class OppyContentPageLight extends OppyContentPage {
    */
   @Override
   public OppyContentPage changeStage(String stageName) {
-    String xpath = String.format("//a[@data-tab-name='%s']", stageName);
+    String xpath = String.format("//span[text()='%s']/ancestor::a", stageName);
     WebElement element = driver.findElement(By.xpath(xpath));
-    driverTools.waitUntilAvailable(By.xpath(xpath));
     driverTools.clickElement(element);
     driverTools.clickElement(confirmStageBtn);
     displayedCreateMessage();

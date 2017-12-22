@@ -1,6 +1,7 @@
 package salesforce.salesforceapp.ui.components;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.ui.accounts.AccountHomePage;
@@ -44,11 +45,16 @@ public class TopMenuClassic extends TopMenu {
   @FindBy(id = "Opportunity_Tab")
   private WebElement opportunitiesBtn;
 
+  private final String opportunitiesBtn2 = "//li[@id='Opportunity_Tab']";
+
   @FindBy(id = "Quote_Tab")
   private WebElement quotesLink;
 
   @FindBy(xpath = "//a[@title='Logout']")
   private WebElement logoutLink;
+
+  @FindBy(id = "tabBar")
+  private WebElement tabBar;
 
   /**
    * Wait until the page loads.
@@ -96,7 +102,12 @@ public class TopMenuClassic extends TopMenu {
    */
   @Override
   public OppyHomePage goToOppyHomePage() {
-    driverTools.clickElement(opportunitiesBtn);
+    try {
+      driverTools.clickElement(opportunitiesBtn);
+    } catch (StaleElementReferenceException e) {
+      opportunitiesBtn = driver.findElement(By.id(opportunitiesBtn.getAttribute("id")));
+      driverTools.clickElement(opportunitiesBtn);
+    }
     return new OppyHomePageClassic();
   }
 

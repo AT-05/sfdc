@@ -3,6 +3,8 @@ package salesforce.salesforceapp.ui.opportunities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.salesforceapp.entities.opportunities.Oppy;
 
 public class OppyEditionFormLight extends OppyEditionForm {
@@ -53,7 +55,7 @@ public class OppyEditionFormLight extends OppyEditionForm {
     driverTools.setInputField(accountInput, oppy.getAccount());
     String accountElement = String
         .format("//div[@role='listbox']//div[@title='%s']", oppy.getAccount());
-    driverTools.waitUntilAvailable(By.xpath(accountElement));
+    //driverTools.waitUntilAvailable(By.xpath(accountElement));
     accountSelected = driver.findElement(By.xpath(accountElement));
     driverTools.clickElement(accountSelected);
     driverTools.clickElement(closeDate);
@@ -67,6 +69,13 @@ public class OppyEditionFormLight extends OppyEditionForm {
       driverTools.clickElement(privateCheckbox);
     }
     driverTools.clickElement(saveBtn);
+
+//    WebElement waitCreateOppyMessage = driver.findElement(By.xpath("//span[contains(@class,'toastMessage')]"));
+//    driverTools.waitUntilMessageDisappear(waitCreateOppyMessage);
+
+    WebElement spinner = driver.findElement(By.xpath("//div[(@class='dotsSpinner')]"));
+    wait.until(ExpectedConditions.invisibilityOf(spinner));
+
     return new OppyContentPageLight();
   }
 

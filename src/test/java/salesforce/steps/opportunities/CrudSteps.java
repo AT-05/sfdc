@@ -22,7 +22,7 @@ import salesforce.salesforceapp.ui.opportunities.OppyHomePage;
 /**
  * Created by Administrator on 12/5/2017.
  */
-public class ManageSteps {
+public class CrudSteps {
 
   private Logger log = Logger.getLogger(getClass());
   private PageTransporter pageTransporter;
@@ -32,14 +32,11 @@ public class ManageSteps {
   private OppyHomePage oppyHomePage;
   private OppyEditionForm oppyEditionForm;
   private OppyContentPage oppyContentPage;
-  private TopMenu topMenu;
-
-  private ManageSteps manageSteps;
 
   //Entities
   private Oppy oppy;
 
-  public ManageSteps(Oppy oppy) {
+  public CrudSteps(Oppy oppy) {
     //pageTransporter = PageTransporter.getInstance();
     this.oppy = oppy;
   }
@@ -53,7 +50,7 @@ public class ManageSteps {
     oppyHomePage = homePage.topMenu.goToOppyHomePage();
   }
 
-  @And("^I (?:have|create) Opportunity with the following information$")
+  @And("^I (?:have|create) an Opportunity with the following information$")
   public void iHaveOpportunityWithTheFollowingInformation(List<Oppy> oppy) {
     this.oppy.setOppy(oppy.get(0));
     oppyEditionForm = oppyHomePage.clickNewOppyBtn();
@@ -65,7 +62,7 @@ public class ManageSteps {
     assertTrue(oppyContentPage.displayedCreateMessage());
   }
 
-  @And("^the Opportunity (?:created|edited) should be had the correct values$")
+  @And("^the Opportunity (?:created|edited) should have the correct values$")
   public void theOpportunityCreatedShouldBeDisplayInTheOpportunitiesList() {
     oppyHomePage = oppyContentPage.topMenu.goToOppyHomePage();
     oppyContentPage = oppyHomePage.selectOppy(oppy.getOppyName());

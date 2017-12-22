@@ -7,11 +7,13 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
-import salesforce.salesforceapp.SalesforceEnums;
+import salesforce.salesforceapp.SalesforceEnums.Skin;
 import salesforce.salesforceapp.config.SalesForceAppEnvsConfig;
 import salesforce.salesforceapp.ui.LoginPage;
+import salesforce.salesforceapp.ui.PageFactory;
 import salesforce.salesforceapp.ui.PageTransporter;
 import salesforce.salesforceapp.ui.ProfilePage;
+import salesforce.salesforceapp.ui.components.TopMenu;
 import salesforce.salesforceapp.ui.home.HomePage;
 import salesforce.salesforceapp.SalesforceEnums.Skin;
 
@@ -58,12 +60,16 @@ public class LoginSteps {
       final String password = SalesForceAppEnvsConfig.getInstance().getUserPassword();
       login(userName, password);
     }
+    else{
+      TopMenu topMenu = PageFactory.getTopMenu();
+      homePage = topMenu.goToHomePage();
+    }
   }
 
   //****************************************************************
   //Hooks for @Login scenarios
   //****************************************************************
-  @After(value = "@Login, @Account", order = 999)
+  @After(value = "@Login, @CrudOppy, @Stages, @Account", order = 999)
   public void afterLoginScenario() {
     log.info("After hook @Login");
     Skin skin = SalesForceAppEnvsConfig.getInstance().getSkin();

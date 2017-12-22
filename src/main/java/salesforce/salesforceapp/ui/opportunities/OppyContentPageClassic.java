@@ -5,6 +5,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import salesforce.salesforceapp.ui.PageFactory;
 
@@ -105,6 +106,7 @@ public class OppyContentPageClassic extends OppyContentPage {
    */
   @Override
   public OppyContentPage changeStage(String stageName) {
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("opp11_ileinner")));
     Actions action = new Actions(driver);
     WebElement element = driver.findElement(By.id("opp11_ileinner"));
     action.doubleClick(element).perform();

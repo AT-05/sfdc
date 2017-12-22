@@ -109,9 +109,6 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public HomePage goToHomePage() {
-    //driverTools.clickElement(homeBtn);
-//    driverTools.clickElement(appLauncherLink);
-//    driverTools.clickElement(salesBtn);
     return new HomePageLight();
   }
 
@@ -122,9 +119,9 @@ public class TopMenuLight extends TopMenu {
    */
   @Override
   public OppyHomePage goToOppyHomePage() {
-    driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+//    driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
     driverTools.waitUntilAvailable(opportunitiesBtn);
-    driverTools.waitUntilAvailable(appLauncherLink);
+//    driverTools.waitUntilAvailable(appLauncherLink);
     driverTools.clickElement(opportunitiesBtn);
     return new OppyHomePageLight();
   }
