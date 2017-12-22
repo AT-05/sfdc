@@ -75,11 +75,19 @@ public class ContactEditionFormClassic extends ContactEditionForm {
   @CacheLookup
   private WebElement mailingCountryInput;
 
+  @FindBy(xpath = "//div[@id='errorDiv_ep']")
+  private WebElement messageErrorOnFormLabel;
+
   @Override
   public void waitUntilPageObjectIsLoaded() {
 
   }
 
+  /**
+   *
+   * @param contact Entity
+   * @return
+   */
   @Override
   public ContactContentPage createContact(Contact contact) {
     //sets
@@ -102,6 +110,15 @@ public class ContactEditionFormClassic extends ContactEditionForm {
   public ContactContentPage clickSaveButton() {
     driverTools.clickElement(saveBtn);
     return new ContactContentPageClassic();
+  }
+  /**
+   * Verify is show the error message on create/edit an Contact.
+   *
+   * @return (true/false)
+   */
+  @Override
+  public boolean displayedErrorMessage() {
+    return driverTools.isElementDisplayed(messageErrorOnFormLabel);
   }
 
   @Override

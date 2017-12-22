@@ -47,4 +47,8 @@ public class SalesforceConstants {
   public final static String OPPY_ACCOUNT_NAME = "Account Name";
   public final static String OPPY_PRIVATE = "Private";
   public final static String OPPY_AMOUNT = "Amount";
+
+  //General
+  public final static String ID = "id";
+  public final static String TOTAL_SIZE = "totalSize";
 }

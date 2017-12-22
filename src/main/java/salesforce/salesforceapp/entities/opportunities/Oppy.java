@@ -2,8 +2,7 @@ package salesforce.salesforceapp.entities.opportunities;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import salesforce.salesforceapp.entities.quotes.Quote;
 
 public class Oppy {
@@ -16,6 +15,13 @@ public class Oppy {
   private boolean privateOppy;
   private double amount;
   private List<Quote> quoteList;
+
+  /**
+   * <p>Initializing quote list.</p>
+   */
+  public Oppy() {
+    quoteList = new ArrayList<>();
+  }
 
   public String getId() {
     return id;
@@ -114,6 +120,7 @@ public class Oppy {
   public String getPrivateCheckedAsString() {
     return privateOppy ? "True" : "False";
   }
+
   public boolean getPrivateOppy() {
     return privateOppy;
   }
@@ -141,18 +148,18 @@ public class Oppy {
     return df.format(amount);
   }
 
-  public double getAmount(){
+  public double getAmount() {
     return amount;
   }
 
   /**
-   * <p>This method sets the opportunity
+   * <p>This method adds a quote in the opportunity
    * quotes' list.</p>
    *
-   * @param quoteListInput is a list of Quote elements.
+   * @param quote is an Entity object type.
    */
-  public void setQuoteList(List<Quote> quoteListInput) {
-    quoteList = quoteListInput;
+  public void addQuote(Quote quote) {
+    quoteList.add(quote);
   }
 
   /**
@@ -198,7 +205,7 @@ public class Oppy {
     }
   }
 
-  public void setOppy(Oppy oppy){
+  public void setOppy(Oppy oppy) {
     this.oppyName = oppy.getOppyName();
     this.closeDate = oppy.getCloseDate();
     this.stage = oppy.getStage();
